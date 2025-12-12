@@ -131,7 +131,7 @@ export const attorneys: Attorney[] = [
     phone: '317.636.8000',
     bio: 'Eric M. Hylton is a partner at Riley Bennett Egloff LLP, with extensive experience in construction law and commercial litigation.',
     imageUrl: '/images/team/eric-hylton.jpg',
-    practiceAreas: ['construction-law', 'business-litigation'],
+    practiceAreas: ['construction-law', 'business-litigation', 'business-corporate'],
     education: [
       {
         degree: 'J.D.',
