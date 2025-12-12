@@ -96,3 +96,14 @@ export interface Office {
   fax?: string
   mapUrl?: string
 }
+
+// Industry
+export interface Industry {
+  id: string
+  name: string
+  slug: string
+  description: string
+  icon: string // Lucide icon name
+  detailedDescription?: string
+  relatedAttorneys?: string[]
+}

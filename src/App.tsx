@@ -1,10 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { RootLayout } from './components/layout'
 import { HomePage } from './pages/home'
-import { PracticeAreaPage } from './pages/practice-areas'
+import { PracticeAreaPage, BusinessLaw } from './pages/practice-areas'
 import { AttorneysPage } from './pages/attorneys'
 import { AboutPage, HistoryPage, CommunityPage, CareersPage, FeesPage } from './pages/about'
 import { ContactPage } from './pages/contact'
+import { IndustriesIndex, IndustryPage } from './pages/industries'
 
 function App() {
   return (
@@ -12,8 +13,11 @@ function App() {
       <Routes>
         <Route path="/" element={<RootLayout />}>
           <Route index element={<HomePage />} />
+          <Route path="practice-areas/business-law" element={<BusinessLaw />} />
           <Route path="practice-areas/:slug" element={<PracticeAreaPage />} />
           <Route path="attorneys" element={<AttorneysPage />} />
+          <Route path="industries" element={<IndustriesIndex />} />
+          <Route path="industries/:slug" element={<IndustryPage />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="about/history" element={<HistoryPage />} />
           <Route path="about/community" element={<CommunityPage />} />
