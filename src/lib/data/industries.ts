@@ -51,7 +51,7 @@ export const industries: Industry[] = [
     name: 'Media',
     slug: 'media',
     description: 'Counsel for media companies and content creators.',
-    icon: 'Radio'
+    icon: 'Video'
   },
   {
     id: 'non-profits',
@@ -93,7 +93,7 @@ export const industries: Industry[] = [
     name: 'Telecommunications',
     slug: 'telecommunications',
     description: 'Counsel for telecommunications and communications companies.',
-    icon: 'Radio'
+    icon: 'Antenna'
   },
   {
     id: 'transportation',
