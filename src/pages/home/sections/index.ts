@@ -1,0 +1,5 @@
+export { HeroSection } from './HeroSection'
+export { ValuePropositionSection } from './ValuePropositionSection'
+export { PracticeAreasSection } from './PracticeAreasSection'
+export { IndustriesSection } from './IndustriesSection'
+export { NewsroomSection } from './NewsroomSection'
