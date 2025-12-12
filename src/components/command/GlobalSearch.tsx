@@ -122,7 +122,7 @@ export function GlobalSearch({ open, onOpenChange }: GlobalSearchProps) {
                     {attorneys.map((attorney) => (
                       <Command.Item
                         key={attorney.id}
-                        onSelect={() => handleSelect(() => navigate(`/attorneys#${attorney.id}`))}
+                        onSelect={() => handleSelect(() => navigate(`/attorneys/${attorney.id}`))}
                         className="flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer hover:bg-primary-burgundy/10 aria-selected:bg-primary-burgundy/10"
                         keywords={[attorney.name, attorney.title, attorney.bio]}
                       >
