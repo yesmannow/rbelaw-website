@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { RootLayout } from './components/layout'
 import { HomePage } from './pages/home'
@@ -5,10 +6,16 @@ import { PracticeAreaPage } from './pages/practice-areas'
 import { AttorneysPage } from './pages/attorneys'
 import { AboutPage, HistoryPage, CommunityPage, CareersPage, FeesPage } from './pages/about'
 import { ContactPage } from './pages/contact'
+import { GlobalSearch } from './components/command/GlobalSearch'
+import { InstallPrompt } from './components/pwa/InstallPrompt'
 
 function App() {
+  const [searchOpen, setSearchOpen] = useState(false)
+
   return (
     <BrowserRouter>
+      <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
+      <InstallPrompt />
       <Routes>
         <Route path="/" element={<RootLayout />}>
           <Route index element={<HomePage />} />
