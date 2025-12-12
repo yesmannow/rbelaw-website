@@ -5,6 +5,7 @@ import { PracticeAreaPage } from './pages/practice-areas'
 import { AttorneysPage } from './pages/attorneys'
 import { AboutPage, HistoryPage, CommunityPage, CareersPage, FeesPage } from './pages/about'
 import { ContactPage } from './pages/contact'
+import { DemoPage } from './pages/demo'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="about/careers" element={<CareersPage />} />
           <Route path="about/fees" element={<FeesPage />} />
           <Route path="contact" element={<ContactPage />} />
+          <Route path="demo" element={<DemoPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
