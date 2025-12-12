@@ -2,10 +2,12 @@ import { Link } from 'react-router-dom'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import { useState } from 'react'
 import { practiceAreas } from '../../lib/data'
+import { NewsMegaMenu } from './NewsMegaMenu'
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [isPracticeAreasOpen, setIsPracticeAreasOpen] = useState(false)
+  const [isNewsroomOpen, setIsNewsroomOpen] = useState(false)
 
   return (
     <nav className="bg-white shadow-soft sticky top-0 z-50">
@@ -55,6 +57,21 @@ export function Navbar() {
             <Link to="/attorneys" className="text-neutral-700 hover:text-primary-navy transition-colors font-medium">
               Attorneys
             </Link>
+            
+            {/* Newsroom Dropdown */}
+            <div 
+              className="relative"
+              onMouseEnter={() => setIsNewsroomOpen(true)}
+              onMouseLeave={() => setIsNewsroomOpen(false)}
+            >
+              <button className="flex items-center text-neutral-700 hover:text-primary-navy transition-colors font-medium">
+                Newsroom
+                <ChevronDown className="ml-1 h-4 w-4" />
+              </button>
+              
+              <NewsMegaMenu isOpen={isNewsroomOpen} />
+            </div>
+            
             <Link to="/about" className="text-neutral-700 hover:text-primary-navy transition-colors font-medium">
               About
             </Link>

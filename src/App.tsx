@@ -9,9 +9,15 @@ import { AboutPage, HistoryPage, CommunityPage, CareersPage, FeesPage } from './
 import { ContactPage } from './pages/contact'
 import { IndustriesIndex, IndustryPage } from './pages/industries'
 import { DemoPage } from './pages/demo'
+import { GlobalSearch } from './components/command'
+import { InstallPrompt } from './components/pwa'
+import { useLenis } from './hooks/useLenis'
 
 function App() {
   const [searchOpen, setSearchOpen] = useState(false)
+  
+  // Initialize smooth scrolling
+  useLenis()
 
   return (
     <BrowserRouter>
@@ -23,7 +29,6 @@ function App() {
           <Route path="practice-areas/business-law" element={<BusinessLaw />} />
           <Route path="practice-areas/:slug" element={<PracticeAreaPage />} />
           <Route path="attorneys" element={<AttorneysPage />} />
-          <Route path="attorneys/:id" element={<AttorneyBioPage />} />
           <Route path="attorneys/:id" element={<AttorneyBio />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="about/history" element={<HistoryPage />} />
@@ -31,6 +36,8 @@ function App() {
           <Route path="about/careers" element={<CareersPage />} />
           <Route path="about/fees" element={<FeesPage />} />
           <Route path="contact" element={<ContactPage />} />
+          <Route path="industries" element={<IndustriesIndex />} />
+          <Route path="industries/:slug" element={<IndustryPage />} />
           <Route path="demo" element={<DemoPage />} />
         </Route>
       </Routes>

@@ -95,6 +95,18 @@ export interface NewsItem {
   slug: string
 }
 
+// News Archive Item (from legacy WordPress)
+export interface NewsArchiveItem {
+  id: string
+  title: string
+  slug: string
+  date: string
+  category: string
+  excerpt: string
+  image: string
+  url: string
+}
+
 // Office Location
 export interface Office {
   id: string
