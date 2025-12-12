@@ -49,10 +49,6 @@ export function IndustriesSection() {
             </motion.div>
           ))}
         </motion.div>
-
-        <div className="mt-8 text-center text-sm text-neutral-400">
-          {industries.join(' • ')}
-        </div>
       </div>
     </section>
   )
