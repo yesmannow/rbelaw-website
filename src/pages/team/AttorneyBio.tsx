@@ -1,5 +1,5 @@
 import { useParams, Navigate } from 'react-router-dom'
-import { useRef, useState } from 'react'
+import { useRef, useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useReactToPrint } from 'react-to-print'
 import { getAttorneyById } from '@/lib/data/attorneys'
@@ -27,14 +27,16 @@ export function AttorneyBio() {
     documentTitle: `${attorney?.name} - Bio`,
   })
 
+  const filteredMatters = useMemo(() => {
+    return attorney?.representativeMatters?.filter(matter =>
+      matter.title.toLowerCase().includes(matterFilter.toLowerCase()) ||
+      matter.description.toLowerCase().includes(matterFilter.toLowerCase())
+    ) || []
+  }, [attorney?.representativeMatters, matterFilter])
+
   if (!attorney) {
     return <Navigate to="/attorneys" replace />
   }
-
-  const filteredMatters = attorney.representativeMatters?.filter(matter =>
-    matter.title.toLowerCase().includes(matterFilter.toLowerCase()) ||
-    matter.description.toLowerCase().includes(matterFilter.toLowerCase())
-  ) || []
 
   return (
     <div className="min-h-screen">

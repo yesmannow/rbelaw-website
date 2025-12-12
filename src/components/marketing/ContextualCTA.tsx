@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Download } from 'lucide-react'
+import { throttle } from '@/lib/utils'
 
 interface ContextualCTAProps {
   practiceAreaId: string
@@ -28,6 +29,24 @@ export function ContextualCTA({
     return sessionStorage.getItem(dismissedKey) === 'true'
   })
 
+  const handleScroll = useMemo(
+    () =>
+      throttle(() => {
+        if (isDismissed) return
+
+        const scrolled = window.scrollY
+        const windowHeight = window.innerHeight
+        const documentHeight = document.documentElement.scrollHeight
+
+        const scrollPercentage = (scrolled / (documentHeight - windowHeight)) * 100
+
+        if (scrollPercentage >= scrollDepth) {
+          setIsVisible(true)
+        }
+      }, 100),
+    [isDismissed, scrollDepth]
+  )
+
   useEffect(() => {
     // Skip if already dismissed
     if (isDismissed) return
@@ -38,29 +57,13 @@ export function ContextualCTA({
       }
     }, delay * 1000)
 
-    // Scroll-based trigger
-    const handleScroll = () => {
-      if (isDismissed) return
-
-      const scrolled = window.scrollY
-      const windowHeight = window.innerHeight
-      const documentHeight = document.documentElement.scrollHeight
-
-      const scrollPercentage = (scrolled / (documentHeight - windowHeight)) * 100
-
-      if (scrollPercentage >= scrollDepth) {
-        setIsVisible(true)
-        clearTimeout(timeoutId)
-      }
-    }
-
     window.addEventListener('scroll', handleScroll)
 
     return () => {
       clearTimeout(timeoutId)
       window.removeEventListener('scroll', handleScroll)
     }
-  }, [practiceAreaId, delay, scrollDepth, isDismissed])
+  }, [delay, isDismissed, handleScroll])
 
   const handleDismiss = () => {
     setIsVisible(false)
@@ -69,8 +72,8 @@ export function ContextualCTA({
   }
 
   const handleCTAClick = () => {
-    // Track the conversion if needed
-    console.log('CTA clicked:', practiceAreaId)
+    // Analytics tracking can be added here
+    // Example: analytics.track('CTA Clicked', { practiceAreaId })
   }
 
   return (

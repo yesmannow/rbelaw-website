@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { motion } from 'framer-motion'
+import { throttle } from '@/lib/utils'
 
 interface BioSection {
   id: string
@@ -13,27 +14,31 @@ interface BioStickyNavProps {
 export function BioStickyNav({ sections }: BioStickyNavProps) {
   const [activeSection, setActiveSection] = useState<string>(sections[0]?.id || '')
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY + 200
+  const handleScroll = useMemo(
+    () =>
+      throttle(() => {
+        const scrollPosition = window.scrollY + 200
 
-      for (const section of sections) {
-        const element = document.getElementById(section.id)
-        if (element) {
-          const { offsetTop, offsetHeight } = element
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section.id)
-            break
+        for (const section of sections) {
+          const element = document.getElementById(section.id)
+          if (element) {
+            const { offsetTop, offsetHeight } = element
+            if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+              setActiveSection(section.id)
+              break
+            }
           }
         }
-      }
-    }
+      }, 100),
+    [sections]
+  )
 
+  useEffect(() => {
     window.addEventListener('scroll', handleScroll)
     handleScroll() // Initial check
 
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [sections])
+  }, [handleScroll])
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
