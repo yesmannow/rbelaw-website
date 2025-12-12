@@ -16,7 +16,11 @@ export interface Attorney {
   barAdmissions: string[]
   awards?: string[]
   publications?: Publication[]
+  representativeMatters?: RepresentativeMatter[]
+  associations?: string[]
+  community?: string[]
   linkedIn?: string
+  twitter?: string
   vCard?: string
 }
 
@@ -31,6 +35,13 @@ export interface Publication {
   publication: string
   date: string
   url?: string
+}
+
+export interface RepresentativeMatter {
+  title: string
+  description: string
+  year?: string
+  practiceArea?: string
 }
 
 // Practice Area
