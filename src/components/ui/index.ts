@@ -1,5 +1,6 @@
 export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent } from './Card'
 export { Accordion, AccordionItem } from './Accordion'
+export { AttorneyCard } from './AttorneyCard'
 export { Input } from './Input'
 export { Textarea } from './Textarea'
 export { Label } from './Label'

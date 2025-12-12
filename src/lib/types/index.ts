@@ -97,6 +97,17 @@ export interface Office {
   mapUrl?: string
 }
 
+// Industry
+export interface Industry {
+  id: string
+  name: string
+  slug: string
+  description: string
+  icon: string // Lucide icon name
+  detailedDescription?: string
+  relatedAttorneys?: string[]
+}
+
 // Marketing & Lead Capture
 export interface LeadData {
   email: string
