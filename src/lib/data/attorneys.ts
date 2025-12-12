@@ -12,7 +12,7 @@ export const attorneys: Attorney[] = [
     email: 'tjost@rbelaw.com',
     phone: '317.636.8000',
     bio: 'Anthony R. Jost is a partner at Riley Bennett Egloff LLP, focusing on complex business litigation and corporate law matters.',
-    imageUrl: '/src/assets/images/team/anthony-jost.jpg',
+    imageUrl: '/images/team/anthony-jost.jpg',
     practiceAreas: ['business-litigation', 'corporate-law'],
     education: [
       {
@@ -36,7 +36,7 @@ export const attorneys: Attorney[] = [
     email: 'lbinford@rbelaw.com',
     phone: '317.636.8000',
     bio: 'Laura K. Binford is a partner at Riley Bennett Egloff LLP, specializing in insurance defense and healthcare law.',
-    imageUrl: '/src/assets/images/team/laura-binford.jpg',
+    imageUrl: '/images/team/laura-binford.jpg',
     practiceAreas: ['insurance-defense', 'healthcare-law'],
     education: [
       {
@@ -60,7 +60,7 @@ export const attorneys: Attorney[] = [
     email: 'ehylton@rbelaw.com',
     phone: '317.636.8000',
     bio: 'Eric M. Hylton is a partner at Riley Bennett Egloff LLP, with extensive experience in construction law and commercial litigation.',
-    imageUrl: '/src/assets/images/team/eric-hylton.jpg',
+    imageUrl: '/images/team/eric-hylton.jpg',
     practiceAreas: ['construction-law', 'business-litigation'],
     education: [
       {
@@ -84,7 +84,7 @@ export const attorneys: Attorney[] = [
     email: 'smarr@rbelaw.com',
     phone: '317.636.8000',
     bio: 'Sarah MacGill Marr is a partner at Riley Bennett Egloff LLP, focusing on corporate law and business transactions.',
-    imageUrl: '/src/assets/images/team/sarah-marr.jpg',
+    imageUrl: '/images/team/sarah-marr.jpg',
     practiceAreas: ['corporate-law', 'business-transactions'],
     education: [
       {
@@ -108,7 +108,7 @@ export const attorneys: Attorney[] = [
     email: 'khart@rbelaw.com',
     phone: '317.636.8000',
     bio: 'Kathleen Hart is a partner at Riley Bennett Egloff LLP, specializing in employment law and business litigation.',
-    imageUrl: '/src/assets/images/team/kathleen-hart.jpg',
+    imageUrl: '/images/team/kathleen-hart.jpg',
     practiceAreas: ['employment-law', 'business-litigation'],
     education: [
       {
@@ -132,7 +132,7 @@ export const attorneys: Attorney[] = [
     email: 'dsmith@rbelaw.com',
     phone: '317.636.8000',
     bio: 'Donald S. Smith is a partner at Riley Bennett Egloff LLP, with deep expertise in insurance defense and coverage matters.',
-    imageUrl: '/src/assets/images/team/donald-smith.jpg',
+    imageUrl: '/images/team/donald-smith.jpg',
     practiceAreas: ['insurance-defense', 'coverage-litigation'],
     education: [
       {
@@ -156,7 +156,7 @@ export const attorneys: Attorney[] = [
     email: 'rleitch@rbelaw.com',
     phone: '317.636.8000',
     bio: 'Ryan L. Leitch is a partner at Riley Bennett Egloff LLP, focusing on construction law and complex commercial litigation.',
-    imageUrl: '/src/assets/images/team/ryan-leitch.jpg',
+    imageUrl: '/images/team/ryan-leitch.jpg',
     practiceAreas: ['construction-law', 'business-litigation'],
     education: [
       {
