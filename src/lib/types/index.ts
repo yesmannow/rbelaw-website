@@ -107,3 +107,24 @@ export interface Industry {
   detailedDescription?: string
   relatedAttorneys?: string[]
 }
+
+// Marketing & Lead Capture
+export interface LeadData {
+  email: string
+  name?: string
+  phone?: string
+  source: 'contact_form' | 'quiz' | 'newsletter' | 'blog_cta'
+  metadata?: Record<string, unknown>
+}
+
+export interface QuizAnswer {
+  question: string
+  answer: string
+}
+
+export interface CaseAssessmentData extends LeadData {
+  incidentType?: string
+  incidentDate?: string
+  hasContract?: string
+  answers?: QuizAnswer[]
+}
