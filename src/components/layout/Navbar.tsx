@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { Menu, X, ChevronDown } from 'lucide-react'
 import { useState } from 'react'
 import { practiceAreas } from '../../lib/data'
+import { MegaMenu } from './MegaMenu'
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -19,46 +20,24 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-8">
-            <Link to="/" className="text-neutral-700 hover:text-primary-navy transition-colors font-medium">
+          <div className="hidden lg:flex items-center gap-8">
+            <Link to="/" className="text-neutral-700 hover:text-primary-burgundy transition-colors font-medium">
               Home
             </Link>
             
-            {/* Practice Areas Dropdown */}
-            <div 
-              className="relative"
-              onMouseEnter={() => setIsPracticeAreasOpen(true)}
-              onMouseLeave={() => setIsPracticeAreasOpen(false)}
-            >
-              <button className="flex items-center text-neutral-700 hover:text-primary-navy transition-colors font-medium">
-                Practice Areas
-                <ChevronDown className="ml-1 h-4 w-4" />
-              </button>
-              
-              {isPracticeAreasOpen && (
-                <div className="absolute left-0 mt-2 w-64 bg-white shadow-corporate rounded-sm animate-fade-in">
-                  <div className="py-2">
-                    {practiceAreas.map((area) => (
-                      <Link
-                        key={area.id}
-                        to={`/practice-areas/${area.slug}`}
-                        className="block px-4 py-3 text-sm text-neutral-700 hover:bg-neutral-50 hover:text-primary-navy transition-colors"
-                      >
-                        {area.name}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
+            {/* Mega Menu */}
+            <MegaMenu />
 
-            <Link to="/attorneys" className="text-neutral-700 hover:text-primary-navy transition-colors font-medium">
-              Attorneys
+            {/* Client Portal - Ghost Button */}
+            <Link 
+              to="/client-portal" 
+              className="text-neutral-700 hover:text-primary-burgundy transition-colors font-medium px-4 py-2 border border-neutral-300 rounded-sm hover:border-primary-burgundy"
+            >
+              Client Portal
             </Link>
-            <Link to="/about" className="text-neutral-700 hover:text-primary-navy transition-colors font-medium">
-              About
-            </Link>
-            <Link to="/contact" className="btn-primary">
+
+            {/* Contact - Primary Button */}
+            <Link to="/contact" className="bg-primary-burgundy hover:bg-primary-burgundy/90 text-white px-6 py-2 rounded-sm font-semibold transition-colors">
               Contact Us
             </Link>
           </div>
