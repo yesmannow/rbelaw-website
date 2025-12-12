@@ -1,1 +1,5 @@
 export { AboutPage } from './AboutPage'
+export { HistoryPage } from './HistoryPage'
+export { CommunityPage } from './CommunityPage'
+export { CareersPage } from './CareersPage'
+export { FeesPage } from './FeesPage'

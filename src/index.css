@@ -10,7 +10,7 @@
     --font-serif: 'Playfair Display', Georgia, Cambria, 'Times New Roman', Times, serif;
     
     /* Theme Colors using OKLCH for better color accuracy */
-    --primary: 210 100% 15%;           /* Deep Navy #0A2540 - Authoritative, Trusted */
+    --primary: 348 50% 24%;            /* Deep Burgundy/Merlot #5D1F34 - Brand Color (matching logo) */
     --secondary: 215 16% 27%;          /* Slate Grey #334155 - Professional, Balanced */
     --accent: 43 75% 38%;              /* Muted Gold #B8860B - Premium, High-end */
     
@@ -35,18 +35,18 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-serif);
-    @apply text-primary-navy;
+    @apply text-primary-burgundy;
   }
 }
 
 @layer components {
   /* Custom corporate components will go here */
   .btn-primary {
-    @apply bg-primary-navy text-white px-6 py-3 rounded-sm font-medium hover:bg-primary-slate transition-colors duration-300;
+    @apply bg-primary-burgundy text-white px-6 py-3 rounded-sm font-medium hover:bg-primary-slate transition-colors duration-300;
   }
 
   .btn-secondary {
-    @apply bg-white text-primary-navy px-6 py-3 rounded-sm font-medium border-2 border-primary-navy hover:bg-primary-navy hover:text-white transition-all duration-300;
+    @apply bg-white text-primary-burgundy px-6 py-3 rounded-sm font-medium border-2 border-primary-burgundy hover:bg-primary-burgundy hover:text-white transition-all duration-300;
   }
 
   .section-container {
@@ -54,11 +54,11 @@
   }
 
   .heading-primary {
-    @apply text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-primary-navy;
+    @apply text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-primary-burgundy;
   }
 
   .heading-secondary {
-    @apply text-3xl md:text-4xl lg:text-5xl font-serif font-semibold text-primary-navy;
+    @apply text-3xl md:text-4xl lg:text-5xl font-serif font-semibold text-primary-burgundy;
   }
 }
 

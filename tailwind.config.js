@@ -9,7 +9,8 @@ export default {
       colors: {
         // Corporate brand colors for Riley Bennett Egloff
         primary: {
-          navy: '#0A2540',      // Deep Navy - Primary brand color
+          burgundy: '#5D1F34',  // Deep Merlot/Burgundy - Primary brand color (matching logo)
+          navy: '#0A2540',      // Deep Navy - Legacy support
           slate: '#334155',     // Slate Grey - Secondary
           light: '#64748b',     // Light Slate
         },
