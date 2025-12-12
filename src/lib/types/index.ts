@@ -16,7 +16,11 @@ export interface Attorney {
   barAdmissions: string[]
   awards?: string[]
   publications?: Publication[]
+  representativeMatters?: RepresentativeMatter[]
+  associations?: string[]
+  community?: string[]
   linkedIn?: string
+  twitter?: string
   vCard?: string
 }
 
@@ -31,6 +35,13 @@ export interface Publication {
   publication: string
   date: string
   url?: string
+}
+
+export interface RepresentativeMatter {
+  title: string
+  description: string
+  year?: string
+  practiceArea?: string
 }
 
 // Practice Area
@@ -95,4 +106,36 @@ export interface Office {
   phone: string
   fax?: string
   mapUrl?: string
+}
+
+// Industry
+export interface Industry {
+  id: string
+  name: string
+  slug: string
+  description: string
+  icon: string // Lucide icon name
+  detailedDescription?: string
+  relatedAttorneys?: string[]
+}
+
+// Marketing & Lead Capture
+export interface LeadData {
+  email: string
+  name?: string
+  phone?: string
+  source: 'contact_form' | 'quiz' | 'newsletter' | 'blog_cta'
+  metadata?: Record<string, unknown>
+}
+
+export interface QuizAnswer {
+  question: string
+  answer: string
+}
+
+export interface CaseAssessmentData extends LeadData {
+  incidentType?: string
+  incidentDate?: string
+  hasContract?: string
+  answers?: QuizAnswer[]
 }
