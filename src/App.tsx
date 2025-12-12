@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { RootLayout } from './components/layout'
 import { HomePage } from './pages/home'
@@ -10,14 +11,19 @@ import { IndustriesIndex, IndustryPage } from './pages/industries'
 import { DemoPage } from './pages/demo'
 
 function App() {
+  const [searchOpen, setSearchOpen] = useState(false)
+
   return (
     <BrowserRouter>
+      <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
+      <InstallPrompt />
       <Routes>
         <Route path="/" element={<RootLayout />}>
           <Route index element={<HomePage />} />
           <Route path="practice-areas/business-law" element={<BusinessLaw />} />
           <Route path="practice-areas/:slug" element={<PracticeAreaPage />} />
           <Route path="attorneys" element={<AttorneysPage />} />
+          <Route path="attorneys/:id" element={<AttorneyBioPage />} />
           <Route path="attorneys/:id" element={<AttorneyBio />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="about/history" element={<HistoryPage />} />
