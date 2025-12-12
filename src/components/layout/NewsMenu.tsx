@@ -14,7 +14,7 @@ export function NewsMenu({ links }: NewsMenuProps) {
 
   return (
     <div className="p-6">
-      <div className="grid grid-cols-[25%_75%] gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-[minmax(200px,25%)_1fr] gap-8">
         {/* Left Column - Navigation Links */}
         <motion.div
           initial={{ opacity: 0, x: -10 }}
@@ -81,6 +81,10 @@ export function NewsMenu({ links }: NewsMenuProps) {
                             src={post.imageUrl}
                             alt={post.title}
                             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                            onError={(e) => {
+                              // Fallback to placeholder on error
+                              e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="250"%3E%3Crect fill="%23f1f5f9" width="400" height="250"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" fill="%2394a3b8" font-family="sans-serif"%3EImage%3C/text%3E%3C/svg%3E'
+                            }}
                           />
                         </div>
                       )}

@@ -2,6 +2,7 @@ import type { NewsItem } from '../types'
 
 /**
  * Mock news data - In production, this would come from a CMS or API
+ * Using placeholder images that fallback gracefully
  */
 const newsData: NewsItem[] = [
   {

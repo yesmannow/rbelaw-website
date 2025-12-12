@@ -141,7 +141,7 @@ export function MegaMenu({ onSearchTrigger }: MegaMenuProps) {
   return (
     <NavigationMenu.Root
       value={activeValue}
-      onValueChange={setActiveValue}
+      onValueChange={(value) => setActiveValue(value)}
       className="relative z-10"
     >
       <NavigationMenu.List className="flex items-center gap-6">
@@ -164,7 +164,7 @@ export function MegaMenu({ onSearchTrigger }: MegaMenuProps) {
             </NavigationMenu.Trigger>
 
             <NavigationMenu.Content className="absolute left-0 top-0 w-full">
-              <div className="w-screen bg-white/95 backdrop-blur-md border border-neutral-200 rounded-lg shadow-corporate overflow-hidden">
+              <div className="w-full max-w-7xl mx-auto bg-white/95 backdrop-blur-md border border-neutral-200 rounded-lg shadow-corporate overflow-hidden">
                 {renderContent(key, section)}
               </div>
             </NavigationMenu.Content>

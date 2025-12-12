@@ -9,12 +9,16 @@ export function Navbar() {
   const [isPracticeAreasOpen, setIsPracticeAreasOpen] = useState(false)
 
   const handleSearchTrigger = () => {
-    // Trigger the global search - uses the Cmd/Ctrl+K shortcut
-    // In the future, this could dispatch an event or use context
+    // Open the global search command palette
+    // The GlobalSearch component listens for Cmd/Ctrl+K
     const event = new KeyboardEvent('keydown', {
       key: 'k',
+      code: 'KeyK',
+      keyCode: 75,
       metaKey: true,
+      ctrlKey: true,
       bubbles: true,
+      cancelable: true,
     })
     document.dispatchEvent(event)
   }
