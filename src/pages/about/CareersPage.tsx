@@ -89,7 +89,7 @@ export function CareersPage() {
                 </p>
                 <a 
                   href="mailto:careers@rbelaw.com" 
-                  className="inline-block bg-primary-burgundy text-white px-6 py-2 rounded-sm hover:bg-primary-slate transition-colors duration-300"
+                  className="inline-block bg-primary-burgundy text-white px-6 py-2 rounded-sm hover:bg-primary-burgundy/90 transition-colors duration-300"
                 >
                   Submit Your Resume
                 </a>
@@ -105,7 +105,7 @@ export function CareersPage() {
                 </p>
                 <a 
                   href="mailto:careers@rbelaw.com" 
-                  className="inline-block bg-primary-burgundy text-white px-6 py-2 rounded-sm hover:bg-primary-slate transition-colors duration-300"
+                  className="inline-block bg-primary-burgundy text-white px-6 py-2 rounded-sm hover:bg-primary-burgundy/90 transition-colors duration-300"
                 >
                   Apply Now
                 </a>
