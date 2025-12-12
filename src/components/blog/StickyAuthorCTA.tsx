@@ -20,20 +20,26 @@ export function StickyAuthorCTA({
   const [isDismissed, setIsDismissed] = useState(false)
 
   useEffect(() => {
+    let scrollTimeout: ReturnType<typeof setTimeout>
+
     const handleScroll = () => {
       if (isDismissed) return
 
-      // Calculate scroll percentage
-      const scrollTop = window.scrollY
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight
-      const scrollPercent = (scrollTop / docHeight) * 100
+      // Throttle scroll event to improve performance
+      clearTimeout(scrollTimeout)
+      scrollTimeout = setTimeout(() => {
+        // Calculate scroll percentage
+        const scrollTop = window.scrollY
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight
+        const scrollPercent = (scrollTop / docHeight) * 100
 
-      // Show CTA when user has scrolled 75% of the article
-      if (scrollPercent >= 75 && !isVisible) {
-        setIsVisible(true)
-      } else if (scrollPercent < 75 && isVisible) {
-        setIsVisible(false)
-      }
+        // Show CTA when user has scrolled 75% of the article
+        if (scrollPercent >= 75 && !isVisible) {
+          setIsVisible(true)
+        } else if (scrollPercent < 75 && isVisible) {
+          setIsVisible(false)
+        }
+      }, 100)
     }
 
     // Add scroll event listener
@@ -45,6 +51,7 @@ export function StickyAuthorCTA({
     // Cleanup
     return () => {
       window.removeEventListener('scroll', handleScroll)
+      clearTimeout(scrollTimeout)
     }
   }, [isVisible, isDismissed])
 

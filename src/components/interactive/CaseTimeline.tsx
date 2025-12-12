@@ -86,7 +86,7 @@ const stages: TimelineStage[] = [
 ]
 
 export function CaseTimeline() {
-  const [activeStage, setActiveStage] = useState<string | null>('investigation')
+  const [activeStage, setActiveStage] = useState<string | null>(stages[0]?.id || null)
 
   return (
     <div className="w-full py-12">

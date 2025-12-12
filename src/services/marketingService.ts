@@ -19,6 +19,9 @@ import type { LeadData } from '../lib/types'
 const MAILCHIMP_ENDPOINT = import.meta.env.VITE_MAILCHIMP_ENDPOINT
 const CRM_ENDPOINT = import.meta.env.VITE_CRM_ENDPOINT
 
+// Mock API delay for simulated submissions (in milliseconds)
+const MOCK_API_DELAY = 1000
+
 /**
  * Submit a lead to the marketing stack
  * 
@@ -68,7 +71,7 @@ export async function submitLead(data: LeadData): Promise<boolean> {
     }
 
     // Simulate API delay
-    await new Promise(resolve => setTimeout(resolve, 1000))
+    await new Promise(resolve => setTimeout(resolve, MOCK_API_DELAY))
 
     console.log('✅ Lead submission successful (simulated)')
     return true
