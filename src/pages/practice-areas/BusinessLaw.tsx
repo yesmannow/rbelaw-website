@@ -5,9 +5,9 @@ export function BusinessLaw() {
   const relatedAttorneys = [
     'Jaclyn Flint',
     'Kathleen Hart',
-    'Eric Hylton',
-    'Anthony Jost',
-    'Ryan Leitch',
+    'Eric M. Hylton',
+    'Anthony R. Jost',
+    'Ryan L. Leitch',
     'Courtney David Mills',
     'Katie Riles',
     'Raymond Seach',
