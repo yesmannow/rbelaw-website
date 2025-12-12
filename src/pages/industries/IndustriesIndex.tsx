@@ -5,7 +5,8 @@ import { industries } from '../../lib/data'
 
 // Map icon names to actual Lucide components
 const getIcon = (iconName: string) => {
-  const Icon = (LucideIcons as any)[iconName]
+  type IconsType = typeof LucideIcons
+  const Icon = LucideIcons[iconName as keyof IconsType] as typeof LucideIcons.Briefcase
   return Icon || LucideIcons.Briefcase
 }
 
