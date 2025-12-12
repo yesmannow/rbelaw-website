@@ -3,12 +3,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { RootLayout } from './components/layout'
 import { HomePage } from './pages/home'
 import { PracticeAreaPage, BusinessLaw } from './pages/practice-areas'
-import { AttorneysPage } from './pages/attorneys'
-import { AttorneyBio } from './pages/team'
+import { AttorneysPage, AttorneyBioPage } from './pages/attorneys'
 import { AboutPage, HistoryPage, CommunityPage, CareersPage, FeesPage } from './pages/about'
 import { ContactPage } from './pages/contact'
-import { IndustriesIndex, IndustryPage } from './pages/industries'
 import { DemoPage } from './pages/demo'
+import { GlobalSearch } from './components/command/GlobalSearch'
+import { InstallPrompt } from './components/pwa/InstallPrompt'
 
 function App() {
   const [searchOpen, setSearchOpen] = useState(false)
@@ -24,7 +24,6 @@ function App() {
           <Route path="practice-areas/:slug" element={<PracticeAreaPage />} />
           <Route path="attorneys" element={<AttorneysPage />} />
           <Route path="attorneys/:id" element={<AttorneyBioPage />} />
-          <Route path="attorneys/:id" element={<AttorneyBio />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="about/history" element={<HistoryPage />} />
           <Route path="about/community" element={<CommunityPage />} />
