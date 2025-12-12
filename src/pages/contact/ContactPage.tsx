@@ -73,7 +73,7 @@ export function ContactPage() {
                 </h3>
                 <div className="ml-8 space-y-1">
                   <p className="text-white/80">
-                    Phone: <a href="tel:317.636.8000" className="hover:text-accent-gold transition-colors">317.636.8000</a>
+                    Phone: <a href="tel:+13176368000" className="hover:text-accent-gold transition-colors">317.636.8000</a>
                   </p>
                   <p className="text-white/80">
                     Fax: 317.636.8027
