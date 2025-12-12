@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
+import type { PanInfo } from 'framer-motion'
 import { Mail, Phone, Linkedin, ArrowLeft } from 'lucide-react'
 import { getAttorneyById } from '@/lib/data/attorneys'
 import { SEOMeta } from '@/components/seo/SEOMeta'
@@ -39,7 +40,7 @@ export function AttorneyBioPage() {
     { id: 'education', label: 'Education' },
   ]
 
-  const handleDragEnd = (_event: any, info: any) => {
+  const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
     const threshold = 50
     const currentIndex = tabs.findIndex(t => t.id === activeTab)
 

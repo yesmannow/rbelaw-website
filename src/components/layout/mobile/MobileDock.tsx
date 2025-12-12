@@ -4,12 +4,13 @@ import { DockItem } from './DockItem'
 import { CommandCenterFAB } from './CommandCenterFAB'
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle } from '@/components/ui/Drawer'
 import { motion } from 'framer-motion'
+import type { PanInfo } from 'framer-motion'
 
 export function MobileDock() {
   const [isContactDrawerOpen, setIsContactDrawerOpen] = useState(false)
   const [isFooterOpen, setIsFooterOpen] = useState(false)
 
-  const handleDragEnd = (_event: any, info: any) => {
+  const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
     // If dragged up more than 50px, show footer
     if (info.offset.y < -50) {
       setIsFooterOpen(true)
