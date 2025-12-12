@@ -1,0 +1,1 @@
+export { AttorneyBio } from './AttorneyBio'

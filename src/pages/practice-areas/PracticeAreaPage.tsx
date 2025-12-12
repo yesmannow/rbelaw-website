@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowLeft, CheckCircle2 } from 'lucide-react'
 import { getPracticeAreaBySlug } from '../../lib/data'
+import { ContextualCTA } from '@/components/marketing'
 
 export function PracticeAreaPage() {
   const { slug } = useParams<{ slug: string }>()
@@ -133,6 +134,19 @@ export function PracticeAreaPage() {
           </div>
         </div>
       </section>
+
+      {/* Contextual CTA - Example for employment law practice area */}
+      {practiceArea.slug === 'employment-law' && (
+        <ContextualCTA
+          practiceAreaId={practiceArea.id}
+          title="2025 Employment Law Guide"
+          description="Download our comprehensive guide to navigating employment law in Indiana."
+          ctaText="Download Free Guide"
+          ctaLink="/contact"
+          delay={10}
+          scrollDepth={50}
+        />
+      )}
     </div>
   )
 }

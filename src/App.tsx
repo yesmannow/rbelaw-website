@@ -3,6 +3,7 @@ import { RootLayout } from './components/layout'
 import { HomePage } from './pages/home'
 import { PracticeAreaPage, BusinessLaw } from './pages/practice-areas'
 import { AttorneysPage } from './pages/attorneys'
+import { AttorneyBio } from './pages/team'
 import { AboutPage, HistoryPage, CommunityPage, CareersPage, FeesPage } from './pages/about'
 import { ContactPage } from './pages/contact'
 import { IndustriesIndex, IndustryPage } from './pages/industries'
@@ -17,8 +18,7 @@ function App() {
           <Route path="practice-areas/business-law" element={<BusinessLaw />} />
           <Route path="practice-areas/:slug" element={<PracticeAreaPage />} />
           <Route path="attorneys" element={<AttorneysPage />} />
-          <Route path="industries" element={<IndustriesIndex />} />
-          <Route path="industries/:slug" element={<IndustryPage />} />
+          <Route path="attorneys/:id" element={<AttorneyBio />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="about/history" element={<HistoryPage />} />
           <Route path="about/community" element={<CommunityPage />} />
