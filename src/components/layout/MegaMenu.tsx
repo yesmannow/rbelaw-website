@@ -6,7 +6,11 @@ import { navData, iconMap, type NavigationSection } from '@/lib/data/navigation'
 import { NewsMenu } from './NewsMenu'
 import { useState } from 'react'
 
-export function MegaMenu() {
+interface MegaMenuProps {
+  onSearchTrigger?: () => void
+}
+
+export function MegaMenu({ onSearchTrigger }: MegaMenuProps) {
   const [activeValue, setActiveValue] = useState<string>('')
 
   const renderIcon = (iconName?: string) => {
@@ -33,6 +37,38 @@ export function MegaMenu() {
         >
           {featured.buttonText}
         </Link>
+      </motion.div>
+    )
+  }
+
+  const renderAction = (action: NavigationSection['action']) => {
+    if (!action) return null
+    
+    const Icon = action.icon ? iconMap[action.icon] : null
+    
+    const handleClick = () => {
+      if (action.action === 'search' && onSearchTrigger) {
+        onSearchTrigger()
+      }
+    }
+    
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+        className="pt-4 border-t border-neutral-200 mt-4"
+      >
+        <button
+          onClick={handleClick}
+          className="w-full flex items-center gap-3 p-4 bg-primary-burgundy text-white rounded-lg hover:bg-primary-burgundy/90 transition-colors group"
+        >
+          {Icon && <Icon className="w-5 h-5" />}
+          <div className="text-left flex-1">
+            <div className="font-semibold">{action.label}</div>
+            <div className="text-sm text-white/80">{action.description}</div>
+          </div>
+        </button>
       </motion.div>
     )
   }
@@ -92,7 +128,10 @@ export function MegaMenu() {
     return (
       <div className="p-6">
         <div className={section.featured ? 'grid grid-cols-[2fr_1fr] gap-6' : ''}>
-          <div>{renderLinks(section)}</div>
+          <div>
+            {renderLinks(section)}
+            {section.action && renderAction(section.action)}
+          </div>
           {section.featured && <div>{renderFeaturedCard(section.featured)}</div>}
         </div>
       </div>
@@ -103,12 +142,12 @@ export function MegaMenu() {
     <NavigationMenu.Root
       value={activeValue}
       onValueChange={setActiveValue}
-      className="relative"
+      className="relative z-10"
     >
       <NavigationMenu.List className="flex items-center gap-6">
         {Object.entries(navData).map(([key, section]) => (
           <NavigationMenu.Item key={key} value={key}>
-            <NavigationMenu.Trigger className="group flex items-center gap-1 text-neutral-700 hover:text-primary-burgundy transition-colors font-medium outline-none relative px-1 py-2">
+            <NavigationMenu.Trigger className="group flex items-center gap-1 text-neutral-700 hover:text-primary-burgundy transition-colors font-medium outline-none relative px-1 py-2 bg-transparent data-[state=open]:text-primary-burgundy">
               {section.label}
               <ChevronDown
                 className="w-4 h-4 transition-transform group-data-[state=open]:rotate-180"
@@ -124,21 +163,17 @@ export function MegaMenu() {
               )}
             </NavigationMenu.Trigger>
 
-            <NavigationMenu.Content className="data-[motion=from-start]:animate-enterFromLeft data-[motion=from-end]:animate-enterFromRight data-[motion=to-start]:animate-exitToLeft data-[motion=to-end]:animate-exitToRight absolute left-0 top-0 w-full sm:w-auto">
-              <div className="w-screen max-w-screen-2xl bg-white/95 backdrop-blur-md border border-neutral-200 rounded-lg shadow-corporate overflow-hidden">
+            <NavigationMenu.Content className="absolute left-0 top-0 w-full">
+              <div className="w-screen bg-white/95 backdrop-blur-md border border-neutral-200 rounded-lg shadow-corporate overflow-hidden">
                 {renderContent(key, section)}
               </div>
             </NavigationMenu.Content>
           </NavigationMenu.Item>
         ))}
-
-        <NavigationMenu.Indicator className="data-[state=visible]:animate-fadeIn data-[state=hidden]:animate-fadeOut top-full z-[1] flex h-2.5 items-end justify-center overflow-hidden transition-[width,transform_250ms_ease]">
-          <div className="relative top-[70%] h-2.5 w-2.5 rotate-45 rounded-tl-sm bg-white border-l border-t border-neutral-200" />
-        </NavigationMenu.Indicator>
       </NavigationMenu.List>
 
-      <div className="perspective-[2000px] absolute top-full left-0 flex w-full justify-center">
-        <NavigationMenu.Viewport className="relative mt-2 h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-lg bg-white border border-neutral-200 shadow-corporate transition-[width,_height] duration-300 data-[state=open]:animate-scaleIn data-[state=closed]:animate-scaleOut" />
+      <div className="absolute left-0 top-full w-full flex justify-start pt-2">
+        <NavigationMenu.Viewport className="relative origin-top-left overflow-hidden bg-white rounded-lg border border-neutral-200 shadow-corporate transition-[width,height] duration-300 h-[var(--radix-navigation-menu-viewport-height)] w-[var(--radix-navigation-menu-viewport-width)]" />
       </div>
     </NavigationMenu.Root>
   )

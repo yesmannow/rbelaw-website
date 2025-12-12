@@ -8,6 +8,17 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [isPracticeAreasOpen, setIsPracticeAreasOpen] = useState(false)
 
+  const handleSearchTrigger = () => {
+    // Trigger the global search - uses the Cmd/Ctrl+K shortcut
+    // In the future, this could dispatch an event or use context
+    const event = new KeyboardEvent('keydown', {
+      key: 'k',
+      metaKey: true,
+      bubbles: true,
+    })
+    document.dispatchEvent(event)
+  }
+
   return (
     <nav className="bg-white shadow-soft sticky top-0 z-50">
       <div className="section-container">
@@ -26,7 +37,7 @@ export function Navbar() {
             </Link>
             
             {/* Mega Menu */}
-            <MegaMenu />
+            <MegaMenu onSearchTrigger={handleSearchTrigger} />
 
             {/* Client Portal - Ghost Button */}
             <Link 

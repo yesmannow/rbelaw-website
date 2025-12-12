@@ -18,6 +18,7 @@ import {
   Laptop,
   Truck,
   ShoppingCart,
+  Search,
 } from 'lucide-react'
 
 export interface NavigationLink {
@@ -34,10 +35,18 @@ export interface FeaturedCard {
   buttonText: string
 }
 
+export interface NavigationAction {
+  label: string
+  description: string
+  action: 'search' | 'custom'
+  icon?: string
+}
+
 export interface NavigationSection {
   label: string
   links: NavigationLink[]
   featured?: FeaturedCard
+  action?: NavigationAction
   columns?: number
 }
 
@@ -60,6 +69,7 @@ export const iconMap: Record<string, LucideIcon> = {
   Laptop,
   Truck,
   ShoppingCart,
+  Search,
 }
 
 export const navData: Record<string, NavigationSection> = {
@@ -121,6 +131,12 @@ export const navData: Record<string, NavigationSection> = {
         icon: 'Briefcase',
       },
     ],
+    action: {
+      label: 'Search Directory',
+      description: 'Find attorneys and staff quickly',
+      action: 'search',
+      icon: 'Search',
+    },
   },
   practiceAreas: {
     label: 'Practice Areas',
