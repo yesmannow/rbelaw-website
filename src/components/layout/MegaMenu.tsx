@@ -164,6 +164,7 @@ export function MegaMenu({ onSearchTrigger }: MegaMenuProps) {
             </NavigationMenu.Trigger>
 
             <NavigationMenu.Content className="absolute left-0 top-0 w-full">
+              {/* max-w-7xl (80rem) prevents horizontal scrolling on large screens */}
               <div className="w-full max-w-7xl mx-auto bg-white/95 backdrop-blur-md border border-neutral-200 rounded-lg shadow-corporate overflow-hidden">
                 {renderContent(key, section)}
               </div>

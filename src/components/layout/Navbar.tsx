@@ -3,25 +3,11 @@ import { Menu, X, ChevronDown } from 'lucide-react'
 import { useState } from 'react'
 import { practiceAreas } from '../../lib/data'
 import { MegaMenu } from './MegaMenu'
+import { triggerGlobalSearch } from '../../lib/utils/megaMenu'
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [isPracticeAreasOpen, setIsPracticeAreasOpen] = useState(false)
-
-  const handleSearchTrigger = () => {
-    // Open the global search command palette
-    // The GlobalSearch component listens for Cmd/Ctrl+K
-    const event = new KeyboardEvent('keydown', {
-      key: 'k',
-      code: 'KeyK',
-      keyCode: 75,
-      metaKey: true,
-      ctrlKey: true,
-      bubbles: true,
-      cancelable: true,
-    })
-    document.dispatchEvent(event)
-  }
 
   return (
     <nav className="bg-white shadow-soft sticky top-0 z-50">
@@ -41,7 +27,7 @@ export function Navbar() {
             </Link>
             
             {/* Mega Menu */}
-            <MegaMenu onSearchTrigger={handleSearchTrigger} />
+            <MegaMenu onSearchTrigger={triggerGlobalSearch} />
 
             {/* Client Portal - Ghost Button */}
             <Link 

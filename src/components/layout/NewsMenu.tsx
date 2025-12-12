@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 import { Calendar, ArrowRight } from 'lucide-react'
 import { getRecentPosts } from '@/lib/utils/news'
+import { PLACEHOLDER_IMAGE_URL } from '@/lib/utils/megaMenu'
 import type { NavigationLink } from '@/lib/data/navigation'
 
 interface NewsMenuProps {
@@ -82,8 +83,7 @@ export function NewsMenu({ links }: NewsMenuProps) {
                             alt={post.title}
                             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                             onError={(e) => {
-                              // Fallback to placeholder on error
-                              e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="250"%3E%3Crect fill="%23f1f5f9" width="400" height="250"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" fill="%2394a3b8" font-family="sans-serif"%3EImage%3C/text%3E%3C/svg%3E'
+                              e.currentTarget.src = PLACEHOLDER_IMAGE_URL
                             }}
                           />
                         </div>
