@@ -36,6 +36,7 @@ export function BioHero({ attorney, onPrint }: BioHeroProps) {
               <img
                 src={attorney.imageUrl}
                 alt={attorney.name}
+                loading="lazy"
                 className="w-full h-full object-cover"
                 onError={(e) => {
                   // Fallback to placeholder if image doesn't exist

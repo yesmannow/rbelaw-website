@@ -9,6 +9,10 @@ export default {
       colors: {
         // Corporate brand colors for Riley Bennett Egloff
         primary: {
+          burgundy: '#75253d',  // Primary Burgundy - Primary brand color
+          navy: '#3f4e76',      // Navy - Secondary brand color
+          slate: '#334155',     // Slate Grey - Secondary
+          light: '#64748b',     // Light Slate
           burgundy: '#75253D',  // Maroon - Primary brand color (verified from client)
           navy: '#3F4E76',      // Navy Blue - Secondary brand color
           slate: '#555659',     // Dark Grey - Neutral dark
