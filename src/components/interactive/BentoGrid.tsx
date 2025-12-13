@@ -27,16 +27,11 @@ export function BentoGridItem({ children, className, featured = false }: BentoGr
       whileHover={{ scale: 1.02 }}
       transition={{ duration: 0.3 }}
       className={cn(
-        'group relative overflow-hidden rounded-lg border border-neutral-200 bg-white p-6',
+        'group relative overflow-hidden rounded-lg bg-white p-6',
+        'border-2 border-neutral-200',
         'transition-all duration-300',
-        'hover:shadow-[0_0_25px_rgba(184,134,11,0.3)]',
         'hover:border-accent-gold',
-        // Glowing border effect on hover using pseudo-elements
-        'before:absolute before:inset-0 before:rounded-lg before:p-[2px]',
-        'before:bg-gradient-to-br before:from-accent-gold before:via-accent-bronze before:to-accent-gold',
-        'before:opacity-0 before:transition-opacity before:duration-300',
-        'hover:before:opacity-100',
-        'before:-z-10',
+        'hover:shadow-[0_0_20px_rgba(184,134,11,0.2)]',
         featured ? 'md:col-span-2 lg:row-span-2' : '',
         className
       )}
