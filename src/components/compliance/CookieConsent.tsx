@@ -41,7 +41,7 @@ export function CookieConsent() {
           className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6"
         >
           <div className="section-container max-w-6xl">
-            <div className="relative bg-[#0A2540]/95 backdrop-blur-md border border-white/10 rounded-lg shadow-2xl">
+            <div className="relative bg-primary-navy/95 backdrop-blur-md border border-white/10 rounded-lg shadow-2xl">
               {/* Close Button */}
               <button
                 onClick={handleClose}
@@ -74,7 +74,7 @@ export function CookieConsent() {
                   <div className="flex flex-col sm:flex-row gap-3 md:flex-shrink-0">
                     <button
                       onClick={handleAccept}
-                      className="px-6 py-3 bg-[#75253d] hover:bg-[#5D1F34] text-white font-semibold rounded-sm transition-all duration-300 whitespace-nowrap"
+                      className="px-6 py-3 bg-primary-burgundy hover:bg-primary-burgundy/90 text-white font-semibold rounded-sm transition-all duration-300 whitespace-nowrap"
                     >
                       Accept Cookies
                     </button>

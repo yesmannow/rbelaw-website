@@ -58,7 +58,7 @@ export function NotFound() {
               />
               <button
                 type="submit"
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 px-6 py-2 bg-primary-burgundy hover:bg-[#5D1F34] text-white font-semibold rounded-sm transition-all duration-300"
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 px-6 py-2 bg-primary-burgundy hover:bg-primary-burgundy/90 text-white font-semibold rounded-sm transition-all duration-300"
               >
                 Search
               </button>
