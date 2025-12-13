@@ -3,8 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { RootLayout } from './components/layout'
 import { HomePage } from './pages/home'
 import { PracticeAreaPage, BusinessLaw } from './pages/practice-areas'
-import { AttorneysPage } from './pages/attorneys'
-import { AttorneyBio } from './pages/team'
+import { AttorneysPage, AttorneyBioPage } from './pages/attorneys'
 import { AboutPage, HistoryPage, CommunityPage, CareersPage, FeesPage } from './pages/about'
 import { ContactPage } from './pages/contact'
 import { DemoPage } from './pages/demo'
@@ -32,6 +31,13 @@ function App() {
           <Route path="about/fees" element={<FeesPage />} />
           <Route path="contact" element={<ContactPage />} />
           <Route path="demo" element={<DemoPage />} />
+          <Route path="resources/tools" element={<ToolsPage />} />
+          <Route path="resources/tools/comp-calculator" element={<CompCalculatorPage />} />
+          <Route path="resources/tools/lien-calculator" element={<LienCalculatorPage />} />
+          <Route path="resources/tools/succession-quiz" element={<SuccessionQuizPage />} />
+          <Route path="resources/tools/district-map" element={<DistrictMapPage />} />
+          <Route path="resources/tools/flsa-wizard" element={<FLSAWizardPage />} />
+          <Route path="resources/tools/litigation-timeline" element={<LitigationTimelinePage />} />
         </Route>
       </Routes>
     </BrowserRouter>
