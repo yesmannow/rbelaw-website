@@ -135,7 +135,7 @@ export function DistrictMap() {
           </div>
           <div>
             <h1 className="text-3xl font-serif font-bold text-neutral-900">
-              Indiana Worker's Comp District Locator
+              Indiana Workers' Comp District Locator
             </h1>
             <p className="text-neutral-600 mt-1">
               Find your Board Member, Court Reporter, and contact information by county or district
@@ -249,7 +249,7 @@ export function DistrictMap() {
                   <CardHeader>
                     <CardTitle>{selectedDistrict.name} Details</CardTitle>
                     <CardDescription>
-                      Worker's Compensation Board contact information
+                      Workers' Compensation Board contact information
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
@@ -346,7 +346,7 @@ export function DistrictMap() {
                     Select a County or District
                   </h3>
                   <p className="text-neutral-500">
-                    Use the search or dropdown to find contact information for your Worker's Comp district
+                    Use the search or dropdown to find contact information for your Workers' Comp district
                   </p>
                 </CardContent>
               </Card>

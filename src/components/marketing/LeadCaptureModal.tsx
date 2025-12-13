@@ -44,7 +44,6 @@ export function LeadCaptureModal({
     const leadData: LeadData = {
       email: data.email,
       name: data.name,
-      phone: data.company,
       source,
       metadata: {
         ...metadata,
