@@ -5,6 +5,7 @@ import {
   IndustriesSection,
   NewsroomSection
 } from './sections'
+import { TrustBar } from '../../components/marketing'
 
 /**
  * HomePage - Riley Bennett Egloff Homepage
@@ -20,6 +21,7 @@ export function HomePage() {
   return (
     <main className="min-h-screen">
       <HeroSection />
+      <TrustBar />
       <ValuePropositionSection />
       <PracticeAreasSection />
       <IndustriesSection />
