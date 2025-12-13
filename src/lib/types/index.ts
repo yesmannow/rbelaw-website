@@ -136,7 +136,7 @@ export interface LeadData {
   email: string
   name?: string
   phone?: string
-  source: 'contact_form' | 'quiz' | 'newsletter' | 'blog_cta'
+  source: 'contact_form' | 'quiz' | 'newsletter' | 'blog_cta' | 'comp_calculator' | 'lien_calculator' | 'succession_quiz' | 'district_map' | 'flsa_wizard' | 'litigation_timeline'
   metadata?: Record<string, unknown>
 }
 

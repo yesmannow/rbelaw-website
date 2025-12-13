@@ -3,15 +3,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { RootLayout } from './components/layout'
 import { HomePage } from './pages/home'
 import { PracticeAreaPage, BusinessLaw } from './pages/practice-areas'
-import { AttorneysPage } from './pages/attorneys'
-import { AttorneyBio } from './pages/team'
+import { AttorneysPage, AttorneyBioPage } from './pages/attorneys'
 import { AboutPage, HistoryPage, CommunityPage, CareersPage, FeesPage } from './pages/about'
 import { ContactPage } from './pages/contact'
-import { IndustriesIndex, IndustryPage } from './pages/industries'
 import { DemoPage } from './pages/demo'
-import { GlobalSearch } from './components/command'
-import { InstallPrompt } from './components/pwa'
-import { useLenis } from './hooks/useLenis'
+import { GlobalSearch } from './components/command/GlobalSearch'
+import { InstallPrompt } from './components/pwa/InstallPrompt'
 
 function App() {
   const [searchOpen, setSearchOpen] = useState(false)
@@ -39,6 +36,13 @@ function App() {
           <Route path="industries" element={<IndustriesIndex />} />
           <Route path="industries/:slug" element={<IndustryPage />} />
           <Route path="demo" element={<DemoPage />} />
+          <Route path="resources/tools" element={<ToolsPage />} />
+          <Route path="resources/tools/comp-calculator" element={<CompCalculatorPage />} />
+          <Route path="resources/tools/lien-calculator" element={<LienCalculatorPage />} />
+          <Route path="resources/tools/succession-quiz" element={<SuccessionQuizPage />} />
+          <Route path="resources/tools/district-map" element={<DistrictMapPage />} />
+          <Route path="resources/tools/flsa-wizard" element={<FLSAWizardPage />} />
+          <Route path="resources/tools/litigation-timeline" element={<LitigationTimelinePage />} />
         </Route>
       </Routes>
     </BrowserRouter>

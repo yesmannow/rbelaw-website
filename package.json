@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
+    "@radix-ui/react-navigation-menu": "^1.2.14",
     "autoprefixer": "^10.4.22",
     "axios": "^1.13.2",
     "clsx": "^2.1.1",
