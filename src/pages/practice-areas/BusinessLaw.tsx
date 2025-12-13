@@ -1,5 +1,6 @@
 import { ContentPageLayout } from '../../components/layout'
 import { Accordion, AccordionItem } from '../../components/ui'
+import { MarketTicker } from '@/components/marketing/MarketTicker'
 
 export function BusinessLaw() {
   const relatedAttorneys = [
@@ -20,20 +21,22 @@ export function BusinessLaw() {
   ]
 
   return (
-    <ContentPageLayout
-      title="Business & Corporate Law"
-      subtitle="Comprehensive legal services from formation to dissolution."
-      relatedAttorneys={relatedAttorneys}
-    >
+    <>
+      <MarketTicker />
+      <ContentPageLayout
+        title="Business & Corporate Law"
+        subtitle="Comprehensive legal services from formation to dissolution."
+        relatedAttorneys={relatedAttorneys}
+      >
       <div className="mb-10">
         <p className="text-lg text-neutral-700 leading-relaxed mb-6">
-          Riley Bennett Egloff provides comprehensive legal counsel to businesses at every stage of their lifecycle. 
-          From entity formation to succession planning and dissolution, our experienced attorneys understand the 
+          Riley Bennett Egloff provides comprehensive legal counsel to businesses at every stage of their lifecycle.
+          From entity formation to succession planning and dissolution, our experienced attorneys understand the
           complex legal landscape that businesses navigate daily.
         </p>
         <p className="text-lg text-neutral-700 leading-relaxed">
-          We work closely with business owners, executives, and entrepreneurs to provide strategic guidance that 
-          protects their interests while enabling growth and success. Our team combines deep legal expertise with 
+          We work closely with business owners, executives, and entrepreneurs to provide strategic guidance that
+          protects their interests while enabling growth and success. Our team combines deep legal expertise with
           practical business acumen to deliver solutions that work in the real world.
         </p>
       </div>
@@ -45,8 +48,8 @@ export function BusinessLaw() {
       <Accordion className="mb-10">
         <AccordionItem title="Business Entity Selection & Formation" defaultOpen>
           <p className="mb-4">
-            Choosing the right business structure is one of the most important decisions you'll make. Our attorneys 
-            help you evaluate your options and select the entity type that best fits your business goals, tax 
+            Choosing the right business structure is one of the most important decisions you'll make. Our attorneys
+            help you evaluate your options and select the entity type that best fits your business goals, tax
             considerations, and liability concerns.
           </p>
           <p className="mb-4">We provide comprehensive formation services including:</p>
@@ -61,7 +64,7 @@ export function BusinessLaw() {
 
         <AccordionItem title="Contract Review & Negotiation">
           <p className="mb-4">
-            Well-drafted contracts are the foundation of successful business relationships. Our team meticulously 
+            Well-drafted contracts are the foundation of successful business relationships. Our team meticulously
             reviews and negotiates contracts to protect your interests and minimize the risk of future disputes.
           </p>
           <p className="mb-4">We handle all types of business contracts, including:</p>
@@ -80,7 +83,7 @@ export function BusinessLaw() {
 
         <AccordionItem title="Consultation & Strategic Advice">
           <p className="mb-4">
-            Running a business involves making countless decisions with legal implications. Our attorneys serve as 
+            Running a business involves making countless decisions with legal implications. Our attorneys serve as
             trusted advisors, providing guidance on day-to-day operations and strategic initiatives.
           </p>
           <p className="mb-4">We offer counsel on:</p>
@@ -96,8 +99,8 @@ export function BusinessLaw() {
 
         <AccordionItem title="Succession Planning">
           <p className="mb-4">
-            Effective succession planning ensures business continuity while addressing tax efficiency, operational 
-            stability, and personal goals. Whether you're planning for retirement, considering bringing in new partners, 
+            Effective succession planning ensures business continuity while addressing tax efficiency, operational
+            stability, and personal goals. Whether you're planning for retirement, considering bringing in new partners,
             or preparing for unforeseen circumstances, we help you develop a comprehensive succession strategy.
           </p>
           <p className="mb-4">Our succession planning services address:</p>
@@ -113,8 +116,8 @@ export function BusinessLaw() {
 
         <AccordionItem title="Dispute Resolution">
           <p className="mb-4">
-            When business disputes arise—whether internal conflicts among owners or external disputes with vendors, 
-            customers, or competitors—our attorneys work diligently to find efficient resolutions while protecting 
+            When business disputes arise—whether internal conflicts among owners or external disputes with vendors,
+            customers, or competitors—our attorneys work diligently to find efficient resolutions while protecting
             your business interests.
           </p>
           <p className="mb-4">We handle:</p>
@@ -127,7 +130,7 @@ export function BusinessLaw() {
             <li>Commercial litigation when necessary</li>
           </ul>
           <p className="mt-4">
-            Our goal is always to resolve disputes efficiently and cost-effectively, avoiding litigation when possible 
+            Our goal is always to resolve disputes efficiently and cost-effectively, avoiding litigation when possible
             while being fully prepared to advocate vigorously in court when required.
           </p>
         </AccordionItem>
@@ -138,8 +141,8 @@ export function BusinessLaw() {
           Ready to Discuss Your Business Needs?
         </h3>
         <p className="text-neutral-700 mb-6 leading-relaxed">
-          Our experienced business law team is here to help you navigate the complexities of running and growing 
-          your business. Whether you're just starting out or looking to take your established business to the next 
+          Our experienced business law team is here to help you navigate the complexities of running and growing
+          your business. Whether you're just starting out or looking to take your established business to the next
           level, we're ready to provide the strategic legal counsel you need.
         </p>
         <a href="/contact" className="inline-block bg-accent-gold text-white px-8 py-3 rounded-sm font-semibold hover:bg-accent-bronze transition-colors">
@@ -147,5 +150,6 @@ export function BusinessLaw() {
         </a>
       </div>
     </ContentPageLayout>
+    </>
   )
 }

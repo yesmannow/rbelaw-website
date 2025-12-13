@@ -31,12 +31,25 @@ export function BentoGridItem({ children, className, featured = false }: BentoGr
         'border-2 border-neutral-200',
         'transition-all duration-300',
         'hover:border-accent-gold',
-        'hover:shadow-[0_0_20px_rgba(184,134,11,0.2)]',
+        'hover:shadow-[0_0_30px_rgba(184,134,11,0.4)]',
         featured ? 'md:col-span-2 lg:row-span-2' : '',
         className
       )}
+      style={{
+        maskImage: 'linear-gradient(to bottom, black, black)',
+        WebkitMaskImage: 'linear-gradient(to bottom, black, black)',
+      }}
     >
-      <div className="relative h-full flex flex-col">
+      {/* Glowing border effect on hover */}
+      <div
+        className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+        style={{
+          background: 'linear-gradient(135deg, rgba(184,134,11,0.3) 0%, rgba(184,134,11,0.1) 50%, rgba(184,134,11,0.3) 100%)',
+          filter: 'blur(8px)',
+          margin: '-2px',
+        }}
+      />
+      <div className="relative h-full flex flex-col z-10">
         {children}
       </div>
     </motion.div>

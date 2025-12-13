@@ -59,4 +59,10 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  server: {
+    port: 5174,
+    host: 'localhost', // Use localhost specifically
+    strictPort: false, // Don't try next port if 5174 is taken
+    open: true, // Automatically open browser
+  },
 })

@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion'
+import { useState } from 'react'
 
 interface Award {
   name: string
   description: string
+  logoUrl?: string
 }
 
 const awards: Award[] = [
@@ -21,6 +23,8 @@ const awards: Award[] = [
 ]
 
 export function TrustBar() {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+
   return (
     <section className="py-12 bg-white border-y border-neutral-200">
       <div className="section-container">
@@ -34,8 +38,9 @@ export function TrustBar() {
           <h3 className="text-sm font-semibold text-neutral-500 uppercase tracking-wider mb-8">
             Recognized for Excellence
           </h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+
+          {/* Grayscale-to-Color Logo Strip */}
+          <div className="flex items-center justify-center gap-12 max-w-4xl mx-auto flex-wrap">
             {awards.map((award, index) => (
               <motion.div
                 key={award.name}
@@ -43,23 +48,39 @@ export function TrustBar() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
                 className="group relative"
               >
-                <div className="flex flex-col items-center justify-center p-6 rounded-lg transition-all duration-300 hover:bg-neutral-50">
-                  {/* Logo Badge Placeholder - using text for now */}
-                  <div className="w-24 h-24 mb-4 rounded-full bg-gradient-to-br from-primary-navy/10 to-primary-burgundy/10 flex items-center justify-center group-hover:from-primary-navy/20 group-hover:to-primary-burgundy/20 transition-all duration-300">
-                    <div className="text-center">
-                      <div className="text-2xl font-serif font-bold text-primary-navy group-hover:text-primary-burgundy transition-colors duration-300">
+                <div className="flex flex-col items-center justify-center p-6 transition-all duration-500">
+                  {/* Logo Badge with Grayscale-to-Color Effect */}
+                  <div className="w-32 h-32 mb-4 rounded-lg bg-gradient-to-br from-neutral-200 to-neutral-300 flex items-center justify-center transition-all duration-500 group-hover:from-primary-navy/20 group-hover:to-primary-burgundy/20">
+                    <div className={`text-center transition-all duration-500 ${
+                      hoveredIndex === index ? 'grayscale-0' : 'grayscale'
+                    }`}>
+                      <div className={`text-2xl font-serif font-bold transition-colors duration-500 ${
+                        hoveredIndex === index
+                          ? 'text-primary-burgundy'
+                          : 'text-neutral-600'
+                      }`}>
                         {award.name.split(' ')[0]}
                       </div>
                       {award.name.split(' ').length > 1 && (
-                        <div className="text-xs font-semibold text-primary-burgundy group-hover:text-accent-gold transition-colors duration-300">
+                        <div className={`text-xs font-semibold transition-colors duration-500 ${
+                          hoveredIndex === index
+                            ? 'text-accent-gold'
+                            : 'text-neutral-500'
+                        }`}>
                           {award.name.split(' ').slice(1).join(' ')}
                         </div>
                       )}
                     </div>
                   </div>
-                  <p className="text-sm font-medium text-neutral-600 group-hover:text-primary-navy transition-colors duration-300">
+                  <p className={`text-sm font-medium transition-colors duration-500 ${
+                    hoveredIndex === index
+                      ? 'text-primary-navy font-semibold'
+                      : 'text-neutral-600'
+                  }`}>
                     {award.description}
                   </p>
                 </div>

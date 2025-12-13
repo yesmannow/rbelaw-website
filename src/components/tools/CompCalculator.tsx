@@ -7,6 +7,7 @@ import { Input } from '../ui/Input'
 import { Label } from '../ui/Label'
 import { Button } from '../ui/Button'
 import { LeadCaptureModal } from '../marketing/LeadCaptureModal'
+import { AnimatedNumber } from '../ui/AnimatedNumber'
 
 interface CompFormData {
   injuryDate: string
@@ -73,7 +74,7 @@ export function CompCalculator() {
 
   const calculateBenefits = (data: CompFormData) => {
     const limits = getStatutoryLimits(data.injuryDate)
-    
+
     // TTD (Temporary Total Disability) is 2/3 of average weekly wage, capped at max benefit
     const calculatedBenefit = (data.averageWeeklyWage * 2) / 3
     const weeklyBenefit = Math.min(calculatedBenefit, limits.maxBenefit)
@@ -104,20 +105,26 @@ export function CompCalculator() {
 
   return (
     <div className="max-w-4xl mx-auto">
+      {/* Glassmorphism Header Card */}
+      <Card className="mb-8 overflow-hidden border-0 bg-primary-navy/90 backdrop-blur-md shadow-lg">
+        <CardHeader className="bg-primary-navy/90">
+          <div className="flex items-center gap-3">
+            <div className="p-3 bg-white/10 rounded-lg backdrop-blur-sm">
+              <Calculator className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <CardTitle className="text-white text-3xl font-serif font-bold">
+                Indiana Workers' Comp Benefit Calculator
+              </CardTitle>
+              <CardDescription className="text-white/80 mt-1">
+                Calculate your potential TTD and PPI benefits under Indiana law
+              </CardDescription>
+            </div>
+          </div>
+        </CardHeader>
+      </Card>
+
       <div className="mb-8">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="p-3 bg-blue-100 rounded-lg">
-            <Calculator className="w-6 h-6 text-blue-900" />
-          </div>
-          <div>
-            <h1 className="text-3xl font-serif font-bold text-neutral-900">
-              Indiana Workers' Comp Benefit Calculator
-            </h1>
-            <p className="text-neutral-600 mt-1">
-              Calculate your potential TTD and PPI benefits under Indiana law
-            </p>
-          </div>
-        </div>
 
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex gap-3">
           <AlertCircle className="w-5 h-5 text-blue-900 flex-shrink-0 mt-0.5" />
@@ -162,7 +169,7 @@ export function CompCalculator() {
                     type="number"
                     step="0.01"
                     className="pl-7"
-                    {...register('averageWeeklyWage', { 
+                    {...register('averageWeeklyWage', {
                       required: 'Average weekly wage is required',
                       min: { value: 0, message: 'Must be a positive number' }
                     })}
@@ -220,8 +227,13 @@ export function CompCalculator() {
                 <CardContent className="space-y-4">
                   <div className="border-b border-neutral-200 pb-4">
                     <p className="text-sm text-neutral-600 mb-1">Weekly TTD Benefit</p>
-                    <p className="text-3xl font-bold text-blue-900">
-                      ${result.weeklyBenefit.toFixed(2)}
+                    <p className="text-3xl font-bold text-primary-burgundy">
+                      <AnimatedNumber
+                        value={result.weeklyBenefit}
+                        decimals={2}
+                        prefix="$"
+                        className="text-primary-burgundy"
+                      />
                     </p>
                     <p className="text-xs text-neutral-500 mt-1">
                       Temporary Total Disability (2/3 of avg wage, max ${result.maxBenefit})
@@ -231,8 +243,13 @@ export function CompCalculator() {
                   {result.estimatedPPI && (
                     <div className="border-b border-neutral-200 pb-4">
                       <p className="text-sm text-neutral-600 mb-1">Estimated PPI Award</p>
-                      <p className="text-3xl font-bold text-blue-900">
-                        ${result.estimatedPPI.toLocaleString()}
+                      <p className="text-3xl font-bold text-primary-burgundy">
+                        <AnimatedNumber
+                          value={result.estimatedPPI}
+                          decimals={0}
+                          prefix="$"
+                          className="text-primary-burgundy"
+                        />
                       </p>
                       <p className="text-xs text-neutral-500 mt-1">
                         Permanent Partial Impairment (${result.ppiPerDegree.toLocaleString()} per degree)
@@ -258,7 +275,7 @@ export function CompCalculator() {
                     </div>
                   </div>
 
-                  <Button 
+                  <Button
                     onClick={handleGetFullReport}
                     className="w-full"
                     variant="outline"

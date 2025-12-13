@@ -38,19 +38,23 @@ export function NewsMegaMenu({ isOpen }: NewsMegaMenuProps) {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.3, ease: 'easeOut' }}
+          initial={{ opacity: 0, y: -20, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: -20, scale: 0.95 }}
+          transition={{
+            duration: 0.4,
+            ease: [0.16, 1, 0.3, 1],
+            staggerChildren: 0.05
+          }}
           className="absolute left-0 top-full mt-2 w-full bg-white shadow-corporate rounded-sm border border-neutral-100 overflow-hidden"
         >
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 p-6">
             {/* Left Sidebar - Quick Links */}
             <motion.div
               className="lg:col-span-1 space-y-2"
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3, delay: 0.1 }}
+              transition={{ duration: 0.4, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
               <h3 className="text-sm font-semibold text-neutral-500 uppercase tracking-wide mb-4">
                 Quick Links
@@ -60,9 +64,9 @@ export function NewsMegaMenu({ isOpen }: NewsMegaMenuProps) {
                 return (
                   <motion.div
                     key={link.label}
-                    initial={{ opacity: 0, x: -10 }}
+                    initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.2, delay: 0.15 + index * 0.05 }}
+                    transition={{ duration: 0.3, delay: 0.15 + index * 0.08, ease: [0.16, 1, 0.3, 1] }}
                   >
                     <Link
                       to={link.href}
@@ -88,9 +92,9 @@ export function NewsMegaMenu({ isOpen }: NewsMegaMenuProps) {
             {/* Right Feature Area - Latest Article */}
             <motion.div
               className="lg:col-span-2"
-              initial={{ opacity: 0, x: 20 }}
+              initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.3, delay: 0.2 }}
+              transition={{ duration: 0.4, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             >
               <h3 className="text-sm font-semibold text-neutral-500 uppercase tracking-wide mb-4">
                 Latest from the Newsroom
@@ -102,13 +106,23 @@ export function NewsMegaMenu({ isOpen }: NewsMegaMenuProps) {
                 <div className="flex flex-col md:flex-row">
                   {/* Image */}
                   <div className="md:w-1/3 relative overflow-hidden bg-neutral-100">
-                    <motion.div
-                      className="aspect-[4/3] bg-gradient-to-br from-primary-navy to-primary-slate flex items-center justify-center"
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.4 }}
-                    >
-                      <FileText className="h-16 w-16 text-white/20" />
-                    </motion.div>
+                    {latestArticle.image && latestArticle.image !== '/images/legacy/placeholder.jpg' ? (
+                      <motion.img
+                        src={latestArticle.image}
+                        alt={latestArticle.title}
+                        className="w-full h-full object-cover"
+                        whileHover={{ scale: 1.1 }}
+                        transition={{ duration: 0.5, ease: 'easeOut' }}
+                      />
+                    ) : (
+                      <motion.div
+                        className="aspect-[4/3] bg-gradient-to-br from-primary-navy to-primary-slate flex items-center justify-center"
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.4 }}
+                      >
+                        <FileText className="h-16 w-16 text-white/20" />
+                      </motion.div>
+                    )}
                   </div>
 
                   {/* Content */}

@@ -1,0 +1,21 @@
+{
+  "extracted": "2024-12-13T03:30:00.000Z",
+  "total": 0,
+  "urls": [],
+  "categorized": {
+    "team": [],
+    "offices": [],
+    "practice": [],
+    "news": [],
+    "general": []
+  },
+  "instructions": "This file will be populated by running: node scripts/extract-images.js <urls>",
+  "example_pages": [
+    "https://rbelaw.com/",
+    "https://rbelaw.com/our-team/",
+    "https://rbelaw.com/our-team/legal-assistants/",
+    "https://rbelaw.com/our-team/other-professionals/",
+    "https://rbelaw.com/practice-areas/"
+  ]
+}
+

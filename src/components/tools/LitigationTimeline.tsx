@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { motion } from 'framer-motion'
-import { Calendar, Download, Clock } from 'lucide-react'
+import { Calendar as CalendarIcon, Download, Clock } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui/Card'
-import { Input } from '../ui/Input'
 import { Label } from '../ui/Label'
 import { Button } from '../ui/Button'
+import { Calendar } from '../ui/Calendar'
 import { LeadCaptureModal } from '../marketing/LeadCaptureModal'
 
 interface TimelineFormData {
@@ -139,7 +139,8 @@ END:VCALENDAR`
 export function LitigationTimeline() {
   const [timeline, setTimeline] = useState<Milestone[] | null>(null)
   const [showLeadModal, setShowLeadModal] = useState(false)
-  const { register, handleSubmit, formState: { errors }, watch } = useForm<TimelineFormData>({
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null)
+  const { register, handleSubmit, watch } = useForm<TimelineFormData>({
     defaultValues: {
       caseType: 'standard'
     }
@@ -148,15 +149,22 @@ export function LitigationTimeline() {
   const formData = watch()
 
   const onSubmit = (data: TimelineFormData) => {
-    const generatedTimeline = generateTimeline(data.complaintDate, data.caseType)
+    if (!selectedDate) return
+
+    const dateString = selectedDate.toISOString().split('T')[0]
+    const generatedTimeline = generateTimeline(dateString, data.caseType)
     setTimeline(generatedTimeline)
   }
 
+  const handleDateChange = (date: Date) => {
+    setSelectedDate(date)
+  }
+
   const formatDate = (date: Date): string => {
-    return date.toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
     })
   }
 
@@ -193,7 +201,7 @@ export function LitigationTimeline() {
         </div>
 
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex gap-3">
-          <Calendar className="w-5 h-5 text-blue-900 flex-shrink-0 mt-0.5" />
+          <CalendarIcon className="w-5 h-5 text-blue-900 flex-shrink-0 mt-0.5" />
           <div className="text-sm text-blue-900">
             <p className="font-semibold mb-1">Take control of your litigation schedule</p>
             <p>This tool generates a comprehensive timeline based on standard Indiana Trial Rules. Actual deadlines may vary based on court orders.</p>
@@ -214,13 +222,23 @@ export function LitigationTimeline() {
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                 <div>
                   <Label htmlFor="complaintDate">Date of Complaint *</Label>
-                  <Input
-                    id="complaintDate"
-                    type="date"
-                    {...register('complaintDate', { required: 'Complaint date is required' })}
-                  />
-                  {errors.complaintDate && (
-                    <p className="text-xs text-red-600 mt-1">{errors.complaintDate.message}</p>
+                  <div className="border border-neutral-300 rounded-md p-4 bg-white">
+                    <Calendar
+                      value={selectedDate || undefined}
+                      onChange={handleDateChange}
+                    />
+                  </div>
+                  {!selectedDate && (
+                    <p className="text-xs text-red-600 mt-1">Please select a complaint date</p>
+                  )}
+                  {selectedDate && (
+                    <p className="text-xs text-neutral-500 mt-1">
+                      Selected: {selectedDate.toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                      })}
+                    </p>
                   )}
                   <p className="text-xs text-neutral-500 mt-1">
                     The date the lawsuit was filed
@@ -242,7 +260,11 @@ export function LitigationTimeline() {
                   </p>
                 </div>
 
-                <Button type="submit" className="w-full">
+                <Button
+                  type="submit"
+                  className="w-full"
+                  disabled={!selectedDate}
+                >
                   Generate Timeline
                 </Button>
               </form>
@@ -299,8 +321,8 @@ export function LitigationTimeline() {
                         <div key={index} className="relative pl-10">
                           {/* Timeline Dot */}
                           <div className={`absolute left-0 w-8 h-8 rounded-full flex items-center justify-center ${
-                            milestone.isCompleted 
-                              ? 'bg-blue-900 text-white' 
+                            milestone.isCompleted
+                              ? 'bg-blue-900 text-white'
                               : 'bg-white border-2 border-blue-900 text-blue-900'
                           }`}>
                             {milestone.isCompleted ? (
@@ -314,8 +336,8 @@ export function LitigationTimeline() {
 
                           {/* Milestone Content */}
                           <div className={`${
-                            milestone.isCompleted 
-                              ? 'opacity-60' 
+                            milestone.isCompleted
+                              ? 'opacity-60'
                               : 'bg-blue-50 border border-blue-200 rounded-lg p-4'
                           }`}>
                             <div className="flex justify-between items-start mb-1">
@@ -373,7 +395,7 @@ export function LitigationTimeline() {
         title="Get Your Litigation Timeline"
         description="We'll email you a PDF of this timeline along with a calendar file you can import into Outlook or Google Calendar."
         metadata={{
-          complaintDate: formData.complaintDate,
+          complaintDate: selectedDate?.toISOString().split('T')[0],
           caseType: formData.caseType,
           milestones: timeline?.map(m => ({
             name: m.name,

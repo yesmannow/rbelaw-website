@@ -3,9 +3,9 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
 import { Phone, MapPin, Send, Linkedin, Facebook, Instagram, Twitter } from 'lucide-react'
-import { Input } from '../../components/ui/Input'
-import { Textarea } from '../../components/ui/Textarea'
-import { Label } from '../../components/ui/Label'
+import { FloatingLabelInput } from '../../components/ui/FloatingLabelInput'
+import { FloatingLabelTextarea } from '../../components/ui/FloatingLabelTextarea'
+import { GoogleReviewsTicker } from '@/components/social'
 
 // Form validation schema
 const contactFormSchema = z.object({
@@ -40,6 +40,9 @@ export function ContactPage() {
 
   return (
     <div className="min-h-screen">
+      {/* Google Reviews Ticker */}
+      <GoogleReviewsTicker />
+
       {/* Split Screen Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
         {/* Left Side - Contact Information */}
@@ -47,13 +50,13 @@ export function ContactPage() {
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          className="bg-[#00115e] text-white p-8 lg:p-16 flex flex-col justify-center"
+          className="bg-primary-navy text-white p-8 lg:p-16 flex flex-col justify-center"
         >
           <div className="max-w-xl mx-auto w-full">
             <h1 className="text-4xl lg:text-5xl font-serif font-bold mb-6">
               Partner with Us.
             </h1>
-            
+
             <div className="space-y-8 mb-10">
               <div>
                 <h3 className="text-lg font-semibold mb-2 flex items-center text-white/90">
@@ -146,7 +149,7 @@ export function ContactPage() {
           className="bg-white p-8 lg:p-16 flex flex-col justify-center"
         >
           <div className="max-w-xl mx-auto w-full">
-            <h2 className="text-3xl font-serif font-bold text-[#74243c] mb-2">
+            <h2 className="text-3xl font-serif font-bold text-primary-burgundy mb-2">
               Get in Touch
             </h2>
             <p className="text-neutral-600 mb-8">
@@ -154,82 +157,58 @@ export function ContactPage() {
             </p>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-              <div>
-                <Label htmlFor="name">Name *</Label>
-                <Input
-                  id="name"
-                  type="text"
-                  {...register('name')}
-                  className={errors.name ? 'border-red-500' : ''}
-                />
-                {errors.name && (
-                  <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
-                )}
-              </div>
+              <FloatingLabelInput
+                id="name"
+                type="text"
+                label="Name *"
+                {...register('name')}
+                error={errors.name?.message}
+              />
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="email">Email *</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    {...register('email')}
-                    className={errors.email ? 'border-red-500' : ''}
-                  />
-                  {errors.email && (
-                    <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
-                  )}
-                </div>
+                <FloatingLabelInput
+                  id="email"
+                  type="email"
+                  label="Email *"
+                  {...register('email')}
+                  error={errors.email?.message}
+                />
 
-                <div>
-                  <Label htmlFor="phone">Phone</Label>
-                  <Input
-                    id="phone"
-                    type="tel"
-                    {...register('phone')}
-                  />
-                </div>
-              </div>
-
-              <div>
-                <Label htmlFor="company">Company (Optional)</Label>
-                <Input
-                  id="company"
-                  type="text"
-                  {...register('company')}
+                <FloatingLabelInput
+                  id="phone"
+                  type="tel"
+                  label="Phone (Optional)"
+                  {...register('phone')}
                 />
               </div>
 
-              <div>
-                <Label htmlFor="subject">Subject *</Label>
-                <Input
-                  id="subject"
-                  type="text"
-                  {...register('subject')}
-                  className={errors.subject ? 'border-red-500' : ''}
-                />
-                {errors.subject && (
-                  <p className="text-red-500 text-sm mt-1">{errors.subject.message}</p>
-                )}
-              </div>
+              <FloatingLabelInput
+                id="company"
+                type="text"
+                label="Company (Optional)"
+                {...register('company')}
+              />
 
-              <div>
-                <Label htmlFor="message">Message *</Label>
-                <Textarea
-                  id="message"
-                  rows={6}
-                  {...register('message')}
-                  className={errors.message ? 'border-red-500' : ''}
-                />
-                {errors.message && (
-                  <p className="text-red-500 text-sm mt-1">{errors.message.message}</p>
-                )}
-              </div>
+              <FloatingLabelInput
+                id="subject"
+                type="text"
+                label="Subject *"
+                {...register('subject')}
+                error={errors.subject?.message}
+              />
+
+              <FloatingLabelTextarea
+                id="message"
+                label="Message *"
+                rows={6}
+                {...register('message')}
+                error={errors.message?.message}
+              />
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-[#74243c] text-white px-6 py-3 rounded-sm font-semibold hover:bg-[#5d1f34] transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                className="w-full bg-primary-burgundy text-white px-6 py-3 rounded-sm font-semibold hover:bg-primary-burgundy/90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
               >
                 {isSubmitting ? 'Sending...' : 'Send Message'}
                 <Send className="ml-2 h-5 w-5" />

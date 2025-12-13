@@ -1,0 +1,141 @@
+[
+  {
+    "district": 1,
+    "counties": ["Lake", "Porter", "LaPorte", "Newton", "Jasper", "Starke", "Pulaski"],
+    "judge": {
+      "name": "Douglas Meagher",
+      "title": "Judge"
+    },
+    "courtReporter": {
+      "name": "Jane Doe",
+      "email": "jane.doe@example.com",
+      "phone": "317-555-0101"
+    },
+    "boardMembers": [
+      {
+        "name": "John Smith",
+        "role": "Chairman"
+      },
+      {
+        "name": "Mary Johnson",
+        "role": "Member"
+      }
+    ]
+  },
+  {
+    "district": 2,
+    "counties": ["St. Joseph", "Elkhart", "Marshall", "Kosciusko", "Fulton"],
+    "judge": {
+      "name": "Robert Williams",
+      "title": "Judge"
+    },
+    "courtReporter": {
+      "name": "Robert Brown",
+      "email": "robert.brown@example.com",
+      "phone": "317-555-0102"
+    },
+    "boardMembers": [
+      {
+        "name": "David Lee",
+        "role": "Chairman"
+      },
+      {
+        "name": "Susan White",
+        "role": "Member"
+      }
+    ]
+  },
+  {
+    "district": 3,
+    "counties": ["Allen", "DeKalb", "Noble", "Whitley", "Huntington", "Wells", "Adams"],
+    "judge": {
+      "name": "Patricia Martinez",
+      "title": "Judge"
+    },
+    "courtReporter": {
+      "name": "Patricia Garcia",
+      "email": "patricia.garcia@example.com",
+      "phone": "317-555-0103"
+    },
+    "boardMembers": [
+      {
+        "name": "James Wilson",
+        "role": "Chairman"
+      },
+      {
+        "name": "Linda Anderson",
+        "role": "Member"
+      }
+    ]
+  },
+  {
+    "district": 4,
+    "counties": ["Tippecanoe", "Benton", "Warren", "Fountain", "Montgomery", "Clinton", "Boone", "Hamilton"],
+    "judge": {
+      "name": "Thomas Davis",
+      "title": "Judge"
+    },
+    "courtReporter": {
+      "name": "Thomas Miller",
+      "email": "thomas.miller@example.com",
+      "phone": "317-555-0104"
+    },
+    "boardMembers": [
+      {
+        "name": "Christopher Moore",
+        "role": "Chairman"
+      },
+      {
+        "name": "Jessica Taylor",
+        "role": "Member"
+      }
+    ]
+  },
+  {
+    "district": 5,
+    "counties": ["Marion", "Hendricks", "Morgan", "Johnson", "Shelby", "Hancock"],
+    "judge": {
+      "name": "Jennifer Thompson",
+      "title": "Judge"
+    },
+    "courtReporter": {
+      "name": "Jennifer Clark",
+      "email": "jennifer.clark@example.com",
+      "phone": "317-555-0105"
+    },
+    "boardMembers": [
+      {
+        "name": "Daniel Lewis",
+        "role": "Chairman"
+      },
+      {
+        "name": "Amanda Walker",
+        "role": "Member"
+      }
+    ]
+  },
+  {
+    "district": 6,
+    "counties": ["Vanderburgh", "Posey", "Gibson", "Warrick", "Spencer", "Perry", "Pike", "Dubois", "Crawford", "Orange", "Washington", "Harrison", "Floyd", "Clark"],
+    "judge": {
+      "name": "Mark Rodriguez",
+      "title": "Judge"
+    },
+    "courtReporter": {
+      "name": "Mark Hall",
+      "email": "mark.hall@example.com",
+      "phone": "317-555-0106"
+    },
+    "boardMembers": [
+      {
+        "name": "Matthew Young",
+        "role": "Chairman"
+      },
+      {
+        "name": "Ashley King",
+        "role": "Member"
+      }
+    ]
+  }
+]
+

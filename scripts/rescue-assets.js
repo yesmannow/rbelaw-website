@@ -32,12 +32,12 @@ if (!fs.existsSync(legacyDir)) {
 function extractDiviImages(html) {
   const images = []
   const regex = /<div class="et_pb_image_container"[^>]*>.*?<img[^>]+src="([^"]+)"[^>]*>.*?<\/div>/gs
-  
+
   let match
   while ((match = regex.exec(html)) !== null) {
     images.push(match[1])
   }
-  
+
   return images
 }
 
@@ -54,10 +54,10 @@ async function downloadImage(url, filepath) {
       responseType: 'stream',
       timeout: 10000
     })
-    
+
     const writer = fs.createWriteStream(filepath)
     response.data.pipe(writer)
-    
+
     return new Promise((resolve, reject) => {
       writer.on('finish', resolve)
       writer.on('error', reject)
@@ -74,28 +74,44 @@ async function downloadImage(url, filepath) {
 async function processArticle(article) {
   try {
     console.log(`Processing: ${article.title}...`)
-    
+
     // Fetch the article HTML
-    const response = await axios.get(article.url, { timeout: 10000 })
+    const response = await axios.get(article.url, {
+      timeout: 10000,
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+      }
+    })
     const html = response.data
-    
+
     // Extract Divi images
     const images = extractDiviImages(html)
-    
+
     if (images.length === 0) {
       console.log(`  ⚠️  No Divi images found in ${article.slug}`)
       return
     }
-    
+
     // Download the first image (featured image)
     const imageUrl = images[0]
-    const ext = path.extname(new URL(imageUrl).pathname) || '.jpg'
+    // Handle relative URLs
+    const fullImageUrl = imageUrl.startsWith('http')
+      ? imageUrl
+      : new URL(imageUrl, article.url).href
+
+    const ext = path.extname(new URL(fullImageUrl).pathname) || '.jpg'
     const filename = `${article.slug}${ext}`
     const filepath = path.join(legacyDir, filename)
-    
-    await downloadImage(imageUrl, filepath)
-    console.log(`  ✅ Rescued: ${filename}`)
-    
+
+    // Skip if file already exists
+    if (fs.existsSync(filepath)) {
+      console.log(`  ⏭️  Skipped (already exists): ${filename}`)
+      return
+    }
+
+    await downloadImage(fullImageUrl, filepath)
+    console.log(`  ✅ Rescued [${article.title}]: ${filename}`)
+
   } catch (error) {
     console.log(`  ❌ Error processing ${article.title}: ${error.message}`)
   }
@@ -107,13 +123,13 @@ async function processArticle(article) {
 async function main() {
   console.log('🚀 Starting Asset Rescue...\n')
   console.log(`Found ${newsArchive.length} articles to process\n`)
-  
+
   for (const article of newsArchive) {
     await processArticle(article)
     // Add a small delay to avoid overwhelming the server
     await new Promise(resolve => setTimeout(resolve, 1000))
   }
-  
+
   console.log('\n✨ Asset Rescue Complete!')
 }
 

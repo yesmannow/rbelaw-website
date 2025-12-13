@@ -84,6 +84,7 @@ export function AttorneyBioPage() {
                     src={attorney.imageUrl}
                     alt={attorney.name}
                     className="w-full h-full object-cover"
+                    loading="lazy"
                     onError={(e) => {
                       e.currentTarget.src = '/placeholder-avatar.jpg'
                     }}

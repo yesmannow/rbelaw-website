@@ -16,6 +16,7 @@ interface District {
   caseCoordinator: string
   phone: string
   email: string
+  color: string
 }
 
 // Data from Indiana Workers' Compensation Handbook Pages 64-65
@@ -28,7 +29,8 @@ const DISTRICTS: District[] = [
     courtReporter: 'Michelle Cunningham',
     caseCoordinator: 'Michelle Cunningham',
     phone: '(219) 462-1492',
-    email: 'mcunningham@wcb.in.gov'
+    email: 'mcunningham@wcb.in.gov',
+    color: '#3B82F6' // Blue
   },
   {
     id: 2,
@@ -38,7 +40,8 @@ const DISTRICTS: District[] = [
     courtReporter: 'Denise Cox',
     caseCoordinator: 'Denise Cox',
     phone: '(574) 235-5951',
-    email: 'dcox@wcb.in.gov'
+    email: 'dcox@wcb.in.gov',
+    color: '#10B981' // Green
   },
   {
     id: 3,
@@ -48,7 +51,8 @@ const DISTRICTS: District[] = [
     courtReporter: 'Kimberly Hoffer',
     caseCoordinator: 'Kimberly Hoffer',
     phone: '(260) 424-4345',
-    email: 'khoffer@wcb.in.gov'
+    email: 'khoffer@wcb.in.gov',
+    color: '#F59E0B' // Amber
   },
   {
     id: 4,
@@ -58,7 +62,8 @@ const DISTRICTS: District[] = [
     courtReporter: 'Nikki Eaton',
     caseCoordinator: 'Nikki Eaton',
     phone: '(765) 423-9633',
-    email: 'neaton@wcb.in.gov'
+    email: 'neaton@wcb.in.gov',
+    color: '#8B5CF6' // Purple
   },
   {
     id: 5,
@@ -68,7 +73,8 @@ const DISTRICTS: District[] = [
     courtReporter: 'Marlana Haig',
     caseCoordinator: 'Marlana Haig',
     phone: '(317) 232-3808',
-    email: 'mhaig@wcb.in.gov'
+    email: 'mhaig@wcb.in.gov',
+    color: '#EF4444' // Red
   },
   {
     id: 6,
@@ -78,7 +84,8 @@ const DISTRICTS: District[] = [
     courtReporter: 'Cheryl Webb',
     caseCoordinator: 'Cheryl Webb',
     phone: '(317) 233-3370',
-    email: 'cwebb@wcb.in.gov'
+    email: 'cwebb@wcb.in.gov',
+    color: '#EC4899' // Pink
   },
   {
     id: 7,
@@ -88,7 +95,8 @@ const DISTRICTS: District[] = [
     courtReporter: 'Tamara Terrell',
     caseCoordinator: 'Tamara Terrell',
     phone: '(812) 378-3828',
-    email: 'tterrell@wcb.in.gov'
+    email: 'tterrell@wcb.in.gov',
+    color: '#14B8A6' // Teal
   },
   {
     id: 8,
@@ -98,21 +106,31 @@ const DISTRICTS: District[] = [
     courtReporter: 'Donna Sitzman',
     caseCoordinator: 'Donna Sitzman',
     phone: '(812) 422-5874',
-    email: 'dsitzman@wcb.in.gov'
+    email: 'dsitzman@wcb.in.gov',
+    color: '#F97316' // Orange
   }
 ]
 
+// Create a mapping of county names to districts
+const COUNTY_TO_DISTRICT: Record<string, District> = {}
+DISTRICTS.forEach(district => {
+  district.counties.forEach(county => {
+    COUNTY_TO_DISTRICT[county] = district
+  })
+})
+
 export function DistrictMap() {
+  const [hoveredDistrict, setHoveredDistrict] = useState<District | null>(null)
   const [selectedDistrict, setSelectedDistrict] = useState<District | null>(null)
   const [searchCounty, setSearchCounty] = useState('')
   const [showLeadModal, setShowLeadModal] = useState(false)
 
-  const allCounties = DISTRICTS.flatMap(d => 
+  const allCounties = DISTRICTS.flatMap(d =>
     d.counties.map(county => ({ county, district: d }))
   ).sort((a, b) => a.county.localeCompare(b.county))
 
   const filteredCounties = searchCounty
-    ? allCounties.filter(c => 
+    ? allCounties.filter(c =>
         c.county.toLowerCase().includes(searchCounty.toLowerCase())
       )
     : []
@@ -126,8 +144,29 @@ export function DistrictMap() {
     setSelectedDistrict(district || null)
   }
 
+  const handleCountyHover = (countyName: string) => {
+    const district = COUNTY_TO_DISTRICT[countyName]
+    if (district) {
+      setHoveredDistrict(district)
+    }
+  }
+
+  const handleCountyLeave = () => {
+    setHoveredDistrict(null)
+  }
+
+  const handleCountyClick = (countyName: string) => {
+    const district = COUNTY_TO_DISTRICT[countyName]
+    if (district) {
+      setSelectedDistrict(district)
+    }
+  }
+
+  // Determine which district to show in sidebar (hover takes precedence)
+  const displayDistrict = hoveredDistrict || selectedDistrict
+
   return (
-    <div className="max-w-6xl mx-auto">
+    <div className="max-w-7xl mx-auto">
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-4">
           <div className="p-3 bg-blue-100 rounded-lg">
@@ -146,7 +185,7 @@ export function DistrictMap() {
 
       <div className="grid lg:grid-cols-3 gap-6">
         {/* Search Panel */}
-        <div className="lg:col-span-1">
+        <div className="lg:col-span-1 order-2 lg:order-1">
           <Card>
             <CardHeader>
               <CardTitle>Find Your District</CardTitle>
@@ -173,6 +212,8 @@ export function DistrictMap() {
                           handleCountySelect(item)
                           setSearchCounty('')
                         }}
+                        onMouseEnter={() => handleCountyHover(item.county)}
+                        onMouseLeave={handleCountyLeave}
                         className="w-full text-left px-3 py-2 hover:bg-neutral-50 text-sm"
                       >
                         <span className="font-medium">{item.county} County</span>
@@ -221,12 +262,18 @@ export function DistrictMap() {
                   <button
                     key={district.id}
                     onClick={() => setSelectedDistrict(district)}
-                    className={`w-full text-left px-2 py-1.5 rounded transition-colors ${
+                    onMouseEnter={() => setHoveredDistrict(district)}
+                    onMouseLeave={handleCountyLeave}
+                    className={`w-full text-left px-2 py-1.5 rounded transition-colors flex items-center gap-2 ${
                       selectedDistrict?.id === district.id
                         ? 'bg-blue-100 text-blue-900 font-medium'
                         : 'hover:bg-neutral-50'
                     }`}
                   >
+                    <div
+                      className="w-3 h-3 rounded-sm flex-shrink-0"
+                      style={{ backgroundColor: district.color }}
+                    />
                     {district.name}: {district.counties.length} counties
                   </button>
                 ))}
@@ -235,124 +282,214 @@ export function DistrictMap() {
           </Card>
         </div>
 
-        {/* District Details */}
-        <div className="lg:col-span-2">
-          <AnimatePresence mode="wait">
-            {selectedDistrict ? (
-              <motion.div
-                key={selectedDistrict.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-              >
-                <Card>
-                  <CardHeader>
-                    <CardTitle>{selectedDistrict.name} Details</CardTitle>
-                    <CardDescription>
-                      Workers' Compensation Board contact information
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    {/* Contact Information */}
-                    <div className="grid md:grid-cols-2 gap-6 mb-6">
-                      <div className="space-y-4">
-                        <div>
-                          <div className="flex items-center gap-2 mb-2">
-                            <User className="w-4 h-4 text-blue-900" />
-                            <h4 className="font-semibold text-neutral-900">Board Member</h4>
-                          </div>
-                          <p className="text-lg text-neutral-900">{selectedDistrict.boardMember}</p>
-                        </div>
+        {/* Interactive Map */}
+        <div className="lg:col-span-2 order-1 lg:order-2">
+          <Card>
+            <CardHeader>
+              <CardTitle>Indiana Workers' Comp Districts</CardTitle>
+              <CardDescription>
+                Hover over a county to see district information
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="w-full overflow-x-auto">
+                <div className="min-w-full">
+                  {/* Simplified Indiana Map - County Grid */}
+                  <div className="grid grid-cols-8 md:grid-cols-12 lg:grid-cols-16 gap-1 p-4 bg-neutral-50 rounded-lg">
+                    {allCounties.map(({ county, district }) => {
+                      const isHovered = hoveredDistrict?.id === district.id
+                      const isSelected = selectedDistrict?.id === district.id
+                      const isActive = isHovered || isSelected
 
-                        <div>
-                          <div className="flex items-center gap-2 mb-2">
-                            <User className="w-4 h-4 text-blue-900" />
-                            <h4 className="font-semibold text-neutral-900">Court Reporter</h4>
-                          </div>
-                          <p className="text-lg text-neutral-900">{selectedDistrict.courtReporter}</p>
-                        </div>
-                      </div>
+                      return (
+                        <button
+                          key={county}
+                          type="button"
+                          onClick={() => handleCountyClick(county)}
+                          onMouseEnter={() => handleCountyHover(county)}
+                          onMouseLeave={handleCountyLeave}
+                          className={`
+                            relative px-2 py-1.5 rounded text-xs font-medium transition-all
+                            ${isActive
+                              ? 'ring-2 ring-offset-2 scale-105 z-10'
+                              : 'hover:ring-1 hover:ring-offset-1'
+                            }
+                            ${isHovered
+                              ? 'ring-blue-500 shadow-lg'
+                              : isSelected
+                                ? 'ring-blue-300 shadow-md'
+                                : 'ring-neutral-200'
+                            }
+                          `}
+                          style={{
+                            backgroundColor: isActive ? district.color : `${district.color}40`,
+                            color: isActive ? 'white' : 'inherit',
+                            borderColor: district.color
+                          }}
+                          title={`${county} County - ${district.name}`}
+                        >
+                          <span className="block truncate">{county}</span>
+                        </button>
+                      )
+                    })}
+                  </div>
 
-                      <div className="space-y-4">
-                        <div>
-                          <div className="flex items-center gap-2 mb-2">
-                            <Phone className="w-4 h-4 text-blue-900" />
-                            <h4 className="font-semibold text-neutral-900">Phone</h4>
-                          </div>
-                          <a 
-                            href={`tel:${selectedDistrict.phone}`}
-                            className="text-lg text-blue-900 hover:underline"
-                          >
-                            {selectedDistrict.phone}
-                          </a>
-                        </div>
-
-                        <div>
-                          <div className="flex items-center gap-2 mb-2">
-                            <Mail className="w-4 h-4 text-blue-900" />
-                            <h4 className="font-semibold text-neutral-900">Email</h4>
-                          </div>
-                          <a 
-                            href={`mailto:${selectedDistrict.email}`}
-                            className="text-lg text-blue-900 hover:underline break-all"
-                          >
-                            {selectedDistrict.email}
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Counties List */}
-                    <div className="border-t border-neutral-200 pt-6">
-                      <h4 className="font-semibold text-neutral-900 mb-3">
-                        Counties Covered ({selectedDistrict.counties.length})
-                      </h4>
-                      <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-                        {selectedDistrict.counties.sort().map(county => (
+                  {/* District Legend */}
+                  <div className="mt-6 pt-4 border-t border-neutral-200">
+                    <h4 className="text-sm font-semibold text-neutral-900 mb-3">District Legend</h4>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                      {DISTRICTS.map(district => (
+                        <div
+                          key={district.id}
+                          className="flex items-center gap-2 text-xs"
+                        >
                           <div
-                            key={county}
-                            className="px-3 py-2 bg-neutral-50 rounded text-sm text-neutral-700"
-                          >
-                            {county} County
-                          </div>
-                        ))}
+                            className="w-4 h-4 rounded-sm flex-shrink-0"
+                            style={{ backgroundColor: district.color }}
+                          />
+                          <span className="text-neutral-700">{district.name}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+
+      {/* District Details Sidebar - Responsive: below map on mobile */}
+      <div className="mt-6 lg:mt-0 order-3">
+        <AnimatePresence mode="wait">
+          {displayDistrict ? (
+            <motion.div
+              key={displayDistrict.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+            >
+              <Card>
+                <CardHeader>
+                  <div className="flex items-center gap-2 mb-2">
+                    <div
+                      className="w-4 h-4 rounded-sm"
+                      style={{ backgroundColor: displayDistrict.color }}
+                    />
+                    <CardTitle>{displayDistrict.name} Details</CardTitle>
+                  </div>
+                  <CardDescription>
+                    Workers' Compensation Board contact information
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  {/* Contact Information */}
+                  <div className="grid md:grid-cols-2 gap-6 mb-6">
+                    <div className="space-y-4">
+                      <div>
+                        <div className="flex items-center gap-2 mb-2">
+                          <User className="w-4 h-4 text-blue-900" />
+                          <h4 className="font-semibold text-neutral-900">Board Member</h4>
+                        </div>
+                        <p className="text-lg text-neutral-900">{displayDistrict.boardMember}</p>
+                      </div>
+
+                      <div>
+                        <div className="flex items-center gap-2 mb-2">
+                          <User className="w-4 h-4 text-blue-900" />
+                          <h4 className="font-semibold text-neutral-900">Court Reporter</h4>
+                        </div>
+                        <p className="text-lg text-neutral-900">{displayDistrict.courtReporter}</p>
+                      </div>
+
+                      <div>
+                        <div className="flex items-center gap-2 mb-2">
+                          <User className="w-4 h-4 text-blue-900" />
+                          <h4 className="font-semibold text-neutral-900">Case Coordinator</h4>
+                        </div>
+                        <p className="text-lg text-neutral-900">{displayDistrict.caseCoordinator}</p>
                       </div>
                     </div>
 
-                    {/* Actions */}
-                    <div className="mt-6 pt-6 border-t border-neutral-200">
-                      <button
-                        onClick={() => setShowLeadModal(true)}
-                        className="text-sm text-blue-900 hover:underline"
-                      >
-                        Save this district information →
-                      </button>
-                    </div>
-                  </CardContent>
-                </Card>
+                    <div className="space-y-4">
+                      <div>
+                        <div className="flex items-center gap-2 mb-2">
+                          <Phone className="w-4 h-4 text-blue-900" />
+                          <h4 className="font-semibold text-neutral-900">Phone</h4>
+                        </div>
+                        <a
+                          href={`tel:${displayDistrict.phone}`}
+                          className="text-lg text-blue-900 hover:underline"
+                        >
+                          {displayDistrict.phone}
+                        </a>
+                      </div>
 
-                {/* Additional Info */}
-                <div className="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-4">
-                  <p className="text-sm text-blue-900">
-                    <strong>Note:</strong> This information is sourced from the Indiana Workers' Compensation Board. Contact Riley Bennett Egloff LLP if you need assistance with a workers' compensation claim in this district.
-                  </p>
-                </div>
-              </motion.div>
-            ) : (
-              <Card>
-                <CardContent className="py-24 text-center">
-                  <MapPin className="w-16 h-16 text-neutral-300 mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold text-neutral-900 mb-2">
-                    Select a County or District
-                  </h3>
-                  <p className="text-neutral-500">
-                    Use the search or dropdown to find contact information for your Workers' Comp district
-                  </p>
+                      <div>
+                        <div className="flex items-center gap-2 mb-2">
+                          <Mail className="w-4 h-4 text-blue-900" />
+                          <h4 className="font-semibold text-neutral-900">Email</h4>
+                        </div>
+                        <a
+                          href={`mailto:${displayDistrict.email}`}
+                          className="text-lg text-blue-900 hover:underline break-all"
+                        >
+                          {displayDistrict.email}
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Counties List */}
+                  <div className="border-t border-neutral-200 pt-6">
+                    <h4 className="font-semibold text-neutral-900 mb-3">
+                      Counties Covered ({displayDistrict.counties.length})
+                    </h4>
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                      {displayDistrict.counties.sort().map(county => (
+                        <div
+                          key={county}
+                          className="px-3 py-2 bg-neutral-50 rounded text-sm text-neutral-700"
+                        >
+                          {county} County
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Actions */}
+                  <div className="mt-6 pt-6 border-t border-neutral-200">
+                    <button
+                      onClick={() => setShowLeadModal(true)}
+                      className="text-sm text-blue-900 hover:underline"
+                    >
+                      Save this district information →
+                    </button>
+                  </div>
                 </CardContent>
               </Card>
-            )}
-          </AnimatePresence>
-        </div>
+
+              {/* Additional Info */}
+              <div className="mt-4 bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <p className="text-sm text-blue-900">
+                  <strong>Note:</strong> This information is sourced from the Indiana Workers' Compensation Board. Contact Riley Bennett Egloff LLP if you need assistance with a workers' compensation claim in this district.
+                </p>
+              </div>
+            </motion.div>
+          ) : (
+            <Card>
+              <CardContent className="py-24 text-center">
+                <MapPin className="w-16 h-16 text-neutral-300 mx-auto mb-4" />
+                <h3 className="text-lg font-semibold text-neutral-900 mb-2">
+                  Select a County or District
+                </h3>
+                <p className="text-neutral-500">
+                  Use the search, dropdown, or map to find contact information for your Workers' Comp district
+                </p>
+              </CardContent>
+            </Card>
+          )}
+        </AnimatePresence>
       </div>
 
       <LeadCaptureModal

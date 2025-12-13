@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Shield, AlertTriangle, CheckCircle, ArrowRight, ArrowLeft } from 'lucide-react'
+import { Shield, AlertTriangle, CheckCircle, ArrowRight, ArrowLeft, Phone, Mail } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui/Card'
 import { Button } from '../ui/Button'
 import { Progress } from '../ui/Progress'
@@ -29,9 +29,9 @@ const QUESTIONS: Question[] = [
     helpText: 'A salary basis means they receive a predetermined amount each pay period, regardless of hours worked.',
     options: [
       { value: 'yes', label: 'Yes, paid a fixed salary', nextQuestion: 'salary_amount' },
-      { 
-        value: 'no', 
-        label: 'No, paid hourly or commission', 
+      {
+        value: 'no',
+        label: 'No, paid hourly or commission',
         result: {
           status: 'non_compliant',
           title: 'Non-Exempt Classification',
@@ -47,8 +47,8 @@ const QUESTIONS: Question[] = [
     helpText: 'This is the minimum salary threshold under current federal FLSA regulations (as of 2024).',
     options: [
       { value: 'yes', label: 'Yes, meets or exceeds $684/week', nextQuestion: 'duties_type' },
-      { 
-        value: 'no', 
+      {
+        value: 'no',
         label: 'No, below $684/week',
         result: {
           status: 'non_compliant',
@@ -66,8 +66,8 @@ const QUESTIONS: Question[] = [
       { value: 'executive', label: 'Executive (manages enterprise/department)', nextQuestion: 'executive_duties' },
       { value: 'administrative', label: 'Administrative (office/non-manual work)', nextQuestion: 'administrative_duties' },
       { value: 'professional', label: 'Professional (learned/creative)', nextQuestion: 'professional_duties' },
-      { 
-        value: 'none', 
+      {
+        value: 'none',
         label: 'None of these apply',
         result: {
           status: 'non_compliant',
@@ -84,8 +84,8 @@ const QUESTIONS: Question[] = [
     helpText: 'Executive exemption requires supervision of at least two full-time employees (or equivalent).',
     options: [
       { value: 'yes', label: 'Yes, supervises 2+ employees', nextQuestion: 'executive_authority' },
-      { 
-        value: 'no', 
+      {
+        value: 'no',
         label: 'No, supervises fewer than 2',
         result: {
           status: 'non_compliant',
@@ -100,8 +100,8 @@ const QUESTIONS: Question[] = [
     id: 'executive_authority',
     question: 'Does the employee have authority to hire/fire or make significant recommendations?',
     options: [
-      { 
-        value: 'yes', 
+      {
+        value: 'yes',
         label: 'Yes, has hiring/firing authority',
         result: {
           status: 'compliant',
@@ -110,8 +110,8 @@ const QUESTIONS: Question[] = [
           recommendation: 'Continue monitoring to ensure salary levels remain compliant and duties don\'t significantly change. Document the exempt status determination in personnel files.'
         }
       },
-      { 
-        value: 'no', 
+      {
+        value: 'no',
         label: 'No such authority',
         result: {
           status: 'uncertain',
@@ -127,8 +127,8 @@ const QUESTIONS: Question[] = [
     question: 'Does the employee exercise independent judgment on significant matters?',
     helpText: 'Administrative exemption requires discretion and independent judgment on important business matters.',
     options: [
-      { 
-        value: 'yes', 
+      {
+        value: 'yes',
         label: 'Yes, makes independent decisions',
         result: {
           status: 'compliant',
@@ -137,8 +137,8 @@ const QUESTIONS: Question[] = [
           recommendation: 'Ensure the work is directly related to management or general business operations. Document the exempt determination and review periodically.'
         }
       },
-      { 
-        value: 'no', 
+      {
+        value: 'no',
         label: 'No, follows established procedures',
         result: {
           status: 'non_compliant',
@@ -154,8 +154,8 @@ const QUESTIONS: Question[] = [
     question: 'Does the work require advanced knowledge in a field of science or learning?',
     helpText: 'Professional exemption typically requires advanced education (typically a bachelor\'s degree or higher in a specialized field).',
     options: [
-      { 
-        value: 'yes', 
+      {
+        value: 'yes',
         label: 'Yes, requires specialized education',
         result: {
           status: 'compliant',
@@ -164,8 +164,8 @@ const QUESTIONS: Question[] = [
           recommendation: 'Verify the employee has the requisite advanced degree or equivalent knowledge. Document the exempt status and maintain records of qualifications.'
         }
       },
-      { 
-        value: 'no', 
+      {
+        value: 'no',
         label: 'No specialized education required',
         result: {
           status: 'uncertain',
@@ -178,15 +178,19 @@ const QUESTIONS: Question[] = [
   }
 ]
 
+// Calculate total number of questions (excluding terminal results)
+const TOTAL_QUESTIONS = 5
+
 export function FLSAWizard() {
   const [currentQuestionId, setCurrentQuestionId] = useState<string>('salary_basis')
   const [answers, setAnswers] = useState<Record<string, string>>({})
   const [result, setResult] = useState<ComplianceResult | null>(null)
   const [showLeadModal, setShowLeadModal] = useState(false)
+  const [shouldShake, setShouldShake] = useState(false)
 
   const currentQuestion = QUESTIONS.find(q => q.id === currentQuestionId)
-  const answeredQuestions = Object.keys(answers).length
-  const progress = result ? 100 : (answeredQuestions / 7) * 100
+  const questionIndex = QUESTIONS.findIndex(q => q.id === currentQuestionId)
+  const currentStep = questionIndex + 1
 
   const handleAnswer = (value: string) => {
     const option = currentQuestion?.options.find(o => o.value === value)
@@ -196,7 +200,13 @@ export function FLSAWizard() {
     setAnswers(newAnswers)
 
     if (option.result) {
-      setResult(option.result)
+      // If non-compliant, trigger shake animation
+      if (option.result.status === 'non_compliant') {
+        setShouldShake(true)
+        setTimeout(() => setShouldShake(false), 600)
+      }
+
+      setTimeout(() => setResult(option.result!), 300)
     } else if (option.nextQuestion) {
       setTimeout(() => setCurrentQuestionId(option.nextQuestion!), 300)
     }
@@ -206,6 +216,7 @@ export function FLSAWizard() {
     setCurrentQuestionId('salary_basis')
     setAnswers({})
     setResult(null)
+    setShouldShake(false)
   }
 
   const goBack = () => {
@@ -222,17 +233,17 @@ export function FLSAWizard() {
 
   const getStatusIcon = (status: ComplianceStatus) => {
     switch (status) {
-      case 'compliant': 
+      case 'compliant':
         return <CheckCircle className="w-12 h-12 text-green-600" />
-      case 'non_compliant': 
+      case 'non_compliant':
         return <AlertTriangle className="w-12 h-12 text-red-600" />
-      case 'uncertain': 
+      case 'uncertain':
         return <Shield className="w-12 h-12 text-yellow-600" />
     }
   }
 
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="max-w-4xl mx-auto">
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-4">
           <div className="p-3 bg-blue-100 rounded-lg">
@@ -258,61 +269,82 @@ export function FLSAWizard() {
       </div>
 
       {!result ? (
-        <Card>
-          <CardHeader>
-            <div className="flex justify-between items-center mb-2">
-              <CardTitle className="text-lg">FLSA Classification Assessment</CardTitle>
-              <span className="text-sm text-neutral-600">{Math.round(progress)}%</span>
-            </div>
-            <Progress value={progress} />
-          </CardHeader>
-          <CardContent>
-            <AnimatePresence mode="wait">
-              {currentQuestion && (
-                <motion.div
-                  key={currentQuestion.id}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <h3 className="text-xl font-semibold text-neutral-900 mb-2">
-                    {currentQuestion.question}
-                  </h3>
-                  
-                  {currentQuestion.helpText && (
-                    <p className="text-sm text-neutral-600 mb-6">
-                      {currentQuestion.helpText}
-                    </p>
-                  )}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
+          <Card>
+            <CardHeader>
+              <div className="flex justify-between items-center mb-2">
+                <CardTitle className="text-lg">FLSA Classification Assessment</CardTitle>
+                <span className="text-sm text-neutral-600">
+                  Question {currentStep} of {TOTAL_QUESTIONS}
+                </span>
+              </div>
+              <Progress value={(currentStep / TOTAL_QUESTIONS) * 100} />
+            </CardHeader>
+            <CardContent>
+              <AnimatePresence mode="wait">
+                {currentQuestion && (
+                  <motion.div
+                    key={currentQuestion.id}
+                    initial={{ opacity: 0, x: 100 }}
+                    animate={{
+                      opacity: 1,
+                      x: 0,
+                      ...(shouldShake && {
+                        x: [0, -10, 10, -10, 10, 0]
+                      })
+                    }}
+                    exit={{ opacity: 0, x: -100 }}
+                    transition={{
+                      duration: shouldShake ? 0.6 : 0.3,
+                      type: shouldShake ? 'spring' : 'tween'
+                    }}
+                    className="space-y-6"
+                  >
+                    <div>
+                      <h3 className="text-xl font-semibold text-neutral-900 mb-2">
+                        {currentQuestion.question}
+                      </h3>
 
-                  <div className="space-y-3 mb-6">
-                    {currentQuestion.options.map((option) => (
-                      <button
-                        key={option.value}
-                        onClick={() => handleAnswer(option.value)}
-                        className="w-full text-left p-4 rounded-lg border-2 border-neutral-200 hover:border-blue-300 hover:bg-neutral-50 transition-all"
+                      {currentQuestion.helpText && (
+                        <p className="text-sm text-neutral-600 mb-6">
+                          {currentQuestion.helpText}
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="space-y-3">
+                      {currentQuestion.options.map((option) => (
+                        <motion.button
+                          key={option.value}
+                          onClick={() => handleAnswer(option.value)}
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
+                          className="w-full text-left p-4 rounded-lg border-2 border-neutral-200 hover:border-blue-300 hover:bg-neutral-50 transition-all"
+                        >
+                          <span className="text-neutral-900">{option.label}</span>
+                        </motion.button>
+                      ))}
+                    </div>
+
+                    {questionIndex > 0 && (
+                      <Button
+                        onClick={goBack}
+                        variant="outline"
+                        className="w-full"
                       >
-                        <span className="text-neutral-900">{option.label}</span>
-                      </button>
-                    ))}
-                  </div>
-
-                  {answeredQuestions > 0 && (
-                    <Button
-                      onClick={goBack}
-                      variant="outline"
-                      className="w-full"
-                    >
-                      <ArrowLeft className="w-4 h-4 mr-2" />
-                      Back
-                    </Button>
-                  )}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </CardContent>
-        </Card>
+                        <ArrowLeft className="w-4 h-4 mr-2" />
+                        Back
+                      </Button>
+                    )}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </CardContent>
+          </Card>
+        </motion.div>
       ) : (
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -368,15 +400,58 @@ export function FLSAWizard() {
                 </p>
               </div>
 
+              {/* High Risk Warning for Non-Compliance */}
+              {result.status === 'non_compliant' && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="bg-red-100 border-2 border-red-500 rounded-lg p-6 mb-6"
+                >
+                  <div className="flex items-start gap-3">
+                    <AlertTriangle className="w-6 h-6 text-red-600 flex-shrink-0 mt-0.5" />
+                    <div className="flex-1">
+                      <h4 className="font-bold text-red-900 mb-2 text-lg">
+                        High Risk: Immediate Action Required
+                      </h4>
+                      <p className="text-sm text-red-900 mb-4">
+                        Misclassification can result in significant financial penalties, back pay obligations, and legal liability. It's critical to address this issue promptly with expert guidance.
+                      </p>
+                      <div className="bg-white rounded-lg p-4 border border-red-200">
+                        <p className="font-semibold text-red-900 mb-2">Contact Our Employment Law Expert:</p>
+                        <div className="space-y-2">
+                          <a
+                            href="mailto:dsmith@rbelaw.com"
+                            className="flex items-center gap-2 text-red-900 hover:text-red-700"
+                          >
+                            <Mail className="w-4 h-4" />
+                            <span>dsmith@rbelaw.com</span>
+                          </a>
+                          <a
+                            href="tel:+13172323808"
+                            className="flex items-center gap-2 text-red-900 hover:text-red-700"
+                          >
+                            <Phone className="w-4 h-4" />
+                            <span>(317) 232-3808</span>
+                          </a>
+                        </div>
+                        <p className="text-xs text-red-700 mt-3">
+                          <strong>Donald Smith</strong> specializes in FLSA compliance and employment classification issues.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+
               <div className="space-y-3">
-                <Button 
+                <Button
                   onClick={() => setShowLeadModal(true)}
                   className="w-full"
                 >
                   Get Detailed Compliance Guidance
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
-                <Button 
+                <Button
                   onClick={restart}
                   variant="outline"
                   className="w-full"

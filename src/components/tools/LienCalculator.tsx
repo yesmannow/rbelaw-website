@@ -114,10 +114,10 @@ export function LienCalculator() {
   }
 
   const formatDate = (date: Date): string => {
-    return date.toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
     })
   }
 
@@ -139,20 +139,26 @@ export function LienCalculator() {
 
   return (
     <div className="max-w-4xl mx-auto">
+      {/* Glassmorphism Header Card */}
+      <Card className="mb-8 overflow-hidden border-0 bg-primary-navy/90 backdrop-blur-md shadow-lg">
+        <CardHeader className="bg-primary-navy/90">
+          <div className="flex items-center gap-3">
+            <div className="p-3 bg-white/10 rounded-lg backdrop-blur-sm">
+              <Calendar className="w-6 h-6 text-white" />
+            </div>
+            <div>
+              <CardTitle className="text-white text-3xl font-serif font-bold">
+                Construction Lien Deadline Calculator
+              </CardTitle>
+              <CardDescription className="text-white/80 mt-1">
+                Never miss a Notice to Owner or Mechanic's Lien filing deadline
+              </CardDescription>
+            </div>
+          </div>
+        </CardHeader>
+      </Card>
+
       <div className="mb-8">
-        <div className="flex items-center gap-3 mb-4">
-          <div className="p-3 bg-blue-100 rounded-lg">
-            <Calendar className="w-6 h-6 text-blue-900" />
-          </div>
-          <div>
-            <h1 className="text-3xl font-serif font-bold text-neutral-900">
-              Construction Lien Deadline Calculator
-            </h1>
-            <p className="text-neutral-600 mt-1">
-              Never miss a Notice to Owner or Mechanic's Lien filing deadline
-            </p>
-          </div>
-        </div>
 
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex gap-3">
           <AlertTriangle className="w-5 h-5 text-blue-900 flex-shrink-0 mt-0.5" />
@@ -273,7 +279,7 @@ export function LienCalculator() {
                             <p className={`text-xs font-semibold ${
                               deadline.isWarning ? 'text-yellow-900' : 'text-green-900'
                             }`}>
-                              {deadline.daysUntil > 0 
+                              {deadline.daysUntil > 0
                                 ? `${deadline.daysUntil} days remaining`
                                 : deadline.daysUntil === 0
                                 ? 'Due TODAY'
@@ -290,7 +296,7 @@ export function LienCalculator() {
                     </div>
                   ))}
 
-                  <Button 
+                  <Button
                     onClick={() => setShowLeadModal(true)}
                     className="w-full mt-4"
                     variant="outline"

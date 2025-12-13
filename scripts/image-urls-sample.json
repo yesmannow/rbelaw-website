@@ -1,0 +1,25 @@
+{
+  "extracted": "2024-12-13T03:30:00.000Z",
+  "total": 4,
+  "urls": [
+    "https://rbelaw.com/wp-content/uploads/2023/09/2L9A0134-Jennie-Maguire-Nurse-Consultant-Riley-Bennett-Egloff-png.png",
+    "https://rbelaw.com/wp-content/uploads/2025/06/Nathaniel-Adrian-Paralegal-Riley-Bennett-Egloff-Indianapolis.jpg",
+    "https://rbelaw.com/wp-content/uploads/2024/09/Susan-Davis-Thumbnail.png",
+    "https://rbelaw.com/wp-content/uploads/2020/04/Other-Professioanals-1024x358.jpg"
+  ],
+  "categorized": {
+    "team": [
+      "https://rbelaw.com/wp-content/uploads/2023/09/2L9A0134-Jennie-Maguire-Nurse-Consultant-Riley-Bennett-Egloff-png.png",
+      "https://rbelaw.com/wp-content/uploads/2025/06/Nathaniel-Adrian-Paralegal-Riley-Bennett-Egloff-Indianapolis.jpg",
+      "https://rbelaw.com/wp-content/uploads/2024/09/Susan-Davis-Thumbnail.png"
+    ],
+    "offices": [],
+    "practice": [],
+    "news": [],
+    "general": [
+      "https://rbelaw.com/wp-content/uploads/2020/04/Other-Professioanals-1024x358.jpg"
+    ]
+  },
+  "note": "These are sample URLs extracted from the 'Other Professionals' page. Run the extract script to get more URLs from other pages."
+}
+

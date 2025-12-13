@@ -7,16 +7,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Corporate brand colors for Riley Bennett Egloff
+        // Corporate brand colors for Riley Bennett Egloff - Verified Palette
         primary: {
-          burgundy: '#75253d',  // Primary Burgundy - Primary brand color
-          navy: '#3f4e76',      // Navy - Secondary brand color
-          slate: '#334155',     // Slate Grey - Secondary
-          light: '#64748b',     // Light Slate
-          burgundy: '#75253D',  // Maroon - Primary brand color (verified from client)
-          navy: '#3F4E76',      // Navy Blue - Secondary brand color
-          slate: '#555659',     // Dark Grey - Neutral dark
-          light: '#C1C8D1',     // Light Grey - Accent light
+          maroon: '#75253D',      // #75253D - Primary Maroon (was Burgundy)
+          burgundy: '#75253D',     // Alias for backward compatibility
+          navy: '#3F4E76',         // #3F4E76 - Secondary Navy/Blue
+          slate: '#555659',        // #555659 - Neutral Dark Grey
+          light: '#C1C8D1',        // #C1C8D1 - Accent Light Grey
         },
         accent: {
           gold: '#B8860B',      // Dark Gold - Premium accent
@@ -36,9 +33,9 @@ export default {
         }
       },
       fontFamily: {
-        // Modern sans-serif for UI (Public Sans - closest to Microsoft Aptos)
+        // Public Sans for body text - closest to Microsoft Aptos
         sans: ['Public Sans', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'],
-        // Serif for headings - authority and professionalism
+        // Playfair Display for headings - authority and professionalism
         serif: ['Playfair Display', 'Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
       },
       spacing: {

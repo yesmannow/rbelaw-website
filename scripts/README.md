@@ -1,92 +1,167 @@
-# Image Automation Scripts
+# Image Migration Scripts
 
-This directory contains tools to help populate the website with professional imagery.
+This directory contains scripts to help migrate images from the old WordPress site (rbelaw.com) to the new React site.
 
-## Prerequisites
+## Scripts Overview
 
-For the Pixabay stock photo fetcher, you'll need a free API key:
-
-1. Visit [Pixabay API Docs](https://pixabay.com/api/docs/)
-2. Sign up or log in to see your API key
-3. Create a `.env` file in the project root:
-   ```bash
-   cp .env.example .env
-   ```
-4. Add your key to `.env`:
-   ```
-   PIXABAY_KEY=your_actual_key_here
-   ```
-
-## Scripts
-
-### 1. Stock Photo Fetcher (`fetch-stock.js`)
-
-Downloads high-resolution stock photos from Pixabay.
+### 1. `extract-images.js` - Extract Image URLs
+Extracts image URLs from HTML pages on the old site.
 
 **Usage:**
 ```bash
-npm run get-photos <query> <count>
+npm run extract-images <url1> [url2] [url3] ...
+
+# Examples:
+npm run extract-images https://rbelaw.com/
+npm run extract-images https://rbelaw.com/our-team/ https://rbelaw.com/our-team/legal-assistants/
 ```
 
-**Examples:**
-```bash
-# Download 5 courthouse images
-npm run get-photos "courthouse" 5
+**Output:** Creates `image-urls.json` with all extracted image URLs, categorized by type.
 
-# Download a modern office building for the hero section
-npm run get-photos "modern office building glass" 1
-
-# Download construction site images
-npm run get-photos "construction site" 4
-
-# Download legal/business images
-npm run get-photos "business meeting corporate" 3
-```
-
-**Output:**
-- Images are saved to `src/assets/stock/`
-- Filenames are auto-generated from the query (e.g., `courthouse-1.jpg`)
-- All images are high-resolution (minimum 1920x1080)
-
-### 2. Legacy Asset Rescue (`rescue-assets.js`)
-
-Scrapes and downloads images from old WordPress blog posts to preserve them before migrating away from the old hosting.
+### 2. `download-images.js` - Download Images
+Downloads images from URLs and organizes them in the project structure.
 
 **Usage:**
 ```bash
-npm run rescue-assets
+# Download from JSON file
+npm run download-images -- --list image-urls.json
+
+# Download a single image
+npm run download-images -- --url "https://rbelaw.com/wp-content/uploads/2023/10/image.jpg"
+
+# Specify output directory
+npm run download-images -- --list image-urls.json --output public/images
 ```
 
-**How it works:**
-1. Reads the news archive data from `src/lib/data/news-archive.json`
-2. Fetches each article URL
-3. Extracts images from Divi theme containers (`et_pb_image_container`)
-4. Downloads images to `public/images/legacy/`
-5. Filenames match the article slugs
+**Options:**
+- `--url <url>` - Download a specific image URL
+- `--list <file>` - JSON file with list of image URLs
+- `--output <dir>` - Output directory (default: `public/images`)
+- `--optimize` - Optimize images after download (requires `sharp` package)
 
-**Output:**
-- Images saved to `public/images/legacy/`
-- Console logs show progress for each article
-- Errors are logged but don't stop the entire process
+## Quick Start Workflow
 
-## Notes
+### Step 1: Extract Image URLs
+```bash
+# Extract from key pages
+npm run extract-images \
+  https://rbelaw.com/ \
+  https://rbelaw.com/our-team/ \
+  https://rbelaw.com/our-team/legal-assistants/ \
+  https://rbelaw.com/our-team/other-professionals/ \
+  https://rbelaw.com/practice-areas/
+```
 
-- Both scripts include rate limiting to avoid overwhelming servers
-- Downloaded images are added to `.gitignore` and won't be committed
-- `.gitkeep` files preserve the directory structure in git
-- Stock images are free to use under Pixabay's license
+This creates `image-urls.json` with all found image URLs.
+
+### Step 2: Review and Edit
+Open `image-urls.json` and review the extracted URLs. You can:
+- Remove unwanted images
+- Add additional URLs manually
+- Organize by category
+
+### Step 3: Download Images
+```bash
+# Download all images from the JSON file
+npm run download-images -- --list image-urls.json
+```
+
+Images will be organized in:
+```
+public/images/
+├── team/          # Team photos (attorneys, professionals, assistants)
+├── offices/       # Office and building photos
+├── practice/      # Practice area images
+├── news/          # News/blog images
+└── general/       # Other images (logos, icons, etc.)
+```
+
+## Manual Image URLs
+
+If you have specific image URLs, you can create a simple JSON file:
+
+```json
+{
+  "urls": [
+    "https://rbelaw.com/wp-content/uploads/2023/10/attorney-photo.jpg",
+    "https://rbelaw.com/wp-content/uploads/2023/10/office-reception.jpg"
+  ]
+}
+```
+
+Then download with:
+```bash
+npm run download-images -- --list your-file.json
+```
+
+## Image Organization
+
+Images are automatically categorized based on URL patterns:
+
+- **Team**: URLs containing "team", "attorney", "professional", "assistant", "staff"
+- **Offices**: URLs containing "office", "reception", "building", "location"
+- **Practice**: URLs containing "practice", "area", "service"
+- **News**: URLs containing "news", "blog", "article", "post"
+- **General**: All other images (logos, icons, etc.)
+
+## Updating Data Files
+
+After downloading images, update your data files to reference local paths:
+
+```typescript
+// src/lib/data/attorneys.ts
+{
+  id: 'john-doe',
+  name: 'John Doe',
+  imageUrl: '/images/team/john-doe.jpg', // Updated path
+  // ...
+}
+```
 
 ## Troubleshooting
 
-**"PIXABAY_KEY not found":**
-- Make sure you've created a `.env` file (not `.env.example`)
-- Verify your API key is correct
+### Images Not Downloading
+- Check that URLs are accessible
+- Some images may require authentication
+- Check network connectivity
 
-**"No images found":**
-- Try different search terms
-- Check that your Pixabay key is valid
+### Wrong Categories
+- Manually move images after download
+- Edit the categorization logic in `download-images.js`
 
-**Download timeouts:**
-- Large images may take time to download
-- The scripts have generous timeouts (10-30 seconds)
-- Check your internet connection
+### Large Files
+- Consider image optimization
+- Use `--optimize` flag (requires `sharp` package)
+- Or use external tools like TinyPNG
+
+## Next Steps
+
+1. **Extract URLs** from old site pages
+2. **Review** the extracted URLs
+3. **Download** images to local project
+4. **Update** data files with new image paths
+5. **Test** that all images load correctly
+
+## Example: Complete Migration
+
+```bash
+# 1. Extract URLs
+npm run extract-images https://rbelaw.com/our-team/
+
+# 2. Review image-urls.json
+cat image-urls.json
+
+# 3. Download images
+npm run download-images -- --list image-urls.json
+
+# 4. Check results
+ls -la public/images/team/
+cat public/images/download-results.json
+```
+
+## Notes
+
+- Images are downloaded with their original filenames (sanitized)
+- Existing images are skipped (won't re-download)
+- Failed downloads are logged in `download-results.json`
+- All scripts work with both HTTP and HTTPS URLs

@@ -48,6 +48,7 @@ export interface NavigationSection {
   featured?: FeaturedCard
   action?: NavigationAction
   columns?: number
+  preview?: string // Brief preview description for tooltip
 }
 
 export const iconMap: Record<string, LucideIcon> = {
@@ -75,6 +76,7 @@ export const iconMap: Record<string, LucideIcon> = {
 export const navData: Record<string, NavigationSection> = {
   about: {
     label: 'About',
+    preview: 'Learn about our firm\'s history, values, and commitment to excellence',
     links: [
       {
         label: 'Firm History',
@@ -111,6 +113,7 @@ export const navData: Record<string, NavigationSection> = {
   },
   team: {
     label: 'Our Team',
+    preview: 'Meet our experienced attorneys and dedicated support professionals',
     links: [
       {
         label: 'Attorneys',
@@ -140,6 +143,7 @@ export const navData: Record<string, NavigationSection> = {
   },
   practiceAreas: {
     label: 'Practice Areas',
+    preview: 'Comprehensive legal services across diverse practice areas',
     columns: 3,
     links: [
       {
@@ -218,6 +222,7 @@ export const navData: Record<string, NavigationSection> = {
   },
   industries: {
     label: 'Industries',
+    preview: 'Specialized legal counsel for various industry sectors',
     columns: 2,
     links: [
       {
@@ -272,6 +277,7 @@ export const navData: Record<string, NavigationSection> = {
   },
   newsroom: {
     label: 'Newsroom',
+    preview: 'Latest firm news, legal insights, and featured articles',
     links: [
       {
         label: 'Firm News',

@@ -44,6 +44,32 @@ export interface RepresentativeMatter {
   practiceArea?: string
 }
 
+// Professional (Other Professionals - non-attorney staff)
+export interface Professional {
+  id: string
+  name: string
+  title: string
+  email: string
+  phone?: string
+  bio?: string
+  imageUrl?: string
+  department?: string
+  specialties?: string[]
+}
+
+// Legal Assistant
+export interface LegalAssistant {
+  id: string
+  name: string
+  title: string
+  email: string
+  phone?: string
+  bio?: string
+  imageUrl?: string
+  supportingAttorneys?: string[] // Attorney IDs
+  specialties?: string[]
+}
+
 // Practice Area
 export interface PracticeArea {
   id: string
