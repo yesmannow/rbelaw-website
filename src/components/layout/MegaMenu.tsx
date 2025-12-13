@@ -142,9 +142,9 @@ export function MegaMenu({ onSearchTrigger }: MegaMenuProps) {
     <NavigationMenu.Root
       value={activeValue}
       onValueChange={(value) => setActiveValue(value)}
-      className="relative z-10"
+      className="relative z-[60]"
     >
-      <NavigationMenu.List className="flex items-center gap-6">
+      <NavigationMenu.List className="flex items-center gap-4">
         {Object.entries(navData).map(([key, section]) => (
           <NavigationMenu.Item key={key} value={key}>
             <NavigationMenu.Trigger className="group flex items-center gap-1 text-neutral-700 hover:text-primary-burgundy transition-colors font-medium outline-none relative px-1 py-2 bg-transparent data-[state=open]:text-primary-burgundy">
@@ -165,7 +165,7 @@ export function MegaMenu({ onSearchTrigger }: MegaMenuProps) {
 
             <NavigationMenu.Content className="absolute left-0 top-0 w-full">
               {/* max-w-7xl (80rem) prevents horizontal scrolling on large screens */}
-              <div className="w-full max-w-7xl mx-auto bg-white/95 backdrop-blur-md border border-neutral-200 rounded-lg shadow-corporate overflow-hidden">
+              <div className="w-full max-w-7xl mx-auto bg-white backdrop-blur-md border border-neutral-200 rounded-lg shadow-corporate overflow-hidden">
                 {renderContent(key, section)}
               </div>
             </NavigationMenu.Content>
@@ -173,7 +173,7 @@ export function MegaMenu({ onSearchTrigger }: MegaMenuProps) {
         ))}
       </NavigationMenu.List>
 
-      <div className="absolute left-0 top-full w-full flex justify-start pt-2">
+      <div className="absolute left-0 top-full w-full flex justify-start pt-2 z-[70]">
         <NavigationMenu.Viewport className="relative origin-top-left overflow-hidden bg-white rounded-lg border border-neutral-200 shadow-corporate transition-[width,height] duration-300 h-[var(--radix-navigation-menu-viewport-height)] w-[var(--radix-navigation-menu-viewport-width)]" />
       </div>
     </NavigationMenu.Root>

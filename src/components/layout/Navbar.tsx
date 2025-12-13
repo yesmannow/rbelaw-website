@@ -21,7 +21,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-4">
             <Link to="/" className="text-neutral-700 hover:text-primary-burgundy transition-colors font-medium">
               Home
             </Link>
