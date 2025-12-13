@@ -9,13 +9,13 @@ export default {
       colors: {
         // Corporate brand colors for Riley Bennett Egloff
         primary: {
-          burgundy: '#5D1F34',  // Deep Merlot/Burgundy - Primary brand color (matching logo)
-          navy: '#0A2540',      // Deep Navy - Legacy support
-          slate: '#334155',     // Slate Grey - Secondary
-          light: '#64748b',     // Light Slate
+          burgundy: '#75253D',  // Maroon - Primary brand color (verified from client)
+          navy: '#3F4E76',      // Navy Blue - Secondary brand color
+          slate: '#555659',     // Dark Grey - Neutral dark
+          light: '#C1C8D1',     // Light Grey - Accent light
         },
         accent: {
-          gold: '#B8860B',      // Dark Gold - Subtle accent
+          gold: '#B8860B',      // Dark Gold - Premium accent
           bronze: '#CD7F32',    // Bronze - Secondary accent
         },
         neutral: {
@@ -32,8 +32,8 @@ export default {
         }
       },
       fontFamily: {
-        // Modern sans-serif for UI (Inter/Geist alternative using system fonts)
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+        // Modern sans-serif for UI (Public Sans - closest to Microsoft Aptos)
+        sans: ['Public Sans', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'],
         // Serif for headings - authority and professionalism
         serif: ['Playfair Display', 'Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
       },

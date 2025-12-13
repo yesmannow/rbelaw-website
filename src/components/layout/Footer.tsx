@@ -128,7 +128,7 @@ export function Footer() {
             </h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/accessibility" className="text-white/80 hover:text-accent-gold transition-colors text-sm">
+                <Link to="/accessibility-statement" className="text-white/80 hover:text-accent-gold transition-colors text-sm">
                   Accessibility Statement
                 </Link>
               </li>
