@@ -45,10 +45,10 @@ export function AccessibilityStatement() {
               Accessibility Features
             </h2>
             <ul className="space-y-3 text-neutral-700">
-              <li>Pages are designed to be fully functional, even with JavaScript turned off.</li>
               <li>All text uses relative font sizes so text can be enlarged or reduced using the text size options available in visual browsers.</li>
               <li>The site can be navigated without the use of a mouse through the use of access keys (see below).</li>
               <li>All pages are designed with separate cascading style sheets which can be replaced by user-defined style sheets.</li>
+              <li>Semantic HTML and ARIA labels ensure compatibility with screen readers and assistive technologies.</li>
             </ul>
 
             <h2 className="text-3xl font-serif font-bold text-primary-navy mt-12 mb-6">

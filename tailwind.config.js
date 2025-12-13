@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Corporate brand colors for Riley Bennett Egloff - Updated December 2024
+        // Corporate brand colors for Riley Bennett Egloff
         primary: {
           burgundy: '#75253D',  // Maroon - Primary brand color (verified from client)
           navy: '#3F4E76',      // Navy Blue - Secondary brand color
