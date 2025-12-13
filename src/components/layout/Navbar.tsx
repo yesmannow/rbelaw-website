@@ -8,6 +8,7 @@ import { triggerGlobalSearch } from '../../lib/utils/megaMenu'
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [isPracticeAreasOpen, setIsPracticeAreasOpen] = useState(false)
+  const [isNewsroomOpen, setIsNewsroomOpen] = useState(false)
 
   return (
     <nav className="bg-white shadow-soft sticky top-0 z-50">

@@ -1,0 +1,52 @@
+[
+  {
+    "id": "1",
+    "title": "RBE Secures Major Victory in Commercial Litigation Case",
+    "slug": "major-victory-commercial-litigation",
+    "date": "2024-11-15",
+    "category": "Firm News",
+    "excerpt": "Our litigation team successfully defended a Fortune 500 client in a complex breach of contract dispute, securing a favorable judgment that sets important precedent.",
+    "image": "/images/legacy/commercial-litigation.jpg",
+    "url": "https://example.com/blog/major-victory-commercial-litigation"
+  },
+  {
+    "id": "2",
+    "title": "New Indiana Construction Lien Law: What Contractors Need to Know",
+    "slug": "indiana-construction-lien-law-update",
+    "date": "2024-10-28",
+    "category": "Legal Updates",
+    "excerpt": "Recent changes to Indiana's construction lien statute will significantly impact how contractors and subcontractors protect their payment rights. Here's what you need to know.",
+    "image": "/images/legacy/construction-law.jpg",
+    "url": "https://example.com/blog/indiana-construction-lien-law-update"
+  },
+  {
+    "id": "3",
+    "title": "Healthcare Compliance in 2025: Key Trends and Strategies",
+    "slug": "healthcare-compliance-2025",
+    "date": "2024-10-12",
+    "category": "Legal Updates",
+    "excerpt": "As healthcare regulations continue to evolve, organizations must stay ahead of compliance requirements. Our healthcare practice group shares insights on emerging trends.",
+    "image": "/images/legacy/healthcare-compliance.jpg",
+    "url": "https://example.com/blog/healthcare-compliance-2025"
+  },
+  {
+    "id": "4",
+    "title": "Video: Understanding Professional Liability Insurance",
+    "slug": "professional-liability-insurance-video",
+    "date": "2024-09-22",
+    "category": "Videos",
+    "excerpt": "Partner John Smith discusses the critical aspects of professional liability insurance and how it protects your business from claims and lawsuits.",
+    "image": "/images/legacy/professional-liability.jpg",
+    "url": "https://example.com/blog/professional-liability-insurance-video"
+  },
+  {
+    "id": "5",
+    "title": "RBE Attorneys Named to Best Lawyers 2025",
+    "slug": "best-lawyers-2025",
+    "date": "2024-08-30",
+    "category": "Firm News",
+    "excerpt": "We are proud to announce that three of our attorneys have been recognized in the 2025 edition of The Best Lawyers in America for their outstanding work.",
+    "image": "/images/legacy/best-lawyers-2025.jpg",
+    "url": "https://example.com/blog/best-lawyers-2025"
+  }
+]

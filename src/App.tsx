@@ -12,6 +12,9 @@ import { InstallPrompt } from './components/pwa/InstallPrompt'
 
 function App() {
   const [searchOpen, setSearchOpen] = useState(false)
+  
+  // Initialize smooth scrolling
+  useLenis()
 
   return (
     <BrowserRouter>
@@ -30,6 +33,8 @@ function App() {
           <Route path="about/careers" element={<CareersPage />} />
           <Route path="about/fees" element={<FeesPage />} />
           <Route path="contact" element={<ContactPage />} />
+          <Route path="industries" element={<IndustriesIndex />} />
+          <Route path="industries/:slug" element={<IndustryPage />} />
           <Route path="demo" element={<DemoPage />} />
           <Route path="resources/tools" element={<ToolsPage />} />
           <Route path="resources/tools/comp-calculator" element={<CompCalculatorPage />} />
