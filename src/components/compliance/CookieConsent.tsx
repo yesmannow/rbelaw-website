@@ -1,32 +1,31 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Cookie } from 'lucide-react'
+import { Link } from 'react-router-dom'
+
+const COOKIE_CONSENT_KEY = 'rbe-cookie-consent'
 
 export function CookieConsent() {
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
-    // Check if user has already made a choice
-    const cookieConsent = localStorage.getItem('cookieConsent')
-    if (!cookieConsent) {
-      // Show banner after a short delay
-      const timer = setTimeout(() => setIsVisible(true), 1000)
+    const consent = localStorage.getItem(COOKIE_CONSENT_KEY)
+    if (!consent) {
+      // Show banner after a short delay for better UX
+      const timer = setTimeout(() => {
+        setIsVisible(true)
+      }, 1000)
       return () => clearTimeout(timer)
     }
   }, [])
 
   const handleAccept = () => {
-    localStorage.setItem('cookieConsent', 'accepted')
+    localStorage.setItem(COOKIE_CONSENT_KEY, 'accepted')
     setIsVisible(false)
   }
 
   const handleDecline = () => {
-    localStorage.setItem('cookieConsent', 'declined')
-    setIsVisible(false)
-  }
-
-  const handleClose = () => {
+    localStorage.setItem(COOKIE_CONSENT_KEY, 'declined')
     setIsVisible(false)
   }
 
@@ -40,56 +39,57 @@ export function CookieConsent() {
           transition={{ duration: 0.4, ease: 'easeOut' }}
           className="fixed bottom-0 left-0 right-0 z-50 p-4 md:p-6"
         >
-          <div className="section-container max-w-6xl">
-            <div className="relative bg-primary-navy/95 backdrop-blur-md border border-white/10 rounded-lg shadow-2xl">
-              {/* Close Button */}
-              <button
-                onClick={handleClose}
-                className="absolute top-3 right-3 text-white/60 hover:text-white transition-colors"
-                aria-label="Close cookie consent"
-              >
-                <X className="h-5 w-5" />
-              </button>
+          <div className="section-container max-w-7xl">
+            <div className="relative bg-primary-navy/95 backdrop-blur-lg border border-white/10 rounded-lg shadow-2xl overflow-hidden">
+              {/* Glassmorphism effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-primary-navy/50 to-primary-slate/50 backdrop-blur-sm"></div>
+              
+              <div className="relative p-6 md:p-8">
+                <button
+                  onClick={handleDecline}
+                  className="absolute top-4 right-4 text-white/60 hover:text-white transition-colors"
+                  aria-label="Dismiss cookie banner"
+                >
+                  <X className="h-5 w-5" />
+                </button>
 
-              <div className="p-6 md:p-8 pr-12">
-                <div className="flex flex-col md:flex-row md:items-center gap-6">
-                  {/* Icon and Text */}
-                  <div className="flex-1">
-                    <div className="flex items-start gap-4 mb-4">
-                      <Cookie className="h-6 w-6 text-accent-gold flex-shrink-0 mt-1" />
-                      <div>
-                        <h3 className="text-lg font-serif font-semibold text-white mb-2">
-                          Cookie Notice
-                        </h3>
-                        <p className="text-white/80 text-sm leading-relaxed">
-                          We use cookies to enhance your experience on our website. By continuing to visit 
-                          this site, you agree to our use of cookies for analytics, personalized content, 
-                          and functionality improvements.
-                        </p>
-                      </div>
+                <div className="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-8 pr-8">
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 bg-accent-gold/20 rounded-full flex items-center justify-center">
+                      <Cookie className="h-6 w-6 text-accent-gold" />
                     </div>
                   </div>
 
-                  {/* Action Buttons */}
-                  <div className="flex flex-col sm:flex-row gap-3 md:flex-shrink-0">
-                    <button
-                      onClick={handleAccept}
-                      className="px-6 py-3 bg-primary-burgundy hover:bg-primary-burgundy/90 text-white font-semibold rounded-sm transition-all duration-300 whitespace-nowrap"
-                    >
-                      Accept Cookies
-                    </button>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold text-white mb-2">
+                      Cookie Notice
+                    </h3>
+                    <p className="text-white/80 text-sm leading-relaxed">
+                      We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.{' '}
+                      <Link 
+                        to="/disclaimer" 
+                        className="text-accent-gold hover:underline font-semibold"
+                      >
+                        Learn more
+                      </Link>
+                    </p>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
                     <button
                       onClick={handleDecline}
-                      className="px-6 py-3 bg-transparent hover:bg-white/10 text-white font-semibold border border-white/30 rounded-sm transition-all duration-300 whitespace-nowrap"
+                      className="px-6 py-3 bg-transparent border border-white/30 text-white hover:bg-white/10 rounded-sm font-semibold transition-all duration-300 whitespace-nowrap"
+                      aria-label="Decline cookies"
                     >
                       Decline
                     </button>
-                    <Link
-                      to="/privacy"
-                      className="px-6 py-3 text-accent-gold hover:text-white font-semibold transition-colors text-center whitespace-nowrap"
+                    <button
+                      onClick={handleAccept}
+                      className="px-6 py-3 bg-primary-burgundy hover:bg-primary-burgundy/90 text-white rounded-sm font-semibold transition-all duration-300 whitespace-nowrap shadow-lg"
+                      aria-label="Accept cookies"
                     >
-                      Privacy Policy
-                    </Link>
+                      Accept Cookies
+                    </button>
                   </div>
                 </div>
               </div>
