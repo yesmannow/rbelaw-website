@@ -17,7 +17,20 @@ import {
   RealEstate,
   WillsTrustsEstates,
 } from './pages/practice-areas'
-import IndustriesIndex from './pages/industries/IndustriesIndex'
+import { IndustriesPage } from './pages/industries/IndustriesPage'
+import { ConstructionPage } from './pages/industries/ConstructionPage'
+import { FinancePage } from './pages/industries/FinancePage'
+import { GovernmentPage } from './pages/industries/GovernmentPage'
+import { HealthCarePage } from './pages/industries/HealthCarePage'
+import { InsurancePage } from './pages/industries/InsurancePage'
+import { ManufacturingPage } from './pages/industries/ManufacturingPage'
+import { MediaPage } from './pages/industries/MediaPage'
+import { NonProfitsPage } from './pages/industries/NonProfitsPage'
+import { RestaurantPage } from './pages/industries/RestaurantPage'
+import { TechnologyPage } from './pages/industries/TechnologyPage'
+import { TelecommunicationsPage } from './pages/industries/TelecommunicationsPage'
+import { TransportationPage } from './pages/industries/TransportationPage'
+import { WholesaleRetailPage } from './pages/industries/WholesaleRetailPage'
 import IndustryPage from './pages/industries/IndustryPage'
 import { AttorneysPage, AttorneyBioPage } from './pages/attorneys'
 import { ProfessionalsPage, LegalAssistantsPage } from './pages/team'
@@ -48,8 +61,6 @@ import { GlobalSearch } from './components/command/GlobalSearch'
 import { InstallPrompt } from './components/pwa/InstallPrompt'
 import { CookieConsent } from './components/compliance'
 import { SkipToContent } from './components/compliance/SkipToContent'
-import { ConciergeWidget } from './components/chat'
-import { RBELawAssistant } from './components/chat/RBELawAssistant'
 import { useLenis } from './hooks/useLenis'
 
 // Lazy-loaded heavy pages to improve initial bundle size
@@ -68,8 +79,6 @@ function App() {
       <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
       <InstallPrompt />
       <CookieConsent />
-      <ConciergeWidget />
-      <RBELawAssistant />
       <Suspense fallback={<div className="section-container py-12">Loading...</div>}>
         <Routes>
           <Route path="/" element={<RootLayout />}>
@@ -92,7 +101,7 @@ function App() {
           <Route path="attorneys" element={<AttorneysPage />} />
           <Route path="attorneys/:id" element={<AttorneyBioPage />} />
           <Route path="team/professionals" element={<ProfessionalsPage />} />
-          <Route path="team/assistants" element={<LegalAssistantsPage />} />
+          <Route path="team/legal-assistants" element={<LegalAssistantsPage />} />
           <Route path="about" element={<AboutPage />} />
           <Route path="about/history" element={<HistoryPage />} />
           <Route path="about/community" element={<CommunityPage />} />
@@ -102,7 +111,20 @@ function App() {
           <Route path="contact" element={<ContactPage />} />
           <Route path="newsroom" element={<Newsroom />} />
           <Route path="newsroom/:slug" element={<BlogPost />} />
-          <Route path="industries" element={<IndustriesIndex />} />
+          <Route path="industries" element={<IndustriesPage />} />
+          <Route path="industries/construction" element={<ConstructionPage />} />
+          <Route path="industries/finance" element={<FinancePage />} />
+          <Route path="industries/government" element={<GovernmentPage />} />
+          <Route path="industries/health-care" element={<HealthCarePage />} />
+          <Route path="industries/insurance" element={<InsurancePage />} />
+          <Route path="industries/manufacturing" element={<ManufacturingPage />} />
+          <Route path="industries/media" element={<MediaPage />} />
+          <Route path="industries/non-profits" element={<NonProfitsPage />} />
+          <Route path="industries/restaurant-hospitality" element={<RestaurantPage />} />
+          <Route path="industries/technology" element={<TechnologyPage />} />
+          <Route path="industries/telecommunications" element={<TelecommunicationsPage />} />
+          <Route path="industries/transportation" element={<TransportationPage />} />
+          <Route path="industries/wholesale-retail" element={<WholesaleRetailPage />} />
           <Route path="industries/:slug" element={<IndustryPage />} />
           <Route path="demo" element={<DemoPage />} />
           <Route path="resources/tools" element={<ToolsPage />} />
@@ -129,3 +151,4 @@ function App() {
 }
 
 export default App
+

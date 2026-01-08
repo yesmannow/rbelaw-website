@@ -4,21 +4,24 @@ import { useState } from 'react'
 interface Award {
   name: string
   description: string
-  logoUrl?: string
+  logoUrl: string
 }
 
 const awards: Award[] = [
   {
     name: 'Best Lawyers',
     description: 'Best Lawyers in America',
+    logoUrl: '/images/logo/Best-Law-Firms-2025.jpg',
   },
   {
     name: 'Super Lawyers',
     description: 'Super Lawyers Recognition',
+    logoUrl: '/images/logo/super lawyers logo.png',
   },
   {
     name: 'Martindale-Hubbell',
     description: 'AV Preeminent Rated',
+    logoUrl: '/images/logo/MartindaleHubbell.jpg',
   },
 ]
 
@@ -53,30 +56,18 @@ export function TrustBar() {
                 className="group relative"
               >
                 <div className="flex flex-col items-center justify-center p-6 transition-all duration-500">
-                  {/* Logo Badge with Grayscale-to-Color Effect */}
-                  <div className="w-32 h-32 mb-4 rounded-lg bg-gradient-to-br from-neutral-200 to-neutral-300 flex items-center justify-center transition-all duration-500 group-hover:from-primary-navy/20 group-hover:to-primary-burgundy/20">
-                    <div className={`text-center transition-all duration-500 ${
-                      hoveredIndex === index ? 'grayscale-0' : 'grayscale'
-                    }`}>
-                      <div className={`text-2xl font-serif font-bold transition-colors duration-500 ${
-                        hoveredIndex === index
-                          ? 'text-primary-burgundy'
-                          : 'text-neutral-600'
-                      }`}>
-                        {award.name.split(' ')[0]}
-                      </div>
-                      {award.name.split(' ').length > 1 && (
-                        <div className={`text-xs font-semibold transition-colors duration-500 ${
-                          hoveredIndex === index
-                            ? 'text-accent-gold'
-                            : 'text-neutral-500'
-                        }`}>
-                          {award.name.split(' ').slice(1).join(' ')}
-                        </div>
-                      )}
-                    </div>
+                  {/* Award Logo with Grayscale-to-Color Effect */}
+                  <div className="w-40 h-40 mb-4 flex items-center justify-center">
+                    <img
+                      src={award.logoUrl}
+                      alt={award.name}
+                      className={`max-w-full max-h-full object-contain transition-all duration-500 ${
+                        hoveredIndex === index ? 'grayscale-0 scale-110' : 'grayscale opacity-70'
+                      }`}
+                      loading="lazy"
+                    />
                   </div>
-                  <p className={`text-sm font-medium transition-colors duration-500 ${
+                  <p className={`text-sm font-medium text-center transition-colors duration-500 ${
                     hoveredIndex === index
                       ? 'text-primary-navy font-semibold'
                       : 'text-neutral-600'

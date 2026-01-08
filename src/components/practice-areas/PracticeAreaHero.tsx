@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import { getPracticeAreaHero } from '@/lib/data/practiceAreaHeroes'
 
 interface PracticeAreaHeroProps {
   title: string
@@ -12,22 +11,16 @@ interface PracticeAreaHeroProps {
  * Features improved spacing and gradient overlays
  */
 export function PracticeAreaHero({ title, description, slug }: PracticeAreaHeroProps) {
-  const hero = getPracticeAreaHero(slug)
 
   return (
     <section className="relative bg-gradient-to-br from-primary-navy via-primary-navy to-primary-burgundy text-white pt-24 pb-20 lg:pt-32 lg:pb-24 overflow-hidden">
       {/* Background Image with Overlay */}
-      {hero && (
-        <>
-          <img 
-            src={hero.src} 
-            srcSet={hero.srcset} 
-            alt={`${title} hero`} 
-            className="absolute inset-0 h-full w-full object-cover opacity-20" 
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-primary-navy/90 via-primary-navy/85 to-primary-burgundy/80" />
-        </>
-      )}
+      <img
+        src="/images/hero/hero 1.jpg"
+        alt={`${title} hero - ${slug}`}
+        className="absolute inset-0 h-full w-full object-cover opacity-20"
+      />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-navy/90 via-primary-navy/85 to-primary-burgundy/80" />
 
       {/* Content */}
       <div className="section-container relative z-10">

@@ -60,13 +60,22 @@ export function IndustriesMegaMenu({ section }: IndustriesMegaMenuProps) {
             <div className="w-[700px] rounded-lg border border-gray-200 bg-white shadow-2xl">
               <div className="p-8">
                 {/* Header */}
-                <div className="mb-6">
-                  <h3 className="text-2xl font-bold text-rbe-navy">
-                    Industries We Serve
-                  </h3>
-                  <p className="mt-1 text-sm text-gray-600">
-                    Specialized legal counsel for various industry sectors
-                  </p>
+                <div className="mb-6 flex items-start justify-between">
+                  <div>
+                    <h3 className="text-2xl font-bold text-rbe-navy">
+                      Industries We Serve
+                    </h3>
+                    <p className="mt-1 text-sm text-gray-600">
+                      Specialized legal counsel for various industry sectors
+                    </p>
+                  </div>
+                  <Link
+                    to="/industries"
+                    className="flex items-center gap-2 rounded-lg border-2 border-rbe-burgundy px-4 py-2 text-sm font-semibold text-rbe-burgundy transition-all hover:bg-rbe-burgundy hover:text-white"
+                  >
+                    View All
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
                 </div>
 
                 {/* Industries Grid */}

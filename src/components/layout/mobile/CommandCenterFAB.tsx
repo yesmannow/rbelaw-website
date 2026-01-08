@@ -27,9 +27,11 @@ export function CommandCenterFAB({ onAction }: CommandCenterFABProps) {
     // Handle default actions
     switch (action) {
       case 'phone':
+        // eslint-disable-next-line
         window.location.href = 'tel:317-636-8000'
         break
       case 'email':
+        // eslint-disable-next-line
         window.location.href = 'mailto:info@rbelaw.com'
         break
       case 'map':

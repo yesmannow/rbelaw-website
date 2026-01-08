@@ -22,11 +22,6 @@
 - Automatic optimization to WebP, AVIF, JPEG
 - Batch mode for all site images
 
-### 5. **AI Chatbot** 🤖
-- OpenAI-powered assistant
-- Lead capture and qualification
-- 24/7 visitor support
-
 ---
 
 ## 🚀 Get Started in 3 Steps
@@ -67,8 +62,6 @@ src/
 │   │   └── SEO.tsx                # Meta tags & Open Graph
 │   ├── ui/
 │   │   └── CaseResultCard.tsx     # Case results display
-│   └── chat/
-│       └── RBELawAssistant.tsx    # AI chatbot
 ├── lib/
 │   ├── data/
 │   │   ├── caseResults.ts         # 10 sample cases
@@ -86,7 +79,6 @@ scripts/
 Documentation:
 ├── SITE_AUDIT_AND_RECOMMENDATIONS.md
 ├── IMPLEMENTATION_PROGRESS.md
-├── IMAGE_AND_CHATBOT_GUIDE.md
 └── QUICK_START.md (this file)
 ```
 
@@ -97,21 +89,17 @@ Documentation:
 ### Immediate (Do Now)
 1. **Install dependencies:** `npm install`
 2. **Fetch images:** `npm run fetch-images:batch`
-3. **Test chatbot:** Start dev server and click chat button
-4. **Review industry pages:** Visit `/industries/healthcare`
+3. **Review industry pages:** Visit `/industries/healthcare`
 
 ### Short-term (This Week)
-1. **Customize chatbot** system prompt for your needs
-2. **Add real attorney data** to replace placeholders
-3. **Create more case results** (currently 10 samples)
-4. **Test on mobile devices**
+1. **Add real attorney data** to replace placeholders
+2. **Create more case results** (currently 10 samples)
+3. **Test on mobile devices**
 
 ### Production (Before Launch)
-1. **Set up backend proxy** for OpenAI API (security)
-2. **Configure lead storage** (CRM integration)
-3. **Add analytics tracking** (Google Analytics, Mixpanel)
-4. **Optimize images** already in the site
-5. **Run Lighthouse audit** and fix issues
+1. **Add analytics tracking** (Google Analytics, Mixpanel)
+2. **Optimize images** already in the site
+3. **Run Lighthouse audit** and fix issues
 
 ---
 
@@ -123,9 +111,6 @@ Your `.env.local` should have:
 VITE_UNSPLASH_ACCESS_KEY="your_key"
 VITE_PEXELS_API_KEY="your_key"
 VITE_PIXABAY_API_KEY="your_key"
-
-# AI Chatbot
-VITE_OPENAI_API_KEY="sk-proj-..."
 
 # Optional
 VITE_CONTACT_FORM_ENDPOINT=""
@@ -140,7 +125,6 @@ VITE_GA_TRACKING_ID=""
 
 - **Full Audit:** `SITE_AUDIT_AND_RECOMMENDATIONS.md`
 - **Progress Tracking:** `IMPLEMENTATION_PROGRESS.md`
-- **Image & Chatbot Guide:** `IMAGE_AND_CHATBOT_GUIDE.md`
 - **This Guide:** `QUICK_START.md`
 
 ---
@@ -157,20 +141,6 @@ npm run fetch-images -- --query "healthcare professional" --category "practice-a
 
 # Industry images
 npm run fetch-images -- --query "construction site" --category "industries" --width 1200 --height 600
-```
-
-### Use Chatbot in Components
-```tsx
-import { RBELawAssistant } from '@/components/chat/RBELawAssistant';
-
-function App() {
-  return (
-    <>
-      {/* Your content */}
-      <RBELawAssistant />
-    </>
-  );
-}
 ```
 
 ### Display Case Results
@@ -209,17 +179,13 @@ function MyPage() {
 ## ⚠️ Important Notes
 
 ### Security
-- **OpenAI API Key:** Currently exposed in client code
-- **For Production:** Set up backend proxy (see `IMAGE_AND_CHATBOT_GUIDE.md`)
 - **Never commit** `.env.local` to git
 
 ### Performance
 - Images are optimized to WebP/AVIF (60-80% smaller)
-- Chatbot uses GPT-4o-mini (fast and affordable)
 - Lazy load images below the fold
 
 ### Legal Compliance
-- Chatbot includes disclaimer (not legal advice)
 - Image credits tracked in `_credits.json`
 - Follow bar association advertising rules
 
@@ -228,11 +194,9 @@ function MyPage() {
 ## 🎉 What You Can Do Now
 
 1. ✅ **Professional Images** - Fetch high-quality images automatically
-2. ✅ **AI Support** - 24/7 chatbot answering visitor questions
-3. ✅ **Lead Capture** - Automatically collect interested visitor info
-4. ✅ **SEO Boost** - Structured data for better search visibility
-5. ✅ **Industry Pages** - Targeted content for key client segments
-6. ✅ **Case Results** - Showcase your expertise and wins
+2. ✅ **SEO Boost** - Structured data for better search visibility
+3. ✅ **Industry Pages** - Targeted content for key client segments
+4. ✅ **Case Results** - Showcase your expertise and wins
 
 ---
 
@@ -252,12 +216,6 @@ function MyPage() {
 - Multiple formats (WebP, AVIF, JPEG) for each
 - Credits file for attribution
 - Ready to use in components
-
-### After Adding Chatbot
-- Floating chat button in bottom-right
-- Instant AI responses to visitor questions
-- Lead capture forms after engagement
-- ~$10-30/month for 1000 conversations
 
 ### After SEO Implementation
 - Improved search rankings

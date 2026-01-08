@@ -1,5 +1,6 @@
 import { MarketTicker } from '@/components/marketing/MarketTicker'
 import { PracticeAreaHero, PracticeAreaProfessionals } from '@/components/practice-areas'
+import { BusinessEntityComparison, ContractRiskAnalyzer } from '@/components/tools'
 
 export function BusinessLaw() {
   const attorneyNames = [
@@ -125,6 +126,20 @@ export function BusinessLaw() {
         </div>
 
       </div>
+      
+      {/* Tools: Business Entity Comparison */}
+      <section className="py-16 lg:py-20 bg-neutral-50">
+        <div className="section-container">
+          <BusinessEntityComparison />
+        </div>
+      </section>
+
+      {/* Tools: Contract Risk Analyzer */}
+      <section className="py-16 lg:py-20 bg-white">
+        <div className="section-container">
+          <ContractRiskAnalyzer />
+        </div>
+      </section>
 
       {/* Professionals Section */}
       <PracticeAreaProfessionals

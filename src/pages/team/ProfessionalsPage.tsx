@@ -22,20 +22,20 @@ export function ProfessionalsPage() {
       />
 
       <div>
-        {/* Hero Section */}
-        <section className="bg-primary-navy text-white py-16 lg:py-20">
+        {/* Hero Section - Improved Spacing */}
+        <section className="bg-gradient-to-br from-primary-navy via-primary-navy to-primary-burgundy text-white pt-24 pb-20 lg:pt-32 lg:pb-24">
           <div className="section-container">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
+              className="max-w-4xl"
             >
-              <h1 className="heading-primary text-white mb-4">
-                Other Professionals
+              <h1 className="text-5xl lg:text-6xl font-serif font-bold text-white mb-6">
+                Legal Support & Other Professionals
               </h1>
-              <p className="text-xl text-neutral-200 max-w-3xl">
-                Meet our dedicated support staff and specialists who help deliver exceptional legal services.
-                Our team of professionals works behind the scenes to ensure our attorneys can focus on what they do best.
+              <p className="text-xl lg:text-2xl text-neutral-100 leading-relaxed">
+                The attorneys of RBE depend on the support of numerous legal professionals including legal assistants, paralegals, and nurse consultants.
               </p>
             </motion.div>
           </div>

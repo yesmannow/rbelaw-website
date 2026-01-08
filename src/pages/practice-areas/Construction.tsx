@@ -1,4 +1,6 @@
 import { PracticeAreaTemplate } from './PracticeAreaTemplate'
+import { OSHACalculator } from '@/components/tools/OSHACalculator'
+import { LienCalculator } from '@/components/tools/LienCalculator'
 
 export function Construction() {
   return (
@@ -17,6 +19,19 @@ export function Construction() {
           ],
         },
       ]}
-    />
+    >
+      {/* Tools: OSHA and Lien Calculators */}
+      <section className="py-16 lg:py-20 bg-neutral-50">
+        <div className="section-container">
+          <OSHACalculator />
+        </div>
+      </section>
+
+      <section className="py-16 lg:py-20 bg-white">
+        <div className="section-container">
+          <LienCalculator />
+        </div>
+      </section>
+    </PracticeAreaTemplate>
   )
 }

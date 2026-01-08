@@ -1,4 +1,5 @@
 import { PracticeAreaTemplate } from './PracticeAreaTemplate'
+import { FLSAWizard, KnowYourRightsQuiz } from '@/components/tools'
 
 export function LaborEmployment() {
   return (
@@ -17,6 +18,19 @@ export function LaborEmployment() {
           ],
         },
       ]}
-    />
+    >
+      {/* Tools: FLSA Wizard and Employment Law Quiz */}
+      <section className="py-16 lg:py-20 bg-neutral-50">
+        <div className="section-container">
+          <FLSAWizard />
+        </div>
+      </section>
+
+      <section className="py-16 lg:py-20 bg-white">
+        <div className="section-container">
+          <KnowYourRightsQuiz />
+        </div>
+      </section>
+    </PracticeAreaTemplate>
   )
 }

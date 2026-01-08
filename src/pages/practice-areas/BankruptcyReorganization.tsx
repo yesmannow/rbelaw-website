@@ -1,7 +1,7 @@
 import { MarketTicker } from '@/components/marketing/MarketTicker'
 import { attorneys } from '@/lib/data/attorney-helpers'
 import { Scale, Landmark } from 'lucide-react'
-import { getPracticeAreaHero } from '@/lib/data/practiceAreaHeroes'
+import { PracticeAreaHero } from '@/components/practice-areas'
 import { Link } from 'react-router-dom'
 
 export function BankruptcyReorganization() {
@@ -31,18 +31,7 @@ export function BankruptcyReorganization() {
       <MarketTicker />
 
       {/* Hero */}
-      <div className="relative bg-gradient-to-br from-rbe-navy to-rbe-burgundy py-20 text-white">
-        {(() => { const hero = getPracticeAreaHero('bankruptcy-reorganization'); return hero ? (
-          <>
-            <img src={hero.src} srcSet={hero.srcset} alt="Bankruptcy & Reorganization hero" className="absolute inset-0 h-full w-full object-cover opacity-30" />
-            <div className="absolute inset-0 bg-gradient-to-br from-rbe-navy/80 to-rbe-burgundy/70" />
-          </>
-        ) : null })()}
-        <div className="section-container relative">
-          <h1 className="mb-4 text-4xl font-bold md:text-5xl">Bankruptcy & Reorganization</h1>
-          <p className="text-lg text-white/90">{intro}</p>
-        </div>
-      </div>
+      <PracticeAreaHero title="Bankruptcy & Reorganization" description={intro} slug="bankruptcy-reorganization" />
 
       {/* Content */}
       <div className="section-container py-12">

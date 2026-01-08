@@ -14,20 +14,20 @@ export function LegalAssistantsPage() {
       />
 
       <div>
-        {/* Hero Section */}
-        <section className="bg-primary-navy text-white py-16 lg:py-20">
+        {/* Hero Section - Improved Spacing */}
+        <section className="bg-gradient-to-br from-primary-navy via-primary-navy to-primary-burgundy text-white pt-24 pb-20 lg:pt-32 lg:pb-24">
           <div className="section-container">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
+              className="max-w-4xl"
             >
-              <h1 className="heading-primary text-white mb-4">
+              <h1 className="text-5xl lg:text-6xl font-serif font-bold text-white mb-6">
                 Legal Assistants
               </h1>
-              <p className="text-xl text-neutral-200 max-w-3xl">
-                Meet our dedicated legal assistants who provide essential support to our attorneys and clients.
-                Our legal assistants are integral to delivering efficient, high-quality legal services.
+              <p className="text-xl lg:text-2xl text-neutral-100 leading-relaxed">
+                The Legal Assistants of Riley Bennett Egloff provide vital support for our attorneys. Feel free to contact the appropriate legal assistant directly.
               </p>
             </motion.div>
           </div>

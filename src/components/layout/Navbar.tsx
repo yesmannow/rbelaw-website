@@ -5,11 +5,13 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { practiceAreas } from '../../lib/data'
 import { PracticeAreasMegaMenu } from '../navigation/PracticeAreasMegaMenu'
 import { IndustriesMegaMenu } from '../navigation/IndustriesMegaMenu'
+import { OurTeamMegaMenu } from '../navigation/OurTeamMegaMenu'
 import { navData } from '../../lib/data/navigation'
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [isPracticeAreasOpen, setIsPracticeAreasOpen] = useState(false)
+  const [isOurTeamOpen, setIsOurTeamOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
@@ -122,19 +124,8 @@ export function Navbar() {
             {/* Industries - Special Mega Menu */}
             <IndustriesMegaMenu section={navData.industries} />
 
-            <Link
-              to="/attorneys"
-              className="relative text-white hover:text-accent-tan transition-all duration-200 font-medium px-3 py-2 rounded"
-            >
-              <span className="relative z-10">Attorneys</span>
-              {location.pathname.includes('/attorneys') && (
-                <motion.span 
-                  layoutId="navbar-indicator"
-                  className="absolute inset-0 bg-white/10 rounded"
-                  transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
-                />
-              )}
-            </Link>
+            {/* Our Team - Special Mega Menu */}
+            <OurTeamMegaMenu />
 
             <Link
               to="/newsroom"
@@ -249,13 +240,49 @@ export function Navbar() {
                   </AnimatePresence>
                 </div>
 
-                <Link 
-                  to="/attorneys" 
-                  className="block text-white hover:text-accent-tan hover:bg-white/5 transition-all px-4 py-3 rounded font-medium"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Attorneys
-                </Link>
+                <div>
+                  <button
+                    onClick={() => setIsOurTeamOpen(!isOurTeamOpen)}
+                    className="flex items-center justify-between text-white hover:text-accent-tan hover:bg-white/5 transition-all font-medium w-full px-4 py-3 rounded"
+                  >
+                    <span>Our Team</span>
+                    <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isOurTeamOpen ? 'rotate-180' : ''}`} />
+                  </button>
+
+                  <AnimatePresence>
+                    {isOurTeamOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="ml-4 mt-1 space-y-1 overflow-hidden"
+                      >
+                        <Link
+                          to="/attorneys"
+                          className="block text-sm text-white/80 hover:text-accent-tan hover:bg-white/5 transition-all px-4 py-2 rounded"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          Attorneys
+                        </Link>
+                        <Link
+                          to="/team/legal-assistants"
+                          className="block text-sm text-white/80 hover:text-accent-tan hover:bg-white/5 transition-all px-4 py-2 rounded"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          Legal Assistants
+                        </Link>
+                        <Link
+                          to="/team/professionals"
+                          className="block text-sm text-white/80 hover:text-accent-tan hover:bg-white/5 transition-all px-4 py-2 rounded"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          Other Professionals
+                        </Link>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
 
                 <Link 
                   to="/about" 

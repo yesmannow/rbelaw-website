@@ -55,13 +55,22 @@ export function PracticeAreasMegaMenu() {
             <div className="w-[900px] rounded-lg border border-gray-200 bg-white shadow-2xl">
               <div className="p-8">
                 {/* Header */}
-                <div className="mb-6">
-                  <h3 className="text-2xl font-bold text-rbe-navy">
-                    Practice Areas
-                  </h3>
-                  <p className="mt-1 text-sm text-gray-600">
-                    Comprehensive legal services across diverse practice areas
-                  </p>
+                <div className="mb-6 flex items-start justify-between">
+                  <div>
+                    <h3 className="text-2xl font-bold text-rbe-navy">
+                      Practice Areas
+                    </h3>
+                    <p className="mt-1 text-sm text-gray-600">
+                      Comprehensive legal services across diverse practice areas
+                    </p>
+                  </div>
+                  <Link
+                    to="/practice-areas"
+                    className="flex items-center gap-2 rounded-lg border-2 border-rbe-navy px-4 py-2 text-sm font-semibold text-rbe-navy transition-all hover:bg-rbe-navy hover:text-white"
+                  >
+                    View All
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
                 </div>
 
                 {/* Practice Areas Grid */}

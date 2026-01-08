@@ -2,6 +2,7 @@ import { MarketTicker } from '@/components/marketing/MarketTicker'
 import { PracticeAreaHero } from '@/components/practice-areas/PracticeAreaHero'
 import { AttorneyCard } from '@/components/attorneys'
 import { getAttorneysByPracticeArea } from '@/lib/data/attorney-helpers'
+import type { ReactNode } from 'react'
 
 interface Section {
   title: string
@@ -14,9 +15,10 @@ interface PracticeAreaTemplateProps {
   title: string
   intro: string
   sections?: Section[]
+  children?: ReactNode
 }
 
-export function PracticeAreaTemplate({ slug, title, intro, sections = [] }: PracticeAreaTemplateProps) {
+export function PracticeAreaTemplate({ slug, title, intro, sections = [], children }: PracticeAreaTemplateProps) {
   const team = getAttorneysByPracticeArea(title)
 
   return (
@@ -59,6 +61,8 @@ export function PracticeAreaTemplate({ slug, title, intro, sections = [] }: Prac
         </div>
 
       </div>
+
+      {children}
 
       {/* Professionals Section */}
       {team.length > 0 && (
