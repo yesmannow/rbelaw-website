@@ -209,6 +209,9 @@ export function BlogPost() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
+
+export default BlogPost
