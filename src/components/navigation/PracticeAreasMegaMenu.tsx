@@ -1,6 +1,6 @@
 /**
  * Practice Areas Mega Menu
- * Visual card-based mega menu with icons and descriptions
+ * Full-width glassmorphism popout with staggered animations
  */
 
 import { useState } from 'react';
@@ -42,39 +42,51 @@ export function PracticeAreasMegaMenu() {
         />
       </button>
 
-      {/* Mega Menu Dropdown */}
+      {/* Full-Width Glassmorphism Mega Menu */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="absolute left-1/2 top-full z-50 -translate-x-1/2 pt-2"
-          >
-            <div className="w-[900px] rounded-lg border border-gray-200 bg-white shadow-2xl">
-              <div className="p-8">
+          <>
+            {/* Background Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed left-0 right-0 top-[80px] z-40 h-[600px] pointer-events-none"
+              style={{ backgroundColor: 'rgba(10, 37, 64, 0.95)' }}
+            />
+
+            {/* Menu Content */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+              className="fixed left-0 right-0 top-[80px] z-50 backdrop-blur-xl border-t border-white/10"
+              style={{ backgroundColor: 'rgba(10, 37, 64, 0.95)' }}
+            >
+              <div className="section-container py-12">
                 {/* Header */}
-                <div className="mb-6 flex items-start justify-between">
+                <div className="mb-8 flex items-start justify-between">
                   <div>
-                    <h3 className="text-2xl font-bold text-rbe-navy">
+                    <h3 className="text-3xl font-display font-bold text-white mb-2">
                       Practice Areas
                     </h3>
-                    <p className="mt-1 text-sm text-gray-600">
+                    <p className="text-white/80 text-lg">
                       Comprehensive legal services across diverse practice areas
                     </p>
                   </div>
                   <Link
                     to="/practice-areas"
-                    className="flex items-center gap-2 rounded-lg border-2 border-rbe-navy px-4 py-2 text-sm font-semibold text-rbe-navy transition-all hover:bg-rbe-navy hover:text-white"
+                    className="flex items-center gap-2 rounded-lg bg-[#B8860B] hover:bg-[#A07A0A] px-6 py-3 text-sm font-semibold text-white transition-all hover:scale-105"
                   >
                     View All
                     <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
 
-                {/* Practice Areas Grid */}
-                <div className="grid grid-cols-3 gap-4">
+                {/* Practice Areas Grid with Staggered Animations */}
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                   {practiceAreas.map((area, index) => {
                     const Icon = area.icon ? iconMap[area.icon] : null;
                     
@@ -83,68 +95,43 @@ export function PracticeAreasMegaMenu() {
                         key={area.id}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: index * 0.03 }}
+                        transition={{ delay: index * 0.04 }}
                       >
                         <Link
                           to={`/practice-areas/${area.slug}`}
-                          className="group relative flex h-full flex-col overflow-hidden rounded-lg border border-gray-200 bg-white p-4 transition-all hover:border-rbe-navy hover:shadow-lg"
+                          className="group relative flex flex-col h-full overflow-hidden rounded-lg bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/10 hover:border-[#B8860B] p-5 transition-all"
                         >
                           {/* Icon */}
                           {Icon && (
-                            <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-lg bg-rbe-navy/10 text-rbe-navy transition-all group-hover:scale-110 group-hover:bg-rbe-navy group-hover:text-white">
-                              <Icon className="h-6 w-6" />
+                            <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[#B8860B]/20 text-[#B8860B] transition-all group-hover:scale-110 group-hover:bg-[#B8860B] group-hover:text-white">
+                              <Icon className="h-5 w-5" />
                             </div>
                           )}
 
-                          {/* Content */}
-                          <div className="flex-1">
-                            <h4 className="font-semibold text-gray-900 group-hover:text-rbe-navy">
-                              {area.name}
-                            </h4>
-                            {area.description && (
-                              <p className="mt-1 text-sm text-gray-600">
-                                {area.description}
-                              </p>
-                            )}
-                          </div>
+                          {/* Title */}
+                          <h4 className="font-semibold text-white mb-2 group-hover:text-[#B8860B] transition-colors">
+                            {area.name}
+                          </h4>
+
+                          {/* Description */}
+                          {area.description && (
+                            <p className="text-sm text-white/70 line-clamp-2 mb-3 flex-1">
+                              {area.description}
+                            </p>
+                          )}
 
                           {/* Arrow Icon */}
-                          <div className="mt-3 flex items-center text-sm font-medium text-rbe-navy opacity-0 transition-all group-hover:opacity-100">
-                            Learn more
-                            <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                          <div className="flex items-center text-sm font-medium text-[#B8860B] opacity-0 transition-all group-hover:opacity-100">
+                            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                           </div>
-
-                          {/* Hover Effect */}
-                          <div className="absolute inset-0 -z-10 bg-gradient-to-br from-rbe-navy/5 to-rbe-burgundy/5 opacity-0 transition-opacity group-hover:opacity-100" />
                         </Link>
                       </motion.div>
                     );
                   })}
                 </div>
-
-                {/* Footer CTA */}
-                <div className="mt-6 border-t border-gray-200 pt-6">
-                  <div className="flex items-center justify-between rounded-lg bg-gray-50 p-4">
-                    <div>
-                      <h4 className="font-semibold text-gray-900">
-                        Need help choosing?
-                      </h4>
-                      <p className="text-sm text-gray-600">
-                        Contact us to discuss your legal needs
-                      </p>
-                    </div>
-                    <Link
-                      to="/contact"
-                      className="flex items-center gap-2 rounded-lg bg-rbe-navy px-6 py-3 text-sm font-semibold text-white transition-transform hover:scale-105"
-                    >
-                      Contact Us
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </div>
-                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </div>
