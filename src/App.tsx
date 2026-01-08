@@ -21,16 +21,8 @@ import { ContactPage } from '@/pages/contact'
 import { DemoPage } from '@/pages/demo'
 import {
   ToolsPage,
-  CompCalculatorPage,
-  LienCalculatorPage,
-  SuccessionQuizPage,
   DistrictMapPage,
-  FLSAWizardPage,
   LitigationTimelinePage,
-  ContractAnalyzerPage,
-  EntityComparisonPage,
-  OSHACalculatorPage,
-  RightsQuizPage,
   LegalGlossaryPage
 } from '@/pages/tools'
 import { AINewsDigestPage } from '@/pages/news'
@@ -88,16 +80,8 @@ function AnimatedRoutes() {
           
           {/* Tools/Resources */}
           <Route path="resources/tools" element={<ToolsPage />} />
-          <Route path="resources/tools/comp-calculator" element={<CompCalculatorPage />} />
-          <Route path="resources/tools/lien-calculator" element={<LienCalculatorPage />} />
-          <Route path="resources/tools/succession-quiz" element={<SuccessionQuizPage />} />
           <Route path="resources/tools/district-map" element={<DistrictMapPage />} />
-          <Route path="resources/tools/flsa-wizard" element={<FLSAWizardPage />} />
           <Route path="resources/tools/litigation-timeline" element={<LitigationTimelinePage />} />
-          <Route path="resources/tools/contract-analyzer" element={<ContractAnalyzerPage />} />
-          <Route path="resources/tools/entity-comparison" element={<EntityComparisonPage />} />
-          <Route path="resources/tools/osha-calculator" element={<OSHACalculatorPage />} />
-          <Route path="resources/tools/rights-quiz" element={<RightsQuizPage />} />
           <Route path="resources/tools/legal-glossary" element={<LegalGlossaryPage />} />
           
           {/* News/AI Digest */}

@@ -1,2 +1,3 @@
 export { AttorneysPage } from './AttorneysPage'
-export { AttorneyBioPage } from './AttorneyBioPage'
+export { AttorneyBioPagePrestige } from './AttorneyBioPagePrestige'
+
