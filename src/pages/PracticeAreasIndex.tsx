@@ -1,10 +1,10 @@
 import { motion } from 'framer-motion'
 import { PageHeader } from '@/components/layout/PageHeader'
-import { practiceAreas } from '@/lib/data'
+import { enhancedPracticeAreas } from '@/lib/data/practiceAreasEnhanced'
 import { PracticeAreaCard } from '@/components/practice-areas/PracticeAreaCard'
 
 export function PracticeAreasIndex() {
-  const areas = practiceAreas
+  const areas = enhancedPracticeAreas
 
   return (
     <div className="min-h-screen bg-neutral-50">
