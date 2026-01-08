@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion'
 import { PageHeader } from '@/components/layout/PageHeader'
 import { enhancedPracticeAreas } from '@/lib/data/practiceAreasEnhanced'
 import { PracticeAreaCard } from '@/components/practice-areas/PracticeAreaCard'

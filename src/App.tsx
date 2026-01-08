@@ -1,5 +1,6 @@
 import { useState, lazy, Suspense } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { AnimatePresence } from 'framer-motion'
 import { RootLayout } from './components/layout'
 import { HomePage } from './pages/home'
 import { 
@@ -67,21 +68,14 @@ import { useLenis } from './hooks/useLenis'
 const Newsroom = lazy(() => import('./pages/Newsroom').then(m => ({ default: m.Newsroom })))
 const BlogPost = lazy(() => import('./pages/BlogPost').then(m => ({ default: m.BlogPost })))
 
-function App() {
-  const [searchOpen, setSearchOpen] = useState(false)
-
-  // Initialize smooth scrolling
-  useLenis()
+// Animated Routes Wrapper for View Transitions
+function AnimatedRoutes() {
+  const location = useLocation()
 
   return (
-    <BrowserRouter>
-      <SkipToContent />
-      <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
-      <InstallPrompt />
-      <CookieConsent />
-      <Suspense fallback={<div className="section-container py-12">Loading...</div>}>
-        <Routes>
-          <Route path="/" element={<RootLayout />}>
+    <AnimatePresence mode="wait" initial={false}>
+      <Routes location={location} key={location.pathname}>
+        <Route path="/" element={<RootLayout />}>
           <Route index element={<HomePage />} />
           <Route path="practice-areas/business-law" element={<BusinessLaw />} />
           <Route path="practice-areas" element={<PracticeAreasIndex />} />
@@ -143,8 +137,26 @@ function App() {
           <Route path="accessibility-statement" element={<AccessibilityStatement />} />
           <Route path="disclaimer" element={<Disclaimer />} />
           <Route path="*" element={<NotFound />} />
-          </Route>
-        </Routes>
+        </Route>
+      </Routes>
+    </AnimatePresence>
+  )
+}
+
+function App() {
+  const [searchOpen, setSearchOpen] = useState(false)
+
+  // Initialize smooth scrolling
+  useLenis()
+
+  return (
+    <BrowserRouter>
+      <SkipToContent />
+      <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
+      <InstallPrompt />
+      <CookieConsent />
+      <Suspense fallback={<div className="section-container py-12">Loading...</div>}>
+        <AnimatedRoutes />
       </Suspense>
     </BrowserRouter>
   )
