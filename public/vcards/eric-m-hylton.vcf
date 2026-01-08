@@ -1,0 +1,21 @@
+BEGIN:VCARD
+VERSION:4.0
+FN:Eric M. Hylton
+N:Hylton;Eric M.;;;
+TITLE:Biography
+ORG:Riley Bennett Egloff LLP
+TEL;TYPE=work,voice:317-636-8000
+EMAIL;TYPE=work:npoletika@rbelaw.com
+ADR;TYPE=work:;Suite 400;30 South Meridian Street;Indianapolis;IN;46204;USA
+URL:https://rbelaw.com/attorneys/eric-m-hylton
+PHOTO;MEDIATYPE=image/webp:https://rbelaw.com/images/team/eric-m-hylton.web
+ p
+NOTE:Eric Hylton’s practice primarily involves representing employers and
+  employees in labor and employment matters. His primary focus is on labor
+  and employment issues affecting teachers throughout the State of Indiana.
+  In addition, he represents both employers and employees in cases pending
+  before State and Federal Courts, the Equal Employment Opportunity
+  Commission (EEOC) and the Indiana Civil Rights Commission. Eric also
+  advises employers and employees concerning various employment issues such
+  as...
+END:VCARD

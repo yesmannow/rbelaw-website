@@ -1,0 +1,14 @@
+BEGIN:VCARD
+VERSION:4.0
+FN:Megan S. Young
+N:Young;Megan S.;;;
+TITLE:Biography
+ORG:Riley Bennett Egloff LLP
+TEL;TYPE=work,voice:317-636-8000
+EMAIL;TYPE=work:myoung@rbelaw.com
+ADR;TYPE=work:;Suite 400;30 South Meridian Street;Indianapolis;IN;46204;USA
+URL:https://rbelaw.com/attorneys/megan-s-young
+PHOTO;MEDIATYPE=image/webp:https://rbelaw.com/images/team/megan-s-young.web
+ p
+NOTE:Assistant: Nikki Viau
+END:VCARD

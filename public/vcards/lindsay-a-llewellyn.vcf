@@ -1,0 +1,17 @@
+BEGIN:VCARD
+VERSION:4.0
+FN:Lindsay A. Llewellyn
+N:Llewellyn;Lindsay A.;;;
+TITLE:Biography
+ORG:Riley Bennett Egloff LLP
+TEL;TYPE=work,voice:317-636-8000
+EMAIL;TYPE=work:breis@rbelaw.com
+ADR;TYPE=work:;Suite 400;30 South Meridian Street;Indianapolis;IN;46204;USA
+URL:https://rbelaw.com/attorneys/lindsay-a-llewellyn
+PHOTO;MEDIATYPE=image/webp:https://rbelaw.com/images/team/lindsay-a-llewell
+ yn.webp
+NOTE:With a mind wired for inquiry and analysis, Lindsay Llewellyn thrives
+  in the dynamic, high-stakes world of litigation. Her natural inclination
+  to ask the right questions, dig into the details, and unravel complex
+  problems makes her a formidable advocate and a trusted strategist.
+END:VCARD

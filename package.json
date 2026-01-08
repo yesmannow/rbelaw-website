@@ -29,7 +29,9 @@
     "organize-optimize": "node scripts/organize-and-optimize.js",
     "convert-typescript": "node scripts/convert-to-typescript.js",
     "migrate-all": "npm run scrape-site && npm run scrape-attorneys && npm run download-attorney-images && npm run convert-content && npm run download-site-images && npm run suggest-icons",
-    "migrate-complete": "npm run migrate-all && npm run organize-optimize && npm run convert-typescript"
+    "migrate-complete": "npm run migrate-all && npm run organize-optimize && npm run convert-typescript",
+    "generate-vcards": "tsx scripts/generate-vcards.ts",
+    "audit-newsroom": "tsx scripts/audit-newsroom.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
@@ -52,6 +54,7 @@
     "react-router-dom": "^7.10.1",
     "react-to-print": "^3.2.0",
     "tailwind-merge": "^3.4.0",
+    "vcf": "^2.1.2",
     "vite-plugin-pwa": "^0.21.2",
     "zod": "^4.1.13"
   },
@@ -61,6 +64,7 @@
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@types/react-router-dom": "^5.3.3",
+    "@types/vcf": "^2.0.7",
     "@vitejs/plugin-react": "^5.1.1",
     "eslint": "^9.39.1",
     "eslint-plugin-react-hooks": "^7.0.1",
