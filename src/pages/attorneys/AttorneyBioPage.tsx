@@ -6,6 +6,7 @@ import { Mail, Phone, Linkedin, ArrowLeft, Download, QrCode, X } from 'lucide-re
 import { getAttorneyById } from '@/lib/data/attorney-helpers'
 import { downloadVCard } from '@/lib/utils/vcard'
 import { SEOMeta } from '@/components/seo/SEOMeta'
+import { getAttorneyImages } from '@/lib/utils/attorney-images'
 
 type TabType = 'biography' | 'matters' | 'publications' | 'awards' | 'community' | 'beyond' | 'videos' | 'education'
 
@@ -79,8 +80,8 @@ export function AttorneyBioPage() {
       />
 
       <div className="min-h-screen">
-        {/* Hero Section */}
-        <section className="bg-primary-navy text-white py-12 lg:py-16">
+        {/* Hero Section - Improved Spacing */}
+        <section className="bg-gradient-to-br from-primary-navy via-primary-navy to-primary-burgundy text-white pt-24 pb-16 lg:pt-32 lg:pb-20">
           <div className="section-container">
             <button
               onClick={() => navigate('/attorneys')}
@@ -92,30 +93,35 @@ export function AttorneyBioPage() {
 
             <div className="flex flex-col md:flex-row gap-8 items-start">
               <div className="flex-shrink-0">
-                <div className="w-48 h-48 rounded-lg bg-neutral-700 overflow-hidden shadow-xl">
+                <div className="w-56 h-56 lg:w-64 lg:h-64 rounded-xl bg-neutral-700 overflow-hidden shadow-2xl ring-4 ring-white/10">
                   <picture>
-                    <source
-                      srcSet={`/assets/attorneys/${attorney.id}.webp 1x, /assets/attorneys/${attorney.id}@2x.webp 2x`}
-                      type="image/webp"
-                    />
-                    <img
-                      src={attorney.imageUrl}
-                      alt={attorney.name}
-                      className="w-full h-full object-cover"
-                      loading="eager"
-                      onError={(e) => {
-                        e.currentTarget.src = '/placeholder-avatar.jpg'
-                      }}
-                    />
+                    {(() => {
+                      const images = getAttorneyImages(attorney.name, attorney.imageUrl)
+                      return (
+                        <>
+                          <source srcSet={images.avif} type="image/avif" />
+                          <source srcSet={images.webp} type="image/webp" />
+                          <img
+                            src={images.fallback}
+                            alt={attorney.name}
+                            className="w-full h-full object-cover"
+                            loading="eager"
+                            onError={(e) => {
+                              e.currentTarget.src = '/placeholder-avatar.jpg'
+                            }}
+                          />
+                        </>
+                      )
+                    })()}
                   </picture>
                 </div>
               </div>
 
               <div className="flex-1">
-                <h1 className="text-4xl font-serif font-bold mb-2">
+                <h1 className="text-4xl lg:text-5xl font-serif font-bold mb-3">
                   {attorney.name}
                 </h1>
-                <p className="text-xl text-accent-gold mb-4">{attorney.title}</p>
+                <p className="text-xl lg:text-2xl text-accent-gold mb-6">{attorney.title}</p>
 
                 <div className="flex flex-wrap gap-4 mb-4">
                   <a

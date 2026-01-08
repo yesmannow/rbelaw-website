@@ -1,7 +1,7 @@
 import { MarketTicker } from '@/components/marketing/MarketTicker'
-import { getPracticeAreaHero } from '@/lib/data/practiceAreaHeroes'
+import { PracticeAreaHero } from '@/components/practice-areas/PracticeAreaHero'
+import { AttorneyCard } from '@/components/attorneys'
 import { getAttorneysByPracticeArea } from '@/lib/data/attorney-helpers'
-import { Link } from 'react-router-dom'
 
 interface Section {
   title: string
@@ -20,22 +20,15 @@ export function PracticeAreaTemplate({ slug, title, intro, sections = [] }: Prac
   const team = getAttorneysByPracticeArea(title)
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-neutral-50">
       <MarketTicker />
 
       {/* Hero */}
-      <div className="relative bg-gradient-to-br from-rbe-navy to-rbe-burgundy py-20 text-white">
-        {(() => { const hero = getPracticeAreaHero(slug); return hero ? (
-          <>
-            <img src={hero.src} srcSet={hero.srcset} alt={`${title} hero`} className="absolute inset-0 h-full w-full object-cover opacity-30" />
-            <div className="absolute inset-0 bg-gradient-to-br from-rbe-navy/80 to-rbe-burgundy/70" />
-          </>
-        ) : null })()}
-        <div className="section-container relative">
-          <h1 className="mb-4 text-4xl font-bold md:text-5xl">{title}</h1>
-          <p className="text-lg text-white/90">{intro}</p>
-        </div>
-      </div>
+      <PracticeAreaHero
+        title={title}
+        description={intro}
+        slug={slug}
+      />
 
       {/* Content */}
       <div className="section-container py-12">
@@ -65,47 +58,29 @@ export function PracticeAreaTemplate({ slug, title, intro, sections = [] }: Prac
           </div>
         </div>
 
-        {/* Team Grid */}
-        <div className="mt-12">
-          <h2 className="mb-6 text-2xl font-bold text-gray-900">Professionals in {title}</h2>
-          {team.length === 0 ? (
-            <p className="text-neutral-600">Attorney information will be added soon.</p>
-          ) : (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {team.map((a) => {
-                const first = a.name.split(' ')[0]
-                const card = (
-                  <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
-                    {a.imageUrl && (
-                      <img src={a.imageUrl} alt={a.name} className="mb-4 h-56 w-full rounded-md object-cover shadow" loading="lazy" />
-                    )}
-                    <div className="mb-1 font-semibold text-gray-900">{a.name}</div>
-                    <div className="mb-3 text-sm text-rbe-burgundy font-semibold">{a.title}</div>
-                    <div>
-                      <a
-                        href={a.email ? `mailto:${a.email}` : '/contact'}
-                        className="text-rbe-burgundy hover:underline"
-                        aria-label={`Email ${a.name}`}
-                      >
-                        email {first}
-                      </a>
-                    </div>
-                  </div>
-                )
-                return (
-                  <div key={a.id}>
-                    {a.id ? (
-                      <Link to={`/attorneys/${a.id}`}>{card}</Link>
-                    ) : (
-                      card
-                    )}
-                  </div>
-                )
-              })}
-            </div>
-          )}
-        </div>
       </div>
+
+      {/* Professionals Section */}
+      {team.length > 0 && (
+        <section className="py-16 lg:py-20 bg-neutral-50">
+          <div className="section-container">
+            <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-navy mb-8">
+              Professionals in {title}
+            </h2>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {team.map((attorney, index) => (
+                <AttorneyCard
+                  key={attorney.id}
+                  attorney={attorney}
+                  index={index}
+                  showContact={true}
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+      
     </div>
   )
 }

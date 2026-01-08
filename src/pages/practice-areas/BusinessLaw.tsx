@@ -1,58 +1,34 @@
 import { MarketTicker } from '@/components/marketing/MarketTicker'
-import { attorneys } from '@/lib/data/attorney-helpers'
-import { getPracticeAreaHero } from '@/lib/data/practiceAreaHeroes'
-import { Link } from 'react-router-dom'
+import { PracticeAreaHero, PracticeAreaProfessionals } from '@/components/practice-areas'
 
 export function BusinessLaw() {
-  const team: { name: string; role: string }[] = [
-    { name: 'Jaclyn M. Flint', role: 'Partner' },
-    { name: 'Kathleen Hart', role: 'Partner' },
-    { name: 'Eric M. Hylton', role: 'Partner' },
-    { name: 'Anthony R. Jost', role: 'Partner' },
-    { name: 'Ryan L. Leitch', role: 'Partner' },
-    { name: 'Courtney David Mills', role: 'Partner' },
-    { name: 'Katie S. Riles', role: 'Partner' },
-    { name: 'Raymond T. Seach', role: 'Partner' },
-    { name: 'Justin O. Sorrell', role: 'Partner' },
-    { name: 'Kevin N. Tharp', role: 'Partner' },
-    { name: 'John L. Egloff', role: 'Of Counsel' },
-    { name: 'Blair R. Vandivier', role: 'Of Counsel' },
-    { name: 'Lindsay A. Llewellyn', role: 'Associate' },
-    { name: 'Patrick S. McCarney', role: 'Associate' },
+  const attorneyNames = [
+    'Jaclyn M. Flint',
+    'Kathleen Hart',
+    'Eric M. Hylton',
+    'Anthony R. Jost',
+    'Ryan L. Leitch',
+    'Courtney David Mills',
+    'Katie S. Riles',
+    'Raymond T. Seach',
+    'Justin O. Sorrell',
+    'Kevin N. Tharp',
+    'John L. Egloff',
+    'Blair R. Vandivier',
+    'Lindsay A. Llewellyn',
+    'Patrick S. McCarney',
   ]
 
-  const getEmail = (name: string): string => {
-    const a = attorneys.find((x) => x.name === name)
-    return a?.email || ''
-  }
-  const getImage = (name: string): string | undefined => {
-    const a = attorneys.find((x) => x.name === name)
-    return a?.imageUrl
-  }
-  const getId = (name: string): string | undefined => {
-    const a = attorneys.find((x) => x.name === name)
-    return a?.id
-  }
-
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-neutral-50">
       <MarketTicker />
 
-      {/* Hero */}
-      <div className="relative bg-gradient-to-br from-rbe-navy to-rbe-burgundy py-20 text-white">
-        {(() => { const hero = getPracticeAreaHero('business-law'); return hero ? (
-          <>
-            <img src={hero.src} srcSet={hero.srcset} alt="Business & Corporate hero" className="absolute inset-0 h-full w-full object-cover opacity-30" />
-            <div className="absolute inset-0 bg-gradient-to-br from-rbe-navy/80 to-rbe-burgundy/70" />
-          </>
-        ) : null })()}
-        <div className="section-container relative">
-          <h1 className="mb-4 text-4xl font-bold md:text-5xl">Business & Corporate Law</h1>
-          <p className="text-lg text-white/90">
-            The business law attorneys of Riley Bennett Egloff offer a comprehensive range of legal services for their business clients, from formation to dissolution, handling all of the various legal issues that a business can face.
-          </p>
-        </div>
-      </div>
+      {/* Hero Section */}
+      <PracticeAreaHero
+        title="Business & Corporate Law"
+        description="The business law attorneys of Riley Bennett Egloff offer a comprehensive range of legal services for their business clients, from formation to dissolution, handling all of the various legal issues that a business can face."
+        slug="business-law"
+      />
 
       {/* Content */}
       <div className="section-container py-12">
@@ -148,46 +124,13 @@ export function BusinessLaw() {
           </div>
         </div>
 
-        {/* Team Grid */}
-        <div className="mt-12">
-          <h2 className="mb-6 text-2xl font-bold text-gray-900">Professionals in Business & Corporate Law</h2>
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {team.map((p) => {
-              const email = getEmail(p.name)
-              const img = getImage(p.name)
-              const id = getId(p.name)
-              const first = p.name.split(' ')[0]
-              const card = (
-                <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
-                  {img && (
-                    <img src={img} alt={p.name} className="mb-4 h-56 w-full rounded-md object-cover shadow" loading="lazy" />
-                  )}
-                  <div className="mb-1 font-semibold text-gray-900">{p.name}</div>
-                  <div className="mb-3 text-sm text-rbe-burgundy font-semibold">{p.role}</div>
-                  <div>
-                    <a
-                      href={email ? `mailto:${email}` : '/contact'}
-                      className="text-rbe-burgundy hover:underline"
-                      aria-label={`Email ${p.name}`}
-                    >
-                      email {first}
-                    </a>
-                  </div>
-                </div>
-              )
-              return (
-                <div key={p.name}>
-                  {id ? (
-                    <Link to={`/attorneys/${id}`}>{card}</Link>
-                  ) : (
-                    card
-                  )}
-                </div>
-              )
-            })}
-          </div>
-        </div>
       </div>
+
+      {/* Professionals Section */}
+      <PracticeAreaProfessionals
+        title="Professionals in Business & Corporate Law"
+        attorneyNames={attorneyNames}
+      />
     </div>
   )
 }

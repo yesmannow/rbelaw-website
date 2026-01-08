@@ -1,3 +1,4 @@
+export { AttorneyCard } from './AttorneyCard'
 export { AttorneyHero } from './AttorneyHero'
 export { StickyNavigation } from './StickyNavigation'
 export { StatsCard } from './StatsCard'
