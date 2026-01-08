@@ -9,9 +9,11 @@ import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { MarketTicker } from '@/components/marketing/MarketTicker'
 import { PracticeAreaHero } from '@/components/practice-areas/PracticeAreaHero'
+import { FeaturedTool } from '@/components/practice-areas/FeaturedTool'
 import { AttorneyCard } from '@/components/attorneys'
 import { getAttorneysByPracticeArea } from '@/lib/data/attorney-helpers'
 import { enhancedPracticeAreas } from '@/lib/data/practiceAreasEnhanced'
+import { getToolForPracticeArea } from '@/lib/data/toolMappings'
 
 export function PracticeAreaDetail() {
   const { slug } = useParams<{ slug: string }>()
@@ -22,6 +24,9 @@ export function PracticeAreaDetail() {
 
   // Get attorneys for this practice area
   const team = practiceArea ? getAttorneysByPracticeArea(practiceArea.name) : []
+  
+  // Get featured tool for this practice area (if available)
+  const featuredTool = slug ? getToolForPracticeArea(slug) : undefined
 
   // Dynamic Metadata Injection - SEO Authority Format
   useEffect(() => {
@@ -130,6 +135,11 @@ export function PracticeAreaDetail() {
               </a>
             </div>
           </div>
+          
+          {/* Featured Tool - Only show if tool is available for this practice area */}
+          {featuredTool && (
+            <FeaturedTool mapping={featuredTool} />
+          )}
         </div>
 
         {/* Professionals Section - Smart Tab Logic: Only show if there are attorneys */}

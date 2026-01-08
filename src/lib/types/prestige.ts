@@ -100,6 +100,9 @@ export interface AttorneyProfile {
   
   // vCard reference
   vCardPath?: string
+  
+  // Cinematic video for hover effect
+  hoverVideoUrl?: string
 }
 
 export interface AttorneyVideo {
