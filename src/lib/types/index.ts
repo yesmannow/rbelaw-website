@@ -22,6 +22,13 @@ export interface Attorney {
   linkedIn?: string
   twitter?: string
   vCard?: string
+  // Additional fields from scraped data
+  assistant?: string
+  assistantEmail?: string
+  presentations?: string[]
+  beyondOffice?: string
+  videos?: Array<{ title: string; url: string; date?: string }>
+  industries?: string[]
 }
 
 export interface Education {

@@ -28,13 +28,13 @@ export const professionals: Professional[] = [
     specialties: ['Legal Research', 'Document Preparation', 'Case Management']
   },
   {
-    id: 'susan-davis',
-    name: 'Susan R. Davis',
+    id: 'shanda-mcpike',
+    name: 'Shanda E. McPike',
     title: 'Chief Administrative Officer',
-    email: 'sdavis@rbelaw.com',
+    email: 'smcpike@rbelaw.com',
     phone: '317.636.8000',
-    bio: 'Susan R. Davis oversees the firm\'s administrative operations and strategic initiatives.',
-    imageUrl: '/images/team/susan-davis.jpg',
+    bio: 'Shanda E. McPike oversees the firm\'s administrative operations and strategic initiatives.',
+    imageUrl: '/images/team/shanda-mcpike.jpg',
     department: 'Administration',
     specialties: ['Operations Management', 'Strategic Planning', 'Administrative Leadership']
   },
@@ -42,7 +42,7 @@ export const professionals: Professional[] = [
     id: 'kimberly-simpson',
     name: 'Kimberly K. Simpson',
     title: 'IT Manager',
-    email: 'ksimpson@rbelaw.com',
+    email: 'kwright@rbelaw.com',
     phone: '317.636.8000',
     bio: 'Kimberly K. Simpson manages the firm\'s information technology infrastructure and systems.',
     imageUrl: '/images/team/kimberly-simpson.jpg',

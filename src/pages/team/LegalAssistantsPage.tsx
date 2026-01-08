@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion'
-import { Mail, Phone, Briefcase } from 'lucide-react'
-import { legalAssistants } from '@/lib/data/legalAssistants'
+import { Mail, Phone, Briefcase, Users } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { legalAssistants } from '@/lib/data/legal-assistants'
+import { attorneys } from '@/lib/data/attorney-helpers'
 import { SEOMeta } from '@/components/seo/SEOMeta'
 
 export function LegalAssistantsPage() {
@@ -83,7 +85,7 @@ export function LegalAssistantsPage() {
                         </div>
                       )}
 
-                      <div className="space-y-2 text-sm">
+                      <div className="space-y-2 text-sm mb-4">
                         {assistant.phone && (
                           <div className="flex items-center gap-2 text-neutral-600">
                             <Phone className="w-4 h-4" />
@@ -99,6 +101,30 @@ export function LegalAssistantsPage() {
                           </a>
                         </div>
                       </div>
+
+                      {assistant.supportingAttorneys && assistant.supportingAttorneys.length > 0 && (
+                        <div className="border-t border-neutral-200 pt-4">
+                          <div className="flex items-center gap-2 text-sm font-semibold text-primary-navy mb-2">
+                            <Users className="w-4 h-4" />
+                            <span>Admin Support For:</span>
+                          </div>
+                          <ul className="space-y-1 text-sm">
+                            {assistant.supportingAttorneys.map((attorneyId) => {
+                              const attorney = attorneys.find(a => a.id === attorneyId)
+                              return attorney ? (
+                                <li key={attorneyId}>
+                                  <Link
+                                    to={`/attorneys/${attorneyId}`}
+                                    className="text-primary-burgundy hover:underline"
+                                  >
+                                    {attorney.name}
+                                  </Link>
+                                </li>
+                              ) : null
+                            })}
+                          </ul>
+                        </div>
+                      )}
                     </div>
                   </motion.div>
                 ))}
