@@ -3,9 +3,25 @@ import react from '@vitejs/plugin-react'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { VitePWA } from 'vite-plugin-pwa'
+import Sitemap from 'vite-plugin-sitemap'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
+
+// Import data for dynamic sitemap generation
+import { attorneys } from './src/lib/data/attorney-helpers'
+import { enhancedPracticeAreas } from './src/lib/data/practiceAreasEnhanced'
+import { industriesManual } from './src/lib/data/industries-manual'
+
+// Map all dynamic prestige IDs into a flat array of paths
+const dynamicRoutes = [
+  // Attorney bio pages
+  ...attorneys.map(a => `/attorneys/${a.id}`),
+  // Practice area detail pages
+  ...enhancedPracticeAreas.map(pa => `/practice-areas/${pa.slug}`),
+  // Industry detail pages
+  ...industriesManual.map(ind => `/industries/${ind.slug}`)
+]
 
 export default defineConfig({
   plugins: [
@@ -33,6 +49,22 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html,ico,png,svg,jpg,jpeg}'],
         maximumFileSizeToCacheInBytes: 6 * 1024 * 1024,
       }
+    }),
+    Sitemap({
+      hostname: 'https://www.rbelaw.com',
+      dynamicRoutes,
+      changefreq: 'weekly',
+      priority: 0.7,
+      lastmod: new Date(),
+      exclude: ['/404', '/demo', '/archive/**'],
+      outDir: 'dist',
+      robots: [
+        {
+          userAgent: '*',
+          allow: '/',
+          disallow: ['/archive/', '/private/']
+        }
+      ]
     })
   ],
   resolve: {

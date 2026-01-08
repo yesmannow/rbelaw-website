@@ -2,7 +2,7 @@
  * src/App.tsx
  * Dynamic Routing & Prestige Transition Engine
  */
-import { useState, lazy, Suspense } from 'react'
+import { useState, Suspense } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import { RootLayout } from './components/layout'

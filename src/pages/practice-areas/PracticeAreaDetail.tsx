@@ -1,11 +1,11 @@
 /**
  * Dynamic Practice Area Detail Page
  * Uses useParams() to fetch slug and pull data from practiceAreasEnhanced.ts
- * Includes: Dynamic metadata, smart tab logic, view transitions
+ * Includes: Dynamic metadata, smart tab logic, view transitions, layout stability
  */
 
-import { useParams, useNavigate, Link } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useParams, Navigate, Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { MarketTicker } from '@/components/marketing/MarketTicker'
 import { PracticeAreaHero } from '@/components/practice-areas/PracticeAreaHero'
@@ -16,7 +16,7 @@ import { ArrowLeft } from 'lucide-react'
 
 export function PracticeAreaDetail() {
   const { slug } = useParams<{ slug: string }>()
-  const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(true)
 
   // Find the practice area by slug
   const practiceArea = enhancedPracticeAreas.find(pa => pa.slug === slug)
@@ -24,52 +24,43 @@ export function PracticeAreaDetail() {
   // Get attorneys for this practice area
   const team = practiceArea ? getAttorneysByPracticeArea(practiceArea.name) : []
 
-  // Dynamic Metadata Injection using useEffect
+  // Dynamic Metadata Injection using useEffect - SEO Authority Format
   useEffect(() => {
     if (practiceArea) {
-      document.title = `${practiceArea.name} | Riley Bennett Egloff LLP`
+      document.title = `${practiceArea.name} | Practice Areas | Riley Bennett Egloff LLP`
     }
+    // Simulate loading for skeleton
+    const timer = setTimeout(() => setIsLoading(false), 300)
+    return () => clearTimeout(timer)
   }, [practiceArea])
 
+  // Structural Data Safety: Navigate to 404 if invalid slug
   if (!practiceArea) {
-    return (
-      <div className="min-h-[60vh] flex items-center justify-center bg-neutral-50">
-        <div className="text-center">
-          <h1 className="text-3xl font-serif font-bold text-primary-navy mb-4">
-            Practice Area Not Found
-          </h1>
-          <p className="text-neutral-600 mb-8">
-            The practice area you're looking for doesn't exist.
-          </p>
-          <button
-            onClick={() => navigate('/practice-areas')}
-            className="inline-flex items-center text-accent-gold hover:underline font-semibold"
-          >
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Practice Areas
-          </button>
-        </div>
-      </div>
-    )
+    return <Navigate to="/404" replace />
   }
+
+  // Truncate meta description to 160 characters for SEO
+  const metaDescription = practiceArea.detailedDescription.length > 160 
+    ? practiceArea.detailedDescription.substring(0, 157) + '...' 
+    : practiceArea.detailedDescription
 
   return (
     <>
-      {/* Dynamic Title and OpenGraph Tags */}
+      {/* Dynamic Title and OpenGraph Tags - SEO Authority */}
       <Helmet>
-        <title>{practiceArea.name} | Riley Bennett Egloff LLP</title>
-        <meta name="description" content={practiceArea.detailedDescription} />
-        <meta property="og:title" content={`${practiceArea.name} | Riley Bennett Egloff LLP`} />
-        <meta property="og:description" content={practiceArea.detailedDescription} />
+        <title>{practiceArea.name} | Practice Areas | Riley Bennett Egloff LLP</title>
+        <meta name="description" content={metaDescription} />
+        <meta property="og:title" content={`${practiceArea.name} | Practice Areas | Riley Bennett Egloff LLP`} />
+        <meta property="og:description" content={metaDescription} />
         <meta property="og:type" content="website" />
       </Helmet>
 
       <div className="min-h-screen bg-neutral-50">
         <MarketTicker />
 
-        {/* Hero with View Transition Support */}
+        {/* Hero with View Transition Support & Layout Stability */}
         <div 
-          className="relative"
+          className="relative min-h-[400px]"
           style={{ viewTransitionName: 'service-hero' }}
         >
           {practiceArea.backgroundImage && (
@@ -139,22 +130,33 @@ export function PracticeAreaDetail() {
         </div>
 
         {/* Professionals Section - Smart Tab Logic: Only show if there are attorneys */}
+        {/* Performance: Layout Stability with min-height and loading state */}
         {team.length > 0 && (
-          <section className="py-16 lg:py-20 bg-neutral-50">
+          <section className="py-16 lg:py-20 bg-neutral-50 min-h-[400px]">
             <div className="section-container">
               <h2 className="text-3xl lg:text-4xl font-serif font-bold text-primary-navy mb-8">
                 Professionals in {practiceArea.name}
               </h2>
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {team.map((attorney, index) => (
-                  <AttorneyCard
-                    key={attorney.id}
-                    attorney={attorney}
-                    index={index}
-                    showContact={true}
-                  />
-                ))}
-              </div>
+              {isLoading ? (
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  {[1, 2, 3].map((i) => (
+                    <div key={i} className="animate-pulse">
+                      <div className="bg-gray-200 h-64 rounded-lg"></div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  {team.map((attorney, index) => (
+                    <AttorneyCard
+                      key={attorney.id}
+                      attorney={attorney}
+                      index={index}
+                      showContact={true}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
           </section>
         )}
