@@ -8,6 +8,7 @@ import { useMemo } from 'react';
 import { Calendar, User, Clock, ArrowLeft, Share2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { blogPosts } from '@/lib/data';
+import { ReadingProgressBar } from '@/components/ui/ReadingProgressBar';
 
 export function BlogPost() {
   const { slug } = useParams();
@@ -39,7 +40,11 @@ export function BlogPost() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <>
+      {/* Reading Progress Bar */}
+      <ReadingProgressBar />
+      
+      <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
       <div className="bg-gradient-to-br from-rbe-navy to-rbe-burgundy py-16 text-white">
         <div className="section-container">
