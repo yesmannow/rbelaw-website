@@ -64,7 +64,7 @@ export function PrestigePath({
     <div 
       ref={pathRef}
       className={`absolute left-0 right-0 pointer-events-none ${width} ${height} overflow-visible`}
-      style={{ top: `${offsetY}px` }}
+      style={{ top: `${offsetY}px`, '--accent-gold': '#B8860B' } as React.CSSProperties}
     >
       <svg
         className="w-full h-full"
@@ -76,7 +76,7 @@ export function PrestigePath({
         {/* Glow effect layer */}
         <motion.path
           d={pathData[direction]}
-          stroke="#B8860B"
+          stroke="var(--accent-gold)"
           strokeWidth="3"
           strokeLinecap="round"
           fill="none"
@@ -91,7 +91,7 @@ export function PrestigePath({
         {/* Main path */}
         <motion.path
           d={pathData[direction]}
-          stroke="#B8860B"
+          stroke="var(--accent-gold)"
           strokeWidth="2"
           strokeLinecap="round"
           fill="none"

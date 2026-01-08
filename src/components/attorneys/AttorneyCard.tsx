@@ -23,7 +23,7 @@ export function AttorneyCard({ attorney, index = 0, compact = false, showContact
   const [isHovering, setIsHovering] = useState(false)
   
   // Check if video is available (from prop or attorney data)
-  const videoUrl = hoverVideoUrl || (attorney as any).hoverVideoUrl
+  const videoUrl = hoverVideoUrl || (attorney as { hoverVideoUrl?: string }).hoverVideoUrl
 
   return (
     <motion.div
