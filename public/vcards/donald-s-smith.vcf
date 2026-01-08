@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:4.0
+FN:Donald S. Smith
+N:Smith;Donald S.;;;
+TITLE:Of Counsel
+ORG:Riley Bennett Egloff LLP
+TEL;TYPE=work,voice:317-636-8000
+EMAIL;TYPE=work:dsmith@rbelaw.com
+ADR;TYPE=work:;Suite 400;30 South Meridian Street;Indianapolis;IN;46204;USA
+URL:https://rbelaw.com/attorneys/donald-s-smith
+PHOTO;MEDIATYPE=image/webp:https://rbelaw.com/images/team/donald-s-smith.we
+ bp
+END:VCARD

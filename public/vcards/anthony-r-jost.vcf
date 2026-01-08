@@ -1,0 +1,16 @@
+BEGIN:VCARD
+VERSION:4.0
+FN:Anthony R. Jost
+N:Jost;Anthony R.;;;
+TITLE:Biography
+ORG:Riley Bennett Egloff LLP
+TEL;TYPE=work,voice:317-636-8000
+EMAIL;TYPE=work:RMcClintic%20@rbelaw.com
+ADR;TYPE=work:;Suite 400;30 South Meridian Street;Indianapolis;IN;46204;USA
+URL:https://rbelaw.com/attorneys/anthony-r-jost
+PHOTO;MEDIATYPE=image/webp:https://rbelaw.com/images/team/anthony-r-jost.we
+ bp
+NOTE:Tony Jost represents clients in various aspects of business, and civil
+  litigation, including commercial, real estate, employment, and complex
+  tort litigation in both federal and state court.
+END:VCARD

@@ -1,0 +1,17 @@
+BEGIN:VCARD
+VERSION:4.0
+FN:Courtney David Mills
+N:Mills;Courtney David;;;
+TITLE:Biography
+ORG:Riley Bennett Egloff LLP
+TEL;TYPE=work,voice:317-636-8000
+EMAIL;TYPE=work:cmills@rbelaw.com
+ADR;TYPE=work:;Suite 400;30 South Meridian Street;Indianapolis;IN;46204;USA
+URL:https://rbelaw.com/attorneys/courtney-david-mills
+PHOTO;MEDIATYPE=image/webp:https://rbelaw.com/images/team/courtney-david-mi
+ lls.webp
+NOTE:Courtney David Mills concentrates his practice in medical malpractice
+  defense. He represents hospitals, long-term care facilities, physicians,
+  nurses, nurse practitioners, clinics, and other health-care providers in
+  the defense of medical negligence claims.
+END:VCARD

@@ -278,3 +278,6 @@ export interface Video {
   date: string
   transcript?: string
 }
+
+// Export prestige types
+export * from './prestige'

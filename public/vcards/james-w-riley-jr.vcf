@@ -1,0 +1,21 @@
+BEGIN:VCARD
+VERSION:4.0
+FN:James W. Riley Jr.
+N:Jr.;James W. Riley;;;
+TITLE:Biography
+ORG:Riley Bennett Egloff LLP
+TEL;TYPE=work,voice:317-636-8000
+EMAIL;TYPE=work:breis@rbelaw.com
+ADR;TYPE=work:;Suite 400;30 South Meridian Street;Indianapolis;IN;46204;USA
+URL:https://rbelaw.com/attorneys/james-w-riley-jr
+PHOTO;MEDIATYPE=image/webp:https://rbelaw.com/images/team/james-w-riley-jr.
+ webp
+NOTE:Since 1972, Jim Riley has concentrated his practice on litigation. As
+  lead or local counsel, he represents manufacturers, insurers, financial
+  institutions, and other businesses in litigation in state and federal
+  trial, and appellate courts. Cases handled include contract and insurance
+  coverage disputes, products liability cases, trademark and patent
+  infringement actions, and professional liability claims. He has tried more
+  than 20 cases to jury verdicts. He has served on the Local Rules
+  Advisory...
+END:VCARD

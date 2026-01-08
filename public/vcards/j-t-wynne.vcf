@@ -1,0 +1,16 @@
+BEGIN:VCARD
+VERSION:4.0
+FN:J.T. Wynne
+N:Wynne;J.T.;;;
+TITLE:Biography
+ORG:Riley Bennett Egloff LLP
+TEL;TYPE=work,voice:317-636-8000
+EMAIL;TYPE=work:rmcclintic@rbelaw.com
+ADR;TYPE=work:;Suite 400;30 South Meridian Street;Indianapolis;IN;46204;USA
+URL:https://rbelaw.com/attorneys/j-t-wynne
+PHOTO;MEDIATYPE=image/webp:https://rbelaw.com/images/team/j-t-wynne.webp
+NOTE:J.T. is an Indianapolis native who has played tennis his entire life
+  and has coached tennis since he was a freshman at North Central High
+  School. J.T. attended Skidmore College where he was a member of the tennis
+  team and earned his bachelors degree in Business and History.
+END:VCARD

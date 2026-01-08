@@ -86,6 +86,7 @@ export interface BlogPost {
   date: string;
   author: string;
   authorSlug?: string;
+  authorId?: string; // Maps to Attorney.slug for strict type safety
   categories: string[];
   tags: string[];
   image: string;

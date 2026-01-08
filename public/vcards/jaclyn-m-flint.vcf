@@ -1,0 +1,17 @@
+BEGIN:VCARD
+VERSION:4.0
+FN:Jaclyn M. Flint
+N:Flint;Jaclyn M.;;;
+TITLE:Biography
+ORG:Riley Bennett Egloff LLP
+TEL;TYPE=work,voice:317-636-8000
+EMAIL;TYPE=work:jflint@rbelaw.com
+ADR;TYPE=work:;Suite 400;30 South Meridian Street;Indianapolis;IN;46204;USA
+URL:https://rbelaw.com/attorneys/jaclyn-m-flint
+PHOTO;MEDIATYPE=image/webp:https://rbelaw.com/images/team/jaclyn-m-flint.we
+ bp
+NOTE:Jaclyn represents and advises clients in a wide variety of business
+  and litigation matters, including matters related to commercial and
+  business litigation, sports, entertainment, media, intellectual property,
+  licensing, and corporate formation.
+END:VCARD
