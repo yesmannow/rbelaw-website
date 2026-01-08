@@ -39,6 +39,7 @@ export default {
         // RBE Official Fonts (from current site)
         sans: ['Open Sans', 'Arial', 'sans-serif'],
         serif: ['Raleway', 'Helvetica', 'Arial', 'Lucida', 'sans-serif'],
+        display: ['Playfair Display', 'Georgia', 'serif'],
       },
       spacing: {
         '18': '4.5rem',
