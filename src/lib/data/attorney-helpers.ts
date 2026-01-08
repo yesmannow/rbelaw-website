@@ -79,3 +79,7 @@ export function getAttorneysByPracticeArea(practiceArea: string): UIAttorney[] {
   const term = String(practiceArea).toLowerCase()
   return attorneys.filter((a) => a.practiceAreas.some((pa) => String(pa).toLowerCase().includes(term)))
 }
+
+export function getAttorneysByName(names: string[]): UIAttorney[] {
+  return attorneys.filter((a) => names.some(name => a.name === name))
+}

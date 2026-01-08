@@ -1,45 +1,24 @@
+/**
+ * src/App.tsx
+ * Dynamic Routing & Prestige Transition Engine
+ */
 import { useState, lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import { RootLayout } from './components/layout'
-import { HomePage } from './pages/home'
-import { 
-  BusinessLaw, 
-  BankruptcyReorganization,
-  BusinessLitigation,
-  CommercialLitigation,
-  Construction,
-  FamilyLaw,
-  GovernmentLaw,
-  HealthCare,
-  Insurance,
-  IntellectualProperty,
-  LaborEmployment,
-  RealEstate,
-  WillsTrustsEstates,
-} from './pages/practice-areas'
-import { IndustriesPage } from './pages/industries/IndustriesPage'
-import { ConstructionPage } from './pages/industries/ConstructionPage'
-import { FinancePage } from './pages/industries/FinancePage'
-import { GovernmentPage } from './pages/industries/GovernmentPage'
-import { HealthCarePage } from './pages/industries/HealthCarePage'
-import { InsurancePage } from './pages/industries/InsurancePage'
-import { ManufacturingPage } from './pages/industries/ManufacturingPage'
-import { MediaPage } from './pages/industries/MediaPage'
-import { NonProfitsPage } from './pages/industries/NonProfitsPage'
-import { RestaurantPage } from './pages/industries/RestaurantPage'
-import { TechnologyPage } from './pages/industries/TechnologyPage'
-import { TelecommunicationsPage } from './pages/industries/TelecommunicationsPage'
-import { TransportationPage } from './pages/industries/TransportationPage'
-import { WholesaleRetailPage } from './pages/industries/WholesaleRetailPage'
-import IndustryPage from './pages/industries/IndustryPage'
-import { AttorneysPage, AttorneyBioPage } from './pages/attorneys'
-import { ProfessionalsPage, LegalAssistantsPage } from './pages/team'
-import { AboutPage, HistoryPage, CommunityPage, DiversityPage, CareersPage, FeesPage } from './pages/about'
-import { ContactPage } from './pages/contact'
-import { DemoPage } from './pages/demo'
-// Removed IndustriesIndex
-import PracticeAreasIndex from './pages/PracticeAreasIndex'
+import { HomePage } from '@/pages/home'
+import { NewsroomPrestige } from '@/pages/NewsroomPrestige'
+import { BlogPost } from '@/pages/news/BlogPost'
+import PracticeAreasIndex from '@/pages/PracticeAreasIndex'
+import { PracticeAreaDetail } from '@/pages/practice-areas/PracticeAreaDetail'
+import { IndustriesIndex } from '@/pages/industries/IndustriesIndex'
+import { IndustryDetail } from '@/pages/industries/IndustryDetail'
+import { AttorneysPage } from '@/pages/attorneys'
+import { AttorneyBioPagePrestige } from '@/pages/attorneys/AttorneyBioPagePrestige'
+import { ProfessionalsPage, LegalAssistantsPage } from '@/pages/team'
+import { AboutPage, HistoryPage, CommunityPage, DiversityPage, CareersPage, FeesPage } from '@/pages/about'
+import { ContactPage } from '@/pages/contact'
+import { DemoPage } from '@/pages/demo'
 import {
   ToolsPage,
   CompCalculatorPage,
@@ -53,75 +32,61 @@ import {
   OSHACalculatorPage,
   RightsQuizPage,
   LegalGlossaryPage
-} from './pages/tools'
-import { AINewsDigestPage } from './pages/news'
-// Removed PracticeAreaDetail and IndustryDetail (scraped-data dependent)
-import { AccessibilityStatement, Disclaimer } from './pages/legal'
-import { NotFound } from './pages/NotFound'
-import { GlobalSearch } from './components/command/GlobalSearch'
-import { InstallPrompt } from './components/pwa/InstallPrompt'
-import { CookieConsent } from './components/compliance'
-import { SkipToContent } from './components/compliance/SkipToContent'
-import { NewsSkeleton } from './components/news/NewsSkeleton'
-import { useLenis } from './hooks/useLenis'
-
-// Lazy-loaded heavy pages to improve initial bundle size
-const Newsroom = lazy(() => import('./pages/Newsroom').then(m => ({ default: m.Newsroom })))
-const BlogPost = lazy(() => import('./pages/BlogPost').then(m => ({ default: m.BlogPost })))
+} from '@/pages/tools'
+import { AINewsDigestPage } from '@/pages/news'
+import { AccessibilityStatement, Disclaimer } from '@/pages/legal'
+import { NotFound } from '@/pages/NotFound'
+import { GlobalSearch } from '@/components/command/GlobalSearch'
+import { InstallPrompt } from '@/components/pwa/InstallPrompt'
+import { CookieConsent } from '@/components/compliance'
+import { SkipToContent } from '@/components/compliance/SkipToContent'
+import { NewsSkeleton } from '@/components/news/NewsSkeleton'
+import { useLenis } from '@/hooks/useLenis'
 
 // Animated Routes Wrapper for View Transitions
 function AnimatedRoutes() {
   const location = useLocation()
 
   return (
+    // 'wait' mode ensures smooth exit-before-enter transitions
     <AnimatePresence mode="wait" initial={false}>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<RootLayout />}>
           <Route index element={<HomePage />} />
-          <Route path="practice-areas/business-law" element={<BusinessLaw />} />
+          
+          {/* Dynamic Routing for Practice Areas */}
           <Route path="practice-areas" element={<PracticeAreasIndex />} />
-          <Route path="practice-areas/bankruptcy-reorganization" element={<BankruptcyReorganization />} />
-          <Route path="practice-areas/bankruptcy" element={<BankruptcyReorganization />} />
-          <Route path="practice-areas/business-litigation" element={<BusinessLitigation />} />
-          <Route path="practice-areas/commercial-litigation" element={<CommercialLitigation />} />
-          <Route path="practice-areas/construction" element={<Construction />} />
-          <Route path="practice-areas/family-law" element={<FamilyLaw />} />
-          <Route path="practice-areas/government-law" element={<GovernmentLaw />} />
-          <Route path="practice-areas/health-care" element={<HealthCare />} />
-          <Route path="practice-areas/insurance" element={<Insurance />} />
-          <Route path="practice-areas/intellectual-property" element={<IntellectualProperty />} />
-          <Route path="practice-areas/labor-employment" element={<LaborEmployment />} />
-          <Route path="practice-areas/real-estate" element={<RealEstate />} />
-          <Route path="practice-areas/wills-trusts-estates" element={<WillsTrustsEstates />} />
+          <Route path="practice-areas/:slug" element={<PracticeAreaDetail />} />
+          
+          {/* Dynamic Routing for Industries */}
+          <Route path="industries" element={<IndustriesIndex />} />
+          <Route path="industries/:slug" element={<IndustryDetail />} />
+          
+          {/* Team & Attorneys - Prestige Version */}
           <Route path="attorneys" element={<AttorneysPage />} />
-          <Route path="attorneys/:id" element={<AttorneyBioPage />} />
+          <Route path="attorneys/:id" element={<AttorneyBioPagePrestige />} />
           <Route path="team/professionals" element={<ProfessionalsPage />} />
           <Route path="team/legal-assistants" element={<LegalAssistantsPage />} />
+          
+          {/* About Pages */}
           <Route path="about" element={<AboutPage />} />
           <Route path="about/history" element={<HistoryPage />} />
           <Route path="about/community" element={<CommunityPage />} />
           <Route path="about/diversity" element={<DiversityPage />} />
           <Route path="about/careers" element={<CareersPage />} />
           <Route path="about/fees" element={<FeesPage />} />
+          
+          {/* Contact */}
           <Route path="contact" element={<ContactPage />} />
-          <Route path="newsroom" element={<Newsroom />} />
+          
+          {/* Newsroom - Prestige Version */}
+          <Route path="newsroom" element={<NewsroomPrestige />} />
           <Route path="newsroom/:slug" element={<BlogPost />} />
-          <Route path="industries" element={<IndustriesPage />} />
-          <Route path="industries/construction" element={<ConstructionPage />} />
-          <Route path="industries/finance" element={<FinancePage />} />
-          <Route path="industries/government" element={<GovernmentPage />} />
-          <Route path="industries/health-care" element={<HealthCarePage />} />
-          <Route path="industries/insurance" element={<InsurancePage />} />
-          <Route path="industries/manufacturing" element={<ManufacturingPage />} />
-          <Route path="industries/media" element={<MediaPage />} />
-          <Route path="industries/non-profits" element={<NonProfitsPage />} />
-          <Route path="industries/restaurant-hospitality" element={<RestaurantPage />} />
-          <Route path="industries/technology" element={<TechnologyPage />} />
-          <Route path="industries/telecommunications" element={<TelecommunicationsPage />} />
-          <Route path="industries/transportation" element={<TransportationPage />} />
-          <Route path="industries/wholesale-retail" element={<WholesaleRetailPage />} />
-          <Route path="industries/:slug" element={<IndustryPage />} />
+          
+          {/* Demo */}
           <Route path="demo" element={<DemoPage />} />
+          
+          {/* Tools/Resources */}
           <Route path="resources/tools" element={<ToolsPage />} />
           <Route path="resources/tools/comp-calculator" element={<CompCalculatorPage />} />
           <Route path="resources/tools/lien-calculator" element={<LienCalculatorPage />} />
@@ -134,9 +99,15 @@ function AnimatedRoutes() {
           <Route path="resources/tools/osha-calculator" element={<OSHACalculatorPage />} />
           <Route path="resources/tools/rights-quiz" element={<RightsQuizPage />} />
           <Route path="resources/tools/legal-glossary" element={<LegalGlossaryPage />} />
+          
+          {/* News/AI Digest */}
           <Route path="newsroom/ai-digest" element={<AINewsDigestPage />} />
+          
+          {/* Legal Pages */}
           <Route path="accessibility-statement" element={<AccessibilityStatement />} />
           <Route path="disclaimer" element={<Disclaimer />} />
+          
+          {/* 404 */}
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
