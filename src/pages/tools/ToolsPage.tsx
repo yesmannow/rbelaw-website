@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { Calculator, Calendar, TrendingUp, MapPin, Shield, Clock, CheckCircle2, Zap, Users } from 'lucide-react'
+import { Calculator, Calendar, TrendingUp, MapPin, Shield, Clock, CheckCircle2, Zap, Users, FileText, Building2, AlertTriangle, Brain, BookOpen } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../../components/ui/Card'
 import { SEOMeta } from '@/components/seo/SEOMeta'
 
@@ -63,6 +63,34 @@ export function ToolsPage() {
       category: "Construction Law"
     },
     {
+      icon: <FileText className="w-8 h-8" />,
+      title: "Contract Risk Analyzer",
+      description: "Upload or paste your contract to identify risky clauses like indemnification, liability caps, and payment terms.",
+      to: "/resources/tools/contract-analyzer",
+      category: "Business & Construction"
+    },
+    {
+      icon: <Building2 className="w-8 h-8" />,
+      title: "Business Entity Comparison Tool",
+      description: "Not sure whether to form an LLC, S-Corp, or C-Corp? Get personalized recommendations based on your goals.",
+      to: "/resources/tools/entity-comparison",
+      category: "Corporate Law"
+    },
+    {
+      icon: <AlertTriangle className="w-8 h-8" />,
+      title: "OSHA Incident Rate Calculator",
+      description: "Calculate your TRIR, DART, and LTIR rates. Compare your workplace safety metrics against industry benchmarks.",
+      to: "/resources/tools/osha-calculator",
+      category: "Employment Law"
+    },
+    {
+      icon: <Brain className="w-8 h-8" />,
+      title: "Know Your Rights Quiz Series",
+      description: "Test your legal knowledge with interactive quizzes on employment law, construction law, and insurance defense.",
+      to: "/resources/tools/rights-quiz",
+      category: "Educational"
+    },
+    {
       icon: <TrendingUp className="w-8 h-8" />,
       title: "Business Succession Readiness Assessment",
       description: "Discover how prepared your business is for leadership transitions with our comprehensive quiz.",
@@ -89,6 +117,13 @@ export function ToolsPage() {
       description: "Visualize your case schedule with key Indiana Trial Rule deadlines and download calendar files.",
       to: "/resources/tools/litigation-timeline",
       category: "Litigation"
+    },
+    {
+      icon: <BookOpen className="w-8 h-8" />,
+      title: "Legal Glossary",
+      description: "Search our comprehensive glossary of 50+ legal terms. Understand complex legal terminology with plain-language definitions.",
+      to: "/resources/tools/legal-glossary",
+      category: "Educational"
     }
   ]
 

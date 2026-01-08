@@ -9,7 +9,13 @@ export default [
   {
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
-      ecmaVersion: 2020,
+      parser: tseslint.parser,
+      parserOptions: {
+        ecmaVersion: 2020,
+        sourceType: 'module',
+        ecmaFeatures: { jsx: true },
+        projectService: true,
+      },
       globals: globals.browser,
     },
     plugins: {

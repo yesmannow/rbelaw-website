@@ -2,7 +2,11 @@ import { useParams, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { ArrowLeft, CheckCircle2 } from 'lucide-react'
 import { getPracticeAreaBySlug } from '../../lib/data'
+import { getPracticeAreaImage } from '../../lib/data/practiceAreaImages'
+import { Picture } from '../../components/ui/Picture'
 import { ContextualCTA } from '@/components/marketing'
+import { RelatedTools } from '@/components/practice-areas/RelatedTools'
+import { getToolsForPracticeArea, hasTools } from '@/lib/utils/practiceAreaTools'
 
 export function PracticeAreaPage() {
   const { slug } = useParams<{ slug: string }>()
@@ -19,27 +23,45 @@ export function PracticeAreaPage() {
     )
   }
 
+  const heroImage = getPracticeAreaImage(slug || '');
+
   return (
     <div>
-      {/* Hero Section */}
-      <section className="bg-primary-navy text-white py-16 lg:py-20">
-        <div className="section-container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <Link to="/" className="inline-flex items-center text-neutral-300 hover:text-white mb-6 transition-colors">
-              <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Home
-            </Link>
-            <h1 className="heading-primary text-white mb-4">
-              {practiceArea.name}
-            </h1>
-            <p className="text-xl text-neutral-200 max-w-3xl">
-              {practiceArea.description}
-            </p>
-          </motion.div>
+      {/* Hero Section with Image */}
+      <section className="relative bg-primary-navy text-white">
+        {/* Hero Image */}
+        <div className="relative h-64 lg:h-80 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-primary-navy/90 to-primary-navy/70 z-10" />
+          <Picture
+            src={heroImage}
+            alt={practiceArea.name}
+            width={1024}
+            height={284}
+            loading="eager"
+            className="w-full h-full object-cover"
+          />
+        </div>
+        
+        {/* Hero Content */}
+        <div className="relative z-20 -mt-32 pb-16 lg:pb-20">
+          <div className="section-container">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <Link to="/" className="inline-flex items-center text-neutral-300 hover:text-white mb-6 transition-colors">
+                <ArrowLeft className="h-4 w-4 mr-2" />
+                Back to Home
+              </Link>
+              <h1 className="heading-primary text-white mb-4">
+                {practiceArea.name}
+              </h1>
+              <p className="text-xl text-neutral-200 max-w-3xl">
+                {practiceArea.description}
+              </p>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -134,6 +156,15 @@ export function PracticeAreaPage() {
           </div>
         </div>
       </section>
+
+      {/* Related Tools Section */}
+      {hasTools(practiceArea.slug) && (
+        <RelatedTools 
+          tools={getToolsForPracticeArea(practiceArea.slug)}
+          title={`${practiceArea.name} Tools & Resources`}
+          description="Use our free interactive tools to better understand your legal situation and make informed decisions."
+        />
+      )}
 
       {/* Contextual CTA - Example for employment law practice area */}
       {practiceArea.slug === 'employment-law' && (

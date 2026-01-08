@@ -1,52 +1,132 @@
 [
   {
     "id": "1",
-    "title": "RBE Secures Major Victory in Commercial Litigation Case",
-    "slug": "major-victory-commercial-litigation",
-    "date": "2024-11-15",
-    "category": "Firm News",
-    "excerpt": "Our litigation team successfully defended a Fortune 500 client in a complex breach of contract dispute, securing a favorable judgment that sets important precedent.",
-    "image": "/images/legacy/commercial-litigation.jpg",
-    "url": "https://example.com/blog/major-victory-commercial-litigation"
+    "title": "Potential Effects of the Big Beautiful Bill on Indiana's Rural Hospitals",
+    "slug": "indiana-rural-hospitals-funding-struggles",
+    "date": "2026-01-07",
+    "category": "Health Care Law",
+    "excerpt": "Analysis of how recent federal legislation may impact funding and operations for rural healthcare providers across Indiana.",
+    "image": "/images/news/rural-hospitals.jpg",
+    "url": "https://rbelaw.com/indiana-rural-hospitals-funding-struggles/"
   },
   {
     "id": "2",
-    "title": "New Indiana Construction Lien Law: What Contractors Need to Know",
-    "slug": "indiana-construction-lien-law-update",
-    "date": "2024-10-28",
-    "category": "Legal Updates",
-    "excerpt": "Recent changes to Indiana's construction lien statute will significantly impact how contractors and subcontractors protect their payment rights. Here's what you need to know.",
-    "image": "/images/legacy/construction-law.jpg",
-    "url": "https://example.com/blog/indiana-construction-lien-law-update"
+    "title": "Riley Bennett Egloff Recognized by Best Law Firms in America® for 2026 Rankings",
+    "slug": "2026-best-law-firms",
+    "date": "2025-11-15",
+    "category": "Firm News",
+    "excerpt": "RBE is honored to be recognized as one of the 2026 Best Law Firms in America®, earning honors across multiple practice areas.",
+    "image": "/images/news/best-law-firms-2026.jpg",
+    "url": "https://rbelaw.com/2026-best-law-firms/"
   },
   {
     "id": "3",
-    "title": "Healthcare Compliance in 2025: Key Trends and Strategies",
-    "slug": "healthcare-compliance-2025",
-    "date": "2024-10-12",
-    "category": "Legal Updates",
-    "excerpt": "As healthcare regulations continue to evolve, organizations must stay ahead of compliance requirements. Our healthcare practice group shares insights on emerging trends.",
-    "image": "/images/legacy/healthcare-compliance.jpg",
-    "url": "https://example.com/blog/healthcare-compliance-2025"
+    "title": "Indiana's New Business Fraud Prevention Law",
+    "slug": "house-enrolled-act-1593",
+    "date": "2025-11-04",
+    "category": "Business & Corporate",
+    "excerpt": "Effective January 1, 2026, Indiana's House Enrolled Act 1593 will change several portions of Indiana's business entity laws to combat fraud.",
+    "image": "/images/news/fraud-prevention.jpg",
+    "url": "https://rbelaw.com/house-enrolled-act-1593/"
   },
   {
     "id": "4",
-    "title": "Video: Understanding Professional Liability Insurance",
-    "slug": "professional-liability-insurance-video",
-    "date": "2024-09-22",
-    "category": "Videos",
-    "excerpt": "Partner John Smith discusses the critical aspects of professional liability insurance and how it protects your business from claims and lawsuits.",
-    "image": "/images/legacy/professional-liability.jpg",
-    "url": "https://example.com/blog/professional-liability-insurance-video"
+    "title": "Riley Bennett Egloff Earns Top-Tier Rankings in The Legal 500 Elite Indianapolis 2025 Edition",
+    "slug": "legal-500-elite-2025",
+    "date": "2025-10-28",
+    "category": "Firm News",
+    "excerpt": "Four RBE attorneys were selected for recognition in the premiere Legal 500 Elite Indianapolis 2025 edition.",
+    "image": "/images/news/legal-500-2025.jpg",
+    "url": "https://rbelaw.com/legal-500-elite-2025/"
   },
   {
     "id": "5",
-    "title": "RBE Attorneys Named to Best Lawyers 2025",
-    "slug": "best-lawyers-2025",
-    "date": "2024-08-30",
+    "title": "RBE Welcomes Attorney Megan Young",
+    "slug": "megan-young-joins-firm",
+    "date": "2025-10-24",
     "category": "Firm News",
-    "excerpt": "We are proud to announce that three of our attorneys have been recognized in the 2025 edition of The Best Lawyers in America for their outstanding work.",
-    "image": "/images/legacy/best-lawyers-2025.jpg",
-    "url": "https://example.com/blog/best-lawyers-2025"
+    "excerpt": "Riley Bennett Egloff is pleased to announce that Megan S. Young has joined the firm as an attorney practicing primarily in medical malpractice defense.",
+    "image": "/images/news/megan-young.jpg",
+    "url": "https://rbelaw.com/megan-young-joins-firm/"
+  },
+  {
+    "id": "6",
+    "title": "Potential Legal Risks of AI in Medicine",
+    "slug": "legal-risks-of-ai-in-medicine",
+    "date": "2025-10-21",
+    "category": "Health Care Law",
+    "excerpt": "Artificial intelligence is transforming healthcare. Understanding the legal implications and liability risks is crucial for medical providers.",
+    "image": "/images/news/ai-medicine.jpg",
+    "url": "https://rbelaw.com/legal-risks-of-ai-in-medicine/"
+  },
+  {
+    "id": "7",
+    "title": "Eric M. Hylton Selected to 2025 Class of Indianapolis Bar Foundation Distinguished Fellows",
+    "slug": "eric-hylton-distinguished-fellows",
+    "date": "2025-09-30",
+    "category": "Firm News",
+    "excerpt": "RBE is proud to announce that attorney Eric M. Hylton has been selected to the 2025 class of Indianapolis Bar Foundation Distinguished Fellows.",
+    "image": "/images/news/eric-hylton.jpg",
+    "url": "https://rbelaw.com/eric-hylton-distinguished-fellows/"
+  },
+  {
+    "id": "8",
+    "title": "What Happened to FLSA Salary Tests?",
+    "slug": "flsa-salary-tests",
+    "date": "2025-09-16",
+    "category": "Labor & Employment",
+    "excerpt": "Analysis of the DOL's final rule implementing new salary tests for exempt employees and recent legal challenges to these regulations.",
+    "image": "/images/news/flsa-salary.jpg",
+    "url": "https://rbelaw.com/flsa-salary-tests/"
+  },
+  {
+    "id": "9",
+    "title": "23 RBE Attorneys Selected to 2026 Best Lawyers",
+    "slug": "2026-best-lawyers",
+    "date": "2025-08-21",
+    "category": "Firm News",
+    "excerpt": "Riley Bennett Egloff is pleased to announce that 23 of the firm's attorneys have been selected in multiple practice areas for inclusion in The Best Lawyers in America® 2026.",
+    "image": "/images/news/best-lawyers-2026.jpg",
+    "url": "https://rbelaw.com/2026-best-lawyers/"
+  },
+  {
+    "id": "10",
+    "title": "Foreign Corrupt Practices Act",
+    "slug": "foreign-corrupt-practices-act",
+    "date": "2025-08-14",
+    "category": "Business & Corporate",
+    "excerpt": "An overview of the FCPA and its application to private companies, including compliance strategies for businesses operating internationally.",
+    "image": "/images/news/fcpa.jpg",
+    "url": "https://rbelaw.com/foreign-corrupt-practices-act/"
+  },
+  {
+    "id": "11",
+    "title": "AI Privacy Implicated in Court Ruling",
+    "slug": "ai-privacy-implicated-in-court-ruling",
+    "date": "2025-07-01",
+    "category": "Technology Law",
+    "excerpt": "A New York federal court ruling could have significant privacy implications for AI users and developers.",
+    "image": "/images/news/ai-privacy.jpg",
+    "url": "https://rbelaw.com/ai-privacy-implicated-in-court-ruling/"
+  },
+  {
+    "id": "12",
+    "title": "New AI Copyright Lawsuit Filed",
+    "slug": "new-ai-copyright-lawsuit-filed",
+    "date": "2025-07-01",
+    "category": "Technology Law",
+    "excerpt": "Analysis of new AI copyright lawsuits following the landmark Bartz fair use ruling against tech giants Anthropic and Meta.",
+    "image": "/images/news/ai-copyright.jpg",
+    "url": "https://rbelaw.com/new-ai-copyright-lawsuit-filed/"
+  },
+  {
+    "id": "13",
+    "title": "Second California Court Order on AI and Copyright Law",
+    "slug": "ai-and-copyright-law-ruling-26-june-2025",
+    "date": "2025-06-26",
+    "category": "Technology Law",
+    "excerpt": "Federal judge in Northern District of California issues landmark order in Bartz et al. v. Anthropic regarding AI training and copyright.",
+    "image": "/images/news/ai-copyright-ruling.jpg",
+    "url": "https://rbelaw.com/ai-and-copyright-law-ruling-26-june-2025/"
   }
 ]

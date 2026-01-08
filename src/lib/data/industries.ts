@@ -1,126 +1,212 @@
-import type { Industry } from '../types'
-
 /**
- * Industries served by Riley Bennett Egloff
+ * Industries Data
+ * Auto-generated from scraped content
  */
+
+import type { Industry } from '../types/content';
+
 export const industries: Industry[] = [
   {
-    id: 'construction',
-    name: 'Construction',
-    slug: 'construction',
-    description: 'Legal services for construction companies, contractors, and developers.',
-    icon: 'HardHat'
+    "id": "ind-1",
+    "name": "Construction",
+    "slug": "construction",
+    "description": "",
+    "icon": "building",
+    "color": "#74243C",
+    "image": "",
+    "content": [],
+    "relatedPracticeAreas": [],
+    "relatedAttorneys": [],
+    "featured": false
   },
   {
-    id: 'finance',
-    name: 'Finance',
-    slug: 'finance',
-    description: 'Comprehensive legal counsel for financial institutions and services.',
-    icon: 'Landmark'
+    "id": "ind-2",
+    "name": "Finance",
+    "slug": "finance",
+    "description": "",
+    "icon": "building",
+    "color": "#74243C",
+    "image": "",
+    "content": [],
+    "relatedPracticeAreas": [],
+    "relatedAttorneys": [],
+    "featured": false
   },
   {
-    id: 'government',
-    name: 'Government',
-    slug: 'government',
-    description: 'Serving governmental entities and public agencies.',
-    icon: 'Building2'
+    "id": "ind-3",
+    "name": "Food Beverage Service",
+    "slug": "food-beverage-service",
+    "description": "",
+    "icon": "building",
+    "color": "#74243C",
+    "image": "",
+    "content": [],
+    "relatedPracticeAreas": [],
+    "relatedAttorneys": [],
+    "featured": false
   },
   {
-    id: 'health-care',
-    name: 'Health Care',
-    slug: 'health-care',
-    description: 'Legal solutions for healthcare providers and medical practices.',
-    icon: 'Stethoscope'
+    "id": "ind-4",
+    "name": "Government",
+    "slug": "government",
+    "description": "",
+    "icon": "building",
+    "color": "#74243C",
+    "image": "",
+    "content": [],
+    "relatedPracticeAreas": [],
+    "relatedAttorneys": [],
+    "featured": false
   },
   {
-    id: 'insurance',
-    name: 'Insurance',
-    slug: 'insurance',
-    description: 'Representing insurance companies and adjusters.',
-    icon: 'Shield'
+    "id": "ind-5",
+    "name": "Health Care",
+    "slug": "health-care",
+    "description": "",
+    "icon": "building",
+    "color": "#74243C",
+    "image": "",
+    "content": [],
+    "relatedPracticeAreas": [],
+    "relatedAttorneys": [],
+    "featured": false
   },
   {
-    id: 'manufacturing',
-    name: 'Manufacturing',
-    slug: 'manufacturing',
-    description: 'Legal support for manufacturers and industrial operations.',
-    icon: 'Factory'
+    "id": "ind-6",
+    "name": "Insurance",
+    "slug": "insurance",
+    "description": "",
+    "icon": "building",
+    "color": "#74243C",
+    "image": "",
+    "content": [],
+    "relatedPracticeAreas": [],
+    "relatedAttorneys": [],
+    "featured": false
   },
   {
-    id: 'media',
-    name: 'Media',
-    slug: 'media',
-    description: 'Counsel for media companies and content creators.',
-    icon: 'Video'
+    "id": "ind-7",
+    "name": "Manufacturing",
+    "slug": "manufacturing",
+    "description": "",
+    "icon": "building",
+    "color": "#74243C",
+    "image": "",
+    "content": [],
+    "relatedPracticeAreas": [],
+    "relatedAttorneys": [],
+    "featured": false
   },
   {
-    id: 'non-profits',
-    name: 'Non-Profits',
-    slug: 'non-profits',
-    description: 'Legal guidance for charitable and non-profit organizations.',
-    icon: 'Heart'
+    "id": "ind-8",
+    "name": "Media",
+    "slug": "media",
+    "description": "",
+    "icon": "building",
+    "color": "#74243C",
+    "image": "",
+    "content": [],
+    "relatedPracticeAreas": [],
+    "relatedAttorneys": [],
+    "featured": false
   },
   {
-    id: 'real-estate',
-    name: 'Real Estate',
-    slug: 'real-estate',
-    description: 'Comprehensive real estate legal services.',
-    icon: 'Home'
+    "id": "ind-9",
+    "name": "Non Profit Organizations",
+    "slug": "non-profit-organizations",
+    "description": "",
+    "icon": "building",
+    "color": "#74243C",
+    "image": "",
+    "content": [],
+    "relatedPracticeAreas": [],
+    "relatedAttorneys": [],
+    "featured": false
   },
   {
-    id: 'restaurant-hospitality',
-    name: 'Restaurant & Hospitality',
-    slug: 'restaurant-hospitality',
-    description: 'Serving restaurants, hotels, and hospitality businesses.',
-    icon: 'UtensilsCrossed'
+    "id": "ind-10",
+    "name": "Real Estate",
+    "slug": "real-estate",
+    "description": "",
+    "icon": "building",
+    "color": "#74243C",
+    "image": "",
+    "content": [],
+    "relatedPracticeAreas": [],
+    "relatedAttorneys": [],
+    "featured": false
   },
   {
-    id: 'sports-entertainment',
-    name: 'Sports & Entertainment',
-    slug: 'sports-entertainment',
-    description: 'Legal representation in sports and entertainment matters.',
-    icon: 'Trophy'
+    "id": "ind-11",
+    "name": "Sports Entertainment",
+    "slug": "sports-entertainment",
+    "description": "",
+    "icon": "building",
+    "color": "#74243C",
+    "image": "",
+    "content": [],
+    "relatedPracticeAreas": [],
+    "relatedAttorneys": [],
+    "featured": false
   },
   {
-    id: 'technology',
-    name: 'Technology',
-    slug: 'technology',
-    description: 'Legal services for technology companies and startups.',
-    icon: 'Laptop'
+    "id": "ind-12",
+    "name": "Technology",
+    "slug": "technology",
+    "description": "",
+    "icon": "building",
+    "color": "#74243C",
+    "image": "",
+    "content": [],
+    "relatedPracticeAreas": [],
+    "relatedAttorneys": [],
+    "featured": false
   },
   {
-    id: 'telecommunications',
-    name: 'Telecommunications',
-    slug: 'telecommunications',
-    description: 'Counsel for telecommunications and communications companies.',
-    icon: 'Antenna'
+    "id": "ind-13",
+    "name": "Telecommunications",
+    "slug": "telecommunications",
+    "description": "",
+    "icon": "building",
+    "color": "#74243C",
+    "image": "",
+    "content": [],
+    "relatedPracticeAreas": [],
+    "relatedAttorneys": [],
+    "featured": false
   },
   {
-    id: 'transportation',
-    name: 'Transportation',
-    slug: 'transportation',
-    description: 'Legal support for transportation and logistics companies.',
-    icon: 'Truck'
+    "id": "ind-14",
+    "name": "Transportation",
+    "slug": "transportation",
+    "description": "",
+    "icon": "building",
+    "color": "#74243C",
+    "image": "",
+    "content": [],
+    "relatedPracticeAreas": [],
+    "relatedAttorneys": [],
+    "featured": false
   },
   {
-    id: 'wholesale-retail',
-    name: 'Wholesale & Retail Sales',
-    slug: 'wholesale-retail',
-    description: 'Representing wholesale distributors and retail businesses.',
-    icon: 'ShoppingCart'
+    "id": "ind-15",
+    "name": "Wholesale Retail Service",
+    "slug": "wholesale-retail-service",
+    "description": "",
+    "icon": "building",
+    "color": "#74243C",
+    "image": "",
+    "content": [],
+    "relatedPracticeAreas": [],
+    "relatedAttorneys": [],
+    "featured": false
   }
-]
+];
 
-/**
- * Get an industry by slug
- */
-export const getIndustryBySlug = (slug: string): Industry | undefined => {
-  return industries.find(industry => industry.slug === slug)
+export function getIndustryBySlug(slug: string): Industry | undefined {
+  return industries.find(i => i.slug === slug);
 }
 
-/**
- * Get an industry by ID
- */
-export const getIndustryById = (id: string): Industry | undefined => {
-  return industries.find(industry => industry.id === id)
+export function getFeaturedIndustries(): Industry[] {
+  return industries.filter(i => i.featured);
 }

@@ -7,17 +7,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Corporate brand colors for Riley Bennett Egloff - Verified Palette
+        // RBE Official Brand Colors (from current site)
         primary: {
-          maroon: '#75253D',      // #75253D - Primary Maroon (was Burgundy)
-          burgundy: '#75253D',     // Alias for backward compatibility
-          navy: '#3F4E76',         // #3F4E76 - Secondary Navy/Blue
+          navy: '#213469',         // #213469 - RBE Navy Blue (Primary Brand Color)
+          tan: '#D3CBBC',          // #D3CBBC - RBE Tan/Beige (Accent Color)
           slate: '#555659',        // #555659 - Neutral Dark Grey
-          light: '#C1C8D1',        // #C1C8D1 - Accent Light Grey
+          burgundy: '#213469',     // Alias for backward compatibility (now navy)
+          maroon: '#213469',       // Alias for backward compatibility (now navy)
         },
         accent: {
-          gold: '#B8860B',      // Dark Gold - Premium accent
-          bronze: '#CD7F32',    // Bronze - Secondary accent
+          gold: '#D3CBBC',      // RBE Tan/Beige - Primary accent
+          tan: '#D3CBBC',       // RBE Tan/Beige - Alias
         },
         neutral: {
           50: '#f8fafc',
@@ -33,10 +33,9 @@ export default {
         }
       },
       fontFamily: {
-        // Public Sans for body text - closest to Microsoft Aptos
-        sans: ['Public Sans', 'ui-sans-serif', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'Roboto', '"Helvetica Neue"', 'Arial', 'sans-serif'],
-        // Playfair Display for headings - authority and professionalism
-        serif: ['Playfair Display', 'Georgia', 'Cambria', '"Times New Roman"', 'Times', 'serif'],
+        // RBE Official Fonts (from current site)
+        sans: ['Open Sans', 'Arial', 'sans-serif'],
+        serif: ['Raleway', 'Helvetica', 'Arial', 'Lucida', 'sans-serif'],
       },
       spacing: {
         '18': '4.5rem',

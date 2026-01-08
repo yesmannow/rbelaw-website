@@ -1,0 +1,185 @@
+// Auto-generated from scraped content
+// Last updated: 2026-01-08T06:51:36.083Z
+
+export const industries = [
+  {
+    "id": "construction",
+    "name": "Professionals in Construction",
+    "slug": "construction",
+    "description": "...",
+    "icon": "Building2",
+    "image": "https://rbelaw.com/wp-content/uploads/2024/07/Jeffrey-Fecht-attorney-indianapolis-commercial-litigation-construction-law-product-liability-toxic-tort.jpg",
+    "overview": "",
+    "keyChallenges": [],
+    "relatedPracticeAreas": [],
+    "sections": []
+  },
+  {
+    "id": "finance",
+    "name": "Professionals in Finance",
+    "slug": "finance",
+    "description": "...",
+    "icon": "Building2",
+    "image": "https://rbelaw.com/wp-content/uploads/2024/08/John-Egloff-Attorney-Headshot-Thumbnail-JPG.jpg",
+    "overview": "",
+    "keyChallenges": [],
+    "relatedPracticeAreas": [],
+    "sections": []
+  },
+  {
+    "id": "food-beverage-service",
+    "name": "Professionals in Restaurant & Hospitality",
+    "slug": "food-beverage-service",
+    "description": "...",
+    "icon": "Building2",
+    "image": "https://rbelaw.com/wp-content/uploads/2024/10/Kathleen-Hart-Indianapolis-attorney-Riley-Bennett-Egloff-Business-Law-XBE-Commercial-Law-Employment-Law-Thumbnail.jpg",
+    "overview": "",
+    "keyChallenges": [],
+    "relatedPracticeAreas": [],
+    "sections": []
+  },
+  {
+    "id": "government",
+    "name": "Professionals in Government",
+    "slug": "government",
+    "description": "...",
+    "icon": "Building2",
+    "image": "https://rbelaw.com/wp-content/uploads/2024/08/Eric-Hylton-Indiana-Attorney-Education-Law-Thumbnail-1.png",
+    "overview": "",
+    "keyChallenges": [],
+    "relatedPracticeAreas": [],
+    "sections": []
+  },
+  {
+    "id": "health-care",
+    "name": "Professionals in Health Care",
+    "slug": "health-care",
+    "description": "...",
+    "icon": "Building2",
+    "image": "https://rbelaw.com/wp-content/uploads/2024/08/Laura-Binford-Indianapolis-Med-Mal-Attorney-Partner-Riley-Bennett-Egloff-thumbnail-png.png",
+    "overview": "",
+    "keyChallenges": [],
+    "relatedPracticeAreas": [],
+    "sections": []
+  },
+  {
+    "id": "insurance",
+    "name": "Professionals in Insurance",
+    "slug": "insurance",
+    "description": "...",
+    "icon": "Building2",
+    "image": "https://rbelaw.com/wp-content/uploads/2024/07/Jeffrey-Fecht-attorney-indianapolis-commercial-litigation-construction-law-product-liability-toxic-tort.jpg",
+    "overview": "",
+    "keyChallenges": [],
+    "relatedPracticeAreas": [],
+    "sections": []
+  },
+  {
+    "id": "manufacturing",
+    "name": "Professionals in Manufacturing",
+    "slug": "manufacturing",
+    "description": "...",
+    "icon": "Building2",
+    "image": "https://rbelaw.com/wp-content/uploads/2024/07/Jeffrey-Fecht-attorney-indianapolis-commercial-litigation-construction-law-product-liability-toxic-tort.jpg",
+    "overview": "",
+    "keyChallenges": [],
+    "relatedPracticeAreas": [],
+    "sections": []
+  },
+  {
+    "id": "media",
+    "name": "Professionals in Media",
+    "slug": "media",
+    "description": "...",
+    "icon": "Building2",
+    "image": "https://rbelaw.com/wp-content/uploads/2024/08/Jaclyn-M-Flint-Attorney-Indiana-IP-Law-Construction-Sports-Entertainment-Commercial-Litigation-thumbnail.png",
+    "overview": "",
+    "keyChallenges": [],
+    "relatedPracticeAreas": [],
+    "sections": []
+  },
+  {
+    "id": "non-profit-organizations",
+    "name": "Professionals in Non-profit Organizations",
+    "slug": "non-profit-organizations",
+    "description": "...",
+    "icon": "Building2",
+    "image": "https://rbelaw.com/wp-content/uploads/2024/08/Jaclyn-M-Flint-Attorney-Indiana-IP-Law-Construction-Sports-Entertainment-Commercial-Litigation-thumbnail.png",
+    "overview": "",
+    "keyChallenges": [],
+    "relatedPracticeAreas": [],
+    "sections": []
+  },
+  {
+    "id": "real-estate",
+    "name": "Professionals in Real Estate",
+    "slug": "real-estate",
+    "description": "...",
+    "icon": "Building2",
+    "image": "https://rbelaw.com/wp-content/uploads/2024/08/John-Egloff-Attorney-Headshot-Thumbnail-JPG.jpg",
+    "overview": "",
+    "keyChallenges": [],
+    "relatedPracticeAreas": [],
+    "sections": []
+  },
+  {
+    "id": "sports-entertainment",
+    "name": "Professionals in Sports and Entertainment",
+    "slug": "sports-entertainment",
+    "description": "...",
+    "icon": "Building2",
+    "image": "https://rbelaw.com/wp-content/uploads/2024/08/Jaclyn-M-Flint-Attorney-Indiana-IP-Law-Construction-Sports-Entertainment-Commercial-Litigation-thumbnail.png",
+    "overview": "",
+    "keyChallenges": [],
+    "relatedPracticeAreas": [],
+    "sections": []
+  },
+  {
+    "id": "technology",
+    "name": "Professionals in Technology",
+    "slug": "technology",
+    "description": "...",
+    "icon": "Building2",
+    "image": "https://rbelaw.com/wp-content/uploads/2024/08/Jaclyn-M-Flint-Attorney-Indiana-IP-Law-Construction-Sports-Entertainment-Commercial-Litigation-thumbnail.png",
+    "overview": "",
+    "keyChallenges": [],
+    "relatedPracticeAreas": [],
+    "sections": []
+  },
+  {
+    "id": "telecommunications",
+    "name": "Professionals in Telecommunications",
+    "slug": "telecommunications",
+    "description": "...",
+    "icon": "Building2",
+    "image": "https://rbelaw.com/wp-content/uploads/2024/08/Jaclyn-M-Flint-Attorney-Indiana-IP-Law-Construction-Sports-Entertainment-Commercial-Litigation-thumbnail.png",
+    "overview": "",
+    "keyChallenges": [],
+    "relatedPracticeAreas": [],
+    "sections": []
+  },
+  {
+    "id": "transportation",
+    "name": "Professionals in Transportation",
+    "slug": "transportation",
+    "description": "...",
+    "icon": "Building2",
+    "image": "https://rbelaw.com/wp-content/uploads/2024/01/Tony-Jost-2L9A4882.jpg",
+    "overview": "",
+    "keyChallenges": [],
+    "relatedPracticeAreas": [],
+    "sections": []
+  },
+  {
+    "id": "wholesale-retail-service",
+    "name": "Professionals in Wholesale & Retail Sales",
+    "slug": "wholesale-retail-service",
+    "description": "...",
+    "icon": "Building2",
+    "image": "https://rbelaw.com/wp-content/uploads/2024/07/Jeffrey-Fecht-attorney-indianapolis-commercial-litigation-construction-law-product-liability-toxic-tort.jpg",
+    "overview": "",
+    "keyChallenges": [],
+    "relatedPracticeAreas": [],
+    "sections": []
+  }
+]

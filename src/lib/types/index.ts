@@ -162,7 +162,7 @@ export interface LeadData {
   email: string
   name?: string
   phone?: string
-  source: 'contact_form' | 'quiz' | 'newsletter' | 'blog_cta' | 'comp_calculator' | 'lien_calculator' | 'succession_quiz' | 'district_map' | 'flsa_wizard' | 'litigation_timeline'
+  source: 'contact_form' | 'quiz' | 'newsletter' | 'blog_cta' | 'comp_calculator' | 'lien_calculator' | 'succession_quiz' | 'district_map' | 'flsa_wizard' | 'litigation_timeline' | 'contract_risk_analyzer' | 'business_entity_comparison' | 'osha_calculator' | 'know_your_rights_quiz'
   metadata?: Record<string, unknown>
 }
 
@@ -176,4 +176,98 @@ export interface CaseAssessmentData extends LeadData {
   incidentDate?: string
   hasContract?: string
   answers?: QuizAnswer[]
+}
+
+// Case Results
+export interface CaseResult {
+  id: string
+  title: string
+  practiceArea: string[]
+  industry: string[]
+  summary: string
+  outcome: string
+  amount?: string
+  complexity: 'Standard' | 'Complex' | 'Highly Complex'
+  attorneys: string[] // Attorney IDs
+  date: string
+  tags: string[]
+  isConfidential?: boolean
+}
+
+// Industry-Specific Landing Pages
+export interface IndustryPage {
+  id: string
+  name: string
+  slug: string
+  title: string
+  description: string
+  detailedDescription: string
+  icon: string
+  heroImage?: string
+  services: string[]
+  relatedPracticeAreas: string[]
+  relatedAttorneys: string[]
+  caseResults?: string[] // CaseResult IDs
+  resources?: Resource[]
+  faqs?: FAQ[]
+  testimonials?: Testimonial[]
+}
+
+// Resources
+export interface Resource {
+  id: string
+  title: string
+  description: string
+  type: 'guide' | 'checklist' | 'template' | 'whitepaper' | 'ebook' | 'video' | 'webinar'
+  category: string
+  downloadUrl?: string
+  fileSize?: string
+  fileType?: string
+  thumbnail?: string
+  practiceAreas?: string[]
+  industries?: string[]
+  date: string
+  author?: string
+  requiresEmail?: boolean
+}
+
+// FAQ
+export interface FAQ {
+  id: string
+  question: string
+  answer: string
+  category?: string
+  practiceArea?: string
+  industry?: string
+  order?: number
+}
+
+// Testimonial
+export interface Testimonial {
+  id: string
+  author: string
+  company?: string
+  role?: string
+  content: string
+  rating?: number
+  date: string
+  practiceArea?: string
+  industry?: string
+  imageUrl?: string
+  isVerified?: boolean
+}
+
+// Video Content
+export interface Video {
+  id: string
+  title: string
+  description: string
+  thumbnail: string
+  videoUrl: string
+  duration: string
+  category: 'attorney-intro' | 'practice-area' | 'testimonial' | 'webinar' | 'educational'
+  practiceArea?: string
+  attorney?: string
+  date: string
+  transcript?: string
 }

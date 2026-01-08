@@ -1,0 +1,220 @@
+{
+  "date": "2026-01-08T05:18:43.756Z",
+  "summary": {
+    "imagesProcessed": 23,
+    "originalTotalSize": 3623096,
+    "webpTotalSize": 842014,
+    "avifTotalSize": 924778,
+    "totalSavings": 74.47547622254558,
+    "savedBytes": 2698318
+  },
+  "results": [
+    {
+      "original": "public\\images\\hero\\hero-1.jpg",
+      "optimized": "hero-1",
+      "originalSize": 183404,
+      "webpSize": 90626,
+      "avifSize": 93814,
+      "jpegSize": 183404,
+      "savings": 50.58668295129877
+    },
+    {
+      "original": "public\\images\\hero\\hero-2.jpg",
+      "optimized": "hero-2",
+      "originalSize": 173893,
+      "webpSize": 95234,
+      "avifSize": 92717,
+      "jpegSize": 173893,
+      "savings": 46.681580052101005
+    },
+    {
+      "original": "public\\images\\industries\\industries-1.jpg",
+      "optimized": "industries-1",
+      "originalSize": 103028,
+      "webpSize": 66316,
+      "avifSize": 70520,
+      "jpegSize": 103028,
+      "savings": 35.633031797181346
+    },
+    {
+      "original": "public\\images\\practice-areas\\Bus-corp-law-1024x284 (1).jpg",
+      "optimized": "bus-corp-law-1024x284-1",
+      "originalSize": 18483,
+      "webpSize": 12336,
+      "avifSize": 13802,
+      "jpegSize": 22008,
+      "savings": 33.25758805388735
+    },
+    {
+      "original": "public\\images\\practice-areas\\practice-areas-1.jpg",
+      "optimized": "practice-areas-1",
+      "originalSize": 114679,
+      "webpSize": 64008,
+      "avifSize": 74202,
+      "jpegSize": 114679,
+      "savings": 44.18507311713566
+    },
+    {
+      "original": "public\\images\\team\\Attorneys\\Donald-S.-Smith-attorney-indianapolis-Partner-Riley-Bennett-Egloff-Employment-Law-.jpg",
+      "optimized": "donald-s.-smith-attorney-indianapolis-partner-riley-bennett-egloff-employment-law",
+      "originalSize": 75515,
+      "webpSize": 8126,
+      "avifSize": 9449,
+      "jpegSize": 12190,
+      "savings": 89.23922399523273
+    },
+    {
+      "original": "public\\images\\team\\Attorneys\\Eric-Hylton-Indiana-Attorney-Education-Law-Thumbnail-1.png",
+      "optimized": "eric-hylton-indiana-attorney-education-law-thumbnail-1",
+      "originalSize": 113429,
+      "webpSize": 7012,
+      "avifSize": 8988,
+      "jpegSize": 10608,
+      "savings": 93.81815937723157
+    },
+    {
+      "original": "public\\images\\team\\Attorneys\\Jaclyn-M-Flint-Attorney-Indiana-IP-Law-Construction-Sports-Entertainment-Commercial-Litigation-thumbnail.png",
+      "optimized": "jaclyn-m-flint-attorney-indiana-ip-law-construction-sports-entertainment-commercial-litigation-thumbnail",
+      "originalSize": 116277,
+      "webpSize": 8112,
+      "avifSize": 9375,
+      "jpegSize": 11874,
+      "savings": 93.02355581929358
+    },
+    {
+      "original": "public\\images\\team\\Attorneys\\Justin-Sorrell-indiana-business-litigation-attorney.png",
+      "optimized": "justin-sorrell-indiana-business-litigation-attorney",
+      "originalSize": 117353,
+      "webpSize": 7892,
+      "avifSize": 9302,
+      "jpegSize": 11690,
+      "savings": 93.27499083960359
+    },
+    {
+      "original": "public\\images\\team\\Attorneys\\Kathleen-Hart-Indianapolis-attorney-Riley-Bennett-Egloff-Business-Law-XBE-Commercial-Law-Employment-Law-.jpg",
+      "optimized": "kathleen-hart-indianapolis-attorney-riley-bennett-egloff-business-law-xbe-commercial-law-employment-law",
+      "originalSize": 102019,
+      "webpSize": 17722,
+      "avifSize": 19038,
+      "jpegSize": 20630,
+      "savings": 82.62872602162342
+    },
+    {
+      "original": "public\\images\\team\\Attorneys\\Katie-Osborne-Indiana-Med-Mal-Defense-Attorney-Partner-Riley-Bennett-Egloff-Thumbnail.png",
+      "optimized": "katie-osborne-indiana-med-mal-defense-attorney-partner-riley-bennett-egloff-thumbnail",
+      "originalSize": 122086,
+      "webpSize": 9910,
+      "avifSize": 11566,
+      "jpegSize": 13314,
+      "savings": 91.88277116131252
+    },
+    {
+      "original": "public\\images\\team\\Attorneys\\Katie-Riles-Attorney-Riley-Bennett-Egloff-with-bkgrnd-png.png",
+      "optimized": "katie-riles-attorney-riley-bennett-egloff-with-bkgrnd-png",
+      "originalSize": 807467,
+      "webpSize": 39962,
+      "avifSize": 46874,
+      "jpegSize": 60616,
+      "savings": 95.05094325836227
+    },
+    {
+      "original": "public\\images\\team\\Attorneys\\Kevin-Tharp-Indiana-Attorney-Partner-Riley-Bennett-Egloff-Business-Law-Construction-Law-thumbnail.png",
+      "optimized": "kevin-tharp-indiana-attorney-partner-riley-bennett-egloff-business-law-construction-law-thumbnail",
+      "originalSize": 112750,
+      "webpSize": 7376,
+      "avifSize": 8548,
+      "jpegSize": 10991,
+      "savings": 93.4580931263858
+    },
+    {
+      "original": "public\\images\\team\\Attorneys\\Laura-Binford-Indianapolis-Med-Mal-Attorney-Partner-Riley-Bennett-Egloff-thumbnail-png.png",
+      "optimized": "laura-binford-indianapolis-med-mal-attorney-partner-riley-bennett-egloff-thumbnail-png",
+      "originalSize": 104444,
+      "webpSize": 6354,
+      "avifSize": 7317,
+      "jpegSize": 10302,
+      "savings": 93.91635709088123
+    },
+    {
+      "original": "public\\images\\team\\Attorneys\\Lindsay-A-Llewellyn-Thumbnail.png",
+      "optimized": "lindsay-a-llewellyn-thumbnail",
+      "originalSize": 115953,
+      "webpSize": 7292,
+      "avifSize": 8844,
+      "jpegSize": 11267,
+      "savings": 93.71124507343492
+    },
+    {
+      "original": "public\\images\\team\\Attorneys\\Patrick-McCarney-Indiana-Attorney-Business-Law-Insurance-Law-thumbnail.png",
+      "optimized": "patrick-mccarney-indiana-attorney-business-law-insurance-law-thumbnail",
+      "originalSize": 120657,
+      "webpSize": 8194,
+      "avifSize": 9703,
+      "jpegSize": 11861,
+      "savings": 93.20884822264766
+    },
+    {
+      "original": "public\\images\\team\\Attorneys\\Ryan-Leitch-Indiana-Attorney-Trust-and-Estate-Law-Thumbnail-1.png",
+      "optimized": "ryan-leitch-indiana-attorney-trust-and-estate-law-thumbnail-1",
+      "originalSize": 106457,
+      "webpSize": 6146,
+      "avifSize": 7226,
+      "jpegSize": 9892,
+      "savings": 94.22677700855745
+    },
+    {
+      "original": "public\\images\\team\\Attorneys\\Sarah Macgill Marr.jpg",
+      "optimized": "sarah-macgill-marr",
+      "originalSize": 88953,
+      "webpSize": 11844,
+      "avifSize": 16232,
+      "jpegSize": 14765,
+      "savings": 86.68510336919498
+    },
+    {
+      "original": "public\\images\\team\\Attorneys\\Timothy-H.-Button-Attorney-Indianapolis-Thumbnail-Image.png",
+      "optimized": "timothy-h.-button-attorney-indianapolis-thumbnail-image",
+      "originalSize": 341017,
+      "webpSize": 29588,
+      "avifSize": 36682,
+      "jpegSize": 41074,
+      "savings": 91.3235997032406
+    },
+    {
+      "original": "public\\images\\team\\Attorneys\\Travis-Watson-Indiana-Attorney-Construction-Law-Insurance-Law-Business-Corporate-Law-thumbnail.png",
+      "optimized": "travis-watson-indiana-attorney-construction-law-insurance-law-business-corporate-law-thumbnail",
+      "originalSize": 122679,
+      "webpSize": 9246,
+      "avifSize": 11465,
+      "jpegSize": 12412,
+      "savings": 92.46325777027853
+    },
+    {
+      "original": "public\\images\\test\\test-1.jpg",
+      "optimized": "test-1",
+      "originalSize": 154064,
+      "webpSize": 128844,
+      "avifSize": 133785,
+      "jpegSize": 154064,
+      "savings": 16.36982033440648
+    },
+    {
+      "original": "public\\images\\test\\test-2.jpg",
+      "optimized": "test-2",
+      "originalSize": 154322,
+      "webpSize": 101326,
+      "avifSize": 118450,
+      "jpegSize": 154322,
+      "savings": 34.34118272184135
+    },
+    {
+      "original": "public\\images\\test\\test-3.jpg",
+      "optimized": "test-3",
+      "originalSize": 154167,
+      "webpSize": 98548,
+      "avifSize": 106879,
+      "jpegSize": 154167,
+      "savings": 36.077111184624464
+    }
+  ]
+}
