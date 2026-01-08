@@ -62,6 +62,7 @@ import { GlobalSearch } from './components/command/GlobalSearch'
 import { InstallPrompt } from './components/pwa/InstallPrompt'
 import { CookieConsent } from './components/compliance'
 import { SkipToContent } from './components/compliance/SkipToContent'
+import { NewsSkeleton } from './components/news/NewsSkeleton'
 import { useLenis } from './hooks/useLenis'
 
 // Lazy-loaded heavy pages to improve initial bundle size
@@ -155,7 +156,11 @@ function App() {
       <GlobalSearch open={searchOpen} onOpenChange={setSearchOpen} />
       <InstallPrompt />
       <CookieConsent />
-      <Suspense fallback={<div className="section-container py-12">Loading...</div>}>
+      <Suspense fallback={
+        <div className="section-container py-12">
+          <NewsSkeleton count={3} />
+        </div>
+      }>
         <AnimatedRoutes />
       </Suspense>
     </BrowserRouter>
