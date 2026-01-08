@@ -240,7 +240,7 @@ export function AttorneyBioPagePrestige() {
                 
                 {/* Fallback button if direct download doesn't work */}
                 <button
-                  onClick={() => downloadVCard(attorney as any)}
+                  onClick={() => downloadVCard(attorney!)}
                   className="flex items-center gap-2 rounded-lg border border-prestige-gold px-4 py-2 text-sm font-semibold text-prestige-gold transition-all hover:bg-prestige-gold/10"
                   title="Generate vCard"
                 >

@@ -43,8 +43,9 @@ export default defineConfig({
     chunkSizeWarningLimit: 2000,
     rollupOptions: {
       output: {
-        // FIX: Simplified chunking to resolve "useLayoutEffect" undefined error
-        // All React core libs go together to prevent circular deps
+        // FIX: Consolidated chunking to prevent circular dependencies
+        // All React-related modules (react, react-dom, react-router, scheduler) must be 
+        // in a single chunk to ensure proper initialization order and prevent runtime errors
         manualChunks(id) {
           if (id.includes('node_modules')) {
             // Critical: All React-related must be in ONE chunk

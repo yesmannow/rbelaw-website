@@ -112,7 +112,7 @@ export function BlogCard({ post, index = 0 }: BlogCardProps) {
             whileHover={{ x: 5 }}
           >
             Read Article
-            <span className="text-prestige-gold">→</span>
+            <span className="text-prestige-gold" aria-hidden="true">→</span>
           </motion.div>
         </div>
       </Link>
