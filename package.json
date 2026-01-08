@@ -16,6 +16,7 @@
     "fetch-images:batch": "tsx scripts/fetch-images.ts --batch",
     "optimize-attorneys": "tsx scripts/optimize-attorney-photos.ts",
     "optimize-all": "tsx scripts/optimize-all-images.ts",
+    "fetch-practice-heroes": "tsx scripts/fetch-practice-area-headers.ts",
     "scrape-site": "node scripts/scrape-old-site.js",
     "scrape-attorneys": "node scripts/scrape-attorneys.js",
     "scrape-blog": "node scripts/scrape-blog.js",

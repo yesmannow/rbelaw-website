@@ -8,7 +8,6 @@ import {
   FileText,
   CheckCircle2,
   XCircle,
-  MinusCircle,
   ArrowRight
 } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui'

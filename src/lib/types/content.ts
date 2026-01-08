@@ -26,6 +26,7 @@ export interface Attorney {
 
 export interface BiographySection {
   heading: string;
+  level?: 'h2' | 'h3' | 'h4' | 'H2' | 'H3' | 'H4';
   content: BiographyContentItem[];
 }
 
@@ -49,7 +50,7 @@ export interface PracticeArea {
   icon: string;
   color?: string;
   image?: string;
-  content: ContentBlock[];
+  content: BiographySection[];
   relatedAttorneys: string[];
   relatedIndustries: string[];
   featured?: boolean;

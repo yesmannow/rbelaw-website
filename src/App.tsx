@@ -1,14 +1,17 @@
-import { useState } from 'react'
+import { useState, lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { RootLayout } from './components/layout'
 import { HomePage } from './pages/home'
-import { BusinessLaw } from './pages/practice-areas'
+import { BusinessLaw, BankruptcyReorganization } from './pages/practice-areas'
+import IndustriesIndex from './pages/industries/IndustriesIndex'
+import IndustryPage from './pages/industries/IndustryPage'
 import { AttorneysPage, AttorneyBioPage } from './pages/attorneys'
 import { ProfessionalsPage, LegalAssistantsPage } from './pages/team'
 import { AboutPage, HistoryPage, CommunityPage, DiversityPage, CareersPage, FeesPage } from './pages/about'
 import { ContactPage } from './pages/contact'
 import { DemoPage } from './pages/demo'
-import { IndustriesIndex } from './pages/industries'
+// Removed IndustriesIndex
+import PracticeAreasIndex from './pages/PracticeAreasIndex'
 import {
   ToolsPage,
   CompCalculatorPage,
@@ -24,10 +27,7 @@ import {
   LegalGlossaryPage
 } from './pages/tools'
 import { AINewsDigestPage } from './pages/news'
-import { Newsroom } from './pages/Newsroom'
-import { BlogPost } from './pages/BlogPost'
-import { PracticeAreaDetail } from './pages/PracticeAreaDetail'
-import { IndustryDetail } from './pages/IndustryDetail'
+// Removed PracticeAreaDetail and IndustryDetail (scraped-data dependent)
 import { AccessibilityStatement, Disclaimer } from './pages/legal'
 import { NotFound } from './pages/NotFound'
 import { GlobalSearch } from './components/command/GlobalSearch'
@@ -37,6 +37,10 @@ import { SkipToContent } from './components/compliance/SkipToContent'
 import { ConciergeWidget } from './components/chat'
 import { RBELawAssistant } from './components/chat/RBELawAssistant'
 import { useLenis } from './hooks/useLenis'
+
+// Lazy-loaded heavy pages to improve initial bundle size
+const Newsroom = lazy(() => import('./pages/Newsroom').then(m => ({ default: m.Newsroom })))
+const BlogPost = lazy(() => import('./pages/BlogPost').then(m => ({ default: m.BlogPost })))
 
 function App() {
   const [searchOpen, setSearchOpen] = useState(false)
@@ -52,11 +56,14 @@ function App() {
       <CookieConsent />
       <ConciergeWidget />
       <RBELawAssistant />
-      <Routes>
-        <Route path="/" element={<RootLayout />}>
+      <Suspense fallback={<div className="section-container py-12">Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<RootLayout />}>
           <Route index element={<HomePage />} />
           <Route path="practice-areas/business-law" element={<BusinessLaw />} />
-          <Route path="practice-areas/:slug" element={<PracticeAreaDetail />} />
+          <Route path="practice-areas" element={<PracticeAreasIndex />} />
+          <Route path="practice-areas/bankruptcy-reorganization" element={<BankruptcyReorganization />} />
+          <Route path="practice-areas/bankruptcy" element={<BankruptcyReorganization />} />
           <Route path="attorneys" element={<AttorneysPage />} />
           <Route path="attorneys/:id" element={<AttorneyBioPage />} />
           <Route path="team/professionals" element={<ProfessionalsPage />} />
@@ -71,7 +78,7 @@ function App() {
           <Route path="newsroom" element={<Newsroom />} />
           <Route path="newsroom/:slug" element={<BlogPost />} />
           <Route path="industries" element={<IndustriesIndex />} />
-          <Route path="industries/:slug" element={<IndustryDetail />} />
+          <Route path="industries/:slug" element={<IndustryPage />} />
           <Route path="demo" element={<DemoPage />} />
           <Route path="resources/tools" element={<ToolsPage />} />
           <Route path="resources/tools/comp-calculator" element={<CompCalculatorPage />} />
@@ -89,8 +96,9 @@ function App() {
           <Route path="accessibility-statement" element={<AccessibilityStatement />} />
           <Route path="disclaimer" element={<Disclaimer />} />
           <Route path="*" element={<NotFound />} />
-        </Route>
-      </Routes>
+          </Route>
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   )
 }

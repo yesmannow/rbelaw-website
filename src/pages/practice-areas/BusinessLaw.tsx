@@ -1,155 +1,193 @@
-import { ContentPageLayout } from '../../components/layout'
-import { Accordion, AccordionItem } from '../../components/ui'
 import { MarketTicker } from '@/components/marketing/MarketTicker'
+import { attorneys } from '@/lib/data/attorney-helpers'
+import { getPracticeAreaHero } from '@/lib/data/practiceAreaHeroes'
+import { Link } from 'react-router-dom'
 
 export function BusinessLaw() {
-  const relatedAttorneys = [
-    'Jaclyn Flint',
-    'Kathleen Hart',
-    'Eric M. Hylton',
-    'Anthony R. Jost',
-    'Ryan L. Leitch',
-    'Courtney David Mills',
-    'Katie Riles',
-    'Raymond Seach',
-    'Justin Sorrell',
-    'Kevin Tharp',
-    'John Egloff',
-    'Blair Vandivier',
-    'Lindsay Llewellyn',
-    'Patrick McCarney'
+  const team: { name: string; role: string }[] = [
+    { name: 'Jaclyn M. Flint', role: 'Partner' },
+    { name: 'Kathleen Hart', role: 'Partner' },
+    { name: 'Eric M. Hylton', role: 'Partner' },
+    { name: 'Anthony R. Jost', role: 'Partner' },
+    { name: 'Ryan L. Leitch', role: 'Partner' },
+    { name: 'Courtney David Mills', role: 'Partner' },
+    { name: 'Katie S. Riles', role: 'Partner' },
+    { name: 'Raymond T. Seach', role: 'Partner' },
+    { name: 'Justin O. Sorrell', role: 'Partner' },
+    { name: 'Kevin N. Tharp', role: 'Partner' },
+    { name: 'John L. Egloff', role: 'Of Counsel' },
+    { name: 'Blair R. Vandivier', role: 'Of Counsel' },
+    { name: 'Lindsay A. Llewellyn', role: 'Associate' },
+    { name: 'Patrick S. McCarney', role: 'Associate' },
   ]
 
+  const getEmail = (name: string): string => {
+    const a = attorneys.find((x) => x.name === name)
+    return a?.email || ''
+  }
+  const getImage = (name: string): string | undefined => {
+    const a = attorneys.find((x) => x.name === name)
+    return a?.imageUrl
+  }
+  const getId = (name: string): string | undefined => {
+    const a = attorneys.find((x) => x.name === name)
+    return a?.id
+  }
+
   return (
-    <>
+    <div className="min-h-screen bg-gray-50">
       <MarketTicker />
-      <ContentPageLayout
-        title="Business & Corporate Law"
-        subtitle="Comprehensive legal services from formation to dissolution."
-        relatedAttorneys={relatedAttorneys}
-      >
-      <div className="mb-10">
-        <p className="text-lg text-neutral-700 leading-relaxed mb-6">
-          Riley Bennett Egloff provides comprehensive legal counsel to businesses at every stage of their lifecycle.
-          From entity formation to succession planning and dissolution, our experienced attorneys understand the
-          complex legal landscape that businesses navigate daily.
-        </p>
-        <p className="text-lg text-neutral-700 leading-relaxed">
-          We work closely with business owners, executives, and entrepreneurs to provide strategic guidance that
-          protects their interests while enabling growth and success. Our team combines deep legal expertise with
-          practical business acumen to deliver solutions that work in the real world.
-        </p>
+
+      {/* Hero */}
+      <div className="relative bg-gradient-to-br from-rbe-navy to-rbe-burgundy py-20 text-white">
+        {(() => { const hero = getPracticeAreaHero('business-law'); return hero ? (
+          <>
+            <img src={hero.src} srcSet={hero.srcset} alt="Business & Corporate hero" className="absolute inset-0 h-full w-full object-cover opacity-30" />
+            <div className="absolute inset-0 bg-gradient-to-br from-rbe-navy/80 to-rbe-burgundy/70" />
+          </>
+        ) : null })()}
+        <div className="section-container relative">
+          <h1 className="mb-4 text-4xl font-bold md:text-5xl">Business & Corporate Law</h1>
+          <p className="text-lg text-white/90">
+            The business law attorneys of Riley Bennett Egloff offer a comprehensive range of legal services for their business clients, from formation to dissolution, handling all of the various legal issues that a business can face.
+          </p>
+        </div>
       </div>
 
-      <h2 className="text-3xl font-serif font-semibold text-primary-navy mb-6 mt-10">
-        Our Services
-      </h2>
+      {/* Content */}
+      <div className="section-container py-12">
+        <div className="rounded-lg bg-white p-8 shadow-sm">
+          <div className="prose prose-lg max-w-none">
+            <h2 className="text-2xl font-bold text-gray-900 mb-3">Selection & Formation</h2>
+            <p>
+              Choosing the right business structure is one of the most important decisions you'll make. Our attorneys
+              help you evaluate your options and select the entity type that best fits your business goals, tax
+              considerations, and liability concerns.
+            </p>
+            <p>We provide comprehensive formation services including:</p>
+            <ul className="list-disc pl-5 space-y-1">
+              <li>Drafting articles of incorporation and organization</li>
+              <li>Preparing bylaws and operating agreements</li>
+              <li>Stock issuance and ownership structuring</li>
+              <li>Shareholder and partnership agreements</li>
+              <li>Compliance with state and federal registration requirements</li>
+            </ul>
 
-      <Accordion className="mb-10">
-        <AccordionItem title="Business Entity Selection & Formation" defaultOpen>
-          <p className="mb-4">
-            Choosing the right business structure is one of the most important decisions you'll make. Our attorneys
-            help you evaluate your options and select the entity type that best fits your business goals, tax
-            considerations, and liability concerns.
-          </p>
-          <p className="mb-4">We provide comprehensive formation services including:</p>
-          <ul className="list-disc list-inside space-y-2 ml-4">
-            <li>Drafting articles of incorporation and organization</li>
-            <li>Preparing bylaws and operating agreements</li>
-            <li>Stock issuance and ownership structuring</li>
-            <li>Shareholder and partnership agreements</li>
-            <li>Compliance with state and federal registration requirements</li>
-          </ul>
-        </AccordionItem>
+            <h2 className="text-2xl font-bold text-gray-900 mb-3 mt-8">Contract Review</h2>
+            <p>
+              Well-drafted contracts are the foundation of successful business relationships. Our team meticulously
+              reviews and negotiates contracts to protect your interests and minimize the risk of future disputes.
+            </p>
+            <p>We handle all types of business contracts, including:</p>
+            <ul className="list-disc pl-5 space-y-1">
+              <li>Vendor and supplier agreements</li>
+              <li>Customer and service contracts</li>
+              <li>Employment and independent contractor agreements</li>
+              <li>Non-disclosure and confidentiality agreements</li>
+              <li>Purchase and sale agreements</li>
+              <li>Licensing and franchise agreements</li>
+            </ul>
+            <p className="mt-4">Our careful attention to detail in the drafting phase helps avoid costly litigation down the road.</p>
 
-        <AccordionItem title="Contract Review & Negotiation">
-          <p className="mb-4">
-            Well-drafted contracts are the foundation of successful business relationships. Our team meticulously
-            reviews and negotiates contracts to protect your interests and minimize the risk of future disputes.
-          </p>
-          <p className="mb-4">We handle all types of business contracts, including:</p>
-          <ul className="list-disc list-inside space-y-2 ml-4">
-            <li>Vendor and supplier agreements</li>
-            <li>Customer and service contracts</li>
-            <li>Employment and independent contractor agreements</li>
-            <li>Non-disclosure and confidentiality agreements</li>
-            <li>Purchase and sale agreements</li>
-            <li>Licensing and franchise agreements</li>
-          </ul>
-          <p className="mt-4">
-            Our careful attention to detail in the drafting phase helps avoid costly litigation down the road.
-          </p>
-        </AccordionItem>
+            <h2 className="text-2xl font-bold text-gray-900 mb-3 mt-8">Consultation & Advice</h2>
+            <p>
+              Running a business involves making countless decisions with legal implications. Our attorneys serve as
+              trusted advisors, providing guidance on day-to-day operations and strategic initiatives.
+            </p>
+            <p>We offer counsel on:</p>
+            <ul className="list-disc pl-5 space-y-1">
+              <li>Employment relations and HR policies</li>
+              <li>Intellectual property protection strategies</li>
+              <li>Risk management and insurance coverage</li>
+              <li>Regulatory compliance and licensing</li>
+              <li>Mergers, acquisitions, and business sales</li>
+              <li>Corporate governance best practices</li>
+            </ul>
 
-        <AccordionItem title="Consultation & Strategic Advice">
-          <p className="mb-4">
-            Running a business involves making countless decisions with legal implications. Our attorneys serve as
-            trusted advisors, providing guidance on day-to-day operations and strategic initiatives.
-          </p>
-          <p className="mb-4">We offer counsel on:</p>
-          <ul className="list-disc list-inside space-y-2 ml-4">
-            <li>Employment relations and HR policies</li>
-            <li>Intellectual property protection strategies</li>
-            <li>Risk management and insurance coverage</li>
-            <li>Regulatory compliance and licensing</li>
-            <li>Mergers, acquisitions, and business sales</li>
-            <li>Corporate governance best practices</li>
-          </ul>
-        </AccordionItem>
+            <h2 className="text-2xl font-bold text-gray-900 mb-3 mt-8">Succession Planning</h2>
+            <p>
+              Effective succession planning ensures business continuity while addressing tax efficiency, operational
+              stability, and personal goals. Whether you're planning for retirement, considering bringing in new partners,
+              or preparing for unforeseen circumstances, we help you develop a comprehensive succession strategy.
+            </p>
+            <p>Our succession planning services address:</p>
+            <ul className="list-disc pl-5 space-y-1">
+              <li>Tax-efficient ownership transition strategies</li>
+              <li>Buy-sell agreements and valuation methods</li>
+              <li>Leadership transition planning</li>
+              <li>Estate planning integration</li>
+              <li>Family business succession</li>
+              <li>Key employee retention and incentive programs</li>
+            </ul>
 
-        <AccordionItem title="Succession Planning">
-          <p className="mb-4">
-            Effective succession planning ensures business continuity while addressing tax efficiency, operational
-            stability, and personal goals. Whether you're planning for retirement, considering bringing in new partners,
-            or preparing for unforeseen circumstances, we help you develop a comprehensive succession strategy.
-          </p>
-          <p className="mb-4">Our succession planning services address:</p>
-          <ul className="list-disc list-inside space-y-2 ml-4">
-            <li>Tax-efficient ownership transition strategies</li>
-            <li>Buy-sell agreements and valuation methods</li>
-            <li>Leadership transition planning</li>
-            <li>Estate planning integration</li>
-            <li>Family business succession</li>
-            <li>Key employee retention and incentive programs</li>
-          </ul>
-        </AccordionItem>
+            <h2 className="text-2xl font-bold text-gray-900 mb-3 mt-8">Dispute Resolution</h2>
+            <p>
+              When business disputes arise—whether internal conflicts among owners or external disputes with vendors,
+              customers, or competitors—our attorneys work diligently to find efficient resolutions while protecting
+              your business interests.
+            </p>
+            <p>We handle:</p>
+            <ul className="list-disc pl-5 space-y-1">
+              <li>Shareholder and partnership disputes</li>
+              <li>Contract disputes and breach of contract claims</li>
+              <li>Business divorce and dissolution</li>
+              <li>Non-compete and trade secret enforcement</li>
+              <li>Mediation and arbitration</li>
+              <li>Commercial litigation when necessary</li>
+            </ul>
+          </div>
 
-        <AccordionItem title="Dispute Resolution">
-          <p className="mb-4">
-            When business disputes arise—whether internal conflicts among owners or external disputes with vendors,
-            customers, or competitors—our attorneys work diligently to find efficient resolutions while protecting
-            your business interests.
-          </p>
-          <p className="mb-4">We handle:</p>
-          <ul className="list-disc list-inside space-y-2 ml-4">
-            <li>Shareholder and partnership disputes</li>
-            <li>Contract disputes and breach of contract claims</li>
-            <li>Business divorce and dissolution</li>
-            <li>Non-compete and trade secret enforcement</li>
-            <li>Mediation and arbitration</li>
-            <li>Commercial litigation when necessary</li>
-          </ul>
-          <p className="mt-4">
-            Our goal is always to resolve disputes efficiently and cost-effectively, avoiding litigation when possible
-            while being fully prepared to advocate vigorously in court when required.
-          </p>
-        </AccordionItem>
-      </Accordion>
+          <div className="mt-8 rounded-lg bg-gray-50 p-6">
+            <h3 className="mb-2 text-xl font-bold text-gray-900">Ready to Discuss Your Business Needs?</h3>
+            <p className="mb-4 text-gray-600">
+              Our experienced business law team is here to help you navigate the complexities of running and growing
+              your business. Whether you're just starting out or looking to take your established business to the next
+              level, we're ready to provide the strategic legal counsel you need.
+            </p>
+            <a href="/contact" className="inline-block rounded-lg bg-rbe-navy px-6 py-3 text-white hover:bg-rbe-navy/90">Schedule a Consultation</a>
+          </div>
+        </div>
 
-      <div className="bg-neutral-50 p-8 rounded-sm border border-neutral-200 mt-12">
-        <h3 className="text-2xl font-serif font-semibold text-primary-navy mb-4">
-          Ready to Discuss Your Business Needs?
-        </h3>
-        <p className="text-neutral-700 mb-6 leading-relaxed">
-          Our experienced business law team is here to help you navigate the complexities of running and growing
-          your business. Whether you're just starting out or looking to take your established business to the next
-          level, we're ready to provide the strategic legal counsel you need.
-        </p>
-        <a href="/contact" className="inline-block bg-accent-gold text-white px-8 py-3 rounded-sm font-semibold hover:bg-accent-bronze transition-colors">
-          Schedule a Consultation
-        </a>
+        {/* Team Grid */}
+        <div className="mt-12">
+          <h2 className="mb-6 text-2xl font-bold text-gray-900">Professionals in Business & Corporate Law</h2>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {team.map((p) => {
+              const email = getEmail(p.name)
+              const img = getImage(p.name)
+              const id = getId(p.name)
+              const first = p.name.split(' ')[0]
+              const card = (
+                <div className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm">
+                  {img && (
+                    <img src={img} alt={p.name} className="mb-4 h-56 w-full rounded-md object-cover shadow" loading="lazy" />
+                  )}
+                  <div className="mb-1 font-semibold text-gray-900">{p.name}</div>
+                  <div className="mb-3 text-sm text-rbe-burgundy font-semibold">{p.role}</div>
+                  <div>
+                    <a
+                      href={email ? `mailto:${email}` : '/contact'}
+                      className="text-rbe-burgundy hover:underline"
+                      aria-label={`Email ${p.name}`}
+                    >
+                      email {first}
+                    </a>
+                  </div>
+                </div>
+              )
+              return (
+                <div key={p.name}>
+                  {id ? (
+                    <Link to={`/attorneys/${id}`}>{card}</Link>
+                  ) : (
+                    card
+                  )}
+                </div>
+              )
+            })}
+          </div>
+        </div>
       </div>
-    </ContentPageLayout>
-    </>
+    </div>
   )
 }

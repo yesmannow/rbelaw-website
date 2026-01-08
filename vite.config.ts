@@ -66,6 +66,19 @@ export default defineConfig({
   },
   build: {
     chunkSizeWarningLimit: 4096, // 4 MiB warning threshold (warnings only)
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('react-router-dom') || id.includes('react-dom') || id.includes('react')) return 'react-vendors'
+            if (id.includes('framer-motion')) return 'motion'
+            if (id.includes('lucide-react')) return 'icons'
+            if (id.includes('cmdk')) return 'cmdk'
+            return 'vendor'
+          }
+        }
+      }
+    }
   },
   server: {
     port: 5174,
