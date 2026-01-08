@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { MessageCircle, X, Send, Loader2, User, Search } from 'lucide-react'
-import { attorneys } from '@/lib/data/attorneys'
+import { attorneys } from '@/lib/data/attorney-helpers'
 import { practiceAreas } from '@/lib/data/practiceAreas'
 import newsArchive from '@/lib/data/news-archive.json'
 import type { Attorney } from '@/lib/types'

@@ -4,9 +4,9 @@
  */
 
 import { Link } from 'react-router-dom';
-import { Badge, Calendar, Scale, TrendingUp, Users } from 'lucide-react';
+import { Calendar, Scale, TrendingUp, Users } from 'lucide-react';
 import type { CaseResult } from '@/lib/types';
-import { attorneys } from '@/lib/data/attorneys';
+import { attorneys } from '@/lib/data/attorney-helpers';
 
 interface CaseResultCardProps {
   caseResult: CaseResult;

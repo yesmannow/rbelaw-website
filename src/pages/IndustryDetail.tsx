@@ -4,14 +4,12 @@
  */
 
 import { useParams, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { ArrowRight, Building2 } from 'lucide-react';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { iconMap } from '@/lib/data/navigation';
 
 // Import from generated data files
 import { industries } from '@/lib/data/industries';
-import { attorneys } from '@/lib/data/attorneys';
 
 export function IndustryDetail() {
   const { slug } = useParams();
@@ -22,7 +20,7 @@ export function IndustryDetail() {
       <div className="min-h-screen bg-gray-50">
         <PageHeader
           title="Industry Not Found"
-          description="The industry you're looking for doesn't exist"
+          subtitle="The industry you're looking for doesn't exist"
         />
         <div className="section-container py-12 text-center">
           <Link

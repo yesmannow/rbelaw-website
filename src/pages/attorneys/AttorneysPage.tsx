@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { Mail, Phone } from 'lucide-react'
-import { attorneys } from '@/lib/data/attorneys'
+import { attorneys } from '@/lib/data/attorney-helpers'
 import { SEOMeta } from '@/components/seo/SEOMeta'
 
 export function AttorneysPage() {

@@ -4,14 +4,13 @@
  */
 
 import { useParams, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { ArrowRight, Scale } from 'lucide-react';
 import { PageHeader } from '@/components/layout/PageHeader';
 import { iconMap } from '@/lib/data/navigation';
 
 // Import from generated data files
 import { practiceAreas } from '@/lib/data/practice-areas';
-import { attorneys } from '@/lib/data/attorneys';
+import { attorneys } from '@/lib/data/attorney-helpers';
 
 export function PracticeAreaDetail() {
   const { slug } = useParams();
@@ -22,7 +21,7 @@ export function PracticeAreaDetail() {
       <div className="min-h-screen bg-gray-50">
         <PageHeader
           title="Practice Area Not Found"
-          description="The practice area you're looking for doesn't exist"
+          subtitle="The practice area you're looking for doesn't exist"
         />
         <div className="section-container py-12 text-center">
           <Link
@@ -118,13 +117,13 @@ export function PracticeAreaDetail() {
                 <div className="space-y-4">
                   {relatedAttorneys.slice(0, 5).map((attorney) => (
                     <Link
-                      key={attorney.slug}
-                      to={`/attorneys/${attorney.slug}`}
+                      key={attorney.id}
+                      to={`/attorneys/${attorney.id}`}
                       className="group flex items-center gap-4 rounded-lg border border-gray-200 p-4 transition-all hover:border-rbe-navy hover:shadow-md"
                     >
-                      {attorney.image && (
+                      {attorney.imageUrl && (
                         <img
-                          src={attorney.image}
+                          src={attorney.imageUrl}
                           alt={attorney.name}
                           className="h-16 w-16 rounded-full object-cover"
                         />

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Trophy, GraduationCap, FileText, Briefcase, Award } from 'lucide-react'
-import { getAttorneyById } from '@/lib/data/attorneys'
+import { getAttorneyById } from '@/lib/data/attorney-helpers'
 import { SEOMeta } from '@/components/seo/SEOMeta'
 import { LeadCaptureModal } from '@/components/marketing/LeadCaptureModal'
 import {
@@ -290,7 +290,7 @@ export function EnhancedAttorneyBioPage() {
         onClose={() => setShowLeadCapture(false)}
         title={`Schedule a Consultation with ${attorney.name}`}
         description="Our team will reach out to schedule a time that works for you."
-        source="attorney_bio"
+        source="contact_form"
         metadata={{
           attorneyId: attorney.id,
           attorneyName: attorney.name

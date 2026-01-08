@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import type { PanInfo } from 'framer-motion'
 import { Mail, Phone, Linkedin, ArrowLeft } from 'lucide-react'
-import { getAttorneyById } from '@/lib/data/attorneys'
+import { getAttorneyById } from '@/lib/data/attorney-helpers'
 import { SEOMeta } from '@/components/seo/SEOMeta'
 
 type TabType = 'biography' | 'matters' | 'education'
