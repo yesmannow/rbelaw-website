@@ -8,9 +8,11 @@ import { useParams, Navigate, Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { PageHeader } from '@/components/layout/PageHeader'
+import { FeaturedTool } from '@/components/practice-areas/FeaturedTool'
 import { AttorneyCard } from '@/components/attorneys'
 import { getAttorneysByName } from '@/lib/data/attorney-helpers'
 import { getIndustryBySlugManual } from '@/lib/data/industries-manual'
+import { getToolForIndustry } from '@/lib/data/toolMappings'
 
 export function IndustryDetail() {
   const { slug } = useParams<{ slug: string }>()
@@ -21,6 +23,9 @@ export function IndustryDetail() {
 
   // Get attorneys for this industry
   const team = industry ? getAttorneysByName(industry.attorneys) : []
+  
+  // Get featured tool for this industry (if available)
+  const featuredTool = slug ? getToolForIndustry(slug) : undefined
 
   // Dynamic Metadata Injection - SEO Authority Format
   useEffect(() => {
@@ -110,6 +115,11 @@ export function IndustryDetail() {
               </a>
             </div>
           </div>
+          
+          {/* Featured Tool - Only show if tool is available for this industry */}
+          {featuredTool && (
+            <FeaturedTool mapping={featuredTool} />
+          )}
         </div>
 
         {/* Professionals Section - Smart Tab Logic: Only show if there are attorneys */}
