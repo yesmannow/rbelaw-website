@@ -16,8 +16,11 @@ export default {
           maroon: '#213469',       // Alias for backward compatibility (now navy)
         },
         accent: {
-          gold: '#D3CBBC',      // RBE Tan/Beige - Primary accent
-          tan: '#D3CBBC',       // RBE Tan/Beige - Alias
+          gold: '#B8860B',      // Prestige Gold - For premium accents
+          tan: '#D3CBBC',       // RBE Tan/Beige - Primary accent
+        },
+        prestige: {
+          gold: '#B8860B',      // Prestige Gold - For borders and accents
         },
         neutral: {
           50: '#f8fafc',

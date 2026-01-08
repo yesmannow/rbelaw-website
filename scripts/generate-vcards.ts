@@ -40,7 +40,7 @@ function generateAttorneyVCard(attorney: any): vCard {
   const firstName = nameParts.join(' ')
   
   card.set('fn', attorney.name)
-  card.set('n', [lastName, firstName, '', '', ''])
+  card.set('n', `${lastName};${firstName};;;`)
 
   // Title and Organization
   if (attorney.title) {
@@ -58,15 +58,7 @@ function generateAttorneyVCard(attorney: any): vCard {
   }
 
   // Address
-  const adr = [
-    '', // PO Box
-    FIRM_ADDRESS.suite,
-    FIRM_ADDRESS.street,
-    FIRM_ADDRESS.city,
-    FIRM_ADDRESS.state,
-    FIRM_ADDRESS.zip,
-    FIRM_ADDRESS.country
-  ]
+  const adr = `;;${FIRM_ADDRESS.suite};${FIRM_ADDRESS.street};${FIRM_ADDRESS.city};${FIRM_ADDRESS.state};${FIRM_ADDRESS.zip};${FIRM_ADDRESS.country}`
   card.add('adr', adr, { type: 'work' })
 
   // URL
