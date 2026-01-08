@@ -159,7 +159,7 @@ export function AttorneyBioPagePrestige() {
                           <img
                             src={images.fallback}
                             alt={attorney.name}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover attorney-portrait"
                             loading="eager"
                             onError={(e) => {
                               e.currentTarget.src = '/placeholder-avatar.jpg'

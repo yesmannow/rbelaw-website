@@ -84,8 +84,8 @@ export function IndustriesPage() {
                               </li>
                             ))}
                             {industry.services.length > 3 && (
-                              <li className="text-sm text-primary-burgundy font-medium">
-                                +{industry.services.length - 3} more services
+                              <li className="text-sm text-[#B8860B] font-medium">
+                                +{industry.services.length - 3} more service{industry.services.length - 3 !== 1 ? 's' : ''}
                               </li>
                             )}
                           </ul>
@@ -97,8 +97,8 @@ export function IndustriesPage() {
                         <div className="flex items-center gap-2 text-sm text-neutral-600 mb-6 pb-6 border-b border-neutral-200">
                           <Users className="w-4 h-4 text-primary-navy" />
                           <span>
-                            <strong className="text-primary-navy">{industry.attorneys.length}</strong> attorneys
-                            {' '}specializing in this industry
+                            <strong className="text-primary-navy">{industry.attorneys.length}</strong> attorney{industry.attorneys.length !== 1 ? 's' : ''}
+                            {' '}specializing in this area
                           </span>
                         </div>
                       )}

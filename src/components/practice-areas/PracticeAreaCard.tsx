@@ -103,7 +103,7 @@ export function PracticeAreaCard({ area, index = 0 }: PracticeAreaCardProps) {
                     </li>
                   ))}
                   {remainingCount > 0 && (
-                    <li className="text-sm text-[#0A2540] font-medium">
+                    <li className="text-sm text-[#B8860B] font-medium">
                       +{remainingCount} more service{remainingCount !== 1 ? 's' : ''}
                     </li>
                   )}
@@ -117,7 +117,7 @@ export function PracticeAreaCard({ area, index = 0 }: PracticeAreaCardProps) {
                 <Users className="w-4 h-4 text-[#0A2540]" />
                 <span>
                   <strong className="text-[#0A2540]">{attorneyCount}</strong> attorney{attorneyCount !== 1 ? 's' : ''}
-                  {' '}specializing in this practice area
+                  {' '}specializing in this area
                 </span>
               </div>
             )}

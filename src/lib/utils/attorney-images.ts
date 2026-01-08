@@ -1,6 +1,6 @@
 /**
  * Attorney Image Mapping
- * Maps attorney names to their image file slugs in /public/images/team/Attorneys/
+ * Maps attorney names to their image file slugs in /images/team/optimized/
  */
 
 export const attorneyImageMap: Record<string, string> = {
@@ -59,7 +59,7 @@ export function getAttorneyImages(name: string, fallbackUrl?: string) {
     }
   }
 
-  const basePath = `/images/team/Attorneys/${slug}`
+  const basePath = `/images/team/optimized/${slug}`
   
   return {
     webp: `${basePath}.webp`,
