@@ -11,7 +11,6 @@ import { PageHeader } from '@/components/layout/PageHeader'
 import { AttorneyCard } from '@/components/attorneys'
 import { getAttorneysByName } from '@/lib/data/attorney-helpers'
 import { getIndustryBySlugManual } from '@/lib/data/industries-manual'
-import { ArrowLeft } from 'lucide-react'
 
 export function IndustryDetail() {
   const { slug } = useParams<{ slug: string }>()
@@ -23,15 +22,19 @@ export function IndustryDetail() {
   // Get attorneys for this industry
   const team = industry ? getAttorneysByName(industry.attorneys) : []
 
-  // Dynamic Metadata Injection using useEffect - SEO Authority Format
+  // Dynamic Metadata Injection - SEO Authority Format
   useEffect(() => {
     if (industry) {
       document.title = `${industry.name} | Industries | Riley Bennett Egloff LLP`
     }
-    // Simulate loading for skeleton
-    const timer = setTimeout(() => setIsLoading(false), 300)
-    return () => clearTimeout(timer)
   }, [industry])
+
+  // Skeleton loading state
+  useEffect(() => {
+    const SKELETON_DURATION = 300
+    const timer = setTimeout(() => setIsLoading(false), SKELETON_DURATION)
+    return () => clearTimeout(timer)
+  }, [])
 
   // Structural Data Safety: Navigate to 404 if invalid slug
   if (!industry) {

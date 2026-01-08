@@ -12,7 +12,6 @@ import { PracticeAreaHero } from '@/components/practice-areas/PracticeAreaHero'
 import { AttorneyCard } from '@/components/attorneys'
 import { getAttorneysByPracticeArea } from '@/lib/data/attorney-helpers'
 import { enhancedPracticeAreas } from '@/lib/data/practiceAreasEnhanced'
-import { ArrowLeft } from 'lucide-react'
 
 export function PracticeAreaDetail() {
   const { slug } = useParams<{ slug: string }>()
@@ -24,15 +23,19 @@ export function PracticeAreaDetail() {
   // Get attorneys for this practice area
   const team = practiceArea ? getAttorneysByPracticeArea(practiceArea.name) : []
 
-  // Dynamic Metadata Injection using useEffect - SEO Authority Format
+  // Dynamic Metadata Injection - SEO Authority Format
   useEffect(() => {
     if (practiceArea) {
       document.title = `${practiceArea.name} | Practice Areas | Riley Bennett Egloff LLP`
     }
-    // Simulate loading for skeleton
-    const timer = setTimeout(() => setIsLoading(false), 300)
-    return () => clearTimeout(timer)
   }, [practiceArea])
+
+  // Skeleton loading state
+  useEffect(() => {
+    const SKELETON_DURATION = 300
+    const timer = setTimeout(() => setIsLoading(false), SKELETON_DURATION)
+    return () => clearTimeout(timer)
+  }, [])
 
   // Structural Data Safety: Navigate to 404 if invalid slug
   if (!practiceArea) {
