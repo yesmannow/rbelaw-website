@@ -1,6 +1,6 @@
 /**
  * Attorney Image Mapping
- * Maps attorney names to their image file slugs in /public/images/team/optimized/
+ * Maps attorney names to their image file slugs in /images/team/optimized/
  */
 
 export const attorneyImageMap: Record<string, string> = {
