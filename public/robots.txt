@@ -1,0 +1,9 @@
+# public/robots.txt
+User-agent: *
+Allow: /
+Disallow: /archive/
+Disallow: /src/pages/tools/
+Disallow: /private/
+
+# Sitemaps
+Sitemap: https://www.rbelaw.com/sitemap.xml
