@@ -39,6 +39,7 @@ export default {
         // RBE Official Fonts (from current site)
         sans: ['Open Sans', 'Arial', 'sans-serif'],
         serif: ['Raleway', 'Helvetica', 'Arial', 'Lucida', 'sans-serif'],
+        display: ['Playfair Display', 'Georgia', 'serif'],
       },
       spacing: {
         '18': '4.5rem',
@@ -63,6 +64,7 @@ export default {
         'enterFromRight': 'enterFromRight 0.25s ease',
         'exitToLeft': 'exitToLeft 0.25s ease',
         'exitToRight': 'exitToRight 0.25s ease',
+        'shimmer': 'shimmer 2s infinite',
       },
       keyframes: {
         fadeIn: {
@@ -100,6 +102,10 @@ export default {
         exitToRight: {
           '0%': { opacity: '1', transform: 'translateX(0)' },
           '100%': { opacity: '0', transform: 'translateX(200px)' },
+        },
+        shimmer: {
+          '0%': { backgroundPosition: '-200% 0' },
+          '100%': { backgroundPosition: '200% 0' },
         },
       },
     },

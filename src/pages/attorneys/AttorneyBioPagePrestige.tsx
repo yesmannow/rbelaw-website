@@ -15,6 +15,7 @@ import { getAttorneyImages } from '@/lib/utils/attorney-images'
 import { useArticlesByAuthor } from '@/lib/utils/linker'
 import { blogPosts } from '@/lib/data'
 import { BlogCard } from '@/components/blog/BlogCard'
+import { ReadingProgressBar } from '@/components/ui/ReadingProgressBar'
 import type { Attorney } from '@/lib/types'
 
 type TabType = 'biography' | 'matters' | 'publications' | 'awards' | 'community' | 'beyond' | 'videos' | 'education'
@@ -122,6 +123,9 @@ export function AttorneyBioPagePrestige() {
 
   return (
     <>
+      {/* Reading Progress Bar */}
+      <ReadingProgressBar />
+      
       <SEOMeta
         title={attorney.name}
         description={attorney.bio || ''}
