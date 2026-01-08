@@ -59,7 +59,7 @@ async function optimizeAttorneyPhoto(filename: string) {
 
     // Read the image
     const image = sharp(inputPath);
-    const metadata = await image.metadata();
+    await image.metadata();
 
     // Resize to consistent dimensions (400x400 for attorney cards)
     const size = 400;

@@ -6,3 +6,4 @@
 export * from './attorneys';
 export * from './blog-posts';
 export * from './about-pages';
+export * from './practiceAreas';

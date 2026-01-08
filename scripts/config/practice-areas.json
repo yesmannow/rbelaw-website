@@ -18,5 +18,115 @@
       "marble justice building",
       "legal scales architecture"
     ]
+  },
+  {
+    "slug": "business-litigation",
+    "name": "Business Litigation",
+    "queries": [
+      "courtroom litigation",
+      "legal dispute resolution",
+      "business law courtroom",
+      "corporate litigation"
+    ]
+  },
+  {
+    "slug": "commercial-litigation",
+    "name": "Commercial Litigation",
+    "queries": [
+      "commercial courtroom",
+      "trial litigation",
+      "legal proceedings",
+      "courthouse interior"
+    ]
+  },
+  {
+    "slug": "construction",
+    "name": "Construction Law",
+    "queries": [
+      "construction site skyline",
+      "building development",
+      "construction workers professional",
+      "commercial construction"
+    ]
+  },
+  {
+    "slug": "family-law",
+    "name": "Family Law",
+    "queries": [
+      "family legal consultation",
+      "mediation room",
+      "family law office",
+      "peaceful consultation room"
+    ]
+  },
+  {
+    "slug": "government-law",
+    "name": "Government Law",
+    "queries": [
+      "government building",
+      "municipal courthouse",
+      "state capitol building",
+      "public administration"
+    ]
+  },
+  {
+    "slug": "health-care",
+    "name": "Health Care Law",
+    "queries": [
+      "modern hospital exterior",
+      "healthcare facility",
+      "medical center building",
+      "healthcare professionals"
+    ]
+  },
+  {
+    "slug": "insurance",
+    "name": "Insurance Law",
+    "queries": [
+      "insurance professional office",
+      "risk management",
+      "insurance documents",
+      "professional insurance meeting"
+    ]
+  },
+  {
+    "slug": "intellectual-property",
+    "name": "Intellectual Property",
+    "queries": [
+      "innovation technology",
+      "patent trademark",
+      "intellectual property law",
+      "technology innovation"
+    ]
+  },
+  {
+    "slug": "labor-employment",
+    "name": "Labor & Employment",
+    "queries": [
+      "workplace office",
+      "employment law office",
+      "professional workplace",
+      "corporate office environment"
+    ]
+  },
+  {
+    "slug": "real-estate",
+    "name": "Real Estate Law",
+    "queries": [
+      "commercial real estate",
+      "property development",
+      "real estate skyline",
+      "commercial property"
+    ]
+  },
+  {
+    "slug": "wills-trusts-estates",
+    "name": "Wills, Trusts & Estates",
+    "queries": [
+      "estate planning office",
+      "trust law consultation",
+      "wealth management",
+      "estate law office"
+    ]
   }
 ]

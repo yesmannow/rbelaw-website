@@ -143,8 +143,14 @@ export interface AboutPage {
   title: string;
   slug: string;
   description?: string;
-  content: ContentBlock[];
+  content: AboutPageSection[];
   image?: string;
+}
+
+export interface AboutPageSection {
+  heading: string;
+  level: 'h2' | 'h3' | 'h4' | 'H2' | 'H3' | 'H4';
+  content: string[];
 }
 
 // ============================================================================

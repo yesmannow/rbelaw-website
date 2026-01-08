@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Sparkles, TrendingUp, Clock, Tag, ExternalLink, ChevronRight } from 'lucide-react'
+import { Sparkles, TrendingUp, Clock, Tag, ChevronRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { Card, CardContent } from '@/components/ui'
 import { getAllPosts } from '@/lib/utils/news'
@@ -20,24 +20,6 @@ export function AINewsDigest() {
   const [digestItems, setDigestItems] = useState<DigestItem[]>([])
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
 
-  useEffect(() => {
-    // Get recent posts and generate AI summaries
-    const posts = getAllPosts().slice(0, 10)
-    
-    const items: DigestItem[] = posts.map(post => ({
-      id: post.id,
-      title: post.title,
-      summary: generateAISummary(post.excerpt),
-      category: post.category,
-      date: post.date,
-      slug: post.slug,
-      impact: determineImpact(post.category),
-      aiInsight: generateAIInsight(post.title, post.category)
-    }))
-
-    setDigestItems(items)
-  }, [])
-
   // Mock AI summary generation (in production, call actual AI API)
   const generateAISummary = (excerpt: string): string => {
     // Truncate and add AI-style summary
@@ -46,7 +28,7 @@ export function AINewsDigest() {
   }
 
   // Mock AI insight generation
-  const generateAIInsight = (title: string, category: string): string => {
+  const generateAIInsight = (_title: string, category: string): string => {
     const insights: Record<string, string[]> = {
       'Firm News': [
         'This recognition reflects RBE\'s continued excellence in legal services.',
@@ -84,6 +66,25 @@ export function AINewsDigest() {
     if (category === 'Business & Corporate' || category === 'Health Care Law') return 'medium'
     return 'low'
   }
+
+  useEffect(() => {
+    // Get recent posts and generate AI summaries
+    const posts = getAllPosts().slice(0, 10)
+    
+    const items: DigestItem[] = posts.map(post => ({
+      id: post.id,
+      title: post.title,
+      summary: generateAISummary(post.excerpt),
+      category: post.category,
+      date: post.date,
+      slug: post.slug,
+      impact: determineImpact(post.category),
+      aiInsight: generateAIInsight(post.title, post.category)
+    }))
+
+    setDigestItems(items)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   const getImpactColor = (impact: string) => {
     switch (impact) {

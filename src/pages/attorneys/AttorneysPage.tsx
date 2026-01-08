@@ -2,9 +2,28 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { Mail, Phone } from 'lucide-react'
 import { attorneys } from '@/lib/data/attorney-helpers'
+import { generateVCard } from '@/lib/utils/vcard'
 import { SEOMeta } from '@/components/seo/SEOMeta'
 
 export function AttorneysPage() {
+  const downloadAllVCards = () => {
+    try {
+      const vcards = attorneys
+        .map((a) => generateVCard(a))
+        .join('\r\n')
+      const blob = new Blob([vcards], { type: 'text/vcard;charset=utf-8' })
+      const url = URL.createObjectURL(blob)
+      const link = document.createElement('a')
+      link.href = url
+      link.download = 'RBE-Attorneys.vcf'
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      URL.revokeObjectURL(url)
+    } catch (e) {
+      console.error('Error generating bulk vCards', e)
+    }
+  }
   return (
     <>
       <SEOMeta
@@ -27,6 +46,14 @@ export function AttorneysPage() {
               <p className="text-xl text-neutral-200 max-w-3xl">
                 Meet our team of experienced legal professionals committed to delivering exceptional results.
               </p>
+              <div className="mt-6">
+                <button
+                  onClick={downloadAllVCards}
+                  className="inline-flex items-center gap-2 rounded-md bg-white/10 px-4 py-2 text-white hover:bg-white/20 transition-colors"
+                >
+                  Download all vCards
+                </button>
+              </div>
             </motion.div>
           </div>
         </section>

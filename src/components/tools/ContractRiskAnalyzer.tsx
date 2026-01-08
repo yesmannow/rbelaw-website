@@ -7,7 +7,6 @@ import {
   CheckCircle2, 
   XCircle,
   AlertCircle,
-  Download,
   Mail
 } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui'

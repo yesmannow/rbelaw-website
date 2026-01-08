@@ -117,7 +117,7 @@ export function Navbar() {
             </Link>
 
             {/* Practice Areas - Special Mega Menu */}
-            <PracticeAreasMegaMenu section={navData.practiceAreas} />
+            <PracticeAreasMegaMenu />
 
             {/* Industries - Special Mega Menu */}
             <IndustriesMegaMenu section={navData.industries} />

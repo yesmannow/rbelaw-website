@@ -9,13 +9,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { iconMap } from '@/lib/data/navigation';
-import type { NavigationSection } from '@/lib/data/navigation';
+import { practiceAreas } from '@/lib/data';
 
-interface PracticeAreasMegaMenuProps {
-  section: NavigationSection;
-}
-
-export function PracticeAreasMegaMenu({ section }: PracticeAreasMegaMenuProps) {
+export function PracticeAreasMegaMenu() {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleMouseEnter = () => setIsOpen(true);
@@ -70,18 +66,18 @@ export function PracticeAreasMegaMenu({ section }: PracticeAreasMegaMenuProps) {
 
                 {/* Practice Areas Grid */}
                 <div className="grid grid-cols-3 gap-4">
-                  {section.links.map((link, index) => {
-                    const Icon = link.icon ? iconMap[link.icon] : null;
+                  {practiceAreas.map((area, index) => {
+                    const Icon = area.icon ? iconMap[area.icon] : null;
                     
                     return (
                       <motion.div
-                        key={link.href}
+                        key={area.id}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: index * 0.03 }}
                       >
                         <Link
-                          to={link.href}
+                          to={`/practice-areas/${area.slug}`}
                           className="group relative flex h-full flex-col overflow-hidden rounded-lg border border-gray-200 bg-white p-4 transition-all hover:border-rbe-navy hover:shadow-lg"
                         >
                           {/* Icon */}
@@ -94,11 +90,11 @@ export function PracticeAreasMegaMenu({ section }: PracticeAreasMegaMenuProps) {
                           {/* Content */}
                           <div className="flex-1">
                             <h4 className="font-semibold text-gray-900 group-hover:text-rbe-navy">
-                              {link.label}
+                              {area.name}
                             </h4>
-                            {link.description && (
+                            {area.description && (
                               <p className="mt-1 text-sm text-gray-600">
-                                {link.description}
+                                {area.description}
                               </p>
                             )}
                           </div>

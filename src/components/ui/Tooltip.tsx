@@ -1,9 +1,9 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, type ReactNode } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 interface TooltipProps {
-  children: React.ReactNode
-  content: string | React.ReactNode
+  children: ReactNode
+  content: string | ReactNode
   side?: 'top' | 'right' | 'bottom' | 'left'
   delayDuration?: number
   className?: string
@@ -14,12 +14,11 @@ export function Tooltip({
   content,
   side = 'bottom',
   delayDuration = 300,
-  className = ''
 }: TooltipProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [position, setPosition] = useState({ top: 0, left: 0 })
   const triggerRef = useRef<HTMLDivElement>(null)
-  const timeoutRef = useRef<NodeJS.Timeout>()
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const updatePosition = () => {
     if (triggerRef.current) {

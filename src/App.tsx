@@ -2,7 +2,21 @@ import { useState, lazy, Suspense } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { RootLayout } from './components/layout'
 import { HomePage } from './pages/home'
-import { BusinessLaw, BankruptcyReorganization } from './pages/practice-areas'
+import { 
+  BusinessLaw, 
+  BankruptcyReorganization,
+  BusinessLitigation,
+  CommercialLitigation,
+  Construction,
+  FamilyLaw,
+  GovernmentLaw,
+  HealthCare,
+  Insurance,
+  IntellectualProperty,
+  LaborEmployment,
+  RealEstate,
+  WillsTrustsEstates,
+} from './pages/practice-areas'
 import IndustriesIndex from './pages/industries/IndustriesIndex'
 import IndustryPage from './pages/industries/IndustryPage'
 import { AttorneysPage, AttorneyBioPage } from './pages/attorneys'
@@ -64,6 +78,17 @@ function App() {
           <Route path="practice-areas" element={<PracticeAreasIndex />} />
           <Route path="practice-areas/bankruptcy-reorganization" element={<BankruptcyReorganization />} />
           <Route path="practice-areas/bankruptcy" element={<BankruptcyReorganization />} />
+          <Route path="practice-areas/business-litigation" element={<BusinessLitigation />} />
+          <Route path="practice-areas/commercial-litigation" element={<CommercialLitigation />} />
+          <Route path="practice-areas/construction" element={<Construction />} />
+          <Route path="practice-areas/family-law" element={<FamilyLaw />} />
+          <Route path="practice-areas/government-law" element={<GovernmentLaw />} />
+          <Route path="practice-areas/health-care" element={<HealthCare />} />
+          <Route path="practice-areas/insurance" element={<Insurance />} />
+          <Route path="practice-areas/intellectual-property" element={<IntellectualProperty />} />
+          <Route path="practice-areas/labor-employment" element={<LaborEmployment />} />
+          <Route path="practice-areas/real-estate" element={<RealEstate />} />
+          <Route path="practice-areas/wills-trusts-estates" element={<WillsTrustsEstates />} />
           <Route path="attorneys" element={<AttorneysPage />} />
           <Route path="attorneys/:id" element={<AttorneyBioPage />} />
           <Route path="team/professionals" element={<ProfessionalsPage />} />

@@ -10,6 +10,61 @@ export const practiceAreaHeroes: Record<string, HeroImage> = {
     "src": "/assets/practice-areas/bankruptcy-reorganization-1920.webp",
     "srcset": "/assets/practice-areas/bankruptcy-reorganization-1024.webp 1024w, /assets/practice-areas/bankruptcy-reorganization-1536.webp 1536w, /assets/practice-areas/bankruptcy-reorganization-1920.webp 1920w",
     "credit": "Cheung Yin"
+  },
+  "business-litigation": {
+    "src": "/assets/practice-areas/business-litigation-1920.webp",
+    "srcset": "/assets/practice-areas/business-litigation-1024.webp 1024w, /assets/practice-areas/business-litigation-1536.webp 1536w, /assets/practice-areas/business-litigation-1920.webp 1920w",
+    "credit": "Albert Stoynov"
+  },
+  "commercial-litigation": {
+    "src": "/assets/practice-areas/commercial-litigation-1920.webp",
+    "srcset": "/assets/practice-areas/commercial-litigation-1024.webp 1024w, /assets/practice-areas/commercial-litigation-1536.webp 1536w, /assets/practice-areas/commercial-litigation-1920.webp 1920w",
+    "credit": "Neon Wang"
+  },
+  "construction": {
+    "src": "/assets/practice-areas/construction-1920.webp",
+    "srcset": "/assets/practice-areas/construction-1024.webp 1024w, /assets/practice-areas/construction-1536.webp 1536w, /assets/practice-areas/construction-1920.webp 1920w",
+    "credit": "Kartabya Aryal"
+  },
+  "family-law": {
+    "src": "/assets/practice-areas/family-law-1920.webp",
+    "srcset": "/assets/practice-areas/family-law-1024.webp 1024w, /assets/practice-areas/family-law-1536.webp 1536w, /assets/practice-areas/family-law-1920.webp 1920w",
+    "credit": "White.Rainforest ™︎ ∙ 易雨白林."
+  },
+  "government-law": {
+    "src": "/assets/practice-areas/government-law-1920.webp",
+    "srcset": "/assets/practice-areas/government-law-1024.webp 1024w, /assets/practice-areas/government-law-1536.webp 1536w, /assets/practice-areas/government-law-1920.webp 1920w",
+    "credit": "Remy Gieling"
+  },
+  "health-care": {
+    "src": "/assets/practice-areas/health-care-1920.webp",
+    "srcset": "/assets/practice-areas/health-care-1024.webp 1024w, /assets/practice-areas/health-care-1536.webp 1536w, /assets/practice-areas/health-care-1920.webp 1920w",
+    "credit": "Kouji Tsuru"
+  },
+  "insurance": {
+    "src": "/assets/practice-areas/insurance-1920.webp",
+    "srcset": "/assets/practice-areas/insurance-1024.webp 1024w, /assets/practice-areas/insurance-1536.webp 1536w, /assets/practice-areas/insurance-1920.webp 1920w",
+    "credit": "Neon Wang"
+  },
+  "intellectual-property": {
+    "src": "/assets/practice-areas/intellectual-property-1920.webp",
+    "srcset": "/assets/practice-areas/intellectual-property-1024.webp 1024w, /assets/practice-areas/intellectual-property-1536.webp 1536w, /assets/practice-areas/intellectual-property-1920.webp 1920w",
+    "credit": "Tom Claes"
+  },
+  "labor-employment": {
+    "src": "/assets/practice-areas/labor-employment-1920.webp",
+    "srcset": "/assets/practice-areas/labor-employment-1024.webp 1024w, /assets/practice-areas/labor-employment-1536.webp 1536w, /assets/practice-areas/labor-employment-1920.webp 1920w",
+    "credit": "Lotus Design N Print"
+  },
+  "real-estate": {
+    "src": "/assets/practice-areas/real-estate-1920.webp",
+    "srcset": "/assets/practice-areas/real-estate-1024.webp 1024w, /assets/practice-areas/real-estate-1536.webp 1536w, /assets/practice-areas/real-estate-1920.webp 1920w",
+    "credit": "Mister Paps"
+  },
+  "wills-trusts-estates": {
+    "src": "/assets/practice-areas/wills-trusts-estates-1920.webp",
+    "srcset": "/assets/practice-areas/wills-trusts-estates-1024.webp 1024w, /assets/practice-areas/wills-trusts-estates-1536.webp 1536w, /assets/practice-areas/wills-trusts-estates-1920.webp 1920w",
+    "credit": "Leo_Visions"
   }
 } as const;
 export function getPracticeAreaHero(slug: string): HeroImage | undefined { return practiceAreaHeroes[slug]; }

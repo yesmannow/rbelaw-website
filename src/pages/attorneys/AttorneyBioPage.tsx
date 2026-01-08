@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import type { PanInfo } from 'framer-motion'
-import { Mail, Phone, Linkedin, ArrowLeft, Download } from 'lucide-react'
+import { Mail, Phone, Linkedin, ArrowLeft, Download, QrCode, X } from 'lucide-react'
 import { getAttorneyById } from '@/lib/data/attorney-helpers'
 import { downloadVCard } from '@/lib/utils/vcard'
 import { SEOMeta } from '@/components/seo/SEOMeta'
@@ -16,6 +16,13 @@ export function AttorneyBioPage() {
 
   const [activeTab, setActiveTab] = useState<TabType>('biography')
   const [dragDirection, setDragDirection] = useState(0)
+  const [qrOpen, setQrOpen] = useState(false)
+  const [qrMode, setQrMode] = useState<'profile' | 'email'>('profile')
+
+  const profileUrl = typeof window !== 'undefined' && id ? `${window.location.origin}/attorneys/${id}` : ''
+  const mailtoUrl = attorney ? `mailto:${attorney.email}` : ''
+  const qrData = encodeURIComponent(qrMode === 'email' ? mailtoUrl : profileUrl)
+  const qrSrc = `https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=${qrData}`
 
   if (!attorney) {
     return (
@@ -143,6 +150,14 @@ export function AttorneyBioPage() {
                   >
                     <Download className="w-4 h-4" />
                     Download vCard
+                  </button>
+                  <button
+                    onClick={() => { setQrMode('profile'); setQrOpen(true) }}
+                    className="flex items-center gap-2 text-neutral-200 hover:text-white transition-colors"
+                    title="Show QR Code"
+                  >
+                    <QrCode className="w-4 h-4" />
+                    Share QR
                   </button>
                 </div>
 
@@ -418,6 +433,68 @@ export function AttorneyBioPage() {
             </div>
           </div>
         </section>
+
+        {/* QR Code Modal */}
+        <AnimatePresence>
+          {qrOpen && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setQrOpen(false)}
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
+            >
+              <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                onClick={(e) => e.stopPropagation()}
+                className="relative max-w-sm rounded-lg bg-white p-6 shadow-2xl"
+              >
+                <button
+                  onClick={() => setQrOpen(false)}
+                  className="absolute right-2 top-2 rounded-full p-1 hover:bg-gray-100"
+                  aria-label="Close"
+                >
+                  <X className="h-5 w-5 text-gray-500" />
+                </button>
+
+                <h3 className="mb-4 text-xl font-bold text-primary-navy">Share Contact</h3>
+
+                <div className="mb-4 flex justify-center">
+                  <img src={qrSrc} alt="QR Code" className="h-60 w-60" />
+                </div>
+
+                <div className="mb-4 flex gap-2">
+                  <button
+                    onClick={() => setQrMode('profile')}
+                    className={`flex-1 rounded px-3 py-2 text-sm font-medium transition-colors ${
+                      qrMode === 'profile'
+                        ? 'bg-primary-navy text-white'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    Profile Link
+                  </button>
+                  <button
+                    onClick={() => setQrMode('email')}
+                    className={`flex-1 rounded px-3 py-2 text-sm font-medium transition-colors ${
+                      qrMode === 'email'
+                        ? 'bg-primary-navy text-white'
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    }`}
+                  >
+                    Email Link
+                  </button>
+                </div>
+
+                <p className="text-center text-sm text-gray-600">
+                  Scan with your phone to {qrMode === 'email' ? 'send an email' : 'view profile'}
+                </p>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </>
   )

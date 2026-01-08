@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Briefcase, ChevronDown, ChevronUp, Building2, DollarSign, Calendar } from 'lucide-react'
+import { Briefcase, ChevronDown, ChevronUp, Building2, Calendar } from 'lucide-react'
 import type { RepresentativeMatter } from '@/lib/types'
 
 interface RepresentativeMattersProps {

@@ -1,13 +1,14 @@
 import { motion } from 'framer-motion'
+import type { ReactNode } from 'react'
 import { AttorneyCard } from '../ui'
-import { attorneys } from '../../lib/data'
+import { attorneys } from '../../lib/data/attorney-helpers'
 import type { Attorney } from '../../lib/types'
 
 interface ContentPageLayoutProps {
   title: string
   subtitle: string
   heroImage?: string
-  children: React.ReactNode
+  children: ReactNode
   relatedAttorneys?: string[] // Array of attorney names
 }
 

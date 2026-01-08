@@ -1,6 +1,7 @@
 import fs from 'fs/promises'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import process from 'node:process'
 
 // Types align to src/lib/types/content.ts PracticeArea shape used by PracticeAreaDetail
 interface ListBlock { type: 'list'; items: string[] }
@@ -106,7 +107,8 @@ function parseMarkdownToSections(mdBody: string): Section[] {
     if (!current) {
       ensureSection('Overview', 'h2')
     }
-    current.content.push(line)
+    // After ensureSection, current is guaranteed to be non-null
+    current!.content.push(line)
   }
 
   flushList()

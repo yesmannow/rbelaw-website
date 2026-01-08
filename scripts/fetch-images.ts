@@ -11,6 +11,8 @@ import path from 'path';
 import https from 'https';
 import { fileURLToPath } from 'url';
 import sharp from 'sharp';
+import process from 'node:process';
+import { Buffer } from 'node:buffer';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -121,7 +123,7 @@ async function fetchFromPixabay(query: string, count: number = 5): Promise<Fetch
   const perPage = Math.max(3, Math.min(200, count));
   const url = `https://pixabay.com/api/?key=${PIXABAY_KEY}&q=${encodeURIComponent(query)}&per_page=${perPage}&image_type=photo&orientation=horizontal`;
   
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     https.get(url, (res) => {
       let data = '';
       res.on('data', chunk => data += chunk);
