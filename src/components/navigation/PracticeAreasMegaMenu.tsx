@@ -52,8 +52,11 @@ export function PracticeAreasMegaMenu() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed left-0 right-0 top-[80px] z-40 h-[600px] pointer-events-none"
-              style={{ backgroundColor: 'rgba(10, 37, 64, 0.95)' }}
+              className="fixed left-0 right-0 z-40 h-[600px] pointer-events-none"
+              style={{ 
+                backgroundColor: 'rgba(10, 37, 64, 0.95)',
+                top: 'var(--nav-height)'
+              }}
             />
 
             {/* Menu Content */}
@@ -62,8 +65,11 @@ export function PracticeAreasMegaMenu() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3 }}
-              className="fixed left-0 right-0 top-[80px] z-50 backdrop-blur-xl border-t border-white/10"
-              style={{ backgroundColor: 'rgba(10, 37, 64, 0.95)' }}
+              className="fixed left-0 right-0 z-50 backdrop-blur-xl border-t border-white/10"
+              style={{ 
+                backgroundColor: 'rgba(10, 37, 64, 0.95)',
+                top: 'var(--nav-height)'
+              }}
             >
               <div className="section-container py-12">
                 {/* Header */}

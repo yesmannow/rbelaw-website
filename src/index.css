@@ -29,6 +29,14 @@
     --border: 220 13% 91%;             /* #E5E7EB */
     --input: 220 13% 93%;              /* #EDEFF3 - Input background */
     --ring: 213 52% 27%;
+
+    /* Navbar Height Variables - Dynamic based on scroll state */
+    --nav-height: 80px;
+  }
+
+  /* Scrolled state - applies when navbar is scrolled */
+  .nav-scrolled {
+    --nav-height: 64px;
   }
 
   body {
