@@ -3,7 +3,7 @@ import { Mail, Phone } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
 import type { Attorney } from '@/lib/types'
-import { getAttorneyImages } from '@/lib/utils/attorney-images'
+import { getAttorneyThumbnailImage } from '@/lib/utils/attorney-images'
 
 interface AttorneyCardProps {
   attorney: Attorney
@@ -19,9 +19,9 @@ interface AttorneyCardProps {
  * Now with cinematic video hover functionality
  */
 export function AttorneyCard({ attorney, index = 0, compact = false, showContact = true, hoverVideoUrl }: AttorneyCardProps) {
-  const images = getAttorneyImages(attorney.name, attorney.image)
+  const thumbnailImage = getAttorneyThumbnailImage(attorney.id, attorney.imageThumb)
   const [isHovering, setIsHovering] = useState(false)
-  
+
   // Check if video is available (from prop or attorney data)
   const videoUrl = hoverVideoUrl || (attorney as { hoverVideoUrl?: string }).hoverVideoUrl
 
@@ -50,19 +50,15 @@ export function AttorneyCard({ attorney, index = 0, compact = false, showContact
                 transition={{ duration: 0.5 }}
                 className="absolute inset-0"
               >
-                <picture>
-                  <source srcSet={images.avif} type="image/avif" />
-                  <source srcSet={images.webp} type="image/webp" />
-                  <img
-                    src={images.fallback}
-                    alt={attorney.name}
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                    loading="lazy"
-                    onError={(e) => {
-                      e.currentTarget.src = '/placeholder-avatar.jpg'
-                    }}
-                  />
-                </picture>
+                <img
+                  src={thumbnailImage}
+                  alt={attorney.name}
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                  onError={(e) => {
+                    e.currentTarget.src = '/placeholder-avatar.jpg'
+                  }}
+                />
               </motion.div>
             ) : (
               /* Video on Hover - Cinematic B-roll */
@@ -85,7 +81,7 @@ export function AttorneyCard({ attorney, index = 0, compact = false, showContact
               </motion.div>
             )}
           </AnimatePresence>
-          
+
           {/* Overlay gradient on hover */}
           <div className="absolute inset-0 bg-gradient-to-t from-primary-navy/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </div>
@@ -95,7 +91,7 @@ export function AttorneyCard({ attorney, index = 0, compact = false, showContact
           <h3 className={`${compact ? 'text-lg' : 'text-xl'} font-serif font-bold text-primary-navy mb-1 group-hover:text-primary-burgundy transition-colors`}>
             {attorney.name}
           </h3>
-          
+
           <p className="text-accent-gold font-semibold mb-3 text-sm">
             {attorney.title || 'Attorney'}
           </p>

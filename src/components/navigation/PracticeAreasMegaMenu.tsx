@@ -10,6 +10,7 @@ import { ChevronDown, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { iconMap } from '@/lib/data/navigation';
 import { practiceAreas } from '@/lib/data';
+import { getSpecialistCount } from '@/lib/utils/attorney-logic';
 
 export function PracticeAreasMegaMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,29 +47,45 @@ export function PracticeAreasMegaMenu() {
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Background Overlay */}
+            {/* Background Overlay with Backdrop Blur */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed left-0 right-0 z-40 h-[600px] pointer-events-none"
-              style={{ 
-                backgroundColor: 'rgba(10, 37, 64, 0.95)',
-                top: 'var(--nav-height)'
+              className="fixed inset-0 z-40 pointer-events-none"
+              style={{
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)',
+                backgroundColor: 'rgba(10, 37, 64, 0.85)'
+              }}
+              onClick={() => setIsOpen(false)}
+            />
+
+            {/* Focus Drawer Effect - Scale down page body */}
+            <motion.div
+              initial={{ scale: 1 }}
+              animate={{ scale: 0.98 }}
+              exit={{ scale: 1 }}
+              transition={{ duration: 0.25 }}
+              className="fixed inset-0 z-30 pointer-events-none"
+              style={{
+                backgroundColor: 'rgba(0, 0, 0, 0.1)'
               }}
             />
 
             {/* Menu Content */}
             <motion.div
-              initial={{ opacity: 0, y: -10 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
               className="fixed left-0 right-0 z-50 backdrop-blur-xl border-t border-white/10"
-              style={{ 
+              style={{
                 backgroundColor: 'rgba(10, 37, 64, 0.95)',
-                top: 'var(--nav-height)'
+                top: 'var(--nav-height)',
+                backdropFilter: 'blur(20px)',
+                WebkitBackdropFilter: 'blur(20px)'
               }}
             >
               <div className="section-container py-12">
@@ -95,7 +112,8 @@ export function PracticeAreasMegaMenu() {
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                   {practiceAreas.map((area, index) => {
                     const Icon = area.icon ? iconMap[area.icon] : null;
-                    
+                    const specialistCount = getSpecialistCount(area.name, 'practice');
+
                     return (
                       <motion.div
                         key={area.id}
@@ -114,14 +132,21 @@ export function PracticeAreasMegaMenu() {
                             </div>
                           )}
 
-                          {/* Title */}
-                          <h4 className="font-semibold text-white mb-2 group-hover:text-[#B8860B] transition-colors">
-                            {area.name}
-                          </h4>
+                          {/* Title with Specialist Count */}
+                          <div className="mb-2">
+                            <h4 className="font-semibold text-white group-hover:text-[#B8860B] transition-colors">
+                              {area.name}
+                            </h4>
+                            {specialistCount > 0 && (
+                              <p className="text-xs text-[#B8860B]/80 mt-1 font-inter">
+                                {specialistCount} specialist{specialistCount !== 1 ? 's' : ''}
+                              </p>
+                            )}
+                          </div>
 
                           {/* Description */}
                           {area.description && (
-                            <p className="text-sm text-white/70 line-clamp-2 mb-3 flex-1">
+                            <p className="text-sm text-white/70 line-clamp-2 mb-3 flex-1 font-inter">
                               {area.description}
                             </p>
                           )}

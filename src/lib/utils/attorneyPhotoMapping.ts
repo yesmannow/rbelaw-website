@@ -1,57 +1,67 @@
 /**
  * Attorney Photo Mapping
- * Maps attorney names/IDs to their optimized photo files
+ * Maps attorney IDs to their normalized photo files in /images/team/Attorneys/
+ * Updated to use ID-based filenames for better maintainability
  */
 
-export const attorneyPhotoMap: Record<string, string> = {
-  // Map attorney IDs or names to their photo filenames
-  'anna-marvin': '/images/team/optimized/anna-marvin-attorney-thmb-jpg.webp',
-  'beau-browning': '/images/team/optimized/beau-browning-headshot-with-background-s13-0338-a-jpg.webp',
-  'blair-vandivier': '/images/team/optimized/blair-vandivier-attorney-indianapolis-riley-bennett-egloff-business-law-mergers-and-acquisitions-contracts-formation.webp',
-  'courtney-mills': '/images/team/optimized/courtney-d-mills-indianapolis-attorney-riley-bennett-egloff-partner-medical-malpractice-defense-health-care-litigation.webp',
-  'donald-smith': '/images/team/optimized/donald-s-smith-attorney-indianapolis-partner-riley-bennett-egloff-employment-law-.webp',
-  'doug-cook': '/images/team/optimized/doug-cook-indianapolis-attorney-business-law.webp',
-  'eric-hylton': '/images/team/optimized/eric-hylton-indiana-attorney-education-law-thumbnail-1.webp',
-  'jaclyn-flint': '/images/team/optimized/jaclyn-m-flint-attorney-indiana-ip-law-construction-sports-entertainment-commercial-litigation-thumbnail.webp',
-  'james-riley': '/images/team/optimized/james-riley-jr-attorney-indianapolis-riley-bennett-egloff-member-american-arbitration-association-business-litigation.webp',
-  'jeffrey-fecht': '/images/team/optimized/jeffrey-fecht-attorney-indianapolis-commercial-litigation-construction-law-product-liability-toxic-tort.webp',
-  'john-egloff': '/images/team/optimized/john-egloff-attorney-headshot-thumbnail-jpg.webp',
-  'jt-wynne': '/images/team/optimized/jt-wynne-headshot-indianapolis-attorney.webp',
-  'justin-sorrell': '/images/team/optimized/justin-sorrell-indiana-business-litigation-attorney.webp',
-  'kathleen-hart': '/images/team/optimized/kathleen-hart-indianapolis-attorney-riley-bennett-egloff-business-law-xbe-commercial-law-employment-law-.webp',
-  'katie-osborne': '/images/team/optimized/katie-osborne-indiana-med-mal-defense-attorney-partner-riley-bennett-egloff-thumbnail.webp',
-  'katie-riles': '/images/team/optimized/katie-riles-attorney-riley-bennett-egloff-with-bkgrnd-png.webp',
-  'kevin-tharp': '/images/team/optimized/kevin-tharp-indiana-attorney-partner-riley-bennett-egloff-business-law-construction-law-thumbnail.webp',
-  'laura-binford': '/images/team/optimized/laura-binford-indianapolis-med-mal-attorney-partner-riley-bennett-egloff-thumbnail-png.webp',
-  'lindsay-llewellyn': '/images/team/optimized/lindsay-a-llewellyn-thumbnail.webp',
-  'megan-young': '/images/team/optimized/megan-young-photo-for-thumbnails-jpg.webp',
-  'patrick-mccarney': '/images/team/optimized/patrick-mccarney-indiana-attorney-business-law-insurance-law-thumbnail.webp',
-  'raymond-seach': '/images/team/optimized/raymond-t-seach-attorney-indianapolis-partner-riley-bennett-egloff.webp',
-  'ryan-leitch': '/images/team/optimized/ryan-leitch-indiana-attorney-trust-and-estate-law-thumbnail-1.webp',
-  'sarah-macgill-marr': '/images/team/optimized/sarah-macgill-marr.webp',
-  'timothy-button': '/images/team/optimized/timothy-h-button-attorney-indianapolis-thumbnail-image.webp',
-  'tony-jost': '/images/team/optimized/tony-jost-2l9a4882.webp',
-  'travis-watson': '/images/team/optimized/travis-watson-indiana-attorney-construction-law-insurance-law-business-corporate-law-thumbnail.webp',
+// Mapping from various ID formats to normalized IDs
+const idMapping: Record<string, string> = {
+  'anna-marvin': 'anna-marvin',
+  'beau-browning': 'beau-browning',
+  'blair-vandivier': 'blair-r-vandivier',
+  'courtney-mills': 'courtney-david-mills',
+  'donald-smith': 'donald-s-smith',
+  'doug-cook': 'k-douglas-cook',
+  'eric-hylton': 'eric-m-hylton',
+  'jaclyn-flint': 'jaclyn-m-flint',
+  'james-riley': 'james-w-riley-jr',
+  'jeffrey-fecht': 'jeffrey-b-fecht',
+  'john-egloff': 'john-l-egloff',
+  'jt-wynne': 'j-t-wynne',
+  'justin-sorrell': 'justin-o-sorrell',
+  'kathleen-hart': 'kathleen-hart',
+  'katie-osborne': 'katie-r-osborne',
+  'katie-riles': 'katie-s-riles',
+  'kevin-tharp': 'kevin-n-tharp',
+  'laura-binford': 'laura-k-binford',
+  'lindsay-llewellyn': 'lindsay-a-llewellyn',
+  'megan-young': 'megan-s-young',
+  'patrick-mccarney': 'patrick-s-mccarney',
+  'raymond-seach': 'raymond-t-seach',
+  'ryan-leitch': 'ryan-l-leitch',
+  'sarah-macgill-marr': 'sarah-macgill-marr',
+  'timothy-button': 'timothy-h-button',
+  'tony-jost': 'anthony-r-jost',
+  'travis-watson': 'travis-r-watson',
+}
+
+/**
+ * Get normalized attorney ID
+ */
+function getNormalizedId(attorneyId: string): string {
+  return idMapping[attorneyId] || attorneyId
 }
 
 /**
  * Get attorney photo path
- * Returns WebP version for modern browsers, with fallback to JPG
+ * Returns WebP version from normalized Attorneys/ directory
  */
 export function getAttorneyPhoto(attorneyId: string): string {
-  return attorneyPhotoMap[attorneyId] || '/placeholder-avatar.jpg'
+  const normalizedId = getNormalizedId(attorneyId)
+  return `/images/team/Attorneys/${normalizedId}.webp`
 }
 
 /**
  * Get all photo formats for Picture element
+ * Note: Now using WebP only in normalized structure
  */
 export function getAttorneyPhotoSources(attorneyId: string) {
-  const basePath = attorneyPhotoMap[attorneyId]?.replace('.webp', '') || '/placeholder-avatar'
-  
+  const normalizedId = getNormalizedId(attorneyId)
+  const basePath = `/images/team/Attorneys/${normalizedId}`
+
   return {
     webp: `${basePath}.webp`,
-    avif: `${basePath}.avif`,
-    jpg: `${basePath}.jpg`,
+    fallback: `${basePath}.webp`, // WebP is the standard format now
   }
 }
 
