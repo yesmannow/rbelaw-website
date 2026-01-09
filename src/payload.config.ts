@@ -57,12 +57,52 @@ export default buildConfig({
       ],
     },
     
-    // Attorneys collection
+    // Industries collection - Marketing taxonomy for cross-linking
     {
-      slug: 'attorneys',
+      slug: 'industries',
+      admin: {
+        useAsTitle: 'title',
+        defaultColumns: ['title', 'slug'],
+      },
+      access: {
+        read: () => true,
+      },
+      fields: [
+        {
+          name: 'title',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'slug',
+          type: 'text',
+          required: true,
+          unique: true,
+          index: true,
+          admin: {
+            description: 'URL-friendly identifier (e.g., healthcare, construction)',
+          },
+        },
+        {
+          name: 'icon',
+          type: 'text',
+          admin: {
+            description: 'Lucide icon name (e.g., Building2, Landmark)',
+          },
+        },
+        {
+          name: 'description',
+          type: 'textarea',
+        },
+      ],
+    },
+    
+    // Tags collection - Marketing taxonomy for blog posts and content
+    {
+      slug: 'tags',
       admin: {
         useAsTitle: 'name',
-        defaultColumns: ['name', 'title', 'email'],
+        defaultColumns: ['name', 'slug'],
       },
       access: {
         read: () => true,
@@ -78,6 +118,36 @@ export default buildConfig({
           type: 'text',
           required: true,
           unique: true,
+          index: true,
+          admin: {
+            description: 'URL-friendly identifier',
+          },
+        },
+      ],
+    },
+    
+    // Attorneys collection
+    {
+      slug: 'attorneys',
+      admin: {
+        useAsTitle: 'name',
+        defaultColumns: ['name', 'role', 'email'],
+      },
+      access: {
+        read: () => true,
+      },
+      fields: [
+        {
+          name: 'name',
+          type: 'text',
+          required: true,
+        },
+        {
+          name: 'slug',
+          type: 'text',
+          required: true,
+          unique: true,
+          index: true,
           admin: {
             description: 'URL-friendly identifier (e.g., laura-k-binford)',
           },
@@ -133,14 +203,33 @@ export default buildConfig({
           editor: lexicalEditor({}),
           required: true,
         },
+        // Quick Facts sidebar group
         {
-          name: 'barAdmissions',
-          type: 'array',
+          type: 'group',
+          name: 'quickFacts',
+          label: 'Quick Facts',
           fields: [
             {
-              name: 'admission',
-              type: 'text',
-              required: true,
+              name: 'barAdmissions',
+              type: 'array',
+              fields: [
+                {
+                  name: 'admission',
+                  type: 'text',
+                  required: true,
+                },
+              ],
+            },
+            {
+              name: 'languages',
+              type: 'array',
+              fields: [
+                {
+                  name: 'language',
+                  type: 'text',
+                  required: true,
+                },
+              ],
             },
           ],
         },
@@ -217,6 +306,27 @@ export default buildConfig({
           name: 'beyondOffice',
           type: 'textarea',
         },
+        // Relational taxonomies
+        {
+          name: 'industries',
+          type: 'relationship',
+          relationTo: 'industries',
+          hasMany: true,
+          index: true,
+          admin: {
+            description: 'Industries this attorney serves',
+          },
+        },
+        {
+          name: 'tags',
+          type: 'relationship',
+          relationTo: 'tags',
+          hasMany: true,
+          index: true,
+          admin: {
+            description: 'Tags for content organization and filtering',
+          },
+        },
       ],
     },
     
@@ -241,6 +351,7 @@ export default buildConfig({
           type: 'text',
           required: true,
           unique: true,
+          index: true,
           admin: {
             description: 'URL-friendly identifier (e.g., business-law)',
           },
@@ -273,6 +384,7 @@ export default buildConfig({
           type: 'relationship',
           relationTo: 'attorneys',
           hasMany: true,
+          index: true,
           admin: {
             description: 'Attorneys who specialize in this practice area',
           },
@@ -311,6 +423,27 @@ export default buildConfig({
             },
           ],
         },
+        // Relational taxonomies
+        {
+          name: 'industries',
+          type: 'relationship',
+          relationTo: 'industries',
+          hasMany: true,
+          index: true,
+          admin: {
+            description: 'Industries this practice area serves',
+          },
+        },
+        {
+          name: 'tags',
+          type: 'relationship',
+          relationTo: 'tags',
+          hasMany: true,
+          index: true,
+          admin: {
+            description: 'Tags for content organization and filtering',
+          },
+        },
       ],
     },
     
@@ -338,6 +471,7 @@ export default buildConfig({
           type: 'text',
           required: true,
           unique: true,
+          index: true,
           admin: {
             description: 'URL-friendly identifier',
           },
@@ -347,6 +481,10 @@ export default buildConfig({
           type: 'relationship',
           relationTo: 'attorneys',
           required: true,
+          index: true,
+          admin: {
+            description: 'Attorney author - dynamically renders headshot and bio',
+          },
         },
         {
           name: 'excerpt',
@@ -403,12 +541,34 @@ export default buildConfig({
           type: 'relationship',
           relationTo: 'practice-areas',
           hasMany: true,
+          index: true,
+        },
+        // Relational taxonomies
+        {
+          name: 'industries',
+          type: 'relationship',
+          relationTo: 'industries',
+          hasMany: true,
+          index: true,
+          admin: {
+            description: 'Industries relevant to this blog post',
+          },
+        },
+        {
+          name: 'tags',
+          type: 'relationship',
+          relationTo: 'tags',
+          hasMany: true,
+          index: true,
+          admin: {
+            description: 'Tags for content organization and filtering',
+          },
         },
       ],
     },
   ],
   
-  // Configure the database
+  // Configure the database - uses DATABASE_URI from Vercel environment variables
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI,
@@ -421,7 +581,7 @@ export default buildConfig({
   // Configure plugins
   plugins: [
     seoPlugin({
-      collections: ['attorneys', 'practice-areas', 'blog'],
+      collections: ['attorneys', 'practice-areas', 'blog', 'industries'],
       uploadsCollection: 'media',
       generateTitle: ({ doc }: any) => `RBE Law — ${doc?.title?.value || doc?.title || doc?.name || ''}`,
       generateDescription: ({ doc }: any) => doc?.excerpt || doc?.description || '',
