@@ -11,7 +11,7 @@ import { PageHeader } from '@/components/layout/PageHeader'
 import { FeaturedTool } from '@/components/practice-areas/FeaturedTool'
 import { InteractiveResource } from '@/components/resources'
 import { AttorneyCard } from '@/components/attorneys'
-import { getAttorneysByName } from '@/lib/data/attorney-helpers'
+import { getAttorneysByName } from '@/lib/utils/attorney-logic'
 import { getIndustryBySlugManual } from '@/lib/data/industries-manual'
 import { getToolForIndustry } from '@/lib/data/toolMappings'
 

@@ -12,7 +12,7 @@ import { PracticeAreaHero } from '@/components/practice-areas/PracticeAreaHero'
 import { FeaturedTool } from '@/components/practice-areas/FeaturedTool'
 import { InteractiveResource } from '@/components/resources'
 import { AttorneyCard } from '@/components/attorneys'
-import { getAttorneysByPracticeArea } from '@/lib/data/attorney-helpers'
+import { getAttorneysByPracticeArea } from '@/lib/utils/attorney-logic'
 import { enhancedPracticeAreas } from '@/lib/data/practiceAreasEnhanced'
 import { getToolForPracticeArea } from '@/lib/data/toolMappings'
 
