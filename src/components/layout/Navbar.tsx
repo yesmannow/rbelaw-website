@@ -6,6 +6,7 @@ import { practiceAreas } from '../../lib/data'
 import { PracticeAreasMegaMenu } from '../navigation/PracticeAreasMegaMenu'
 import { IndustriesMegaMenu } from '../navigation/IndustriesMegaMenu'
 import { OurTeamMegaMenu } from '../navigation/OurTeamMegaMenu'
+import { NewsroomMegaMenu } from '../navigation/NewsroomMegaMenu'
 import { NewsroomAboutMegaMenu } from '../navigation/NewsroomAboutMegaMenu'
 import { navData } from '../../lib/data/navigation'
 import { PrestigeButton } from '../ui/PrestigeButton'
@@ -74,7 +75,7 @@ export function Navbar() {
             className="bg-primary-navy/50 border-b border-white/10 overflow-hidden"
           >
             <div className="section-container">
-              <div className="flex items-center justify-between py-2 text-sm">
+              <div className="flex items-center justify-center py-2 text-sm">
                 <div className="flex items-center gap-6 text-white/80">
                   <a href="tel:3176368000" className="flex items-center gap-2 hover:text-accent-tan transition-colors">
                     <Phone className="h-3.5 w-3.5" />
@@ -84,9 +85,6 @@ export function Navbar() {
                     <Mail className="h-3.5 w-3.5" />
                     <span>info@rbelaw.com</span>
                   </a>
-                </div>
-                <div className="text-white/60 text-xs hidden md:block">
-                  255 E. Carmel Drive, Suite 200 | Carmel, IN 46032
                 </div>
               </div>
             </div>
@@ -99,8 +97,8 @@ export function Navbar() {
         <div className={`flex items-center justify-between transition-all duration-300 ${
           isScrolled ? 'h-16' : 'h-20'
         }`}>
-          {/* Logo */}
-          <Link to="/" className="flex items-center group">
+          {/* Logo - Home Link */}
+          <Link to="/" className="flex items-center group relative">
             <motion.img
               src="/images/logo/RBE_Logo_RBG-01.png"
               alt="Riley Bennett Egloff LLP"
@@ -110,39 +108,25 @@ export function Navbar() {
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.2 }}
             />
+            {location.pathname === '/' && (
+              <motion.div
+                className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#B8860B]"
+                animate={{
+                  opacity: [1, 0.7, 1],
+                  scaleX: [1, 1.05, 1]
+                }}
+                transition={{
+                  duration: 1.2,
+                  repeat: Infinity,
+                  ease: 'easeInOut',
+                  times: [0, 0.5, 1]
+                }}
+              />
+            )}
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-1">
-            <Link
-              to="/"
-              className="relative text-white hover:text-accent-tan transition-all duration-200 font-medium px-3 py-2 rounded group"
-            >
-              <span className="relative z-10">Home</span>
-              {location.pathname === '/' && (
-                <>
-                  <motion.span
-                    layoutId="navbar-indicator"
-                    className="absolute inset-0 bg-white/10 rounded"
-                    transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
-                  />
-                  <motion.div
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#B8860B]"
-                    animate={{
-                      opacity: [1, 0.7, 1],
-                      scaleX: [1, 1.05, 1]
-                    }}
-                    transition={{
-                      duration: 1.2,
-                      repeat: Infinity,
-                      ease: 'easeInOut',
-                      times: [0, 0.5, 1]
-                    }}
-                  />
-                </>
-              )}
-            </Link>
-
             {/* Practice Areas - Special Mega Menu */}
             <PracticeAreasMegaMenu />
 
@@ -152,7 +136,10 @@ export function Navbar() {
             {/* Our Team - Special Mega Menu */}
             <OurTeamMegaMenu />
 
-            {/* Newsroom & About - Combined Mega Menu */}
+            {/* Newsroom - Standalone Mega Menu */}
+            <NewsroomMegaMenu />
+
+            {/* About - Standalone Mega Menu */}
             <NewsroomAboutMegaMenu />
 
             {/* Divider */}
@@ -254,15 +241,6 @@ export function Navbar() {
                   animate="open"
                   exit="closed"
                 >
-                  <motion.div variants={{ open: { opacity: 1, x: 0 }, closed: { opacity: 0, x: -20 } }}>
-                    <Link
-                      to="/"
-                      className="block text-white hover:text-[#B8860B] hover:bg-white/5 transition-all px-4 py-3 rounded-lg font-medium"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      Home
-                    </Link>
-                  </motion.div>
 
                   <motion.div variants={{ open: { opacity: 1, x: 0 }, closed: { opacity: 0, x: -20 } }}>
                     <button

@@ -50,14 +50,15 @@ export function IndustriesMegaMenu({ section }: IndustriesMegaMenuProps) {
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Background Overlay with Backdrop Blur */}
+            {/* Background Overlay with Backdrop Blur - Starts below nav */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-40 pointer-events-none"
+              className="fixed left-0 right-0 bottom-0 z-40 pointer-events-none"
               style={{
+                top: 'var(--nav-height)',
                 backdropFilter: 'blur(20px)',
                 WebkitBackdropFilter: 'blur(20px)',
                 backgroundColor: 'rgba(10, 37, 64, 0.85)'
@@ -65,25 +66,13 @@ export function IndustriesMegaMenu({ section }: IndustriesMegaMenuProps) {
               onClick={() => setIsOpen(false)}
             />
 
-            {/* Focus Drawer Effect - Scale down page body */}
-            <motion.div
-              initial={{ scale: 1 }}
-              animate={{ scale: 0.98 }}
-              exit={{ scale: 1 }}
-              transition={{ duration: 0.25 }}
-              className="fixed inset-0 z-30 pointer-events-none"
-              style={{
-                backgroundColor: 'rgba(0, 0, 0, 0.1)'
-              }}
-            />
-
-            {/* Menu Content */}
+            {/* Menu Content - Positioned directly below nav */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 10 }}
               transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed left-0 right-0 z-50 backdrop-blur-xl border-t border-white/10"
+              className="fixed left-0 right-0 z-[60] backdrop-blur-xl border-t border-white/10"
               style={{
                 backgroundColor: 'rgba(10, 37, 64, 0.95)',
                 top: 'var(--nav-height)',
