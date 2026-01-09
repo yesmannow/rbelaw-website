@@ -2,23 +2,26 @@
  * Type definitions for Riley Bennett Egloff website
  */
 
-// Attorney Profile
+// Attorney Profile - Updated to match MasterAttorney structure
 export interface Attorney {
   id: string
   name: string
   title: string // e.g., "Partner", "Associate", "Of Counsel"
   email: string
   phone: string
-  bio: string
-  imageUrl: string
-  practiceAreas: string[] // IDs of practice areas
+  bio: string | string[] // Support both formats during migration
+  image: string // WebP path (renamed from imageUrl)
+  imageThumb?: string // Thumbnail WebP path
+  imageUrl?: string // Legacy field for compatibility, maps to image
+  slug: string
+  practiceAreas: string[]
   education: Education[]
   barAdmissions: string[]
   awards?: string[]
   publications?: Publication[]
-  representativeMatters?: RepresentativeMatter[]
-  associations?: string[]
-  community?: string[]
+  representativeMatters?: RepresentativeMatter[] | string[] // Support both formats
+  associations?: string[] // Legacy field - now in barAdmissions
+  community?: string[] // Legacy field - community activity
   linkedIn?: string
   twitter?: string
   vCard?: string
@@ -39,8 +42,8 @@ export interface Education {
 
 export interface Publication {
   title: string
-  publication: string
-  date: string
+  publication?: string
+  date?: string
   url?: string
 }
 

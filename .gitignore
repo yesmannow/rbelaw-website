@@ -31,3 +31,4 @@ public/images/legacy/
 *.njsproj
 *.sln
 *.sw?
+.backup/

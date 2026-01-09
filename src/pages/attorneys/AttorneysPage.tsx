@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion'
 import { Download } from 'lucide-react'
-import { attorneys } from '@/lib/data/attorney-helpers'
+import { attorneys } from '@/lib/data/attorneys'
 import { generateVCard } from '@/lib/utils/vcard'
 import { SEOMeta } from '@/components/seo/SEOMeta'
-import { AttorneyCard } from '@/components/attorneys/AttorneyCard'
+import { AttorneyCard } from '@/components/attorneys/AttorneyCardNew'
 
 export function AttorneysPage() {
   const downloadAllVCards = () => {

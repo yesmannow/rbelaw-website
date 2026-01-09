@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, Users } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { iconMap } from '@/lib/data/navigation'
-import { attorneys } from '@/lib/data/attorney-helpers'
+import { getSpecialistCount } from '@/lib/utils/attorney-logic'
 
 interface EnhancedPracticeArea {
   id: string
@@ -30,14 +30,8 @@ interface PracticeAreaCardProps {
 export function PracticeAreaCard({ area, index = 0 }: PracticeAreaCardProps) {
   const Icon = area.icon ? iconMap[area.icon] : null
   
-  // Calculate attorneys specializing in this practice area
-  const specializingAttorneys = attorneys.filter(attorney => 
-    attorney.practiceAreas?.some(pa => 
-      pa.toLowerCase().includes(area.id.toLowerCase()) || 
-      pa.toLowerCase().includes(area.name.toLowerCase())
-    )
-  )
-  const attorneyCount = specializingAttorneys.length
+  // Calculate attorneys specializing in this practice area using the specialist counter utility
+  const attorneyCount = getSpecialistCount(area.name, 'practice')
 
   // Display first 3 key services
   const displayedServices = area.keyServices.slice(0, 3)

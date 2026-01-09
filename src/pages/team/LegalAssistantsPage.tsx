@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { Mail, Phone, Briefcase, Users } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { legalAssistants } from '@/lib/data/legal-assistants'
-import { attorneys } from '@/lib/data/attorney-helpers'
+import { attorneys } from '@/lib/utils/attorney-logic'
 import { SEOMeta } from '@/components/seo/SEOMeta'
 
 export function LegalAssistantsPage() {

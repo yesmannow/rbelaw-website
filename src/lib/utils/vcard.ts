@@ -3,7 +3,7 @@
  * Generates .vcf files compatible with most contact management systems
  */
 
-import type { Attorney } from '../types'
+import type { MasterAttorney } from '../data/attorneys'
 
 export interface VCardOptions {
   version?: '3.0' | '4.0'
@@ -15,11 +15,11 @@ export interface VCardOptions {
 /**
  * Generate a vCard string for an attorney
  */
-export function generateVCard(attorney: Attorney, options: VCardOptions = {}): string {
+export function generateVCard(attorney: MasterAttorney, options: VCardOptions = {}): string {
   const {
     version = '3.0',
     organization = 'Riley Bennett Egloff LLP',
-    photo = attorney.imageUrl,
+    photo = attorney.image,
     url = `https://rbelaw.com/attorneys/${attorney.id}`,
   } = options
 
@@ -52,12 +52,6 @@ export function generateVCard(attorney: Attorney, options: VCardOptions = {}): s
     lines.push(`EMAIL;TYPE=WORK:${attorney.email}`)
   }
 
-  // Assistant
-  if (attorney.assistant && attorney.assistantEmail) {
-    lines.push(`X-ASSISTANT:${attorney.assistant}`)
-    lines.push(`X-ASSISTANT-EMAIL:${attorney.assistantEmail}`)
-  }
-
   // Address (firm address)
   lines.push('ADR;TYPE=WORK:;;30 South Meridian Street, Suite 400;Indianapolis;IN;46204;USA')
   lines.push('LABEL;TYPE=WORK:30 South Meridian Street\\nSuite 400\\nIndianapolis, IN 46204')
@@ -84,8 +78,8 @@ export function generateVCard(attorney: Attorney, options: VCardOptions = {}): s
   }
 
   // Note with bio
-  if (attorney.bio) {
-    const cleanBio = attorney.bio.replace(/\n/g, '\\n')
+  if (attorney.bio && attorney.bio[0]) {
+    const cleanBio = attorney.bio[0].replace(/\n/g, '\\n')
     lines.push(`NOTE:${cleanBio}`)
   }
 
@@ -98,7 +92,7 @@ export function generateVCard(attorney: Attorney, options: VCardOptions = {}): s
 /**
  * Download a vCard file for an attorney
  */
-export function downloadVCard(attorney: Attorney, options?: VCardOptions): void {
+export function downloadVCard(attorney: MasterAttorney, options?: VCardOptions): void {
   const vcard = generateVCard(attorney, options)
   const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' })
   const url = URL.createObjectURL(blob)
@@ -116,7 +110,7 @@ export function downloadVCard(attorney: Attorney, options?: VCardOptions): void 
 /**
  * Generate a data URL for a vCard (for direct linking)
  */
-export function getVCardDataUrl(attorney: Attorney, options?: VCardOptions): string {
+export function getVCardDataUrl(attorney: MasterAttorney, options?: VCardOptions): string {
   const vcard = generateVCard(attorney, options)
   const encoded = encodeURIComponent(vcard)
   return `data:text/vcard;charset=utf-8,${encoded}`

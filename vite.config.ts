@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 // Import data for dynamic sitemap generation
-import { attorneys } from './src/lib/data/attorney-helpers'
+import { attorneys } from './src/lib/utils/attorney-logic'
 import { enhancedPracticeAreas } from './src/lib/data/practiceAreasEnhanced'
 import { industriesManual } from './src/lib/data/industries-manual'
 

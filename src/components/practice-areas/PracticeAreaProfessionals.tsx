@@ -1,5 +1,5 @@
 import { AttorneyCard } from '@/components/attorneys'
-import { attorneys } from '@/lib/data/attorney-helpers'
+import { attorneys } from '@/lib/utils/attorney-logic'
 import type { Attorney } from '@/lib/types'
 
 interface PracticeAreaProfessionalsProps {

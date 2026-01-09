@@ -8,7 +8,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import type { PanInfo } from 'framer-motion'
 import { Mail, Phone, Linkedin, ArrowLeft, Download } from 'lucide-react'
-import { getAttorneyById } from '@/lib/data/attorney-helpers'
+import { getAttorneyById } from '@/lib/utils/attorney-logic'
 import { downloadVCard } from '@/lib/utils/vcard'
 import { SEOMeta } from '@/components/seo/SEOMeta'
 import { getAttorneyImages } from '@/lib/utils/attorney-images'
@@ -128,8 +128,8 @@ export function AttorneyBioPagePrestige() {
       
       <SEOMeta
         title={attorney.name}
-        description={attorney.bio || ''}
-        image={attorney.imageUrl}
+        description={typeof attorney.bio === 'string' ? attorney.bio : attorney.bio.join(' ')}
+        image={attorney.image || attorney.imageUrl}
         type="profile"
         author={attorney.name}
       />
@@ -151,7 +151,7 @@ export function AttorneyBioPagePrestige() {
                 <div className="w-56 h-56 lg:w-64 lg:h-64 rounded-xl bg-neutral-700 overflow-hidden shadow-2xl ring-4 ring-white/10">
                   <picture>
                     {(() => {
-                      const images = getAttorneyImages(attorney.name, attorney.imageUrl)
+                      const images = getAttorneyImages(attorney.name, attorney.image || attorney.imageUrl)
                       return (
                         <>
                           <source srcSet={images.avif} type="image/avif" />
@@ -309,7 +309,13 @@ export function AttorneyBioPagePrestige() {
                         <h2 className="text-2xl font-serif font-bold text-primary-navy mb-4">
                           Biography
                         </h2>
-                        <p className="text-neutral-700 whitespace-pre-line">{attorney.bio}</p>
+                        {typeof attorney.bio === 'string' ? (
+                          <p className="text-neutral-700 whitespace-pre-line">{attorney.bio}</p>
+                        ) : (
+                          attorney.bio.map((paragraph, idx) => (
+                            <p key={idx} className="text-neutral-700 mb-4">{paragraph}</p>
+                          ))
+                        )}
                       </div>
                     )}
 

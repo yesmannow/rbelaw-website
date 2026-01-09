@@ -6,7 +6,7 @@
 import { Link } from 'react-router-dom';
 import { Calendar, Scale, TrendingUp, Users } from 'lucide-react';
 import type { CaseResult } from '@/lib/types';
-import { attorneys } from '@/lib/data/attorney-helpers';
+import { attorneys } from '@/lib/utils/attorney-logic';
 
 interface CaseResultCardProps {
   caseResult: CaseResult;

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Command } from 'cmdk'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Search, Phone, Mail, MapPin, Users, Scale, Briefcase } from 'lucide-react'
-import { attorneys } from '@/lib/data/attorney-helpers'
+import { attorneys } from '@/lib/utils/attorney-logic'
 import { practiceAreas } from '@/lib/data/practiceAreas'
 import { getAllIndustriesManual } from '@/lib/data/industries-manual'
 

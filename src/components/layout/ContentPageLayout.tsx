@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import type { ReactNode } from 'react'
 import { AttorneyCard } from '../ui'
-import { attorneys } from '../../lib/data/attorney-helpers'
+import { attorneys } from '@/lib/utils/attorney-logic'
 import type { Attorney } from '../../lib/types'
 
 interface ContentPageLayoutProps {
