@@ -13,9 +13,9 @@ import { fileURLToPath } from 'url'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
-// Import source data
-import { attorneys as parsedAttorneys } from '../src/lib/data/attorneys-parsed.js'
-import { attorneyImages } from '../src/lib/data/attorney-images.js'
+// Import source data from backup files
+import { attorneys as parsedAttorneys } from '../src/lib/data/attorneys-parsed.ts.bak'
+import { attorneyImages } from '../src/lib/data/attorney-images.ts.bak'
 
 interface MasterEducation {
   degree: string
@@ -123,11 +123,11 @@ function consolidateAttorneys(): MasterAttorney[] {
     // Find matching image data
     const imageData = attorneyImages.find(img => img.id === attorney.id)
     
-    // Build WebP paths
+    // Build WebP paths - use actual public directory structure
     const imageBasePath = `/images/team/Attorneys`
     const imageName = attorney.id
-    const image = imageData?.images.default || `${imageBasePath}/${imageName}.webp`
-    const imageThumb = imageData?.images.thumb || `${imageBasePath}/${imageName}-thumb.webp`
+    const image = imageData?.images.default.replace('/assets/attorneys/', imageBasePath + '/') || `${imageBasePath}/${imageName}.webp`
+    const imageThumb = imageData?.images.thumb.replace('/assets/attorneys/', imageBasePath + '/') || `${imageBasePath}/${imageName}-thumb.webp`
 
     // Parse education
     const education: MasterEducation[] = attorney.education
