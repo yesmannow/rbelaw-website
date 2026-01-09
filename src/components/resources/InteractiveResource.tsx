@@ -50,7 +50,7 @@ export function InteractiveResource({ mapping }: InteractiveResourceProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.2 }}
       className="py-16 lg:py-20"
-      style={{ backgroundColor: '#0A2540' }}
+      style={{ backgroundColor: 'var(--navy-prestige)' }}
     >
       <div className="section-container">
         {/* Header with Prestige Styling */}
@@ -61,8 +61,8 @@ export function InteractiveResource({ mapping }: InteractiveResourceProps) {
             transition={{ duration: 0.5 }}
             className="text-3xl lg:text-4xl font-bold mb-4"
             style={{ 
-              fontFamily: "'Playfair Display', serif",
-              color: '#B8860B'
+              fontFamily: 'var(--font-display)',
+              color: 'var(--gold-prestige)'
             }}
           >
             RBE Insight Center
@@ -110,8 +110,8 @@ export function InteractiveResource({ mapping }: InteractiveResourceProps) {
             href="/contact"
             className="inline-block px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-200 hover:scale-105"
             style={{
-              backgroundColor: '#B8860B',
-              color: '#0A2540',
+              backgroundColor: 'var(--gold-prestige)',
+              color: 'var(--navy-prestige)',
               boxShadow: '0 4px 16px rgba(184, 134, 11, 0.4)'
             }}
           >

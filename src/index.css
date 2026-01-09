@@ -11,6 +11,7 @@
     /* RBE Official Brand Fonts */
     --font-sans: 'Open Sans', Arial, sans-serif;
     --font-serif: 'Raleway', Helvetica, Arial, Lucida, sans-serif;
+    --font-display: 'Playfair Display', serif;
 
     /* RBE Official Brand Colors */
     --primary: 213 52% 27%;            /* #213469 - RBE Navy Blue (Primary Brand Color) */
@@ -32,6 +33,10 @@
 
     /* Navbar Height Variables - Dynamic based on scroll state */
     --nav-height: 80px;
+
+    /* Prestige Branding Colors - RBE Insight Center */
+    --navy-prestige: #0A2540;          /* Navy for backgrounds */
+    --gold-prestige: #B8860B;          /* Gold for accents and CTAs */
   }
 
   /* Scrolled state - applies when navbar is scrolled */
