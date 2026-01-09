@@ -31,7 +31,8 @@ export function PrestigeButton({
 }: PrestigeButtonProps) {
   const [isHovering, setIsHovering] = useState(false)
   const [reducedMotion, setReducedMotion] = useState(false)
-  const buttonRef = useRef<HTMLButtonElement | HTMLAnchorElement>(null)
+  const buttonRef = useRef<HTMLButtonElement>(null)
+  const anchorRef = useRef<HTMLAnchorElement>(null)
   const progress = useMotionValue(0)
   const fillProgress = useSpring(progress, {
     stiffness: 400,
@@ -101,7 +102,6 @@ export function PrestigeButton({
   )
 
   const commonProps = {
-    ref: buttonRef,
     className: cn(baseStyles, variantStyles[variant]),
     onMouseEnter: () => setIsHovering(true),
     onMouseLeave: () => setIsHovering(false),
@@ -114,6 +114,7 @@ export function PrestigeButton({
   if (href) {
     return (
       <motion.a
+        ref={anchorRef}
         href={href}
         {...commonProps}
         whileHover={{ scale: 1.02 }}
@@ -141,6 +142,7 @@ export function PrestigeButton({
 
   return (
     <motion.button
+      ref={buttonRef}
       {...commonProps}
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}

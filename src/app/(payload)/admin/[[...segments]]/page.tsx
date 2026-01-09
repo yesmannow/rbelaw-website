@@ -11,7 +11,7 @@ type Args = {
   }>
 }
 
-const Page = ({ params, searchParams }: Args) => {
+const Page = async ({ params, searchParams }: Args) => {
   return <RootPage config={config} importMap={importMap} params={params} searchParams={searchParams} />
 }
 
