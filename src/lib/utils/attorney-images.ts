@@ -52,8 +52,9 @@ export function getAttorneyImageSlug(name: string): string | null {
  */
 export function getAttorneyThumbnailImage(attorneyId: string, fallbackUrl?: string): string {
   // The attorney ID should match the filename (e.g., "anna-marvin" -> "anna-marvin.webp")
+  // Always use the thumbnail path from the card thumbnail bio photo directory
   const thumbnailPath = `/images/team/Attorneys/card thumbnail bio photo/${attorneyId}.webp`
-  return fallbackUrl || thumbnailPath
+  return thumbnailPath
 }
 
 /**
