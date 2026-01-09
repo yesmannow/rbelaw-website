@@ -1,11 +1,16 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Download } from 'lucide-react'
 import { attorneys } from '@/lib/data/attorneys'
 import { generateVCard } from '@/lib/utils/vcard'
 import { SEOMeta } from '@/components/seo/SEOMeta'
 import { AttorneyCard } from '@/components/attorneys/AttorneyCardNew'
+import { AttorneySearchFilter } from '@/components/attorneys/AttorneySearchFilter'
+import type { Attorney } from '@/lib/types'
 
 export function AttorneysPage() {
+  const [filteredAttorneys, setFilteredAttorneys] = useState<Attorney[]>(attorneys)
+
   const downloadAllVCards = () => {
     try {
       const vcards = attorneys
@@ -61,17 +66,31 @@ export function AttorneysPage() {
         {/* Attorneys Grid - 4 Column Layout */}
         <section className="py-16 lg:py-24 bg-neutral-50">
           <div className="section-container">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {attorneys.map((attorney, index) => (
-                <AttorneyCard
-                  key={attorney.id}
-                  attorney={attorney}
-                  index={index}
-                  showContact={true}
-                  compact={true}
-                />
-              ))}
-            </div>
+            {/* Search and Filter Component */}
+            <AttorneySearchFilter
+              attorneys={attorneys}
+              onFilterChange={setFilteredAttorneys}
+            />
+
+            {/* Attorneys Grid */}
+            {filteredAttorneys.length > 0 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {filteredAttorneys.map((attorney, index) => (
+                  <AttorneyCard
+                    key={attorney.id}
+                    attorney={attorney}
+                    index={index}
+                    showContact={true}
+                    compact={true}
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="text-center py-16">
+                <p className="text-xl text-neutral-600 mb-2">No attorneys found</p>
+                <p className="text-neutral-500">Try adjusting your search or filter criteria</p>
+              </div>
+            )}
           </div>
         </section>
       </div>
