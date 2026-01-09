@@ -25,21 +25,21 @@ export const practiceAreaToolMappings: ToolMapping[] = [
     primaryBenefit: 'Instantly calculate statutory deadlines for mechanic\'s liens.'
   },
   {
-    slug: 'labor-employment-law',
+    slug: 'labor-employment',
     toolId: 'flsa-wizard',
     toolName: 'FLSA Compliance Wizard',
     toolDescription: 'Determine if your employees are properly classified under Fair Labor Standards Act regulations.',
     primaryBenefit: 'Determine overtime eligibility and classification risks.'
   },
   {
-    slug: 'business-corporate-law',
+    slug: 'business-law',
     toolId: 'entity-comparison',
     toolName: 'Business Entity Comparison',
     toolDescription: 'Compare different business entity structures to find the right fit for your company.',
     primaryBenefit: 'Compare LLC vs. C-Corp structures for startup ventures.'
   },
   {
-    slug: 'real-estate-land-use-zoning',
+    slug: 'real-estate',
     toolId: 'lien-calculator',
     toolName: 'Construction Lien Calculator',
     toolDescription: 'Identify potential encumbrances and filing requirements.',
@@ -75,14 +75,14 @@ export const practiceAreaToolMappings: ToolMapping[] = [
   },
   // Additional mappings for comprehensive coverage
   {
-    slug: 'labor-employment-law',
+    slug: 'labor-employment',
     toolId: 'comp-calculator',
     toolName: 'Workers\' Compensation Calculator',
     toolDescription: 'Estimate potential workers\' compensation benefits for workplace injuries.',
     primaryBenefit: 'Calculate potential workers\' compensation benefits.'
   },
   {
-    slug: 'business-corporate-law',
+    slug: 'business-law',
     toolId: 'contract-analyzer',
     toolName: 'Contract Risk Analyzer',
     toolDescription: 'Analyze contracts for potential risks and unfavorable terms.',
