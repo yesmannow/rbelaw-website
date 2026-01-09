@@ -33,12 +33,17 @@ export function MobileNavBar() {
 
   // Update active tab based on location
   useEffect(() => {
-    const currentIndex = navItems.findIndex(item =>
-      location.pathname === item.to ||
-      location.pathname.startsWith(item.to + '/')
-    )
+    const currentIndex = navItems.findIndex(item => {
+      if (item.to === '/') {
+        return location.pathname === '/'
+      }
+      return location.pathname === item.to || location.pathname.startsWith(item.to + '/')
+    })
     if (currentIndex !== -1) {
       setActiveTab(currentIndex)
+    } else {
+      // Default to first tab if no match
+      setActiveTab(0)
     }
   }, [location.pathname])
 

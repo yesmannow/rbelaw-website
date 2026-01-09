@@ -10,6 +10,7 @@ import { NewsroomAboutMegaMenu } from '../navigation/NewsroomAboutMegaMenu'
 import { navData } from '../../lib/data/navigation'
 import { PrestigeButton } from '../ui/PrestigeButton'
 import { MobileNavBar } from './mobile/MobileNavBar'
+import { PWAInstallPrompt } from '../ui/PWAInstallPrompt'
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -50,6 +51,7 @@ export function Navbar() {
   }, [lastScrollY])
 
   return (
+    <>
     <motion.nav
       initial={{ y: 0 }}
       animate={{
@@ -94,32 +96,96 @@ export function Navbar() {
         <div className={`flex items-center justify-between transition-all duration-300 ${
           isScrolled ? 'h-16' : 'h-20'
         }`}>
-          {/* Logo - Home Link */}
+          {/* Logo - Home Link with Premium Animations */}
           <Link to="/" className="flex items-center group relative">
-            <motion.img
-              src="/images/logo/RBE_Logo_RBG-01.png"
-              alt="Riley Bennett Egloff LLP"
-              className={`transition-all duration-300 ${
-                isScrolled ? 'h-10' : 'h-14'
-              } w-auto brightness-0 invert group-hover:scale-105`}
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.2 }}
-            />
-            {location.pathname === '/' && (
+            <motion.div
+              className="relative"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 20 }}
+            >
+              {/* Glow Effect */}
               <motion.div
-                className="absolute -bottom-1 left-0 right-0 h-0.5 bg-[#B8860B]"
+                className="absolute inset-0 bg-[#B8860B] rounded-full blur-xl opacity-0 group-hover:opacity-30"
                 animate={{
-                  opacity: [1, 0.7, 1],
-                  scaleX: [1, 1.05, 1]
+                  scale: [1, 1.2, 1],
+                  opacity: [0, 0.3, 0]
                 }}
                 transition={{
-                  duration: 1.2,
+                  duration: 2,
                   repeat: Infinity,
-                  ease: 'easeInOut',
-                  times: [0, 0.5, 1]
+                  ease: 'easeInOut'
+                }}
+              />
+
+              {/* Logo Image */}
+              <motion.img
+                src="/images/logo/RBE_Logo_RBG-01.png"
+                alt="Riley Bennett Egloff LLP"
+                className={`relative transition-all duration-300 ${
+                  isScrolled ? 'h-12' : 'h-20'
+                } w-auto brightness-0 invert group-hover:brightness-110`}
+                animate={{
+                  filter: [
+                    'brightness(1) invert(1)',
+                    'brightness(1.1) invert(1)',
+                    'brightness(1) invert(1)'
+                  ]
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: 'easeInOut'
+                }}
+              />
+
+              {/* Shimmer Effect */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                animate={{
+                  x: ['-100%', '200%']
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  repeatDelay: 2,
+                  ease: 'easeInOut'
+                }}
+                style={{
+                  clipPath: 'inset(0 0 0 0)'
+                }}
+              />
+            </motion.div>
+
+            {/* Active Indicator - Enhanced */}
+            {location.pathname === '/' && (
+              <motion.div
+                className="absolute -bottom-1 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#B8860B] to-transparent"
+                animate={{
+                  opacity: [0.5, 1, 0.5],
+                  scaleX: [0.8, 1.2, 0.8]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: 'easeInOut'
                 }}
               />
             )}
+
+            {/* Pulse Ring on Hover */}
+            <motion.div
+              className="absolute inset-0 border-2 border-[#B8860B] rounded-full opacity-0"
+              initial={false}
+              whileHover={{
+                opacity: [0, 0.5, 0],
+                scale: [1, 1.3, 1.5]
+              }}
+              transition={{
+                duration: 1.5,
+                ease: 'easeOut'
+              }}
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -161,9 +227,14 @@ export function Navbar() {
 
           {/* Mobile menu button - Hidden, using MobileNavBar instead */}
         </div>
-
-        {/* Mobile navigation handled by MobileNavBar component */}
       </div>
     </motion.nav>
+
+    {/* Mobile Navigation Bar - Rendered outside nav container for proper layering */}
+    <MobileNavBar />
+
+    {/* PWA Install Prompt - Mobile Only, Limited Appearances */}
+    <PWAInstallPrompt />
+  </>
   )
 }
