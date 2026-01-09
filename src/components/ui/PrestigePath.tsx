@@ -1,7 +1,11 @@
 /**
- * PrestigePath Component
- * SVG path animation that "draws" itself as the user scrolls
- * Inspired by DLA Piper's swooping line animations
+ * PrestigePath - Narrative Motion Component
+ * "The Legal Thread" - A scroll-triggered SVG path animation
+ * 
+ * Creates a high-end visual narrative flow using:
+ * - Gold (#B8860B) Bezier curve stroke
+ * - 4px blur glow effect
+ * - Scroll-driven pathLength animation
  */
 
 import { useRef } from 'react'
@@ -10,11 +14,11 @@ import { motion, useScroll, useSpring, useTransform } from 'framer-motion'
 interface PrestigePathProps {
   /**
    * The direction of the path
+   * - 'swooping': The main Bezier swooping path (M 500,0 C 800,400 200,600 500,1000)
    * - 'left-to-right': Swoops from left to right
    * - 'right-to-left': Swoops from right to left
-   * - 'top-to-bottom': Swoops from top to bottom
    */
-  direction?: 'left-to-right' | 'right-to-left' | 'top-to-bottom'
+  direction?: 'swooping' | 'left-to-right' | 'right-to-left'
   /**
    * Vertical offset in pixels (for positioning)
    */
@@ -26,7 +30,7 @@ interface PrestigePathProps {
 }
 
 export function PrestigePath({ 
-  direction = 'left-to-right', 
+  direction = 'swooping', 
   offsetY = 0,
   show = true 
 }: PrestigePathProps) {
@@ -37,66 +41,68 @@ export function PrestigePath({
     offset: ['start end', 'end start']
   })
 
-  // Apply spring physics for smooth, liquid-like movement
+  // Apply spring physics for smooth, liquid-like movement (stiffness: 100, damping: 30)
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001
   })
 
-  // Transform progress to path length
+  // Transform progress to path length and opacity
   const pathLength = useTransform(smoothProgress, [0, 1], [0, 1])
+  const opacity = useTransform(scrollYProgress, [0, 0.1, 0.9, 1], [0, 1, 1, 0])
 
   if (!show) return null
 
   // Define SVG paths based on direction
   const pathData = {
+    'swooping': 'M 500,0 C 800,400 200,600 500,1000 S 800,1600 500,2000',
     'left-to-right': 'M 0 50 Q 150 10, 300 50 T 600 50',
-    'right-to-left': 'M 600 50 Q 450 10, 300 50 T 0 50',
-    'top-to-bottom': 'M 50 0 Q 10 150, 50 300 T 50 600'
+    'right-to-left': 'M 600 50 Q 450 10, 300 50 T 0 50'
   }
 
-  const viewBox = direction === 'top-to-bottom' ? '0 0 100 600' : '0 0 600 100'
-  const height = direction === 'top-to-bottom' ? 'h-96' : 'h-24'
-  const width = direction === 'top-to-bottom' ? 'w-24' : 'w-full'
+  const viewBox = direction === 'swooping' ? '0 0 1000 2000' : '0 0 600 100'
+  const height = direction === 'swooping' ? 'h-full' : 'h-24'
+  const width = 'w-full'
 
   return (
     <div 
       ref={pathRef}
-      className={`absolute left-0 right-0 pointer-events-none ${width} ${height} overflow-visible`}
-      style={{ top: `${offsetY}px`, '--accent-gold': '#B8860B' } as React.CSSProperties}
+      className={`absolute inset-0 pointer-events-none ${width} ${height} overflow-hidden`}
+      style={{ top: `${offsetY}px` }}
+      aria-hidden="true"
     >
       <svg
         className="w-full h-full"
         viewBox={viewBox}
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        preserveAspectRatio="none"
+        preserveAspectRatio={direction === 'swooping' ? 'xMidYMid slice' : 'none'}
       >
-        {/* Glow effect layer */}
-        <motion.path
-          d={pathData[direction]}
-          stroke="var(--accent-gold)"
-          strokeWidth="3"
-          strokeLinecap="round"
-          fill="none"
-          style={{
-            pathLength,
-            filter: 'blur(8px)',
-            opacity: 0.6
-          }}
-          initial={{ pathLength: 0 }}
-        />
+        <defs>
+          {/* Gold glow filter - 4px blur */}
+          <filter id="prestige-glow-4px" x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
+            <feFlood floodColor="#B8860B" floodOpacity="0.6" />
+            <feComposite in2="blur" operator="in" result="glow" />
+            <feMerge>
+              <feMergeNode in="glow" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
         
-        {/* Main path */}
+        {/* The swooping path with 4px glow */}
         <motion.path
           d={pathData[direction]}
-          stroke="var(--accent-gold)"
+          stroke="#B8860B"
           strokeWidth="2"
           strokeLinecap="round"
           fill="none"
+          filter="url(#prestige-glow-4px)"
           style={{
-            pathLength
+            pathLength,
+            opacity
           }}
           initial={{ pathLength: 0 }}
         />

@@ -24,26 +24,33 @@ import { PrestigePath } from '@/components/ui/PrestigePath'
  */
 export function HomePage() {
   return (
-    <main className="min-h-screen relative">
-      <HeroSection />
-      <TrustBar />
-      <ValuePropositionSection />
-      
-      {/* Swooping path between sections */}
-      <div className="relative">
-        <PrestigePath direction="left-to-right" offsetY={-50} />
-        <PracticeAreasSection />
+    <main className="min-h-screen relative overflow-hidden">
+      {/* Background swooping path for narrative flow */}
+      <div className="absolute inset-0 z-0">
+        <PrestigePath direction="swooping" />
       </div>
       
-      <IndustriesSection />
-      
-      {/* Impact Counter Section */}
-      <ImpactCounter />
-      
-      {/* Another swooping path */}
-      <div className="relative">
-        <PrestigePath direction="right-to-left" offsetY={-50} />
-        <NewsroomSection />
+      <div className="relative z-10">
+        <HeroSection />
+        <TrustBar />
+        <ValuePropositionSection />
+        
+        {/* Practice Areas with subtle accent path */}
+        <div className="relative">
+          <PrestigePath direction="left-to-right" offsetY={-50} />
+          <PracticeAreasSection />
+        </div>
+        
+        <IndustriesSection />
+        
+        {/* Impact Counter Section */}
+        <ImpactCounter />
+        
+        {/* Newsroom with accent path */}
+        <div className="relative">
+          <PrestigePath direction="right-to-left" offsetY={-50} />
+          <NewsroomSection />
+        </div>
       </div>
     </main>
   )

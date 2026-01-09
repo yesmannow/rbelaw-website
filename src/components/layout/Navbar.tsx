@@ -196,130 +196,206 @@ export function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Prestige Drawer */}
         <AnimatePresence>
           {isOpen && (
-            <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="lg:hidden overflow-hidden border-t border-white/10"
-            >
-              <div className="py-4 space-y-2">
-                <Link 
-                  to="/" 
-                  className="block text-white hover:text-accent-tan hover:bg-white/5 transition-all px-4 py-3 rounded font-medium"
-                  onClick={() => setIsOpen(false)}
-                >
-                  Home
-                </Link>
-
-                <div>
+            <>
+              {/* Backdrop */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] lg:hidden"
+                onClick={() => setIsOpen(false)}
+              />
+              
+              {/* Full-screen drawer from right */}
+              <motion.div
+                initial={{ x: '100%' }}
+                animate={{ x: 0 }}
+                exit={{ x: '100%' }}
+                transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+                className="fixed right-0 top-0 bottom-0 w-full sm:w-96 bg-[#0A2540] z-[100] lg:hidden overflow-y-auto shadow-2xl"
+              >
+                {/* Drawer Header */}
+                <div className="sticky top-0 bg-[#0A2540] border-b border-[#B8860B]/20 px-6 py-4 flex items-center justify-between">
+                  <h2 className="text-[#B8860B] font-playfair text-2xl font-bold">Menu</h2>
                   <button
-                    onClick={() => setIsPracticeAreasOpen(!isPracticeAreasOpen)}
-                    className="flex items-center justify-between text-white hover:text-accent-tan hover:bg-white/5 transition-all font-medium w-full px-4 py-3 rounded"
+                    onClick={() => setIsOpen(false)}
+                    className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                    aria-label="Close menu"
                   >
-                    <span>Practice Areas</span>
-                    <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isPracticeAreasOpen ? 'rotate-180' : ''}`} />
+                    <X className="h-6 w-6 text-white" />
                   </button>
+                </div>
 
-                  <AnimatePresence>
-                    {isPracticeAreasOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="ml-4 mt-1 space-y-1 overflow-hidden"
-                      >
-                        {practiceAreas.map((area) => (
+                {/* Quick Tools Bar - Horizontal Scrolling */}
+                <div className="px-6 py-4 border-b border-white/10">
+                  <h3 className="text-white/60 text-xs font-semibold uppercase tracking-wider mb-3">Quick Tools</h3>
+                  <div className="flex gap-3 overflow-x-auto pb-2 -mx-2 px-2">
+                    <Link
+                      to="/tools/lien-calculator"
+                      className="flex-shrink-0 bg-[#B8860B]/10 border border-[#B8860B]/30 hover:bg-[#B8860B]/20 text-[#B8860B] px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      🧮 Lien Calculator
+                    </Link>
+                    <Link
+                      to="/tools/flsa-wizard"
+                      className="flex-shrink-0 bg-[#B8860B]/10 border border-[#B8860B]/30 hover:bg-[#B8860B]/20 text-[#B8860B] px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      ⚖️ FLSA Wizard
+                    </Link>
+                  </div>
+                </div>
+
+                {/* Menu Links with Staggered Entry */}
+                <motion.div
+                  className="px-6 py-6 space-y-2"
+                  variants={{
+                    open: {
+                      transition: { staggerChildren: 0.05, delayChildren: 0.1 }
+                    },
+                    closed: {
+                      transition: { staggerChildren: 0.02, staggerDirection: -1 }
+                    }
+                  }}
+                  initial="closed"
+                  animate="open"
+                  exit="closed"
+                >
+                  <motion.div variants={{ open: { opacity: 1, x: 0 }, closed: { opacity: 0, x: -20 } }}>
+                    <Link 
+                      to="/" 
+                      className="block text-white hover:text-[#B8860B] hover:bg-white/5 transition-all px-4 py-3 rounded-lg font-medium"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Home
+                    </Link>
+                  </motion.div>
+
+                  <motion.div variants={{ open: { opacity: 1, x: 0 }, closed: { opacity: 0, x: -20 } }}>
+                    <button
+                      onClick={() => setIsPracticeAreasOpen(!isPracticeAreasOpen)}
+                      className="flex items-center justify-between text-white hover:text-[#B8860B] hover:bg-white/5 transition-all font-medium w-full px-4 py-3 rounded-lg"
+                    >
+                      <span>Practice Areas</span>
+                      <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isPracticeAreasOpen ? 'rotate-180' : ''}`} />
+                    </button>
+
+                    <AnimatePresence>
+                      {isPracticeAreasOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="ml-4 mt-1 space-y-1 overflow-hidden max-h-64 overflow-y-auto"
+                        >
+                          {practiceAreas.map((area) => (
+                            <Link
+                              key={area.id}
+                              to={`/practice-areas/${area.slug}`}
+                              className="block text-sm text-white/80 hover:text-[#B8860B] hover:bg-white/5 transition-all px-4 py-2 rounded-lg"
+                              onClick={() => setIsOpen(false)}
+                            >
+                              {area.name}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+
+                  <motion.div variants={{ open: { opacity: 1, x: 0 }, closed: { opacity: 0, x: -20 } }}>
+                    <button
+                      onClick={() => setIsOurTeamOpen(!isOurTeamOpen)}
+                      className="flex items-center justify-between text-white hover:text-[#B8860B] hover:bg-white/5 transition-all font-medium w-full px-4 py-3 rounded-lg"
+                    >
+                      <span>Our Team</span>
+                      <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isOurTeamOpen ? 'rotate-180' : ''}`} />
+                    </button>
+
+                    <AnimatePresence>
+                      {isOurTeamOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="ml-4 mt-1 space-y-1 overflow-hidden"
+                        >
                           <Link
-                            key={area.id}
-                            to={`/practice-areas/${area.slug}`}
-                            className="block text-sm text-white/80 hover:text-accent-tan hover:bg-white/5 transition-all px-4 py-2 rounded"
+                            to="/attorneys"
+                            className="block text-sm text-white/80 hover:text-[#B8860B] hover:bg-white/5 transition-all px-4 py-2 rounded-lg"
                             onClick={() => setIsOpen(false)}
                           >
-                            {area.name}
+                            Attorneys
                           </Link>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                          <Link
+                            to="/team/legal-assistants"
+                            className="block text-sm text-white/80 hover:text-[#B8860B] hover:bg-white/5 transition-all px-4 py-2 rounded-lg"
+                            onClick={() => setIsOpen(false)}
+                          >
+                            Legal Assistants
+                          </Link>
+                          <Link
+                            to="/team/professionals"
+                            className="block text-sm text-white/80 hover:text-[#B8860B] hover:bg-white/5 transition-all px-4 py-2 rounded-lg"
+                            onClick={() => setIsOpen(false)}
+                          >
+                            Other Professionals
+                          </Link>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+
+                  <motion.div variants={{ open: { opacity: 1, x: 0 }, closed: { opacity: 0, x: -20 } }}>
+                    <Link 
+                      to="/about" 
+                      className="block text-white hover:text-[#B8860B] hover:bg-white/5 transition-all px-4 py-3 rounded-lg font-medium"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      About
+                    </Link>
+                  </motion.div>
+
+                  <motion.div variants={{ open: { opacity: 1, x: 0 }, closed: { opacity: 0, x: -20 } }}>
+                    <Link 
+                      to="/newsroom" 
+                      className="block text-white hover:text-[#B8860B] hover:bg-white/5 transition-all px-4 py-3 rounded-lg font-medium"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Newsroom
+                    </Link>
+                  </motion.div>
+                </motion.div>
+
+                {/* Fixed Footer - Thumb Zone CTAs */}
+                <div className="sticky bottom-0 bg-gradient-to-t from-[#0A2540] via-[#0A2540] to-transparent pt-6 pb-6 px-6 border-t border-[#B8860B]/20">
+                  <div className="space-y-3">
+                    <a
+                      href="tel:3176368000"
+                      className="flex items-center justify-center gap-3 bg-[#B8860B] hover:bg-[#D4A017] text-[#0A2540] px-6 py-4 rounded-lg font-bold text-lg transition-all shadow-lg active:scale-95"
+                    >
+                      <Phone className="h-5 w-5" />
+                      <span>Call Now</span>
+                    </a>
+
+                    <Link 
+                      to="/contact" 
+                      className="block text-center border-2 border-[#B8860B] text-[#B8860B] hover:bg-[#B8860B] hover:text-[#0A2540] px-6 py-4 rounded-lg font-bold text-lg transition-all active:scale-95"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Contact Us
+                    </Link>
+                  </div>
                 </div>
-
-                <div>
-                  <button
-                    onClick={() => setIsOurTeamOpen(!isOurTeamOpen)}
-                    className="flex items-center justify-between text-white hover:text-accent-tan hover:bg-white/5 transition-all font-medium w-full px-4 py-3 rounded"
-                  >
-                    <span>Our Team</span>
-                    <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isOurTeamOpen ? 'rotate-180' : ''}`} />
-                  </button>
-
-                  <AnimatePresence>
-                    {isOurTeamOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="ml-4 mt-1 space-y-1 overflow-hidden"
-                      >
-                        <Link
-                          to="/attorneys"
-                          className="block text-sm text-white/80 hover:text-accent-tan hover:bg-white/5 transition-all px-4 py-2 rounded"
-                          onClick={() => setIsOpen(false)}
-                        >
-                          Attorneys
-                        </Link>
-                        <Link
-                          to="/team/legal-assistants"
-                          className="block text-sm text-white/80 hover:text-accent-tan hover:bg-white/5 transition-all px-4 py-2 rounded"
-                          onClick={() => setIsOpen(false)}
-                        >
-                          Legal Assistants
-                        </Link>
-                        <Link
-                          to="/team/professionals"
-                          className="block text-sm text-white/80 hover:text-accent-tan hover:bg-white/5 transition-all px-4 py-2 rounded"
-                          onClick={() => setIsOpen(false)}
-                        >
-                          Other Professionals
-                        </Link>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-
-                <Link 
-                  to="/about" 
-                  className="block text-white hover:text-accent-tan hover:bg-white/5 transition-all px-4 py-3 rounded font-medium"
-                  onClick={() => setIsOpen(false)}
-                >
-                  About
-                </Link>
-
-                {/* Mobile CTAs */}
-                <div className="pt-4 space-y-2 border-t border-white/10 mt-4">
-                  <a
-                    href="tel:3176368000"
-                    className="flex items-center justify-center gap-2 text-white hover:text-accent-tan border border-white/30 hover:border-accent-tan transition-all px-4 py-3 rounded font-medium"
-                  >
-                    <Phone className="h-4 w-4" />
-                    <span>(317) 636-8000</span>
-                  </a>
-
-                  <Link 
-                    to="/contact" 
-                    className="block text-center bg-accent-tan hover:bg-accent-tan/90 text-primary-navy px-4 py-3 rounded font-semibold transition-all"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    Contact Us
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            </>
           )}
         </AnimatePresence>
       </div>
