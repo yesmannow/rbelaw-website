@@ -1,3 +1,5 @@
+import type { Attorney } from '../types'
+
 /**
  * PDF Generation Utilities
  * 
@@ -183,7 +185,7 @@ export function generateToolResultsPDF(toolName: string, results: Record<string,
           <th>Severity</th>
           <th>Recommendation</th>
         </tr>
-        ${results.clauses.map((clause: any) => `
+        ${results.clauses?.map((clause) => `
           <tr>
             <td>${clause.type}</td>
             <td>${clause.severity.toUpperCase()}</td>
@@ -216,7 +218,7 @@ export function generateToolResultsPDF(toolName: string, results: Record<string,
 /**
  * Generate attorney bio PDF
  */
-export function generateAttorneyBioPDF(attorney: any): void {
+export function generateAttorneyBioPDF(attorney: Attorney): void {
   const content = `
     <h2>${attorney.name}</h2>
     <p><strong>${attorney.title}</strong></p>
@@ -227,7 +229,7 @@ export function generateAttorneyBioPDF(attorney: any): void {
     ${attorney.education && attorney.education.length > 0 ? `
       <h3>Education</h3>
       <ul>
-        ${attorney.education.map((edu: any) => `
+        ${attorney.education.map((edu) => `
           <li><strong>${edu.degree}</strong> - ${edu.institution} (${edu.year})</li>
         `).join('')}
       </ul>

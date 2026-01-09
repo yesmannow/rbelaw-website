@@ -1,14 +1,12 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FileText, ExternalLink, Download, Calendar, Tag } from 'lucide-react'
-import type { Publication } from '@/lib/types'
+import { FileText, ExternalLink, Calendar } from 'lucide-react'
 
 interface PublicationsListProps {
-  publications?: Publication[]
+  publications?: Array<{ title: string; url?: string; date?: string }>
 }
 
 export function PublicationsList({ publications = [] }: PublicationsListProps) {
-  const [filter, setFilter] = useState<'all' | string>('all')
   const [sortBy, setSortBy] = useState<'date' | 'title'>('date')
 
   if (publications.length === 0) {
@@ -20,47 +18,22 @@ export function PublicationsList({ publications = [] }: PublicationsListProps) {
     )
   }
 
-  // Get unique categories
-  const categories = Array.from(new Set(publications.map(p => p.publication)))
-
-  // Filter and sort publications
-  const filteredPublications = publications
-    .filter(pub => filter === 'all' || pub.publication === filter)
-    .sort((a, b) => {
-      if (sortBy === 'date') {
-        return new Date(b.date).getTime() - new Date(a.date).getTime()
-      }
-      return a.title.localeCompare(b.title)
-    })
+  // Sort publications
+  const sortedPublications = [...publications].sort((a, b) => {
+    if (sortBy === 'date') {
+      const dateA = a.date ? new Date(a.date).getTime() : 0
+      const dateB = b.date ? new Date(b.date).getTime() : 0
+      return dateB - dateA
+    }
+    return a.title.localeCompare(b.title)
+  })
 
   return (
     <div className="space-y-6">
-      {/* Filters */}
+      {/* Sort Controls */}
       <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-        <div className="flex flex-wrap gap-2">
-          <button
-            onClick={() => setFilter('all')}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-              filter === 'all'
-                ? 'bg-primary-navy text-white'
-                : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
-            }`}
-          >
-            All ({publications.length})
-          </button>
-          {categories.map(category => (
-            <button
-              key={category}
-              onClick={() => setFilter(category)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                filter === category
-                  ? 'bg-primary-navy text-white'
-                  : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
-              }`}
-            >
-              {category}
-            </button>
-          ))}
+        <div className="text-sm text-neutral-600">
+          Showing {publications.length} {publications.length === 1 ? 'publication' : 'publications'}
         </div>
 
         <select
@@ -76,14 +49,14 @@ export function PublicationsList({ publications = [] }: PublicationsListProps) {
       {/* Publications List */}
       <AnimatePresence mode="wait">
         <motion.div
-          key={filter + sortBy}
+          key={sortBy}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.3 }}
           className="space-y-4"
         >
-          {filteredPublications.map((publication, index) => (
+          {sortedPublications.map((publication, index) => (
             <motion.div
               key={publication.title}
               initial={{ opacity: 0, x: -20 }}
@@ -101,36 +74,26 @@ export function PublicationsList({ publications = [] }: PublicationsListProps) {
                     {publication.title}
                   </h3>
 
-                  <div className="flex flex-wrap items-center gap-4 text-sm text-neutral-600 mb-3">
-                    <div className="flex items-center gap-1">
-                      <Tag className="h-4 w-4" />
-                      <span className="font-medium">{publication.publication}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
+                  {publication.date && (
+                    <div className="flex items-center gap-1 text-sm text-neutral-600 mb-3">
                       <Calendar className="h-4 w-4" />
                       <span>{new Date(publication.date).toLocaleDateString('en-US', { 
                         year: 'numeric', 
                         month: 'long' 
                       })}</span>
                     </div>
-                  </div>
+                  )}
 
                   {publication.url && (
-                    <div className="flex gap-3">
-                      <a
-                        href={publication.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 bg-primary-navy hover:bg-primary-slate text-white rounded-lg text-sm font-semibold transition-colors"
-                      >
-                        <ExternalLink className="h-4 w-4" />
-                        Read Article
-                      </a>
-                      <button className="inline-flex items-center gap-2 px-4 py-2 bg-neutral-100 hover:bg-neutral-200 text-neutral-700 rounded-lg text-sm font-semibold transition-colors">
-                        <Download className="h-4 w-4" />
-                        Download PDF
-                      </button>
-                    </div>
+                    <a
+                      href={publication.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-primary-navy hover:bg-primary-slate text-white rounded-lg text-sm font-semibold transition-colors"
+                    >
+                      <ExternalLink className="h-4 w-4" />
+                      Read Article
+                    </a>
                   )}
                 </div>
               </div>
@@ -138,12 +101,6 @@ export function PublicationsList({ publications = [] }: PublicationsListProps) {
           ))}
         </motion.div>
       </AnimatePresence>
-
-      {filteredPublications.length === 0 && (
-        <div className="text-center py-12 bg-neutral-50 rounded-lg border-2 border-dashed border-neutral-200">
-          <p className="text-neutral-600">No publications found for this filter.</p>
-        </div>
-      )}
     </div>
   )
 }

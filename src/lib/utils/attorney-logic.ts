@@ -4,61 +4,14 @@
  */
 
 import { attorneys as masterAttorneys, type MasterAttorney } from '@/lib/data/attorneys'
-import type { Attorney, Education, Publication, RepresentativeMatter } from '@/lib/types'
+import type { Attorney } from '@/lib/types'
 
-/**
- * Adapt MasterAttorney to Attorney interface
- * Ensures all fields are properly mapped without data loss
- */
-function adaptMasterToAttorney(master: MasterAttorney): Attorney {
-  const education: Education[] = master.education.map(edu => ({
-    degree: edu.degree,
-    institution: edu.institution,
-    year: edu.year
-  }))
+// Since Attorney and MasterAttorney are now unified, we can use them interchangeably
+// Type alias for compatibility
+type AttorneyData = Attorney & MasterAttorney
 
-  const publications: Publication[] = master.publications?.map(p => ({
-    title: p.title,
-    publication: '', // MasterAttorney doesn't have separate publication field
-    date: p.date || '',
-    url: p.url
-  })) || []
-
-  const representativeMatters: RepresentativeMatter[] = master.representativeMatters.map(matter => ({
-    title: matter,
-    description: matter
-  }))
-
-  return {
-    id: master.id,
-    name: master.name,
-    title: master.title,
-    email: master.email,
-    phone: master.phone,
-    bio: master.bio.length === 1 ? master.bio[0] : master.bio.join('\n\n'), // Convert array to string
-    image: master.image, // Primary image field
-    imageThumb: master.imageThumb,
-    imageUrl: master.image, // Legacy compatibility - map to same value
-    slug: master.slug, // Maintain same ID for view transitions
-    practiceAreas: master.practiceAreas,
-    education,
-    barAdmissions: master.barAdmissions,
-    awards: master.awards.length > 0 ? master.awards : undefined,
-    publications: publications.length > 0 ? publications : undefined,
-    representativeMatters: representativeMatters.length > 0 ? representativeMatters : undefined,
-    associations: [], // Not in MasterAttorney - components should check barAdmissions instead
-    community: [], // Not in MasterAttorney - can be added to master data if needed
-    linkedIn: master.linkedIn,
-    twitter: undefined,
-    vCard: master.vCard,
-    beyondOffice: master.beyondOffice,
-    videos: master.videos,
-    industries: master.industries
-  }
-}
-
-// Convert all attorneys to the Attorney interface
-export const attorneys: Attorney[] = masterAttorneys.map(adaptMasterToAttorney)
+// Convert all attorneys to the Attorney interface (now they're the same)
+export const attorneys: Attorney[] = masterAttorneys as Attorney[]
 
 /**
  * Get the count of attorneys specializing in a specific practice area or industry
@@ -67,9 +20,9 @@ export const attorneys: Attorney[] = masterAttorneys.map(adaptMasterToAttorney)
  * @returns The number of attorneys specializing in the specified area
  */
 export function getSpecialistCount(areaName: string, type: 'practice' | 'industry'): number {
-  return masterAttorneys.filter(attorney => {
+  return masterAttorneys.filter((attorney: MasterAttorney) => {
     const list = type === 'practice' ? attorney.practiceAreas : attorney.industries
-    return list.some(item => item.toLowerCase().includes(areaName.toLowerCase()))
+    return list.some((item: string) => item.toLowerCase().includes(areaName.toLowerCase()))
   }).length
 }
 
@@ -79,8 +32,8 @@ export function getSpecialistCount(areaName: string, type: 'practice' | 'industr
  * @returns Array of attorneys who specialize in the practice area
  */
 export function getAttorneysByPracticeArea(practiceArea: string): Attorney[] {
-  return attorneys.filter(attorney =>
-    attorney.practiceAreas.some(pa =>
+  return attorneys.filter((attorney: Attorney) =>
+    attorney.practiceAreas.some((pa: string) =>
       pa.toLowerCase().includes(practiceArea.toLowerCase())
     )
   )
@@ -92,8 +45,8 @@ export function getAttorneysByPracticeArea(practiceArea: string): Attorney[] {
  * @returns Array of attorneys who work in the industry
  */
 export function getAttorneysByIndustry(industry: string): Attorney[] {
-  return attorneys.filter(attorney =>
-    attorney.industries && attorney.industries.some(ind =>
+  return attorneys.filter((attorney: Attorney) =>
+    attorney.industries && attorney.industries.some((ind: string) =>
       ind.toLowerCase().includes(industry.toLowerCase())
     )
   )

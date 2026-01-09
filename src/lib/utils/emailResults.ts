@@ -8,7 +8,7 @@
 interface EmailResultsOptions {
   to: string
   toolName: string
-  results: Record<string, any>
+  results: Record<string, unknown>
   userName?: string
 }
 
@@ -41,7 +41,7 @@ export async function emailToolResults(options: EmailResultsOptions): Promise<bo
 /**
  * Format email content based on tool type
  */
-export function formatEmailContent(toolName: string, results: Record<string, any>): string {
+export function formatEmailContent(toolName: string, results: Record<string, unknown>): string {
   let content = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
       <div style="background: linear-gradient(135deg, #0A2540 0%, #1E3A5F 100%); padding: 30px; text-align: center;">

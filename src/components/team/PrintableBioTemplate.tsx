@@ -97,9 +97,7 @@ export const PrintableBioTemplate = forwardRef<HTMLDivElement, PrintableBioTempl
                 <h3>Representative Matters</h3>
                 {attorney.representativeMatters.map((matter, index) => (
                   <div key={index} className="print-matter-item">
-                    <p><strong>{matter.title}</strong></p>
-                    <p>{matter.description}</p>
-                    {matter.year && <p className="print-matter-year">{matter.year}</p>}
+                    <p>{matter}</p>
                   </div>
                 ))}
               </div>

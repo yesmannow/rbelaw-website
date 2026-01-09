@@ -146,7 +146,7 @@ export function GlobalSearch({ open, onOpenChange }: GlobalSearchProps) {
                         key={attorney.id}
                         onSelect={() => handleSelect(() => navigate(`/attorneys/${attorney.id}`))}
                         className="flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer hover:bg-primary-burgundy/10 aria-selected:bg-primary-burgundy/10"
-                        keywords={[attorney.name, attorney.title, attorney.bio]}
+                        keywords={[attorney.name, attorney.title, ...attorney.bio]}
                       >
                         <Users className="w-4 h-4 text-primary-navy" />
                         <div>

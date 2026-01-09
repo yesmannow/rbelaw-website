@@ -29,8 +29,7 @@ export function AttorneyBio() {
 
   const filteredMatters = useMemo(() => {
     return attorney?.representativeMatters?.filter(matter =>
-      matter.title.toLowerCase().includes(matterFilter.toLowerCase()) ||
-      matter.description.toLowerCase().includes(matterFilter.toLowerCase())
+      matter.toLowerCase().includes(matterFilter.toLowerCase())
     ) || []
   }, [attorney?.representativeMatters, matterFilter])
 
@@ -59,7 +58,9 @@ export function AttorneyBio() {
         >
           <h2 className="text-3xl font-bold text-primary-navy mb-6">Biography</h2>
           <div className="prose prose-lg max-w-none">
-            <p className="text-neutral-700 leading-relaxed">{attorney.bio}</p>
+            {attorney.bio.map((paragraph, index) => (
+              <p key={index} className="text-neutral-700 leading-relaxed mb-4">{paragraph}</p>
+            ))}
           </div>
         </motion.section>
 
@@ -100,22 +101,7 @@ export function AttorneyBio() {
                       transition={{ duration: 0.3, delay: index * 0.05 }}
                       className="p-6 bg-neutral-50 rounded-lg border border-neutral-200"
                     >
-                      <div className="flex items-start justify-between mb-2">
-                        <h3 className="text-xl font-semibold text-primary-navy">
-                          {matter.title}
-                        </h3>
-                        {matter.year && (
-                          <span className="text-sm text-neutral-500 font-medium">
-                            {matter.year}
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-neutral-700">{matter.description}</p>
-                      {matter.practiceArea && (
-                        <span className="inline-block mt-3 px-3 py-1 bg-accent-gold/20 text-primary-navy text-sm rounded-full">
-                          {matter.practiceArea}
-                        </span>
-                      )}
+                      <p className="text-neutral-700">{matter}</p>
                     </motion.div>
                   ))
                 ) : (
