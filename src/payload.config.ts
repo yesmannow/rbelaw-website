@@ -9,11 +9,15 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 export default buildConfig({
-  // Admin configuration
+  // Admin configuration with Riley Bennett Egloff branding
   admin: {
     user: 'users',
     importMap: {
       baseDir: path.resolve(dirname),
+    },
+    meta: {
+      titleSuffix: '- Riley Bennett Egloff LLP',
+      defaultOGImageType: 'static',
     },
   },
   
