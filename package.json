@@ -10,6 +10,7 @@
     "lint": "next lint",
     "payload": "payload",
     "generate:types": "payload generate:types",
+    "seed": "tsx src/lib/payload/seed.ts",
     "dev:vite": "vite",
     "build:vite": "tsc -b tsconfig.app.json && vite build",
     "postbuild:vite": "tsx scripts/generate-sitemap.ts",
