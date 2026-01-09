@@ -9,18 +9,18 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 // Import data for dynamic sitemap generation
-import { attorneys } from './src/lib/utils/attorney-logic'
-import { enhancedPracticeAreas } from './src/lib/data/practiceAreasEnhanced'
-import { industriesManual } from './src/lib/data/industries-manual'
+// import { attorneys } from './src/lib/utils/attorney-logic'
+// import { enhancedPracticeAreas } from './src/lib/data/practiceAreasEnhanced'
+// import { industriesManual } from './src/lib/data/industries-manual'
 
 // Map all dynamic prestige IDs into a flat array of paths
-const dynamicRoutes = [
-  // Attorney bio pages
-  ...attorneys.map(a => `/attorneys/${a.id}`),
+const dynamicRoutes: string[] = [
+  // Attorney bio pages - will be generated post-build
+  // ...attorneys.map(a => `/attorneys/${a.id}`),
   // Practice area detail pages
-  ...enhancedPracticeAreas.map(pa => `/practice-areas/${pa.slug}`),
+  // ...enhancedPracticeAreas.map(pa => `/practice-areas/${pa.slug}`),
   // Industry detail pages
-  ...industriesManual.map(ind => `/industries/${ind.slug}`)
+  // ...industriesManual.map(ind => `/industries/${ind.slug}`)
 ]
 
 export default defineConfig({

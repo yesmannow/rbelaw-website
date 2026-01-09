@@ -3,15 +3,11 @@
  * Reusable functions for attorney data filtering and counting
  */
 
-import { attorneys as masterAttorneys, type MasterAttorney } from '@/lib/data/attorneys'
+import { attorneys as attorneyData } from '@/lib/data/attorneys'
 import type { Attorney } from '@/lib/types'
 
-// Since Attorney and MasterAttorney are now unified, we can use them interchangeably
-// Type alias for compatibility
-type AttorneyData = Attorney & MasterAttorney
-
-// Convert all attorneys to the Attorney interface (now they're the same)
-export const attorneys: Attorney[] = masterAttorneys as Attorney[]
+// Direct export of attorneys from master data (no conversion needed)
+export const attorneys: Attorney[] = attorneyData
 
 /**
  * Get the count of attorneys specializing in a specific practice area or industry
@@ -20,7 +16,7 @@ export const attorneys: Attorney[] = masterAttorneys as Attorney[]
  * @returns The number of attorneys specializing in the specified area
  */
 export function getSpecialistCount(areaName: string, type: 'practice' | 'industry'): number {
-  return masterAttorneys.filter((attorney: MasterAttorney) => {
+  return attorneys.filter((attorney: Attorney) => {
     const list = type === 'practice' ? attorney.practiceAreas : attorney.industries
     return list.some((item: string) => item.toLowerCase().includes(areaName.toLowerCase()))
   }).length

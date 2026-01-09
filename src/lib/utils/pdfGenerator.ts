@@ -185,7 +185,7 @@ export function generateToolResultsPDF(toolName: string, results: Record<string,
           <th>Severity</th>
           <th>Recommendation</th>
         </tr>
-        ${results.clauses?.map((clause) => `
+        ${(results.clauses as Array<{ type: string; severity: string; recommendation: string }> | undefined)?.map((clause) => `
           <tr>
             <td>${clause.type}</td>
             <td>${clause.severity.toUpperCase()}</td>

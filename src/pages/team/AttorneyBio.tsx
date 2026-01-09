@@ -146,10 +146,10 @@ export function AttorneyBio() {
           </motion.section>
         )}
 
-        {/* Associations Section */}
-        {attorney.associations && attorney.associations.length > 0 && (
+        {/* Bar Admissions Section */}
+        {attorney.barAdmissions && attorney.barAdmissions.length > 0 && (
           <motion.section
-            id="associations"
+            id="bar-admissions"
             className="mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -157,43 +157,16 @@ export function AttorneyBio() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl font-bold text-primary-navy mb-6">
-              Professional Associations
+              Bar Admissions & Professional Associations
             </h2>
             <ul className="grid md:grid-cols-2 gap-4">
-              {attorney.associations.map((association, index) => (
+              {attorney.barAdmissions.map((admission: string, index: number) => (
                 <li
                   key={index}
                   className="flex items-start gap-3 p-4 bg-neutral-50 rounded-lg border border-neutral-200"
                 >
                   <span className="w-2 h-2 bg-accent-gold rounded-full mt-2 flex-shrink-0" />
-                  <span className="text-neutral-700">{association}</span>
-                </li>
-              ))}
-            </ul>
-          </motion.section>
-        )}
-
-        {/* Community Section */}
-        {attorney.community && attorney.community.length > 0 && (
-          <motion.section
-            id="community"
-            className="mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-3xl font-bold text-primary-navy mb-6">
-              Community Involvement
-            </h2>
-            <ul className="grid md:grid-cols-2 gap-4">
-              {attorney.community.map((item, index) => (
-                <li
-                  key={index}
-                  className="flex items-start gap-3 p-4 bg-neutral-50 rounded-lg border border-neutral-200"
-                >
-                  <span className="w-2 h-2 bg-accent-gold rounded-full mt-2 flex-shrink-0" />
-                  <span className="text-neutral-700">{item}</span>
+                  <span className="text-neutral-700">{admission}</span>
                 </li>
               ))}
             </ul>

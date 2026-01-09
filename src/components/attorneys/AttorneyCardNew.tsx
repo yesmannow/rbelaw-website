@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom'
 import { Mail, Phone } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-import type { MasterAttorney } from '@/lib/data/attorneys'
+import type { Attorney } from '@/lib/types'
 
 interface AttorneyCardProps {
-  attorney: MasterAttorney
+  attorney: Attorney
   index?: number
   compact?: boolean
   showContact?: boolean
@@ -105,7 +105,7 @@ export function AttorneyCard({ attorney, index = 0, compact = false, showContact
           {/* Practice Areas Tags (if not compact) */}
           {!compact && attorney.practiceAreas && attorney.practiceAreas.length > 0 && (
             <div className="mt-4 flex flex-wrap gap-2">
-              {attorney.practiceAreas.slice(0, 2).map((area, idx) => (
+              {attorney.practiceAreas.slice(0, 2).map((area: string, idx: number) => (
                 <span
                   key={idx}
                   className="px-2 py-1 bg-neutral-100 text-neutral-700 text-xs rounded-full"

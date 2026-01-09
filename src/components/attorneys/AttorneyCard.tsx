@@ -19,7 +19,7 @@ interface AttorneyCardProps {
  * Now with cinematic video hover functionality
  */
 export function AttorneyCard({ attorney, index = 0, compact = false, showContact = true, hoverVideoUrl }: AttorneyCardProps) {
-  const images = getAttorneyImages(attorney.name, attorney.imageUrl)
+  const images = getAttorneyImages(attorney.name, attorney.image)
   const [isHovering, setIsHovering] = useState(false)
   
   // Check if video is available (from prop or attorney data)

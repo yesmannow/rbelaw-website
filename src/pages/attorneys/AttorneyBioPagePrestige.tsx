@@ -18,7 +18,7 @@ import { BlogCard } from '@/components/blog/BlogCard'
 import { ReadingProgressBar } from '@/components/ui/ReadingProgressBar'
 import type { Attorney } from '@/lib/types'
 
-type TabType = 'biography' | 'matters' | 'publications' | 'awards' | 'community' | 'beyond' | 'videos' | 'education'
+type TabType = 'biography' | 'matters' | 'publications' | 'awards' | 'bar-admissions' | 'beyond' | 'videos' | 'education'
 
 interface TabConfig {
   id: TabType
@@ -78,9 +78,9 @@ export function AttorneyBioPagePrestige() {
       hasContent: (atty: Attorney) => atty.awards !== undefined && atty.awards.length > 0
     },
     { 
-      id: 'community', 
-      label: 'Community Activity',
-      hasContent: (atty: Attorney) => (atty.associations !== undefined && atty.associations.length > 0) || (atty.community !== undefined && atty.community.length > 0)
+      id: 'bar-admissions', 
+      label: 'Bar Admissions',
+      hasContent: (atty: Attorney) => atty.barAdmissions !== undefined && atty.barAdmissions.length > 0
     },
     { 
       id: 'beyond', 
@@ -129,7 +129,7 @@ export function AttorneyBioPagePrestige() {
       <SEOMeta
         title={attorney.name}
         description={typeof attorney.bio === 'string' ? attorney.bio : attorney.bio.join(' ')}
-        image={attorney.image || attorney.imageUrl}
+        image={attorney.image}
         type="profile"
         author={attorney.name}
       />
@@ -151,7 +151,7 @@ export function AttorneyBioPagePrestige() {
                 <div className="w-56 h-56 lg:w-64 lg:h-64 rounded-xl bg-neutral-700 overflow-hidden shadow-2xl ring-4 ring-white/10">
                   <picture>
                     {(() => {
-                      const images = getAttorneyImages(attorney.name, attorney.image || attorney.imageUrl)
+                      const images = getAttorneyImages(attorney.name, attorney.image)
                       return (
                         <>
                           <source srcSet={images.avif} type="image/avif" />

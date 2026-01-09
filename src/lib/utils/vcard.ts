@@ -3,7 +3,7 @@
  * Generates .vcf files compatible with most contact management systems
  */
 
-import type { MasterAttorney } from '../data/attorneys'
+import type { Attorney } from '../types'
 
 export interface VCardOptions {
   version?: '3.0' | '4.0'
@@ -15,7 +15,7 @@ export interface VCardOptions {
 /**
  * Generate a vCard string for an attorney
  */
-export function generateVCard(attorney: MasterAttorney, options: VCardOptions = {}): string {
+export function generateVCard(attorney: Attorney, options: VCardOptions = {}): string {
   const {
     version = '3.0',
     organization = 'Riley Bennett Egloff LLP',
@@ -92,7 +92,7 @@ export function generateVCard(attorney: MasterAttorney, options: VCardOptions = 
 /**
  * Download a vCard file for an attorney
  */
-export function downloadVCard(attorney: MasterAttorney, options?: VCardOptions): void {
+export function downloadVCard(attorney: Attorney, options?: VCardOptions): void {
   const vcard = generateVCard(attorney, options)
   const blob = new Blob([vcard], { type: 'text/vcard;charset=utf-8' })
   const url = URL.createObjectURL(blob)
@@ -110,7 +110,7 @@ export function downloadVCard(attorney: MasterAttorney, options?: VCardOptions):
 /**
  * Generate a data URL for a vCard (for direct linking)
  */
-export function getVCardDataUrl(attorney: MasterAttorney, options?: VCardOptions): string {
+export function getVCardDataUrl(attorney: Attorney, options?: VCardOptions): string {
   const vcard = generateVCard(attorney, options)
   const encoded = encodeURIComponent(vcard)
   return `data:text/vcard;charset=utf-8,${encoded}`
