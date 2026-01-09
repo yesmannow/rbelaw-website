@@ -3,7 +3,8 @@ import react from '@vitejs/plugin-react'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { VitePWA } from 'vite-plugin-pwa'
-import Sitemap from 'vite-plugin-sitemap'
+// NOTE: vite-plugin-sitemap removed - using Next.js metadata and @payloadcms/plugin-seo instead
+// import Sitemap from 'vite-plugin-sitemap'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -50,22 +51,23 @@ export default defineConfig({
         maximumFileSizeToCacheInBytes: 6 * 1024 * 1024,
       }
     }),
-    Sitemap({
-      hostname: 'https://www.rbelaw.com',
-      dynamicRoutes,
-      changefreq: 'weekly',
-      priority: 0.7,
-      lastmod: new Date(),
-      exclude: ['/404', '/demo', '/archive/**'],
-      outDir: 'dist',
-      robots: [
-        {
-          userAgent: '*',
-          allow: '/',
-          disallow: ['/archive/', '/private/']
-        }
-      ]
-    })
+    // NOTE: Sitemap plugin removed - using Next.js metadata and @payloadcms/plugin-seo instead
+    // Sitemap({
+    //   hostname: 'https://www.rbelaw.com',
+    //   dynamicRoutes,
+    //   changefreq: 'weekly',
+    //   priority: 0.7,
+    //   lastmod: new Date(),
+    //   exclude: ['/404', '/demo', '/archive/**'],
+    //   outDir: 'dist',
+    //   robots: [
+    //     {
+    //       userAgent: '*',
+    //       allow: '/',
+    //       disallow: ['/archive/', '/private/']
+    //     }
+    //   ]
+    // })
   ],
   resolve: {
     alias: { '@': path.resolve(__dirname, './src') },
