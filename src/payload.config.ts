@@ -570,6 +570,105 @@ export default buildConfig({
         },
       ],
     },
+    
+    // Contact Requests collection - Lead generation with Zapier integration
+    {
+      slug: 'contact-requests',
+      admin: {
+        useAsTitle: 'name',
+        defaultColumns: ['name', 'email', 'serviceInterest', 'createdAt'],
+      },
+      access: {
+        read: () => true,
+        create: () => true, // Allow public form submissions
+      },
+      hooks: {
+        afterChange: [
+          async ({ doc, operation }) => {
+            if (operation === 'create') {
+              if (!process.env.ZAPIER_WEBHOOK_URL) {
+                console.warn('⚠️ ZAPIER_WEBHOOK_URL not set, skipping webhook.')
+                return
+              }
+              try {
+                console.log('📤 Sending contact request to Zapier:', doc.email)
+                const response = await fetch(process.env.ZAPIER_WEBHOOK_URL, {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify(doc),
+                })
+                if (!response.ok) {
+                  throw new Error(`Webhook failed with status: ${response.status}`)
+                }
+                console.log('✅ Contact request sent to Zapier successfully')
+              } catch (err: any) {
+                console.error('❌ Zapier Webhook failed:', err.message)
+                // Don't throw - we still want the contact request saved
+              }
+            }
+          },
+        ],
+      },
+      fields: [
+        {
+          name: 'name',
+          type: 'text',
+          required: true,
+          admin: {
+            description: 'Full name of the contact',
+          },
+        },
+        {
+          name: 'email',
+          type: 'email',
+          required: true,
+          admin: {
+            description: 'Contact email address',
+          },
+        },
+        {
+          name: 'phone',
+          type: 'text',
+          admin: {
+            description: 'Phone number (optional)',
+          },
+        },
+        {
+          name: 'serviceInterest',
+          type: 'select',
+          options: [
+            { label: 'General Inquiry', value: 'general' },
+            { label: 'Business & Corporate Law', value: 'business-law' },
+            { label: 'Medical Malpractice Defense', value: 'medical-malpractice' },
+            { label: 'Health Care', value: 'health-care' },
+            { label: 'Commercial Litigation', value: 'commercial-litigation' },
+            { label: 'Construction', value: 'construction' },
+            { label: 'Family Law', value: 'family-law' },
+            { label: 'Other', value: 'other' },
+          ],
+          admin: {
+            description: 'Area of legal interest',
+          },
+        },
+        {
+          name: 'message',
+          type: 'textarea',
+          required: true,
+          admin: {
+            description: 'Contact message or inquiry details',
+          },
+        },
+        {
+          name: 'source',
+          type: 'text',
+          admin: {
+            description: 'Source of the contact (e.g., website, referral)',
+            readOnly: true,
+          },
+          defaultValue: 'website',
+        },
+      ],
+    },
   ],
   
   // Configure the database - uses DATABASE_URI from Vercel environment variables
