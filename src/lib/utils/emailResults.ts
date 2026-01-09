@@ -8,7 +8,7 @@
 interface EmailResultsOptions {
   to: string
   toolName: string
-  results: Record<string, any>
+  results: Record<string, unknown>
   userName?: string
 }
 
@@ -41,7 +41,7 @@ export async function emailToolResults(options: EmailResultsOptions): Promise<bo
 /**
  * Format email content based on tool type
  */
-export function formatEmailContent(toolName: string, results: Record<string, any>): string {
+export function formatEmailContent(toolName: string, results: Record<string, unknown>): string {
   let content = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
       <div style="background: linear-gradient(135deg, #0A2540 0%, #1E3A5F 100%); padding: 30px; text-align: center;">
@@ -77,23 +77,24 @@ export function formatEmailContent(toolName: string, results: Record<string, any
           <td style="padding: 12px;">-</td>
         </tr>
       </table>
-      <div style="background: ${results.status === 'excellent' ? '#d4edda' : results.status === 'good' ? '#d1ecf1' : '#fff3cd'}; padding: 15px; border-radius: 5px; margin: 20px 0;">
-        <strong>Overall Status:</strong> ${results.status.toUpperCase()}
+      <div style="background: ${String(results.status) === 'excellent' ? '#d4edda' : String(results.status) === 'good' ? '#d1ecf1' : '#fff3cd'}; padding: 15px; border-radius: 5px; margin: 20px 0;">
+        <strong>Overall Status:</strong> ${String(results.status || '').toUpperCase()}
       </div>
     `
-  } else if (toolName === 'Contract Risk Analyzer') {
+  } else if (toolName === 'Contract Risk Analyzer' && results.clauses && Array.isArray(results.clauses)) {
+    const clauses = results.clauses as Array<{ type: string; severity: string; recommendation: string }>
     content += `
       <h2 style="color: #0A2540;">Contract Risk Analysis</h2>
       <div style="background: #fff3cd; padding: 15px; border-radius: 5px; margin: 20px 0;">
         <strong>Overall Risk Score:</strong> ${results.riskScore}/100
       </div>
       <h3 style="color: #0A2540;">Identified Risks:</h3>
-      ${results.clauses.slice(0, 3).map((clause: any) => `
+      ${clauses.slice(0, 3).map((clause) => `
         <div style="background: white; padding: 15px; margin: 10px 0; border-left: 4px solid ${
           clause.severity === 'high' ? '#dc3545' : clause.severity === 'medium' ? '#ffc107' : '#28a745'
         };">
           <strong>${clause.type}</strong> (${clause.severity.toUpperCase()} Risk)<br/>
-          <small style="color: #666;">${clause.explanation}</small>
+          <small style="color: #666;">${clause.recommendation}</small>
         </div>
       `).join('')}
     `

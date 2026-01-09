@@ -29,8 +29,7 @@ export function AttorneyBio() {
 
   const filteredMatters = useMemo(() => {
     return attorney?.representativeMatters?.filter(matter =>
-      matter.title.toLowerCase().includes(matterFilter.toLowerCase()) ||
-      matter.description.toLowerCase().includes(matterFilter.toLowerCase())
+      matter.toLowerCase().includes(matterFilter.toLowerCase())
     ) || []
   }, [attorney?.representativeMatters, matterFilter])
 
@@ -59,7 +58,9 @@ export function AttorneyBio() {
         >
           <h2 className="text-3xl font-bold text-primary-navy mb-6">Biography</h2>
           <div className="prose prose-lg max-w-none">
-            <p className="text-neutral-700 leading-relaxed">{attorney.bio}</p>
+            {attorney.bio.map((paragraph, index) => (
+              <p key={index} className="text-neutral-700 leading-relaxed mb-4">{paragraph}</p>
+            ))}
           </div>
         </motion.section>
 
@@ -100,22 +101,7 @@ export function AttorneyBio() {
                       transition={{ duration: 0.3, delay: index * 0.05 }}
                       className="p-6 bg-neutral-50 rounded-lg border border-neutral-200"
                     >
-                      <div className="flex items-start justify-between mb-2">
-                        <h3 className="text-xl font-semibold text-primary-navy">
-                          {matter.title}
-                        </h3>
-                        {matter.year && (
-                          <span className="text-sm text-neutral-500 font-medium">
-                            {matter.year}
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-neutral-700">{matter.description}</p>
-                      {matter.practiceArea && (
-                        <span className="inline-block mt-3 px-3 py-1 bg-accent-gold/20 text-primary-navy text-sm rounded-full">
-                          {matter.practiceArea}
-                        </span>
-                      )}
+                      <p className="text-neutral-700">{matter}</p>
                     </motion.div>
                   ))
                 ) : (
@@ -160,10 +146,10 @@ export function AttorneyBio() {
           </motion.section>
         )}
 
-        {/* Associations Section */}
-        {attorney.associations && attorney.associations.length > 0 && (
+        {/* Bar Admissions Section */}
+        {attorney.barAdmissions && attorney.barAdmissions.length > 0 && (
           <motion.section
-            id="associations"
+            id="bar-admissions"
             className="mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -171,43 +157,16 @@ export function AttorneyBio() {
             transition={{ duration: 0.6 }}
           >
             <h2 className="text-3xl font-bold text-primary-navy mb-6">
-              Professional Associations
+              Bar Admissions & Professional Associations
             </h2>
             <ul className="grid md:grid-cols-2 gap-4">
-              {attorney.associations.map((association, index) => (
+              {attorney.barAdmissions.map((admission: string, index: number) => (
                 <li
                   key={index}
                   className="flex items-start gap-3 p-4 bg-neutral-50 rounded-lg border border-neutral-200"
                 >
                   <span className="w-2 h-2 bg-accent-gold rounded-full mt-2 flex-shrink-0" />
-                  <span className="text-neutral-700">{association}</span>
-                </li>
-              ))}
-            </ul>
-          </motion.section>
-        )}
-
-        {/* Community Section */}
-        {attorney.community && attorney.community.length > 0 && (
-          <motion.section
-            id="community"
-            className="mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-3xl font-bold text-primary-navy mb-6">
-              Community Involvement
-            </h2>
-            <ul className="grid md:grid-cols-2 gap-4">
-              {attorney.community.map((item, index) => (
-                <li
-                  key={index}
-                  className="flex items-start gap-3 p-4 bg-neutral-50 rounded-lg border border-neutral-200"
-                >
-                  <span className="w-2 h-2 bg-accent-gold rounded-full mt-2 flex-shrink-0" />
-                  <span className="text-neutral-700">{item}</span>
+                  <span className="text-neutral-700">{admission}</span>
                 </li>
               ))}
             </ul>

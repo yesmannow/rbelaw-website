@@ -16,7 +16,7 @@ interface ProfessionalCardProps {
  * Displays attorney with optimized images and contact info
  */
 export function ProfessionalCard({ attorney, index = 0, compact = false }: ProfessionalCardProps) {
-  const images = getAttorneyImages(attorney.name, attorney.imageUrl)
+  const images = getAttorneyImages(attorney.name, attorney.image)
 
   return (
     <motion.div

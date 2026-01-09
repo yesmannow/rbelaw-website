@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { Mail, Phone, Linkedin, Twitter, Download } from 'lucide-react'
+import { Mail, Phone, Linkedin, Download } from 'lucide-react'
 import { useRef } from 'react'
 import type { Attorney } from '@/lib/types'
 
@@ -34,7 +34,7 @@ export function BioHero({ attorney, onPrint }: BioHeroProps) {
               className="w-full h-full"
             >
               <img
-                src={attorney.imageUrl}
+                src={attorney.image}
                 alt={attorney.name}
                 loading="lazy"
                 className="w-full h-full object-cover"
@@ -91,17 +91,6 @@ export function BioHero({ attorney, onPrint }: BioHeroProps) {
                   aria-label="LinkedIn Profile"
                 >
                   <Linkedin className="w-5 h-5" />
-                </a>
-              )}
-              {attorney.twitter && (
-                <a
-                  href={attorney.twitter}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="p-3 bg-white/10 hover:bg-white/20 rounded-lg transition-colors"
-                  aria-label="Twitter Profile"
-                >
-                  <Twitter className="w-5 h-5" />
                 </a>
               )}
               {attorney.vCard && (

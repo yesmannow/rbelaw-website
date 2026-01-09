@@ -1,14 +1,13 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Briefcase, ChevronDown, ChevronUp, Building2, Calendar } from 'lucide-react'
-import type { RepresentativeMatter } from '@/lib/types'
+import { Briefcase, ChevronDown, ChevronUp } from 'lucide-react'
 
 interface RepresentativeMattersProps {
-  matters?: RepresentativeMatter[]
+  matters?: string[]
 }
 
 export function RepresentativeMatters({ matters = [] }: RepresentativeMattersProps) {
-  const [expandedId, setExpandedId] = useState<string | null>(null)
+  const [expandedId, setExpandedId] = useState<number | null>(null)
 
   if (matters.length === 0) {
     return (
@@ -22,18 +21,19 @@ export function RepresentativeMatters({ matters = [] }: RepresentativeMattersPro
   return (
     <div className="space-y-4">
       {matters.map((matter, index) => {
-        const isExpanded = expandedId === matter.title
+        const isExpanded = expandedId === index
+        const truncatedMatter = matter.length > 200 ? matter.substring(0, 200) + '...' : matter
         
         return (
           <motion.div
-            key={matter.title}
+            key={index}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: index * 0.05 }}
             className="bg-white rounded-lg border-2 border-neutral-200 overflow-hidden hover:border-accent-gold transition-colors"
           >
             <button
-              onClick={() => setExpandedId(isExpanded ? null : matter.title)}
+              onClick={() => setExpandedId(isExpanded ? null : index)}
               className="w-full p-6 text-left flex items-start justify-between gap-4 hover:bg-neutral-50 transition-colors"
             >
               <div className="flex items-start gap-4 flex-1">
@@ -41,23 +41,9 @@ export function RepresentativeMatters({ matters = [] }: RepresentativeMattersPro
                   <Briefcase className="h-6 w-6" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <h3 className="text-lg font-bold text-primary-navy mb-2">
-                    {matter.title}
-                  </h3>
-                  <div className="flex flex-wrap gap-4 text-sm text-neutral-600">
-                    {matter.practiceArea && (
-                      <div className="flex items-center gap-1">
-                        <Building2 className="h-4 w-4" />
-                        <span>{matter.practiceArea}</span>
-                      </div>
-                    )}
-                    {matter.year && (
-                      <div className="flex items-center gap-1">
-                        <Calendar className="h-4 w-4" />
-                        <span>{matter.year}</span>
-                      </div>
-                    )}
-                  </div>
+                  <p className="text-neutral-700 leading-relaxed">
+                    {truncatedMatter}
+                  </p>
                 </div>
               </div>
               <div className="flex-shrink-0">
@@ -81,7 +67,7 @@ export function RepresentativeMatters({ matters = [] }: RepresentativeMattersPro
                   <div className="px-6 pb-6 pt-0 pl-20">
                     <div className="prose prose-sm max-w-none">
                       <p className="text-neutral-700 leading-relaxed">
-                        {matter.description}
+                        {matter}
                       </p>
                     </div>
                   </div>

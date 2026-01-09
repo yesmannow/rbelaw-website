@@ -51,7 +51,7 @@ END:VCARD`
               <div className="absolute -inset-1 bg-gradient-to-r from-accent-gold to-yellow-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300" />
               <div className="relative w-full aspect-square rounded-2xl overflow-hidden bg-neutral-800 border-4 border-white/10">
                 <img
-                  src={attorney.imageUrl}
+                  src={attorney.image}
                   alt={attorney.name}
                   className="w-full h-full object-cover"
                   loading="eager"

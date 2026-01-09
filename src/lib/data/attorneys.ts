@@ -5,36 +5,9 @@
  * Last updated: 2026-01-09T00:21:39.131Z
  */
 
-export interface MasterEducation {
-  degree: string
-  institution: string
-  year: string
-}
+import type { Attorney } from '../types'
 
-export interface MasterAttorney {
-  id: string // Dynamic route key (e.g., 'anna-marvin')
-  name: string
-  title: string
-  email: string
-  phone: string
-  image: string // Full WebP Path
-  imageThumb: string // Thumb WebP Path for cards
-  slug: string
-  linkedIn?: string
-  vCard: string // Dynamic path: /vcards/[id].vcf
-  bio: string[] // Structured paragraphs
-  representativeMatters: string[]
-  awards: string[]
-  barAdmissions: string[]
-  education: MasterEducation[]
-  practiceAreas: string[]
-  industries: string[]
-  publications?: Array<{ title: string; url?: string; date?: string }>
-  videos?: Array<{ title: string; url: string; date?: string }>
-  beyondOffice?: string
-}
-
-export const attorneys: MasterAttorney[] = [
+export const attorneys: Attorney[] = [
   {
     "id": "laura-k-binford",
     "name": "Laura K. Binford",
@@ -1922,11 +1895,11 @@ export const attorneys: MasterAttorney[] = [
   }
 ]
 
-export function getAttorneyBySlug(slug: string): MasterAttorney | undefined {
+export function getAttorneyBySlug(slug: string): Attorney | undefined {
   return attorneys.find(a => a.slug === slug || a.id === slug)
 }
 
-export function getAttorneysByPracticeArea(practiceArea: string): MasterAttorney[] {
+export function getAttorneysByPracticeArea(practiceArea: string): Attorney[] {
   return attorneys.filter(a =>
     a.practiceAreas.some(pa =>
       pa.toLowerCase().includes(practiceArea.toLowerCase())
@@ -1934,7 +1907,7 @@ export function getAttorneysByPracticeArea(practiceArea: string): MasterAttorney
   )
 }
 
-export function getAttorneysByIndustry(industry: string): MasterAttorney[] {
+export function getAttorneysByIndustry(industry: string): Attorney[] {
   return attorneys.filter(a =>
     a.industries.some(ind =>
       ind.toLowerCase().includes(industry.toLowerCase())

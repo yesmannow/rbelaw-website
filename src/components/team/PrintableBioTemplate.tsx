@@ -62,17 +62,6 @@ export const PrintableBioTemplate = forwardRef<HTMLDivElement, PrintableBioTempl
               </div>
             )}
 
-            {attorney.associations && attorney.associations.length > 0 && (
-              <div className="print-section">
-                <h3>Professional Associations</h3>
-                <ul>
-                  {attorney.associations.map((assoc, index) => (
-                    <li key={index}>{assoc}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
             {attorney.awards && attorney.awards.length > 0 && (
               <div className="print-section">
                 <h3>Awards & Recognition</h3>
@@ -97,9 +86,7 @@ export const PrintableBioTemplate = forwardRef<HTMLDivElement, PrintableBioTempl
                 <h3>Representative Matters</h3>
                 {attorney.representativeMatters.map((matter, index) => (
                   <div key={index} className="print-matter-item">
-                    <p><strong>{matter.title}</strong></p>
-                    <p>{matter.description}</p>
-                    {matter.year && <p className="print-matter-year">{matter.year}</p>}
+                    <p>{matter}</p>
                   </div>
                 ))}
               </div>
@@ -111,20 +98,9 @@ export const PrintableBioTemplate = forwardRef<HTMLDivElement, PrintableBioTempl
                 {attorney.publications.map((pub, index) => (
                   <div key={index} className="print-publication-item">
                     <p><strong>{pub.title}</strong></p>
-                    <p><em>{pub.publication}</em>, {pub.date}</p>
+                    {pub.date && <p><em>{pub.date}</em></p>}
                   </div>
                 ))}
-              </div>
-            )}
-
-            {attorney.community && attorney.community.length > 0 && (
-              <div className="print-section">
-                <h3>Community Involvement</h3>
-                <ul>
-                  {attorney.community.map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
               </div>
             )}
           </div>
