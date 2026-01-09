@@ -23,7 +23,15 @@ export function Navbar() {
       const currentScrollY = window.scrollY
       
       // Determine if scrolled past threshold
-      setIsScrolled(currentScrollY > 20)
+      const scrolled = currentScrollY > 20
+      setIsScrolled(scrolled)
+      
+      // Toggle nav-scrolled class on document element for global CSS variable
+      if (scrolled) {
+        document.documentElement.classList.add('nav-scrolled')
+      } else {
+        document.documentElement.classList.remove('nav-scrolled')
+      }
       
       // Hide/show navbar based on scroll direction
       if (currentScrollY < lastScrollY || currentScrollY < 100) {

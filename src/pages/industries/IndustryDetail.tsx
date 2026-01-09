@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { PageHeader } from '@/components/layout/PageHeader'
 import { FeaturedTool } from '@/components/practice-areas/FeaturedTool'
+import { InteractiveResource } from '@/components/resources'
 import { AttorneyCard } from '@/components/attorneys'
 import { getAttorneysByName } from '@/lib/data/attorney-helpers'
 import { getIndustryBySlugManual } from '@/lib/data/industries-manual'
@@ -121,6 +122,11 @@ export function IndustryDetail() {
             <FeaturedTool mapping={featuredTool} />
           )}
         </div>
+
+        {/* Interactive Resource (Insight Center) - New prestige section */}
+        {featuredTool && (
+          <InteractiveResource mapping={featuredTool} />
+        )}
 
         {/* Professionals Section - Smart Tab Logic: Only show if there are attorneys */}
         {/* Performance: Layout Stability with min-height and loading state */}

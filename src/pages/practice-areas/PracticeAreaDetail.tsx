@@ -10,6 +10,7 @@ import { Helmet } from 'react-helmet-async'
 import { MarketTicker } from '@/components/marketing/MarketTicker'
 import { PracticeAreaHero } from '@/components/practice-areas/PracticeAreaHero'
 import { FeaturedTool } from '@/components/practice-areas/FeaturedTool'
+import { InteractiveResource } from '@/components/resources'
 import { AttorneyCard } from '@/components/attorneys'
 import { getAttorneysByPracticeArea } from '@/lib/data/attorney-helpers'
 import { enhancedPracticeAreas } from '@/lib/data/practiceAreasEnhanced'
@@ -141,6 +142,11 @@ export function PracticeAreaDetail() {
             <FeaturedTool mapping={featuredTool} />
           )}
         </div>
+
+        {/* Interactive Resource (Insight Center) - New prestige section */}
+        {featuredTool && (
+          <InteractiveResource mapping={featuredTool} />
+        )}
 
         {/* Professionals Section - Smart Tab Logic: Only show if there are attorneys */}
         {/* Performance: Layout Stability with min-height and loading state */}
