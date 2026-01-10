@@ -116,12 +116,13 @@ function parseMarkdownToSections(mdBody: string): Section[] {
 }
 
 async function readMarkdownFiles(): Promise<PracticeArea[]> {
-  const entries = await fs.readdir(ROOT)
+  const docsDir = path.join(ROOT, 'docs', 'scraped')
+  const entries = await fs.readdir(docsDir)
   const mdFiles = entries.filter(f => f.startsWith('rbelaw.com_practice-areas') && f.endsWith('.md'))
   const areas: PracticeArea[] = []
 
   for (const file of mdFiles) {
-    const full = path.join(ROOT, file)
+    const full = path.join(docsDir, file)
     const raw = await fs.readFile(full, 'utf-8')
     const { title, url } = parseFrontmatter(raw)
 

@@ -47,6 +47,7 @@
     "@payloadcms/next": "^3.70.0",
     "@payloadcms/plugin-seo": "^3.70.0",
     "@payloadcms/richtext-lexical": "^3.70.0",
+    "@payloadcms/storage-vercel-blob": "^3.70.0",
     "@radix-ui/react-navigation-menu": "^1.2.14",
     "@tailwindcss/typography": "^0.5.19",
     "autoprefixer": "^10.4.22",

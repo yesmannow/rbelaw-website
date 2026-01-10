@@ -4,7 +4,16 @@ import { withPayload } from '@payloadcms/next/withPayload'
 const nextConfig = {
   // Configure Next.js options here
   images: {
-    domains: [],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '*.public.blob.vercel-storage.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'public.blob.vercel-storage.com',
+      },
+    ],
   },
 }
 

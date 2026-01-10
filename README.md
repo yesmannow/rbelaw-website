@@ -56,7 +56,21 @@ src/
 ├── hooks/              # Custom React hooks
 ├── assets/             # Static assets (images, fonts)
 └── index.css           # Global styles and Tailwind directives
+
+docs/
+├── archive/            # Historical implementation docs and guides
+└── scraped/            # Scraped content from legacy website
 ```
+
+## 📚 Documentation
+
+- **[ARCHITECTURE.md](./ARCHITECTURE.md)** - System architecture and technical decisions
+- **[docs/archive/](./docs/archive/)** - Historical implementation guides and progress logs
+  - Migration guides, implementation summaries, feature documentation
+- **[docs/scraped/](./docs/scraped/)** - Scraped content from the legacy website
+  - Practice area content extracted for migration
+
+For development guides and implementation history, see the [docs/archive](./docs/archive/) directory.
 
 ## 🎨 Design System
 
