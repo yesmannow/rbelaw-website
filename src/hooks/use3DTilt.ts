@@ -5,11 +5,11 @@
  */
 
 import { useRef, useState, useEffect } from 'react'
-import { useSpring, SpringConfig } from 'framer-motion'
+import { useSpring, SpringOptions } from 'framer-motion'
 
 interface Use3DTiltOptions {
   maxTilt?: number
-  springConfig?: SpringConfig
+  springConfig?: SpringOptions
 }
 
 export function use3DTilt({ maxTilt = 2, springConfig }: Use3DTiltOptions = {}) {
@@ -26,14 +26,21 @@ export function use3DTilt({ maxTilt = 2, springConfig }: Use3DTiltOptions = {}) 
     return () => mediaQuery.removeEventListener('change', handleChange)
   }, [])
 
-  const [tilt, setTilt] = useSpring(
-    { rotateX: 0, rotateY: 0, scale: 1 },
-    {
-      stiffness: 300,
-      damping: 30,
-      ...springConfig
-    }
-  )
+  const rotateX = useSpring(0, {
+    stiffness: 300,
+    damping: 30,
+    ...springConfig
+  })
+  const rotateY = useSpring(0, {
+    stiffness: 300,
+    damping: 30,
+    ...springConfig
+  })
+  const scale = useSpring(1, {
+    stiffness: 300,
+    damping: 30,
+    ...springConfig
+  })
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (reducedMotion || !cardRef.current) return
@@ -43,24 +50,20 @@ export function use3DTilt({ maxTilt = 2, springConfig }: Use3DTiltOptions = {}) 
     const y = e.clientY - rect.top
     const centerX = rect.width / 2
     const centerY = rect.height / 2
-    const rotateX = ((y - centerY) / centerY) * -maxTilt
-    const rotateY = ((x - centerX) / centerX) * maxTilt
+    const newRotateX = ((y - centerY) / centerY) * -maxTilt
+    const newRotateY = ((x - centerX) / centerX) * maxTilt
 
-    setTilt({
-      rotateX,
-      rotateY,
-      scale: 1.02
-    })
+    rotateX.set(newRotateX)
+    rotateY.set(newRotateY)
+    scale.set(1.02)
   }
 
   const handleMouseLeave = () => {
     setIsHovering(false)
     if (!reducedMotion) {
-      setTilt({
-        rotateX: 0,
-        rotateY: 0,
-        scale: 1
-      })
+      rotateX.set(0)
+      rotateY.set(0)
+      scale.set(1)
     }
   }
 
@@ -70,7 +73,7 @@ export function use3DTilt({ maxTilt = 2, springConfig }: Use3DTiltOptions = {}) 
 
   return {
     cardRef,
-    tilt: reducedMotion ? { rotateX: 0, rotateY: 0, scale: 1 } : tilt,
+    tilt: reducedMotion ? { rotateX: 0, rotateY: 0, scale: 1 } : { rotateX, rotateY, scale },
     isHovering,
     handleMouseMove,
     handleMouseEnter,

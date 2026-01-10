@@ -17,6 +17,14 @@ dist-ssr
 .env.local
 .env.production
 
+# Next.js
+.next
+out
+
+# Payload
+media
+payload-types.ts
+
 # Generated assets
 src/assets/stock/
 public/images/legacy/

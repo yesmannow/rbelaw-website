@@ -1,0 +1,56 @@
+/* Riley Bennett Egloff LLP - Payload CMS Admin Branding */
+
+:root {
+  /* Corporate Colors */
+  --theme-bg: #0A2540;
+  --theme-success-500: #B8860B;
+  --theme-input-bg: #ffffff;
+  
+  /* Gold Accent */
+  --theme-elevation-500: #B8860B;
+  --theme-elevation-600: #9a710a;
+  
+  /* Navy Background */
+  --theme-elevation-0: #0A2540;
+  --theme-elevation-50: #0d2d4d;
+  --theme-elevation-100: #10355a;
+  --theme-elevation-200: #134067;
+  
+  /* Text */
+  --theme-text: #ffffff;
+  --theme-text-muted: #cbd5e0;
+}
+
+/* Login Page Branding */
+.payload-admin-login__logo {
+  max-width: 300px;
+  margin: 0 auto 2rem;
+}
+
+/* Admin Panel Styling */
+.app-header {
+  background-color: var(--theme-bg) !important;
+  border-bottom: 2px solid var(--theme-success-500);
+}
+
+.nav__link--active {
+  background-color: var(--theme-success-500) !important;
+  color: var(--theme-bg) !important;
+}
+
+/* Form Elements */
+.field-type {
+  background-color: var(--theme-input-bg);
+}
+
+/* Buttons */
+.btn--style-primary {
+  background-color: var(--theme-success-500) !important;
+  border-color: var(--theme-success-500) !important;
+  color: var(--theme-bg) !important;
+}
+
+.btn--style-primary:hover {
+  background-color: var(--theme-elevation-600) !important;
+  border-color: var(--theme-elevation-600) !important;
+}
