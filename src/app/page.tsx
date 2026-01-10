@@ -43,17 +43,15 @@ export default async function HomePage() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-[#0A2540] to-[#134067]">
+    <main className="min-h-screen bg-gradient-to-b from-[#0A2540] to-[#134067] pb-20 md:pb-0">
       {/* Hero Section */}
       <div className="container mx-auto px-6 py-16 text-center text-white">
         <div className="mb-8">
           <svg
-            width="300"
-            height="80"
             viewBox="0 0 300 80"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="mx-auto"
+            className="mx-auto w-full max-w-[280px] sm:max-w-[300px] h-auto"
           >
             <text
               x="150"
@@ -83,10 +81,10 @@ export default async function HomePage() {
           </svg>
         </div>
         
-        <h1 className="text-5xl font-bold mb-4">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
           Corporate Law Excellence
         </h1>
-        <p className="text-xl mb-8 text-gray-300">
+        <p className="text-base sm:text-lg md:text-xl mb-8 text-gray-300">
           Trusted legal counsel for businesses and professionals across Indiana
         </p>
         
