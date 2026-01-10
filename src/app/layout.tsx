@@ -9,13 +9,12 @@ export const metadata: Metadata = {
     icon: '/favicon.ico',
     apple: '/apple-touch-icon.png',
   },
-  manifest: '/manifest.json',
 }
 
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#5D1F34',
+  themeColor: '#213469',
 }
 
 export default function RootLayout({
