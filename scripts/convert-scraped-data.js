@@ -307,10 +307,10 @@ async function convertScrapedData() {
     console.log('\n📊 Generating migration report...');
     const report = generateReport(data);
     await fs.writeFile(
-      path.join(__dirname, '../MIGRATION_REPORT.md'),
+      path.join(__dirname, '../documentation/MIGRATION_REPORT.md'),
       report
     );
-    console.log('  ✓ Created MIGRATION_REPORT.md');
+    console.log('  ✓ Created documentation/MIGRATION_REPORT.md');
 
     console.log('\n✅ Conversion complete!\n');
     console.log('📁 Generated files:');
@@ -318,7 +318,7 @@ async function convertScrapedData() {
     console.log('  - src/lib/data/attorneys-scraped.ts');
     console.log('  - src/lib/data/industries-scraped.ts');
     console.log('  - src/lib/data/about-scraped.ts');
-    console.log('  - MIGRATION_REPORT.md');
+    console.log('  - documentation/MIGRATION_REPORT.md');
     console.log('\n📝 Next steps:');
     console.log('  1. Review generated files');
     console.log('  2. Merge with existing data files');
