@@ -118,6 +118,11 @@ export function Footer() {
                   Contact
                 </Link>
               </li>
+              <li>
+                <a href="https://rbelaw.com/make-a-payment" className="text-white/80 hover:text-accent-gold transition-colors text-sm">
+                  Make a Payment
+                </a>
+              </li>
             </ul>
           </div>
 

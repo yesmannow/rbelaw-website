@@ -4,6 +4,7 @@ import { lexicalEditor } from '@payloadcms/richtext-lexical'
 import { seoPlugin } from '@payloadcms/plugin-seo'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { Team } from './collections/Team'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -60,6 +61,9 @@ export default buildConfig({
         },
       ],
     },
+    
+    // Team collection - All team members (attorneys, paralegals, staff)
+    Team,
     
     // Industries collection - Marketing taxonomy for cross-linking
     {
@@ -135,7 +139,12 @@ export default buildConfig({
       slug: 'attorneys',
       admin: {
         useAsTitle: 'name',
-        defaultColumns: ['name', 'role', 'email'],
+        defaultColumns: ['name', 'role', 'jobType', 'email'],
+        group: 'Team',
+      },
+      labels: {
+        singular: 'Team Member',
+        plural: 'Team',
       },
       access: {
         read: () => true,
@@ -157,6 +166,20 @@ export default buildConfig({
           },
         },
         {
+          name: 'jobType',
+          type: 'select',
+          required: true,
+          defaultValue: 'attorney',
+          options: [
+            { label: 'Attorney', value: 'attorney' },
+            { label: 'Paralegal', value: 'paralegal' },
+            { label: 'Professional Staff', value: 'staff' },
+          ],
+          admin: {
+            description: 'Type of team member',
+          },
+        },
+        {
           name: 'role',
           type: 'select',
           required: true,
@@ -165,6 +188,10 @@ export default buildConfig({
             { label: 'Associate', value: 'associate' },
             { label: 'Of Counsel', value: 'of-counsel' },
           ],
+          admin: {
+            description: 'Attorney role (only applicable if jobType is Attorney)',
+            condition: (data: any) => data.jobType === 'attorney',
+          },
         },
         {
           name: 'email',

@@ -43,15 +43,15 @@ export default async function HomePage() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-[#0A2540] to-[#134067] pb-20 md:pb-0">
+    <main className="min-h-screen bg-gradient-to-b from-[#0A2540] to-[#134067] pb-20 md:pb-0 overflow-x-hidden">
       {/* Hero Section */}
-      <div className="container mx-auto px-6 py-16 text-center text-white">
-        <div className="mb-8">
+      <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 text-center text-white max-w-full">
+        <div className="mb-6 sm:mb-8 overflow-hidden">
           <svg
             viewBox="0 0 300 80"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="mx-auto w-full max-w-[280px] sm:max-w-[300px] h-auto"
+            className="mx-auto w-full max-w-[240px] sm:max-w-[280px] md:max-w-[300px] h-auto"
           >
             <text
               x="150"
@@ -81,16 +81,16 @@ export default async function HomePage() {
           </svg>
         </div>
         
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 px-2">
           Corporate Law Excellence
         </h1>
-        <p className="text-base sm:text-lg md:text-xl mb-8 text-gray-300">
+        <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-6 sm:mb-8 text-gray-300 px-2 max-w-3xl mx-auto">
           Trusted legal counsel for businesses and professionals across Indiana
         </p>
         
         {/* Status Badge */}
-        <div className={`inline-block ${dbConnected ? 'bg-green-500/20 border-green-500' : 'bg-yellow-500/20 border-yellow-500'} border rounded-lg px-6 py-3 mb-12`}>
-          <p className={`${dbConnected ? 'text-green-300' : 'text-yellow-300'} font-semibold`}>
+        <div className={`inline-block ${dbConnected ? 'bg-green-500/20 border-green-500' : 'bg-yellow-500/20 border-yellow-500'} border rounded-lg px-4 sm:px-6 py-2 sm:py-3 mb-8 sm:mb-12 mx-2 max-w-full`}>
+          <p className={`${dbConnected ? 'text-green-300' : 'text-yellow-300'} font-semibold text-xs sm:text-sm md:text-base break-words`}>
             {dbConnected 
               ? '✅ Payload CMS Integration Active - Data Successfully Loaded' 
               : '⚠️ Database Not Connected - Run npx payload migrate'}
