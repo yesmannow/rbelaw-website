@@ -4,6 +4,7 @@ import config from '@payload-config'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
+import Script from 'next/script'
 
 // Generate static params for all attorney slugs (SSG)
 export async function generateStaticParams() {
@@ -82,8 +83,46 @@ export default async function AttorneyPage({
         ? attorney.headshot.url
         : null
 
+    // Create Attorney JSON-LD Schema
+    const attorneySchema = {
+      '@context': 'https://schema.org',
+      '@type': 'Person',
+      '@id': `https://rbelaw.com/attorneys/${slug}#attorney`,
+      name: attorney.name,
+      jobTitle: attorney.role?.replace('-', ' ') || 'Attorney',
+      email: attorney.email || '',
+      telephone: attorney.phone || '+1-317-636-8000',
+      url: `https://rbelaw.com/attorneys/${slug}`,
+      ...(headshotUrl && { image: headshotUrl }),
+      worksFor: {
+        '@type': 'LegalService',
+        name: 'Riley Bennett Egloff LLP',
+        url: 'https://rbelaw.com',
+      },
+      ...(attorney.education &&
+        attorney.education.length > 0 && {
+          alumniOf: attorney.education.map((edu: any) => ({
+            '@type': 'EducationalOrganization',
+            name: edu.institution,
+          })),
+        }),
+      ...(practiceAreas.length > 0 && {
+        knowsAbout: practiceAreas.map((area: any) => area.title),
+      }),
+    }
+
     return (
       <main className="min-h-screen bg-gray-50">
+        {/* Attorney JSON-LD Schema */}
+        <Script
+          id="attorney-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(attorneySchema),
+          }}
+          strategy="beforeInteractive"
+        />
+
         {/* Attorney Profile Section */}
         <div className="bg-gradient-to-b from-[#0A2540] to-[#134067] text-white py-16">
           <div className="container mx-auto px-6">
