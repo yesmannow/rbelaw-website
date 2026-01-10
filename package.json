@@ -22,7 +22,11 @@
     "db:seed:attorneys": "tsx scripts/seed-attorneys.mjs",
     "db:seed:attorneys:firecrawl": "tsx scripts/seed-attorneys-from-json.mjs --in=data/attorneys.json",
     "db:seed:practice-areas": "tsx scripts/seed-practice-areas.mjs",
+    "db:seed:practice-areas:firecrawl": "tsx scripts/seed-practice-areas-from-json.mjs",
+    "db:seed:industries:firecrawl": "tsx scripts/seed-industries-from-json.mjs",
     "db:seed:relations": "tsx scripts/seed-attorney-practice-areas.mjs",
+    "db:seed:firecrawl:all": "npm run db:seed:attorneys:firecrawl && npm run db:seed:practice-areas:firecrawl && npm run db:seed:industries:firecrawl",
+    "db:qa": "tsx scripts/db-qa-report.mjs",
     "db:seed:blog:posts": "tsx scripts/seed-blog-posts.mjs",
     "rescue-assets": "node scripts/rescue-assets.js",
     "get-photos": "node scripts/fetch-stock.js",
@@ -51,9 +55,7 @@
     "firecrawl:discover": "tsx scripts/discover-site-urls.ts",
     "firecrawl:scrape:attorneys": "tsx scripts/firecrawl-scrape-attorneys.ts --in=data/site-map.json --out=data/attorneys.json",
     "firecrawl:scrape:practice-areas": "tsx scripts/firecrawl-scrape-practice-areas.mjs",
-    "firecrawl:scrape:industries": "tsx scripts/firecrawl-scrape-industries.mjs",
-    "db:seed:practice-areas:firecrawl": "tsx scripts/seed-practice-areas-from-json.mjs",
-    "db:seed:industries:firecrawl": "tsx scripts/seed-industries-from-json.mjs"
+    "firecrawl:scrape:industries": "tsx scripts/firecrawl-scrape-industries.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
