@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import seed from '@/lib/payload/seed'
+import { timingSafeEqual } from 'crypto'
 
 /**
  * Cloud-Based Database Seeder API Route
@@ -13,6 +14,10 @@ import seed from '@/lib/payload/seed'
  * 
  * Compatible with Next.js 16 + Payload 3.0
  */
+
+// Track if seeding is currently in progress to prevent concurrent executions
+let isSeedingInProgress = false
+
 export async function GET(request: NextRequest) {
   try {
     // Get the secret from query parameters
@@ -29,22 +34,64 @@ export async function GET(request: NextRequest) {
       )
     }
     
-    if (secret !== expectedSecret) {
+    if (!secret) {
       return NextResponse.json(
-        { error: 'Unauthorized: Invalid or missing secret' },
+        { error: 'Unauthorized: Missing secret parameter' },
         { status: 401 }
       )
     }
     
-    // Run the seed function
-    console.log('🌱 Starting cloud database seed via API...')
-    await seed()
-    console.log('✅ Database seed completed successfully via API')
+    // Use timing-safe comparison to prevent timing attacks
+    try {
+      const secretBuffer = Buffer.from(secret, 'utf-8')
+      const expectedBuffer = Buffer.from(expectedSecret, 'utf-8')
+      
+      // Ensure buffers are same length for timing-safe comparison
+      if (secretBuffer.length !== expectedBuffer.length) {
+        return NextResponse.json(
+          { error: 'Unauthorized: Invalid secret' },
+          { status: 401 }
+        )
+      }
+      
+      if (!timingSafeEqual(secretBuffer, expectedBuffer)) {
+        return NextResponse.json(
+          { error: 'Unauthorized: Invalid secret' },
+          { status: 401 }
+        )
+      }
+    } catch (error) {
+      return NextResponse.json(
+        { error: 'Unauthorized: Invalid secret' },
+        { status: 401 }
+      )
+    }
     
-    return NextResponse.json(
-      { message: 'Database seeded successfully' },
-      { status: 200 }
-    )
+    // Prevent concurrent seed operations
+    if (isSeedingInProgress) {
+      return NextResponse.json(
+        { error: 'Seed operation already in progress. Please wait and try again.' },
+        { status: 409 }
+      )
+    }
+    
+    // Mark seeding as in progress
+    isSeedingInProgress = true
+    
+    try {
+      // Run the seed function
+      console.log('🌱 Starting cloud database seed via API...')
+      await seed()
+      console.log('✅ Database seed completed successfully via API')
+      
+      return NextResponse.json(
+        { message: 'Database seeded successfully' },
+        { status: 200 }
+      )
+    } finally {
+      // Always reset the flag, even if an error occurs
+      isSeedingInProgress = false
+    }
   } catch (error) {
     console.error('❌ Seed API error:', error)
     return NextResponse.json(
