@@ -81,10 +81,10 @@ export default async function HomePage() {
           </svg>
         </div>
         
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 px-2">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 px-2 break-words max-w-full">
           Corporate Law Excellence
         </h1>
-        <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-6 sm:mb-8 text-gray-300 px-2 max-w-3xl mx-auto">
+        <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-6 sm:mb-8 text-gray-300 px-2 max-w-3xl mx-auto break-words">
           Trusted legal counsel for businesses and professionals across Indiana
         </p>
         

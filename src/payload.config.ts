@@ -781,7 +781,7 @@ export default buildConfig({
   // Configure plugins
   plugins: [
     seoPlugin({
-      collections: ['attorneys', 'practice-areas', 'case-results', 'blog', 'industries'],
+      collections: ['attorneys', 'team', 'practice-areas', 'case-results', 'blog', 'industries'],
       uploadsCollection: 'media',
       generateTitle: ({ doc }: any) => `RBE Law — ${doc?.title?.value || doc?.title || doc?.name || ''}`,
       generateDescription: ({ doc }: any) => doc?.excerpt || doc?.description || '',
