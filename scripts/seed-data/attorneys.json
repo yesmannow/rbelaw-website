@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Sarah MacGill Marr",
+    "email": "sarah.marr@rbelaw.com",
+    "role": "partner",
+    "jobType": "attorney",
+    "bio": "Sarah MacGill Marr is a Partner at Riley Bennett Egloff LLP with extensive experience in business law and commercial litigation. She represents clients in complex corporate transactions and has a proven track record of successful outcomes in high-stakes litigation matters."
+  },
+  {
+    "name": "Laura K. Binford",
+    "email": "laura.binford@rbelaw.com",
+    "role": "partner",
+    "jobType": "attorney",
+    "bio": "Laura K. Binford is a Partner specializing in healthcare law and medical malpractice defense. With over 15 years of experience, she provides strategic counsel to healthcare providers and institutions navigating complex regulatory and litigation challenges."
+  },
+  {
+    "name": "Patrick S. McCarney",
+    "email": "patrick.mccarney@rbelaw.com",
+    "role": "associate",
+    "jobType": "attorney",
+    "bio": "Patrick S. McCarney is an Associate attorney focusing on construction law and commercial litigation. He assists clients in contract negotiations, dispute resolution, and represents them in state and federal courts."
+  },
+  {
+    "name": "Travis R. Watson",
+    "email": "travis.watson@rbelaw.com",
+    "role": "associate",
+    "jobType": "attorney",
+    "bio": "Travis R. Watson is an Associate attorney with expertise in intellectual property and business law. He helps clients protect their innovations and navigate the complexities of IP licensing and enforcement."
+  },
+  {
+    "name": "Katie R. Osborne",
+    "email": "katie.osborne@rbelaw.com",
+    "role": "of-counsel",
+    "jobType": "attorney",
+    "bio": "Katie R. Osborne serves as Of Counsel to the firm, bringing decades of experience in family law and estate planning. She provides strategic guidance on complex family law matters and estate administration."
+  }
+]

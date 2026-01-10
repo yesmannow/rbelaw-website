@@ -1,0 +1,37 @@
+[
+  {
+    "attorneyEmail": "sarah.marr@rbelaw.com",
+    "practiceAreas": [
+      "Business & Corporate Law",
+      "Commercial Litigation"
+    ]
+  },
+  {
+    "attorneyEmail": "laura.binford@rbelaw.com",
+    "practiceAreas": [
+      "Medical Malpractice Defense",
+      "Health Care Law"
+    ]
+  },
+  {
+    "attorneyEmail": "patrick.mccarney@rbelaw.com",
+    "practiceAreas": [
+      "Construction Law",
+      "Commercial Litigation"
+    ]
+  },
+  {
+    "attorneyEmail": "travis.watson@rbelaw.com",
+    "practiceAreas": [
+      "Intellectual Property Law & Litigation",
+      "Business & Corporate Law"
+    ]
+  },
+  {
+    "attorneyEmail": "katie.osborne@rbelaw.com",
+    "practiceAreas": [
+      "Family Law",
+      "Wills, Trusts & Estates"
+    ]
+  }
+]

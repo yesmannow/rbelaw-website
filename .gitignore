@@ -16,6 +16,8 @@ dist-ssr
 .env
 .env.local
 .env.production
+# Allow .env.example as a template (should be committed)
+!.env.example
 
 # Next.js
 .next

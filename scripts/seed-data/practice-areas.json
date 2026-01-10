@@ -1,0 +1,86 @@
+[
+  {
+    "title": "Business & Corporate Law",
+    "slug": "business-corporate-law",
+    "description": "Comprehensive legal services for businesses of all sizes, from formation to complex transactions.",
+    "content": "Our business and corporate law practice provides strategic counsel to companies navigating the complexities of corporate governance, mergers and acquisitions, contract negotiations, and regulatory compliance. We help businesses structure transactions, protect intellectual property, and ensure compliance with state and federal regulations.",
+    "icon": "Building2"
+  },
+  {
+    "title": "Commercial Litigation",
+    "slug": "commercial-litigation",
+    "description": "Aggressive representation in complex commercial disputes and business litigation matters.",
+    "content": "Our commercial litigation team represents clients in high-stakes business disputes, including breach of contract, business torts, shareholder disputes, and commercial fraud. We have a proven track record of achieving favorable outcomes through strategic litigation and alternative dispute resolution.",
+    "icon": "Scale"
+  },
+  {
+    "title": "Medical Malpractice Defense",
+    "slug": "medical-malpractice-defense",
+    "description": "Experienced defense representation for healthcare providers facing malpractice claims.",
+    "content": "We provide comprehensive defense services for healthcare providers, hospitals, and medical practices facing malpractice claims. Our team understands the unique challenges of healthcare litigation and works closely with medical experts to build strong defense strategies.",
+    "icon": "Heart"
+  },
+  {
+    "title": "Health Care Law",
+    "slug": "health-care",
+    "description": "Strategic counsel for healthcare providers navigating regulatory compliance and business operations.",
+    "content": "Our health care law practice assists providers with regulatory compliance, licensing, HIPAA compliance, Medicare/Medicaid issues, and healthcare business transactions. We help clients navigate the complex web of federal and state healthcare regulations.",
+    "icon": "Stethoscope"
+  },
+  {
+    "title": "Construction Law",
+    "slug": "construction",
+    "description": "Legal services for construction companies, contractors, and property developers.",
+    "content": "We represent construction companies, contractors, subcontractors, and property developers in contract negotiations, lien disputes, construction defect claims, and regulatory compliance. Our team understands the construction industry's unique legal challenges.",
+    "icon": "Hammer"
+  },
+  {
+    "title": "Family Law",
+    "slug": "family-law",
+    "description": "Compassionate and effective representation in family law matters including divorce and custody.",
+    "content": "Our family law practice provides comprehensive legal services for divorce, child custody, spousal support, property division, and adoption. We approach each case with sensitivity while aggressively protecting our clients' interests.",
+    "icon": "Users"
+  },
+  {
+    "title": "Intellectual Property Law & Litigation",
+    "slug": "intellectual-property-law-litigation",
+    "description": "Protection and enforcement of intellectual property rights including patents, trademarks, and copyrights.",
+    "content": "We help businesses and individuals protect their intellectual property through patent applications, trademark registration, copyright protection, and licensing agreements. Our litigation team enforces IP rights and defends against infringement claims.",
+    "icon": "Lightbulb"
+  },
+  {
+    "title": "Labor & Employment Law",
+    "slug": "labor-employment-law",
+    "description": "Comprehensive employment law services for employers and employees.",
+    "content": "Our labor and employment practice assists employers with compliance, employment contracts, workplace policies, and defense against employment claims. We also represent employees in discrimination, wrongful termination, and wage and hour disputes.",
+    "icon": "Briefcase"
+  },
+  {
+    "title": "Real Estate, Land Use & Zoning",
+    "slug": "real-estate-land-use-zoning",
+    "description": "Legal services for real estate transactions, development, and land use matters.",
+    "content": "We represent property owners, developers, and investors in real estate transactions, zoning applications, land use disputes, and property development projects. Our team navigates complex regulatory requirements and helps clients achieve their development goals.",
+    "icon": "Home"
+  },
+  {
+    "title": "Wills, Trusts & Estates",
+    "slug": "wills-trusts-estates",
+    "description": "Estate planning and probate administration services for individuals and families.",
+    "content": "Our estate planning practice helps individuals and families protect their assets through comprehensive estate planning, including wills, trusts, powers of attorney, and healthcare directives. We also assist with probate administration and estate litigation.",
+    "icon": "FileText"
+  },
+  {
+    "title": "Bankruptcy & Reorganization",
+    "slug": "bankruptcy-reorganization",
+    "description": "Strategic bankruptcy and reorganization services for businesses and individuals.",
+    "content": "We provide comprehensive bankruptcy services including Chapter 7, Chapter 11, and Chapter 13 filings. Our team helps businesses reorganize and restructure debt while protecting assets and maintaining operations where possible.",
+    "icon": "TrendingDown"
+  },
+  {
+    "title": "Insurance Law",
+    "slug": "insurance",
+    "description": "Representation in insurance coverage disputes and bad faith claims.",
+    "content": "We represent policyholders in insurance coverage disputes, bad faith claims, and insurance litigation. Our team helps clients understand their coverage rights and pursue claims against insurance companies that fail to honor their obligations.",
+    "icon": "Shield"
+  }
+]
