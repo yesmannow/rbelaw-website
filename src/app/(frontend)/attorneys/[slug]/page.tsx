@@ -13,7 +13,7 @@ export async function generateStaticParams() {
     
     const attorneys = await payload.find({
       collection: 'attorneys',
-      limit: 1000, // Get all attorneys
+      limit: 0, // Get all attorneys without limit
       select: {
         slug: true,
       },
@@ -217,15 +217,18 @@ export default async function AttorneyPage({
               </h2>
               {attorney.bio && (
                 <div className="prose prose-lg max-w-none text-gray-700">
-                  {/* Render rich text bio - simplified for now */}
+                  {/* TODO: Implement proper Lexical rich text renderer */}
+                  {/* For now, displaying a placeholder message */}
                   {typeof attorney.bio === 'string' ? (
                     <p>{attorney.bio}</p>
                   ) : (
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: JSON.stringify(attorney.bio, null, 2),
-                      }}
-                    />
+                    <div className="bg-gray-100 p-6 rounded-lg">
+                      <p className="text-gray-600 italic">
+                        Biography content is available in the CMS. A rich text
+                        renderer will be implemented to display the full
+                        formatted biography.
+                      </p>
+                    </div>
                   )}
                 </div>
               )}

@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { Phone, MessageSquare } from 'lucide-react'
 
+const SLIDE_UP_DELAY = 500 // milliseconds
+
 /**
  * MobileStickyBar Component
  * 
@@ -24,7 +26,7 @@ export function MobileStickyBar() {
     // Trigger slide-up animation after component mounts
     const timer = setTimeout(() => {
       setIsVisible(true)
-    }, 500)
+    }, SLIDE_UP_DELAY)
 
     return () => clearTimeout(timer)
   }, [])
