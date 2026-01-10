@@ -763,6 +763,9 @@ export default buildConfig({
   ],
 
   // Configure the database - uses DATABASE_URI from Vercel environment variables
+  // CRITICAL: Ensure the env var DATABASE_URI points to the pooled port (6543)
+  // or includes the '-pooler' suffix for production.
+  // This configuration ensures Vercel Edge compatibility.
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI,
