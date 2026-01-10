@@ -243,6 +243,7 @@ async function scrapeIndustry(app, url, force, resume, retryFailed) {
       url,
       extracted: null,
       rawMarkdown: null,
+      metadata: null,
       errors: [message],
       cached: false,
     }
@@ -260,7 +261,9 @@ async function processIndustries(industryUrls, concurrency, force, resume, retry
       url,
       extracted: null,
       rawMarkdown: null,
+      metadata: null,
       errors: ['FIRECRAWL_API_KEY not configured'],
+      cached: false,
     }))
   }
 
@@ -277,6 +280,7 @@ async function processIndustries(industryUrls, concurrency, force, resume, retry
         url,
         extracted: null,
         rawMarkdown: null,
+        metadata: null,
         errors: ['Skipped due to insufficient credits'],
         cached: false,
       })
@@ -301,6 +305,7 @@ async function processIndustries(industryUrls, concurrency, force, resume, retry
             url,
             extracted: null,
             rawMarkdown: null,
+            metadata: null,
             errors: ['Insufficient Firecrawl API credits'],
             cached: false,
           })
@@ -311,6 +316,7 @@ async function processIndustries(industryUrls, concurrency, force, resume, retry
             url,
             extracted: null,
             rawMarkdown: null,
+            metadata: null,
             errors: [message],
             cached: false,
           })

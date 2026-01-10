@@ -1,6 +1,6 @@
 {
   "baseUrl": "https://rbelaw.com",
-  "generatedAt": "2026-01-10T17:53:56.976Z",
+  "generatedAt": "2026-01-10T19:44:26.624Z",
   "total": 15,
   "items": [
     {
@@ -8,7 +8,7 @@
       "extracted": null,
       "rawMarkdown": null,
       "errors": [
-        "Failed to scrape URL. Status code: 402. Error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value."
+        "FIRECRAWL_API_KEY not configured"
       ]
     },
     {
@@ -16,15 +16,7 @@
       "extracted": null,
       "rawMarkdown": null,
       "errors": [
-        "Failed to scrape URL. Status code: 402. Error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value."
-      ]
-    },
-    {
-      "url": "https://rbelaw.com/industries/government",
-      "extracted": null,
-      "rawMarkdown": null,
-      "errors": [
-        "Failed to scrape URL. Status code: 402. Error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value."
+        "FIRECRAWL_API_KEY not configured"
       ]
     },
     {
@@ -32,7 +24,15 @@
       "extracted": null,
       "rawMarkdown": null,
       "errors": [
-        "Failed to scrape URL. Status code: 402. Error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value."
+        "FIRECRAWL_API_KEY not configured"
+      ]
+    },
+    {
+      "url": "https://rbelaw.com/industries/government",
+      "extracted": null,
+      "rawMarkdown": null,
+      "errors": [
+        "FIRECRAWL_API_KEY not configured"
       ]
     },
     {
@@ -40,79 +40,7 @@
       "extracted": null,
       "rawMarkdown": null,
       "errors": [
-        "Failed to scrape URL. Status code: 402. Error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value."
-      ]
-    },
-    {
-      "url": "https://rbelaw.com/industries/manufacturing",
-      "extracted": null,
-      "rawMarkdown": null,
-      "errors": [
-        "Failed to scrape URL. Status code: 402. Error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value."
-      ]
-    },
-    {
-      "url": "https://rbelaw.com/industries/media",
-      "extracted": null,
-      "rawMarkdown": null,
-      "errors": [
-        "Failed to scrape URL. Status code: 402. Error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value."
-      ]
-    },
-    {
-      "url": "https://rbelaw.com/industries/non-profit-organizations",
-      "extracted": null,
-      "rawMarkdown": null,
-      "errors": [
-        "Failed to scrape URL. Status code: 402. Error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value."
-      ]
-    },
-    {
-      "url": "https://rbelaw.com/industries/real-estate",
-      "extracted": null,
-      "rawMarkdown": null,
-      "errors": [
-        "Failed to scrape URL. Status code: 402. Error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value."
-      ]
-    },
-    {
-      "url": "https://rbelaw.com/industries/sports-entertainment",
-      "extracted": null,
-      "rawMarkdown": null,
-      "errors": [
-        "Failed to scrape URL. Status code: 402. Error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value."
-      ]
-    },
-    {
-      "url": "https://rbelaw.com/industries/technology",
-      "extracted": null,
-      "rawMarkdown": null,
-      "errors": [
-        "Failed to scrape URL. Status code: 402. Error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value."
-      ]
-    },
-    {
-      "url": "https://rbelaw.com/industries/telecommunications",
-      "extracted": null,
-      "rawMarkdown": null,
-      "errors": [
-        "Failed to scrape URL. Status code: 402. Error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value."
-      ]
-    },
-    {
-      "url": "https://rbelaw.com/industries/transportation",
-      "extracted": null,
-      "rawMarkdown": null,
-      "errors": [
-        "Failed to scrape URL. Status code: 402. Error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value."
-      ]
-    },
-    {
-      "url": "https://rbelaw.com/industries/wholesale-retail-service",
-      "extracted": null,
-      "rawMarkdown": null,
-      "errors": [
-        "Failed to scrape URL. Status code: 402. Error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value."
+        "FIRECRAWL_API_KEY not configured"
       ]
     },
     {
@@ -120,7 +48,79 @@
       "extracted": null,
       "rawMarkdown": null,
       "errors": [
-        "Failed to scrape URL. Status code: 402. Error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value."
+        "FIRECRAWL_API_KEY not configured"
+      ]
+    },
+    {
+      "url": "https://rbelaw.com/industries/manufacturing",
+      "extracted": null,
+      "rawMarkdown": null,
+      "errors": [
+        "FIRECRAWL_API_KEY not configured"
+      ]
+    },
+    {
+      "url": "https://rbelaw.com/industries/media",
+      "extracted": null,
+      "rawMarkdown": null,
+      "errors": [
+        "FIRECRAWL_API_KEY not configured"
+      ]
+    },
+    {
+      "url": "https://rbelaw.com/industries/non-profit-organizations",
+      "extracted": null,
+      "rawMarkdown": null,
+      "errors": [
+        "FIRECRAWL_API_KEY not configured"
+      ]
+    },
+    {
+      "url": "https://rbelaw.com/industries/real-estate",
+      "extracted": null,
+      "rawMarkdown": null,
+      "errors": [
+        "FIRECRAWL_API_KEY not configured"
+      ]
+    },
+    {
+      "url": "https://rbelaw.com/industries/sports-entertainment",
+      "extracted": null,
+      "rawMarkdown": null,
+      "errors": [
+        "FIRECRAWL_API_KEY not configured"
+      ]
+    },
+    {
+      "url": "https://rbelaw.com/industries/technology",
+      "extracted": null,
+      "rawMarkdown": null,
+      "errors": [
+        "FIRECRAWL_API_KEY not configured"
+      ]
+    },
+    {
+      "url": "https://rbelaw.com/industries/telecommunications",
+      "extracted": null,
+      "rawMarkdown": null,
+      "errors": [
+        "FIRECRAWL_API_KEY not configured"
+      ]
+    },
+    {
+      "url": "https://rbelaw.com/industries/transportation",
+      "extracted": null,
+      "rawMarkdown": null,
+      "errors": [
+        "FIRECRAWL_API_KEY not configured"
+      ]
+    },
+    {
+      "url": "https://rbelaw.com/industries/wholesale-retail-service",
+      "extracted": null,
+      "rawMarkdown": null,
+      "errors": [
+        "FIRECRAWL_API_KEY not configured"
       ]
     }
   ]
