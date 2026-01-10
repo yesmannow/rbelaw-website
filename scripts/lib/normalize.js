@@ -119,3 +119,27 @@ export function normalizeBlogExtract(extracted) {
   }
   return extracted
 }
+
+/**
+ * Normalize a single practice area name to its canonical form
+ * @param {string} name - The practice area name to normalize
+ * @returns {string} - The canonical name or original if no alias found
+ */
+export function normalizePracticeAreaName(name) {
+  if (!name || typeof name !== 'string') return name
+  const trimmed = name.trim()
+  const key = trimmed.toLowerCase()
+  return practiceAliasData.lowerMap[key] || trimmed
+}
+
+/**
+ * Normalize a single industry name to its canonical form
+ * @param {string} name - The industry name to normalize
+ * @returns {string} - The canonical name or original if no alias found
+ */
+export function normalizeIndustryName(name) {
+  if (!name || typeof name !== 'string') return name
+  const trimmed = name.trim()
+  const key = trimmed.toLowerCase()
+  return industryAliasData.lowerMap[key] || trimmed
+}

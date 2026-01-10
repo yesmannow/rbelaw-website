@@ -17,6 +17,7 @@ import dotenv from 'dotenv'
 import process from 'node:process'
 import { getPayload } from 'payload'
 import { normalizeSlug } from './lib/slug.js'
+import { normalizeIndustryExtract, normalizeIndustryName } from './lib/normalize.js'
 
 // Load env
 const envLocal = path.resolve(process.cwd(), '.env.local')
@@ -108,7 +109,12 @@ async function main() {
           continue
         }
 
-        const slug = normalizeSlug(data.name)
+        // Normalize extracted data (handles relatedPracticeAreas lists)
+        const normalized = normalizeIndustryExtract(data)
+        
+        // Normalize the industry name itself BEFORE slugging
+        const canonicalName = normalizeIndustryName(normalized.name)
+        const slug = normalizeSlug(canonicalName)
 
         // Check if industry already exists by slug
         const existing = await payload.find({
@@ -120,10 +126,10 @@ async function main() {
         })
 
         const payloadData = {
-          title: data.name,
+          title: canonicalName,
           slug,
-          description: data.description || data.overviewMarkdown || '',
-          icon: data.icon || null,
+          description: normalized.description || normalized.overviewMarkdown || '',
+          icon: normalized.icon || null,
         }
 
         if (existing.docs.length > 0) {

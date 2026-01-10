@@ -18,6 +18,7 @@ import dotenv from 'dotenv'
 import process from 'node:process'
 import { getPayload } from 'payload'
 import { normalizeSlug } from './lib/slug.js'
+import { normalizePracticeAreaExtract, normalizePracticeAreaName } from './lib/normalize.js'
 import {
   findIndustryByName,
   resolveRelationIds,
@@ -141,14 +142,19 @@ async function main() {
           continue
         }
 
-        const slug = normalizeSlug(data.name)
-        const description = data.description || data.overviewMarkdown || ''
-        const contentText = data.overviewMarkdown || data.description || data.name
+        // Normalize extracted data (handles relatedIndustries lists)
+        const normalized = normalizePracticeAreaExtract(data)
+        
+        // Normalize the practice area name itself BEFORE slugging
+        const canonicalName = normalizePracticeAreaName(normalized.name)
+        const slug = normalizeSlug(canonicalName)
+        const description = normalized.description || normalized.overviewMarkdown || ''
+        const contentText = normalized.overviewMarkdown || normalized.description || canonicalName
 
         // Resolve industry relations
         const industryIds = await resolveRelationIds(
           payload,
-          data.relatedIndustries || data.industries,
+          normalized.relatedIndustries || normalized.industries,
           findIndustryByName
         )
 
@@ -162,7 +168,7 @@ async function main() {
         })
 
         const payloadData = {
-          title: data.name,
+          title: canonicalName,
           slug,
           description,
           content: createRichText(contentText),
