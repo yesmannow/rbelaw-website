@@ -5,6 +5,8 @@ import { seoPlugin } from '@payloadcms/plugin-seo'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { Team } from './collections/Team'
+import { Industries } from './collections/Industries'
+import { Testimonials } from './collections/Testimonials'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -66,44 +68,7 @@ export default buildConfig({
     Team,
     
     // Industries collection - Marketing taxonomy for cross-linking
-    {
-      slug: 'industries',
-      admin: {
-        useAsTitle: 'title',
-        defaultColumns: ['title', 'slug'],
-      },
-      access: {
-        read: () => true,
-      },
-      fields: [
-        {
-          name: 'title',
-          type: 'text',
-          required: true,
-        },
-        {
-          name: 'slug',
-          type: 'text',
-          required: true,
-          unique: true,
-          index: true,
-          admin: {
-            description: 'URL-friendly identifier (e.g., healthcare, construction)',
-          },
-        },
-        {
-          name: 'icon',
-          type: 'text',
-          admin: {
-            description: 'Lucide icon name (e.g., Building2, Landmark)',
-          },
-        },
-        {
-          name: 'description',
-          type: 'textarea',
-        },
-      ],
-    },
+    Industries,
     
     // Tags collection - Marketing taxonomy for blog posts and content
     {
@@ -536,6 +501,9 @@ export default buildConfig({
       ],
     },
     
+    // Testimonials collection
+    Testimonials,
+    
     // Blog collection
     {
       slug: 'blog',
@@ -781,7 +749,7 @@ export default buildConfig({
   // Configure plugins
   plugins: [
     seoPlugin({
-      collections: ['attorneys', 'team', 'practice-areas', 'case-results', 'blog', 'industries'],
+      collections: ['attorneys', 'team', 'practice-areas', 'case-results', 'testimonials', 'blog', 'industries'],
       uploadsCollection: 'media',
       generateTitle: ({ doc }: any) => `RBE Law — ${doc?.title?.value || doc?.title || doc?.name || ''}`,
       generateDescription: ({ doc }: any) => doc?.excerpt || doc?.description || '',
