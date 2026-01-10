@@ -80,7 +80,7 @@ export default function FrontendLayout({
   children: React.ReactNode
 }) {
   return (
-    <>
+    <div className="overflow-x-hidden w-full">
       {/* JSON-LD Structured Data for SEO */}
       <Script
         id="legal-service-schema"
@@ -99,6 +99,6 @@ export default function FrontendLayout({
         strategy="beforeInteractive"
       />
       {children}
-    </>
+    </div>
   )
 }

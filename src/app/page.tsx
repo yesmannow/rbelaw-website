@@ -43,25 +43,27 @@ export default async function HomePage() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-[#0A2540] to-[#134067] pb-20 md:pb-0">
+    <main className="min-h-screen bg-gradient-to-b from-[#0A2540] to-[#134067] pb-20 md:pb-0 overflow-x-hidden">
       {/* Hero Section */}
-      <div className="container mx-auto px-6 py-16 text-center text-white">
-        <div className="mb-8">
+      <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 text-center text-white max-w-full">
+        <div className="mb-6 sm:mb-8 w-full px-2 max-w-full overflow-visible">
           <svg
             viewBox="0 0 300 80"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="mx-auto w-full max-w-[280px] sm:max-w-[300px] h-auto"
+            className="mx-auto w-full h-auto"
+            style={{ maxWidth: '100%' }}
+            preserveAspectRatio="xMidYMid meet"
           >
             <text
               x="150"
               y="35"
               fontFamily="serif"
-              fontSize="28"
+              fontSize="22"
               fontWeight="700"
               fill="#B8860B"
               textAnchor="middle"
-              letterSpacing="2"
+              letterSpacing="0.5"
             >
               RILEY BENNETT EGLOFF
             </text>
@@ -69,11 +71,11 @@ export default async function HomePage() {
               x="150"
               y="55"
               fontFamily="sans-serif"
-              fontSize="12"
+              fontSize="10"
               fontWeight="400"
               fill="#FFFFFF"
               textAnchor="middle"
-              letterSpacing="3"
+              letterSpacing="2"
             >
               L L P
             </text>
@@ -81,16 +83,16 @@ export default async function HomePage() {
           </svg>
         </div>
         
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 px-2 break-words max-w-full">
           Corporate Law Excellence
         </h1>
-        <p className="text-base sm:text-lg md:text-xl mb-8 text-gray-300">
+        <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-6 sm:mb-8 text-gray-300 px-2 max-w-3xl mx-auto break-words">
           Trusted legal counsel for businesses and professionals across Indiana
         </p>
         
         {/* Status Badge */}
-        <div className={`inline-block ${dbConnected ? 'bg-green-500/20 border-green-500' : 'bg-yellow-500/20 border-yellow-500'} border rounded-lg px-6 py-3 mb-12`}>
-          <p className={`${dbConnected ? 'text-green-300' : 'text-yellow-300'} font-semibold`}>
+        <div className={`inline-block ${dbConnected ? 'bg-green-500/20 border-green-500' : 'bg-yellow-500/20 border-yellow-500'} border rounded-lg px-4 sm:px-6 py-2 sm:py-3 mb-8 sm:mb-12 mx-2 max-w-full`}>
+          <p className={`${dbConnected ? 'text-green-300' : 'text-yellow-300'} font-semibold text-xs sm:text-sm md:text-base break-words`}>
             {dbConnected 
               ? '✅ Payload CMS Integration Active - Data Successfully Loaded' 
               : '⚠️ Database Not Connected - Run npx payload migrate'}

@@ -103,6 +103,7 @@ export function MobileDock() {
                 <li><a href="/attorneys" className="hover:text-primary-burgundy">Attorneys</a></li>
                 <li><a href="/about" className="hover:text-primary-burgundy">About</a></li>
                 <li><a href="/contact" className="hover:text-primary-burgundy">Contact</a></li>
+                <li><a href="https://rbelaw.com/make-a-payment" className="hover:text-primary-burgundy font-semibold">Make a Payment</a></li>
               </ul>
             </div>
             <div>

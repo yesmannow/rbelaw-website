@@ -59,7 +59,7 @@ export function Navbar() {
         backgroundColor: isScrolled ? 'rgba(33, 52, 105, 0.98)' : 'rgba(33, 52, 105, 1)'
       }}
       transition={{ duration: 0.3, ease: 'easeInOut' }}
-      className={`fixed top-0 left-0 right-0 z-50 overflow-visible transition-shadow duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 overflow-x-hidden transition-shadow duration-300 ${
         isScrolled ? 'shadow-xl backdrop-blur-sm' : 'shadow-soft'
       }`}
     >
@@ -123,8 +123,8 @@ export function Navbar() {
                 src="/images/logo/RBE_Logo_RBG-01.png"
                 alt="Riley Bennett Egloff LLP"
                 className={`relative transition-all duration-300 ${
-                  isScrolled ? 'h-12' : 'h-20'
-                } w-auto brightness-0 invert group-hover:brightness-110`}
+                  isScrolled ? 'h-10 sm:h-12' : 'h-12 sm:h-16 md:h-20'
+                } w-auto max-w-[200px] sm:max-w-none brightness-0 invert group-hover:brightness-110`}
                 animate={{
                   filter: [
                     'brightness(1) invert(1)',
