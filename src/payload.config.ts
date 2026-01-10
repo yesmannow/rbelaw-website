@@ -23,7 +23,7 @@ export default buildConfig({
       defaultOGImageType: 'static',
     },
   },
-  
+
   // Collections
   collections: [
     // Users collection for admin access
@@ -44,7 +44,7 @@ export default buildConfig({
         },
       ],
     },
-    
+
     // Media collection for headshots and images
     {
       slug: 'media',
@@ -63,13 +63,13 @@ export default buildConfig({
         },
       ],
     },
-    
+
     // Team collection - All team members (attorneys, paralegals, staff)
     Team,
-    
+
     // Industries collection - Marketing taxonomy for cross-linking
     Industries,
-    
+
     // Tags collection - Marketing taxonomy for blog posts and content
     {
       slug: 'tags',
@@ -98,7 +98,7 @@ export default buildConfig({
         },
       ],
     },
-    
+
     // Attorneys collection
     {
       slug: 'attorneys',
@@ -335,7 +335,7 @@ export default buildConfig({
         },
       ],
     },
-    
+
     // Practice Areas collection
     {
       slug: 'practice-areas',
@@ -452,7 +452,7 @@ export default buildConfig({
         },
       ],
     },
-    
+
     // Case Results collection
     {
       slug: 'case-results',
@@ -500,10 +500,10 @@ export default buildConfig({
         },
       ],
     },
-    
+
     // Testimonials collection
     Testimonials,
-    
+
     // Blog collection
     {
       slug: 'blog',
@@ -623,7 +623,7 @@ export default buildConfig({
         },
       ],
     },
-    
+
     // Contact Requests collection - Lead generation with Zapier integration
     {
       slug: 'contact-requests',
@@ -643,11 +643,11 @@ export default buildConfig({
                 console.warn('⚠️ ZAPIER_WEBHOOK_URL not set, skipping webhook.')
                 return
               }
-              
+
               // Use AbortController for timeout to prevent hanging requests
               const controller = new AbortController()
               const timeoutId = setTimeout(() => controller.abort(), 5000) // 5 second timeout
-              
+
               try {
                 console.log('📤 Sending contact request to Zapier:', doc.email)
                 const response = await fetch(process.env.ZAPIER_WEBHOOK_URL, {
@@ -735,17 +735,17 @@ export default buildConfig({
       ],
     },
   ],
-  
+
   // Configure the database - uses DATABASE_URI from Vercel environment variables
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI,
     },
   }),
-  
+
   // Configure the rich text editor
   editor: lexicalEditor({}),
-  
+
   // Configure plugins
   plugins: [
     seoPlugin({
@@ -755,10 +755,10 @@ export default buildConfig({
       generateDescription: ({ doc }: any) => doc?.excerpt || doc?.description || '',
     }),
   ],
-  
+
   // Secret for JWT encryption
   secret: process.env.PAYLOAD_SECRET || 'your-secret-here',
-  
+
   // TypeScript configuration
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
