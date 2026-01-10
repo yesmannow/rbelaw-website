@@ -46,22 +46,24 @@ export default async function HomePage() {
     <main className="min-h-screen bg-gradient-to-b from-[#0A2540] to-[#134067] pb-20 md:pb-0 overflow-x-hidden">
       {/* Hero Section */}
       <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 text-center text-white max-w-full">
-        <div className="mb-6 sm:mb-8 overflow-hidden">
+        <div className="mb-6 sm:mb-8 w-full px-2 max-w-full overflow-visible">
           <svg
             viewBox="0 0 300 80"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="mx-auto w-full max-w-[240px] sm:max-w-[280px] md:max-w-[300px] h-auto"
+            className="mx-auto w-full h-auto"
+            style={{ maxWidth: '100%' }}
+            preserveAspectRatio="xMidYMid meet"
           >
             <text
               x="150"
               y="35"
               fontFamily="serif"
-              fontSize="28"
+              fontSize="22"
               fontWeight="700"
               fill="#B8860B"
               textAnchor="middle"
-              letterSpacing="2"
+              letterSpacing="0.5"
             >
               RILEY BENNETT EGLOFF
             </text>
@@ -69,11 +71,11 @@ export default async function HomePage() {
               x="150"
               y="55"
               fontFamily="sans-serif"
-              fontSize="12"
+              fontSize="10"
               fontWeight="400"
               fill="#FFFFFF"
               textAnchor="middle"
-              letterSpacing="3"
+              letterSpacing="2"
             >
               L L P
             </text>
