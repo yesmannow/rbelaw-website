@@ -55,7 +55,7 @@
     "firecrawl:discover": "tsx scripts/discover-site-urls.ts",
     "firecrawl:scrape:attorneys": "tsx scripts/firecrawl-scrape-attorneys.ts --in=data/site-map.json --out=data/attorneys.json",
     "firecrawl:scrape:practice-areas": "tsx scripts/firecrawl-scrape-practice-areas.mjs",
-    "firecrawl:scrape:industries": "tsx scripts/firecrawl-scrape-industries.mjs",
+    "firecrawl:scrape:industries": "tsx scripts/firecrawl-scrape-industries.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
