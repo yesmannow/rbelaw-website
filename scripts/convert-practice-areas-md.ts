@@ -116,7 +116,7 @@ function parseMarkdownToSections(mdBody: string): Section[] {
 }
 
 async function readMarkdownFiles(): Promise<PracticeArea[]> {
-  const docsDir = path.join(ROOT, 'documentation')
+  const docsDir = path.join(ROOT, 'docs', 'scraped')
   const entries = await fs.readdir(docsDir)
   const mdFiles = entries.filter(f => f.startsWith('rbelaw.com_practice-areas') && f.endsWith('.md'))
   const areas: PracticeArea[] = []
