@@ -135,12 +135,31 @@ Edit `tailwind.config.js` to modify the color palette
 
 ## 🔒 Environment Variables
 
-Currently no environment variables needed. Add `.env` for future API integrations:
+### Required Environment Variables
 
+```env
+# Database Configuration (Required for Payload CMS)
+DATABASE_URI=postgresql://user:password@host:5432/database
+
+# Payload Secret (Required - also protects /api/seed endpoint)
+PAYLOAD_SECRET=your-secret-key-here-change-in-production
+
+# Next.js Configuration
+NEXT_PUBLIC_SERVER_URL=http://localhost:3000
 ```
-VITE_API_URL=your_api_url
-VITE_CONTACT_FORM_ENDPOINT=your_endpoint
-```
+
+### Cloud Database Seeding
+
+To populate the production database (bypasses Windows local environment issues):
+
+1. Deploy the application to Vercel/production
+2. Visit: `https://your-domain.vercel.app/api/seed?secret=YOUR_PAYLOAD_SECRET`
+3. The endpoint will:
+   - Validate the secret against `PAYLOAD_SECRET`
+   - Run the seed migration to populate Attorneys, Practices, and Industries
+   - Return: `{ message: 'Database seeded successfully' }`
+
+**Security:** The `/api/seed` endpoint is protected by your `PAYLOAD_SECRET` environment variable.
 
 ## 📝 License
 

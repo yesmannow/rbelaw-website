@@ -412,14 +412,4 @@ const seed = async () => {
   }
 }
 
-// Run the seed if called directly
-if (require.main === module) {
-  seed()
-    .then(() => process.exit(0))
-    .catch((error) => {
-      console.error(error)
-      process.exit(1)
-    })
-}
-
 export default seed
