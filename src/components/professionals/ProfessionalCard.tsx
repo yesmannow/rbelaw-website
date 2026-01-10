@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { Mail, Phone } from 'lucide-react'
 import { motion } from 'framer-motion'
 import type { Attorney } from '@/lib/types'
@@ -26,7 +26,7 @@ export function ProfessionalCard({ attorney, index = 0, compact = false }: Profe
       className="h-full"
     >
       <Link
-        to={`/attorneys/${attorney.id}`}
+        href={`/attorneys/${attorney.id}`}
         className="block h-full bg-white rounded-xl shadow-soft hover:shadow-corporate transition-all duration-300 overflow-hidden group"
       >
         {/* Image Container */}

@@ -6,7 +6,7 @@
 
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { ReactNode, useState, useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { ArrowRight, Phone } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -133,7 +133,7 @@ export function PrestigeButton({
         whileTap={{ scale: 0.98 }}
         transition={{ duration: 0.2 }}
       >
-        <Link to={to} {...commonProps}>
+        <Link href={to} {...commonProps}>
           {buttonContent}
         </Link>
       </motion.div>

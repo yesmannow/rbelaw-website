@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { Mail, Phone } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
@@ -33,7 +33,7 @@ export function AttorneyCard({ attorney, index = 0, compact = false, showContact
       className="h-full"
     >
       <Link
-        to={`/attorneys/${attorney.id}`}
+        href={`/attorneys/${attorney.id}`}
         className="block h-full bg-white rounded-xl shadow-soft hover:shadow-corporate transition-all duration-300 overflow-hidden group"
         onMouseEnter={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}

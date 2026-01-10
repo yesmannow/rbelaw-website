@@ -4,7 +4,7 @@
  */
 
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -92,7 +92,7 @@ export function IndustriesMegaMenu({ section }: IndustriesMegaMenuProps) {
                     </p>
                   </div>
                   <Link
-                    to="/industries"
+                    href="/industries"
                     className="flex items-center gap-2 rounded-lg bg-[#B8860B] hover:bg-[#A07A0A] px-6 py-3 text-sm font-semibold text-white transition-all hover:scale-105"
                   >
                     View All

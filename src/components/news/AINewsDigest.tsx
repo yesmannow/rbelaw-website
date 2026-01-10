@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Sparkles, TrendingUp, Clock, Tag, ChevronRight } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui'
 import { getAllPosts } from '@/lib/utils/news'
 
@@ -179,7 +179,7 @@ export function AINewsDigest() {
                           </div>
                         </div>
                         <Link 
-                          to={`/newsroom/${item.slug}`}
+                          href={`/newsroom/${item.slug}`}
                           className="block group-hover:text-accent-gold transition-colors"
                         >
                           <h3 className="text-xl font-bold text-primary-navy mb-2">
@@ -218,7 +218,7 @@ export function AINewsDigest() {
                     {/* Actions */}
                     <div className="flex items-center gap-4">
                       <Link
-                        to={`/newsroom/${item.slug}`}
+                        href={`/newsroom/${item.slug}`}
                         className="inline-flex items-center gap-2 text-primary-navy hover:text-accent-gold font-semibold text-sm transition-colors"
                       >
                         Read Full Article
@@ -244,7 +244,7 @@ export function AINewsDigest() {
           and insights directly in your inbox.
         </p>
         <Link
-          to="/contact"
+          href="/contact"
           className="inline-flex items-center gap-2 bg-accent-gold hover:bg-accent-gold/90 text-primary-navy px-8 py-4 rounded-lg font-semibold transition-all duration-300"
         >
           Subscribe to Newsletter

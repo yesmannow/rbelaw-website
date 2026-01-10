@@ -4,7 +4,7 @@
  */
 
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, Users, Briefcase, UserCheck, ArrowRight, Award, Building2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -120,7 +120,7 @@ export function OurTeamMegaMenu() {
                     </p>
                   </div>
                   <Link
-                    to="/attorneys"
+                    href="/attorneys"
                     className="flex items-center gap-2 rounded-lg bg-[#B8860B] hover:bg-[#D4A017] px-6 py-3 text-sm font-semibold text-[#0A2540] transition-all hover:scale-105"
                   >
                     View All
@@ -140,7 +140,7 @@ export function OurTeamMegaMenu() {
                         transition={{ delay: index * 0.1 }}
                       >
                         <Link
-                          to={section.href}
+                          href={section.href}
                           className={cn(
                             'group relative block h-full p-8 rounded-xl overflow-hidden',
                             'bg-gradient-to-br', section.gradient, section.hoverGradient,
@@ -206,7 +206,7 @@ export function OurTeamMegaMenu() {
                   className="mt-8"
                 >
                   <Link
-                    to="/about/careers"
+                    href="/about/careers"
                     className="group flex items-center justify-between p-6 rounded-xl bg-[#0A2540] border-2 border-[#B8860B] hover:border-[#D4A017] transition-all"
                   >
                     <div className="flex items-center gap-4">

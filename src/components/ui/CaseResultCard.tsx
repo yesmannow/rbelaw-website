@@ -3,7 +3,7 @@
  * Displays individual case results in a professional card format
  */
 
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { Calendar, Scale, TrendingUp, Users } from 'lucide-react';
 import type { CaseResult } from '@/lib/types';
 import { attorneys } from '@/lib/utils/attorney-logic';
@@ -112,7 +112,7 @@ export const CaseResultCard = ({ caseResult, showAttorneys = true }: CaseResultC
               {caseAttorneys.map((attorney, index) => (
                 <span key={attorney!.id}>
                   <Link
-                    to={`/attorneys/${attorney!.id}`}
+                    href={`/attorneys/${attorney!.id}`}
                     className="text-primary-navy hover:underline font-medium"
                   >
                     {attorney!.name}
@@ -196,7 +196,7 @@ export const FeaturedCaseResults = ({
         {caseResults.length > limit && (
           <div className="text-center mt-12">
             <Link
-              to="/case-results"
+              href="/case-results"
               className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary-navy hover:bg-primary-navy/90 transition-colors"
             >
               View All Case Results

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { ArrowRight, type LucideIcon } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui'
 
@@ -51,7 +51,7 @@ export function RelatedTools({
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Link to={tool.to} className="block group h-full">
+              <Link href={tool.to} className="block group h-full">
                 <Card className="h-full transition-all duration-300 hover:shadow-xl hover:border-accent-gold hover:-translate-y-1">
                   <CardHeader>
                     <div className="flex items-start justify-between mb-4">
@@ -92,7 +92,7 @@ export function RelatedTools({
           className="text-center mt-10"
         >
           <Link
-            to="/resources/tools"
+            href="/resources/tools"
             className="inline-flex items-center gap-2 px-8 py-4 bg-primary-navy hover:bg-primary-slate text-white rounded-lg font-semibold transition-all duration-300 group"
           >
             <span>View All Tools</span>

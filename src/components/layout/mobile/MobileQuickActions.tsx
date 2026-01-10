@@ -5,7 +5,7 @@
 
 import { motion } from 'framer-motion'
 import { Phone, MessageCircle } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 
 export function MobileQuickActions() {
   return (
@@ -29,7 +29,7 @@ export function MobileQuickActions() {
         whileHover={{ scale: 1.05 }}
       >
         <Link
-          to="/contact"
+          href="/contact"
           className="w-14 h-14 rounded-full bg-[#0A2540] border-2 border-[#B8860B] shadow-2xl flex items-center justify-center"
         >
           <MessageCircle className="w-6 h-6 text-[#B8860B]" />

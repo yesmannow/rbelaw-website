@@ -1,8 +1,8 @@
 import { Navbar } from './Navbar'
 import { Footer } from './Footer'
-import { PageTransition } from './PageTransition'
+// PageTransition is a legacy component for react-router, not used in Next.js App Router
 
-export function RootLayout() {
+export function RootLayout({ children }: { children?: React.ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -13,7 +13,7 @@ export function RootLayout() {
           paddingTop: 'var(--nav-height)'
         }}
       >
-        <PageTransition />
+        {children}
       </main>
       <Footer />
     </div>

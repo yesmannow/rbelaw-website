@@ -4,7 +4,7 @@
  * Navy #0A2540 header, Gold #B8860B accents, background image with 0.10 opacity
  */
 
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { ArrowRight, Users } from 'lucide-react'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { iconMap } from '@/lib/data/navigation'
@@ -97,7 +97,7 @@ export function PracticeAreaCard({ area, index = 0 }: PracticeAreaCardProps) {
         className="h-full"
       >
         <Link
-          to={`/practice-areas/${area.slug}`}
+          href={`/practice-areas/${area.slug}`}
           className="block h-full bg-white rounded-xl shadow-soft hover:shadow-corporate transition-all duration-200 overflow-hidden relative"
         >
           {/* Gold Border Animation with SVG pathLength */}

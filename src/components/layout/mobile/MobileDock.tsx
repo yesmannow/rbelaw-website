@@ -39,10 +39,10 @@ export function MobileDock() {
           {/* Dock Items Container */}
           <div className="flex items-center justify-around gap-2">
             {/* Home */}
-            <DockItem icon={Home} label="Home" to="/" />
+            <DockItem icon={Home} label="Home" href="/" />
 
             {/* Attorneys */}
-            <DockItem icon={Users} label="Attorneys" to="/attorneys" />
+            <DockItem icon={Users} label="Attorneys" href="/attorneys" />
 
             {/* Command Center FAB (Contact) - Elevated */}
             <div className="relative -top-8">
@@ -50,7 +50,7 @@ export function MobileDock() {
             </div>
 
             {/* Practice Areas */}
-            <DockItem icon={Newspaper} label="Practice" to="/practice-areas/business-corporate" />
+            <DockItem icon={Newspaper} label="Practice" href="/practice-areas/business-corporate" />
 
             {/* About - placeholder for balance */}
             <div className="flex-1" />

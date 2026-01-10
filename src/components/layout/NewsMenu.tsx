@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 import { Calendar, ArrowRight } from 'lucide-react'
 import { getRecentPosts } from '@/lib/utils/news'
@@ -35,7 +35,7 @@ export function NewsMenu({ links }: NewsMenuProps) {
             >
               <NavigationMenu.Link asChild>
                 <Link
-                  to={link.href}
+                  href={link.href}
                   className="block p-4 rounded-lg hover:bg-primary-burgundy/5 transition-all duration-200 group border border-transparent hover:border-primary-burgundy/20 hover:shadow-sm"
                 >
                   <div className="text-sm font-semibold text-primary-navy group-hover:text-primary-burgundy transition-colors mb-1">
@@ -72,7 +72,7 @@ export function NewsMenu({ links }: NewsMenuProps) {
                 >
                   <NavigationMenu.Link asChild>
                     <Link
-                      to={`/insights/${post.slug}`}
+                      href={`/insights/${post.slug}`}
                       className="group block bg-white rounded-lg overflow-hidden border border-neutral-200 hover:border-primary-burgundy hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
                     >
                       {/* Article Image */}
@@ -119,7 +119,7 @@ export function NewsMenu({ links }: NewsMenuProps) {
           >
             <NavigationMenu.Link asChild>
               <Link
-                to="/newsroom"
+                href="/newsroom"
                 className="inline-flex items-center text-sm font-semibold text-primary-burgundy hover:text-primary-navy transition-all group px-4 py-2 rounded-lg hover:bg-primary-burgundy/5"
               >
                 View all insights

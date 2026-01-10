@@ -4,7 +4,8 @@
  */
 
 import { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Home, Briefcase, Users, Newspaper, Building2, Menu, X, Phone } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -19,7 +20,7 @@ interface NavItem {
 }
 
 export function MobileNavBar() {
-  const location = useLocation()
+  const pathname = usePathname()
   const [activeTab, setActiveTab] = useState(0)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -35,9 +36,9 @@ export function MobileNavBar() {
   useEffect(() => {
     const currentIndex = navItems.findIndex(item => {
       if (item.to === '/') {
-        return location.pathname === '/'
+        return pathname === '/'
       }
-      return location.pathname === item.to || location.pathname.startsWith(item.to + '/')
+      return pathname === item.to || pathname.startsWith(item.to + '/')
     })
     if (currentIndex !== -1) {
       setActiveTab(currentIndex)
@@ -45,7 +46,7 @@ export function MobileNavBar() {
       // Default to first tab if no match
       setActiveTab(0)
     }
-  }, [location.pathname])
+  }, [pathname])
 
   const featuredArticles = getRecentBlogPosts(3)
 
@@ -82,7 +83,7 @@ export function MobileNavBar() {
             return (
               <Link
                 key={item.to}
-                to={item.to}
+                href={item.to}
                 className={cn(
                   'relative flex flex-col items-center justify-center gap-1 flex-1 py-2 rounded-lg transition-all',
                   'active:scale-95'
@@ -197,7 +198,7 @@ export function MobileNavBar() {
                       </div>
                     </a>
                     <Link
-                      to="/contact"
+                      href="/contact"
                       onClick={() => setIsMenuOpen(false)}
                       className="flex items-center gap-3 p-4 rounded-xl bg-[#B8860B]/10 border border-[#B8860B]/30 hover:bg-[#B8860B]/20 transition-all"
                     >
@@ -221,7 +222,7 @@ export function MobileNavBar() {
                     {practiceAreas.slice(0, 6).map((area) => (
                       <Link
                         key={area.id}
-                        to={`/practice-areas/${area.slug}`}
+                        href={`/practice-areas/${area.slug}`}
                         onClick={() => setIsMenuOpen(false)}
                         className="p-3 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#B8860B] transition-all"
                       >
@@ -232,7 +233,7 @@ export function MobileNavBar() {
                     ))}
                   </div>
                   <Link
-                    to="/practice-areas"
+                    href="/practice-areas"
                     onClick={() => setIsMenuOpen(false)}
                     className="mt-3 block text-center text-[#B8860B] font-semibold text-sm"
                   >
@@ -250,7 +251,7 @@ export function MobileNavBar() {
                       {featuredArticles.map((article) => (
                         <Link
                           key={article.id}
-                          to={`/newsroom/${article.slug}`}
+                          href={`/newsroom/${article.slug}`}
                           onClick={() => setIsMenuOpen(false)}
                           className="block p-3 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#B8860B] transition-all"
                         >
@@ -273,7 +274,7 @@ export function MobileNavBar() {
                   </h3>
                   <div className="space-y-2">
                     <Link
-                      to="/attorneys"
+                      href="/attorneys"
                       onClick={() => setIsMenuOpen(false)}
                       className="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#B8860B] transition-all"
                     >
@@ -286,7 +287,7 @@ export function MobileNavBar() {
                       </div>
                     </Link>
                     <Link
-                      to="/team/legal-assistants"
+                      href="/team/legal-assistants"
                       onClick={() => setIsMenuOpen(false)}
                       className="flex items-center gap-3 p-3 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-[#B8860B] transition-all"
                     >

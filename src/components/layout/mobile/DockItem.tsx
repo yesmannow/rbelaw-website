@@ -1,21 +1,22 @@
 import { motion } from 'framer-motion'
 import type { LucideIcon } from 'lucide-react'
-import { Link, useLocation } from 'react-router-dom'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 
 interface DockItemProps {
   icon: LucideIcon
   label: string
-  to: string
+  href: string
   isActive?: boolean
 }
 
-export function DockItem({ icon: Icon, label, to, isActive: isActiveProp }: DockItemProps) {
-  const location = useLocation()
-  const isActive = isActiveProp ?? location.pathname === to
+export function DockItem({ icon: Icon, label, href, isActive: isActiveProp }: DockItemProps) {
+  const pathname = usePathname()
+  const isActive = isActiveProp ?? pathname === href
 
   return (
-    <Link to={to} className="relative flex flex-col items-center justify-center flex-1">
+    <Link href={href} className="relative flex flex-col items-center justify-center flex-1">
       <motion.div
         whileTap={{ scale: 0.9 }}
         className="relative flex flex-col items-center justify-center gap-1 py-2"

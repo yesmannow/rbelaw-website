@@ -4,7 +4,7 @@
  */
 
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -89,7 +89,7 @@ export function PracticeAreasMegaMenu() {
                     </p>
                   </div>
                   <Link
-                    to="/practice-areas"
+                    href="/practice-areas"
                     className="flex items-center gap-2 rounded-lg bg-[#B8860B] hover:bg-[#A07A0A] px-6 py-3 text-sm font-semibold text-white transition-all hover:scale-105"
                   >
                     View All
@@ -111,7 +111,7 @@ export function PracticeAreasMegaMenu() {
                         transition={{ delay: index * 0.04 }}
                       >
                         <Link
-                          to={`/practice-areas/${area.slug}`}
+                          href={`/practice-areas/${area.slug}`}
                           className="group relative flex flex-col h-full overflow-hidden rounded-lg bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/10 hover:border-[#B8860B] p-5 transition-all"
                         >
                           {/* Icon */}
