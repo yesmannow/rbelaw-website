@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
+import { MobileStickyBar } from '@/components/ui/MobileStickyBar'
 
 export const metadata: Metadata = {
   title: 'Riley Bennett Egloff LLP | Corporate Law Excellence',
@@ -24,7 +25,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <MobileStickyBar />
+      </body>
     </html>
   )
 }
