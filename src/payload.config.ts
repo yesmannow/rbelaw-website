@@ -5,13 +5,24 @@ import { seoPlugin } from '@payloadcms/plugin-seo'
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 import path from 'path'
 import { fileURLToPath } from 'url'
-import process from 'process'
 import { Team } from './collections/Team'
 import { Industries } from './collections/Industries'
 import { Testimonials } from './collections/Testimonials'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
+
+// Database URL resolution with fallback chain
+// Priority: DIRECT_DATABASE_URL (preferred for migrations) > DATABASE_URL
+// DIRECT_DATABASE_URL: Direct connection for migrations and DDL operations (Neon direct connection)
+// DATABASE_URL: Pooled connection for runtime (Neon pooled connection, Vercel standard)
+const databaseUrl = process.env.DIRECT_DATABASE_URL ?? process.env.DATABASE_URL
+
+if (!databaseUrl) {
+  throw new Error(
+    'Missing database env var. Set DIRECT_DATABASE_URL (preferred for migrate) or DATABASE_URL.'
+  )
+}
 
 export default buildConfig({
   // Admin configuration with Riley Bennett Egloff branding
@@ -762,13 +773,10 @@ export default buildConfig({
     },
   ],
 
-  // Configure the database - uses DATABASE_URI from Vercel environment variables
-  // CRITICAL: Ensure the env var DATABASE_URI points to the pooled port (6543)
-  // or includes the '-pooler' suffix for production (e.g., xxx-pooler.neon.tech)
-  // This configuration ensures Vercel Edge compatibility and prevents connection exhaustion.
+  // Configure the database - uses resolved databaseUrl from above
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URI,
+      connectionString: databaseUrl,
       // Conservative limits for serverless functions
       max: 10, // Maximum number of connections in the pool
       idleTimeoutMillis: 30000, // Close idle connections after 30 seconds

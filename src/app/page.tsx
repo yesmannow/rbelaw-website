@@ -2,6 +2,7 @@ import React from 'react'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import Link from 'next/link'
+import { HealthcareRegulatoryAlert } from '@/components/legal/HealthcareRegulatoryAlert'
 
 // Enable Incremental Static Regeneration with 10 minute revalidation
 export const revalidate = 600
@@ -13,7 +14,7 @@ export default async function HomePage() {
 
   try {
     const payload = await getPayload({ config })
-    
+
     // Fetch data to prove migration success
     const practiceAreasResult = await payload.find({
       collection: 'practice-areas',
@@ -82,19 +83,19 @@ export default async function HomePage() {
             <line x1="50" y1="62" x2="250" y2="62" stroke="#B8860B" strokeWidth="1" />
           </svg>
         </div>
-        
+
         <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 px-2 break-words max-w-full">
           Corporate Law Excellence
         </h1>
         <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-6 sm:mb-8 text-gray-300 px-2 max-w-3xl mx-auto break-words">
           Trusted legal counsel for businesses and professionals across Indiana
         </p>
-        
+
         {/* Status Badge */}
         <div className={`inline-block ${dbConnected ? 'bg-green-500/20 border-green-500' : 'bg-yellow-500/20 border-yellow-500'} border rounded-lg px-4 sm:px-6 py-2 sm:py-3 mb-8 sm:mb-12 mx-2 max-w-full`}>
           <p className={`${dbConnected ? 'text-green-300' : 'text-yellow-300'} font-semibold text-xs sm:text-sm md:text-base break-words`}>
-            {dbConnected 
-              ? '✅ Payload CMS Integration Active - Data Successfully Loaded' 
+            {dbConnected
+              ? '✅ Payload CMS Integration Active - Data Successfully Loaded'
               : '⚠️ Database Not Connected - Run npx payload migrate'}
           </p>
         </div>
@@ -111,7 +112,7 @@ export default async function HomePage() {
               </span>
             )}
           </h2>
-          
+
           {practiceAreas.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {practiceAreas.map((area: any) => (
@@ -156,7 +157,7 @@ export default async function HomePage() {
               </span>
             )}
           </h2>
-          
+
           {attorneys.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {attorneys.map((attorney: any) => (
@@ -187,6 +188,18 @@ export default async function HomePage() {
               </p>
             </div>
           )}
+        </div>
+      </div>
+
+      {/* Healthcare Regulatory Alerts Section */}
+      <div className="bg-gray-50 py-16">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-[#0A2540] mb-8 text-center">
+              Healthcare Regulatory Alerts
+            </h2>
+            <HealthcareRegulatoryAlert query="healthcare" days={14} limit={10} />
+          </div>
         </div>
       </div>
 

@@ -223,9 +223,9 @@ export default async function PracticeAreaPage({
         {/* Main Content Section - Editorial Magazine Layout */}
         <PracticeAreaContent 
           content={practiceArea.content ? convertLexicalToHTML({ data: practiceArea.content }) : ''}
-          leadMagnetType={practiceArea.leadMagnetType}
-          subAreas={practiceArea.subAreas}
-          caseStudies={practiceArea.caseStudies}
+          leadMagnetType={practiceArea.leadMagnetType ?? undefined}
+          subAreas={practiceArea.subAreas ?? undefined}
+          caseStudies={practiceArea.caseStudies ?? undefined}
         />
 
         {/* Featured Attorneys Section */}

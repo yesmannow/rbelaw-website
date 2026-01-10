@@ -4,6 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "payload:importmap": "payload generate:importmap",
+    "predev": "npm run payload:importmap",
+    "prebuild": "npm run payload:importmap",
     "dev": "next dev",
     "build": "next build",
     "deploy": "payload migrate && next build",

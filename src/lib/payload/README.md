@@ -27,7 +27,10 @@ Phase 4: Blog Posts (Depends on: Attorneys, Practice Areas, Tags)
 
 ## Prerequisites
 
-1. **Database Connection**: Ensure `DATABASE_URI` is set in your environment variables (Vercel or `.env.local`)
+1. **Database Connection**: Ensure `DIRECT_DATABASE_URL` (preferred) or `DATABASE_URL` is set in your environment variables (Vercel or `.env.local`)
+   - Use `DIRECT_DATABASE_URL` for migrations (Neon direct connection)
+   - Use `DATABASE_URL` for runtime (Neon pooled connection)
+   - `DATABASE_URI` is supported as a legacy fallback
 2. **Schema Migration**: Run `npx payload migrate` to create database tables
 3. **Build**: Ensure `npm run build` completes successfully
 
@@ -36,19 +39,21 @@ Phase 4: Blog Posts (Depends on: Attorneys, Practice Areas, Tags)
 ### Production (Vercel)
 
 ```bash
-# After deploying to Vercel with DATABASE_URI set
-npx payload migrate          # Create tables
+# After deploying to Vercel with DIRECT_DATABASE_URL and DATABASE_URL set
+npx payload migrate          # Create tables (uses DIRECT_DATABASE_URL)
 npm run seed                 # Run migration
 ```
 
 ### Local Development
 
 ```bash
-# 1. Add DATABASE_URI to .env.local
-# DATABASE_URI=postgresql://user:pass@host:5432/db
+# 1. Add DIRECT_DATABASE_URL to .env.local (preferred for migrations)
+# DIRECT_DATABASE_URL=postgresql://user:pass@host:5432/db
+# DATABASE_URL=postgresql://user:pass@host-pooler:5432/db
 
 # 2. Run migration
-npm run seed
+npx payload migrate          # Create tables
+npm run seed                 # Populate data
 ```
 
 ## What Gets Migrated
@@ -96,9 +101,9 @@ attorney.industries.map(industryName => {
 ### Practice Area → Attorney Mapping
 ```typescript
 // Auto-link attorneys based on practice area overlap
-attorneys.filter(attorney => 
-  attorney.practiceAreas.some(area => 
-    area.includes(practiceArea.name) || 
+attorneys.filter(attorney =>
+  attorney.practiceAreas.some(area =>
+    area.includes(practiceArea.name) ||
     practiceArea.name.includes(area)
   )
 )
@@ -115,7 +120,7 @@ blogPost.authorSlug → attorneyMap.get(authorSlug)
 After running the seed:
 
 1. **Access Admin UI**: Visit `/admin` to verify data
-2. **Upload Headshots**: 
+2. **Upload Headshots**:
    - Go to Media collection
    - Upload attorney photos
    - Link them to attorney profiles via `headshot` field
@@ -149,8 +154,9 @@ for (const post of blogPosts.slice(0, 20)) { // Change 20 to desired limit
 - Run `npm run build` first to generate the config
 
 ### "Connection refused" or database errors
-- Verify `DATABASE_URI` is correct
+- Verify `DIRECT_DATABASE_URL` or `DATABASE_URL` is correct
 - Run `npx payload migrate` to create tables
+- See [`docs/MIGRATIONS.md`](../../../docs/MIGRATIONS.md) for detailed setup
 
 ### "Duplicate key" errors
 - Clear existing data: Delete all records from collections in admin UI

@@ -118,7 +118,7 @@ function checkEnvVars() {
   }
 
   // External APIs: should be server-only
-  const apiVars = ["COURTLISTENER_API_KEY", "REGS_GOV_API_KEY"];
+  const apiVars = ["COURTLISTENER_API_KEY", "REGULATIONS_GOV_API_KEY"];
   const missingApi = apiVars.filter((k) => !process.env[k]);
   if (missingApi.length) warn(`Optional API env vars missing: ${missingApi.join(", ")} (required only when enabling widgets).`);
   else ok("API env vars present (CourtListener / Regulations).");

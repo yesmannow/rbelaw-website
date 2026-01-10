@@ -1,5 +1,19 @@
 'use server'
 
+/**
+ * Legal Intelligence API Actions
+ *
+ * These server actions fetch data from external legal APIs:
+ * - CourtListener: Indiana court opinions
+ * - Regulations.gov: Healthcare compliance alerts
+ *
+ * API keys are optional - functions will return empty arrays if keys are not configured.
+ * See docs/API_KEYS.md for setup instructions.
+ *
+ * All responses are cached for 12 hours to respect API rate limits.
+ */
+
+/* eslint-env node */
 import { unstable_cache } from 'next/cache'
 
 // CourtListener API types
@@ -33,15 +47,15 @@ interface RegulationsGovResponse {
 export const getIndianaOpinions = unstable_cache(
   async () => {
     try {
-      const apiKey = process.env.COURTLISTENER_KEY
-      
+      const apiKey = process.env.COURTLISTENER_API_KEY
+
       if (!apiKey) {
-        console.warn('COURTLISTENER_KEY not configured')
+        console.warn('COURTLISTENER_API_KEY not configured')
         return []
       }
 
       const url = 'https://www.courtlistener.com/api/rest/v3/search/?court=ind,indctapp&order_by=dateFiled%20desc&type=o'
-      
+
       const response = await fetch(url, {
         headers: {
           'Authorization': `Token ${apiKey}`,
@@ -54,7 +68,7 @@ export const getIndianaOpinions = unstable_cache(
       }
 
       const data: CourtListenerResponse = await response.json()
-      
+
       // Return only the 5 most recent
       return data.results.slice(0, 5).map(result => ({
         caseName: result.caseName,
@@ -78,10 +92,10 @@ export const getIndianaOpinions = unstable_cache(
 export const getHealthcareComplianceAlerts = unstable_cache(
   async () => {
     try {
-      const apiKey = process.env.REGULATIONS_GOV_KEY
-      
+      const apiKey = process.env.REGULATIONS_GOV_API_KEY
+
       if (!apiKey) {
-        console.warn('REGULATIONS_GOV_KEY not configured')
+        console.warn('REGULATIONS_GOV_API_KEY not configured')
         return []
       }
 
@@ -91,7 +105,7 @@ export const getHealthcareComplianceAlerts = unstable_cache(
       url.searchParams.set('filter[documentType]', 'Proposed Rule')
       url.searchParams.set('sort', '-postedDate')
       url.searchParams.set('page[size]', '10')
-      
+
       const response = await fetch(url.toString(), {
         headers: {
           'X-Api-Key': apiKey,
@@ -104,7 +118,7 @@ export const getHealthcareComplianceAlerts = unstable_cache(
       }
 
       const data: RegulationsGovResponse = await response.json()
-      
+
       return data.data.map(doc => ({
         title: doc.title,
         postedDate: doc.postedDate,

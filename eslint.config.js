@@ -35,7 +35,10 @@ export default [
         ecmaFeatures: { jsx: true },
         projectService: true,
       },
-      globals: globals.browser,
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
     },
     plugins: {
       'react-hooks': reactHooks,

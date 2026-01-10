@@ -36,8 +36,8 @@ const seed = async () => {
     console.log('📂 Phase 1: Seeding Taxonomies...')
     
     // Map to store IDs for relationship linking
-    const industryMap = new Map<string, string>()
-    const tagMap = new Map<string, string>()
+    const industryMap = new Map<string, number>()
+    const tagMap = new Map<string, number>()
     
     // 1A. Seed Industries
     console.log('   → Creating Industries...')
@@ -52,7 +52,7 @@ const seed = async () => {
             icon: 'Building2', // Default icon, can be customized
           },
         })
-        industryMap.set(industry.slug, created.id as string)
+        industryMap.set(industry.slug, created.id as number)
         console.log(`      ✓ ${industry.name}`)
       } catch (error: any) {
         console.error(`      ✗ Failed to create industry ${industry.name}:`, error.message)
@@ -84,7 +84,7 @@ const seed = async () => {
             slug,
           },
         })
-        tagMap.set(tagName, created.id as string)
+        tagMap.set(tagName, created.id as number)
         console.log(`      ✓ ${tagName}`)
       } catch (error: any) {
         console.error(`      ✗ Failed to create tag ${tagName}:`, error.message)
@@ -98,13 +98,13 @@ const seed = async () => {
     // ============================================
     console.log('📂 Phase 2: Seeding Attorneys...')
     
-    const attorneyMap = new Map<string, string>()
+    const attorneyMap = new Map<string, number>()
     
     // Parallelize attorney creation for better performance
     const attorneyResults = await Promise.allSettled(
       attorneys.map(async (attorney) => {
         // Map attorney industries to IDs
-        const attorneyIndustryIds = attorney.industries
+        const attorneyIndustryIds: number[] = attorney.industries
           ?.map((ind: string) => {
             // Try exact match first
             let id = industryMap.get(ind.toLowerCase())
@@ -119,7 +119,7 @@ const seed = async () => {
             }
             return id
           })
-          .filter(Boolean) || []
+          .filter((id): id is number => id !== undefined) || []
 
         // Convert bio array to rich text
         const bioText = Array.isArray(attorney.bio) ? attorney.bio.join('\n\n') : attorney.bio || ''
@@ -146,10 +146,12 @@ const seed = async () => {
                 children: [
                   {
                     type: 'paragraph',
+                    version: 1,
                     children: [
                       {
                         type: 'text',
                         text: bioText,
+                        version: 1,
                       },
                     ],
                   },
@@ -181,10 +183,12 @@ const seed = async () => {
                   children: [
                     {
                       type: 'paragraph',
+                      version: 1,
                       children: [
                         {
                           type: 'text',
                           text: matter,
+                          version: 1,
                         },
                       ],
                     },
@@ -211,7 +215,7 @@ const seed = async () => {
             beyondOffice: attorney.beyondOffice,
             industries: attorneyIndustryIds,
             tags: [], // Can be added later
-          },
+          } as any,
         })
         
         console.log(`   ✓ ${attorney.name} (${role})`)
@@ -223,7 +227,7 @@ const seed = async () => {
     attorneyResults.forEach((result, index) => {
       if (result.status === 'fulfilled') {
         const { attorney, created } = result.value
-        attorneyMap.set(attorney.slug || attorney.id, created.id as string)
+        attorneyMap.set(attorney.slug || attorney.id, created.id as number)
       } else {
         const attorney = attorneys[index]
         console.error(`   ✗ Failed to create attorney ${attorney.name}:`, result.reason?.message || result.reason)
@@ -237,13 +241,13 @@ const seed = async () => {
     // ============================================
     console.log('📂 Phase 3: Seeding Practice Areas...')
     
-    const practiceAreaMap = new Map<string, string>()
+    const practiceAreaMap = new Map<string, number>()
     
     // Parallelize practice area creation for better performance
     const practiceAreaResults = await Promise.allSettled(
       practiceAreas.map(async (pa) => {
         // Find attorneys who practice in this area
-        const featuredAttorneyIds: string[] = []
+        const featuredAttorneyIds: number[] = []
         
         // Match attorneys based on practiceAreas field
         for (const attorney of attorneys) {
@@ -252,7 +256,7 @@ const seed = async () => {
             pa.name.toLowerCase().includes(area.toLowerCase())
           )) {
             const attorneyId = attorneyMap.get(attorney.slug || attorney.id)
-            if (attorneyId) {
+            if (attorneyId !== undefined) {
               featuredAttorneyIds.push(attorneyId)
             }
           }
@@ -270,10 +274,12 @@ const seed = async () => {
                 children: [
                   {
                     type: 'paragraph',
+                    version: 1,
                     children: [
                       {
                         type: 'text',
                         text: pa.detailedDescription || pa.description,
+                        version: 1,
                       },
                     ],
                   },
@@ -307,7 +313,7 @@ const seed = async () => {
     practiceAreaResults.forEach((result, index) => {
       if (result.status === 'fulfilled') {
         const { pa, created } = result.value
-        practiceAreaMap.set(pa.slug, created.id as string)
+        practiceAreaMap.set(pa.slug, created.id as number)
       } else {
         const pa = practiceAreas[index]
         console.error(`   ✗ Failed to create practice area ${pa.name}:`, result.reason?.message || result.reason)
@@ -325,12 +331,12 @@ const seed = async () => {
     const blogResults = await Promise.allSettled(
       blogPosts.slice(0, 20).map(async (post) => { // Limit to first 20 for initial seed
         // Find author by authorSlug
-        const authorId = post.authorSlug ? attorneyMap.get(post.authorSlug) : undefined
+        const authorId: number | undefined = post.authorSlug ? attorneyMap.get(post.authorSlug) : undefined
         
         // Map tags
-        const postTagIds = post.tags
+        const postTagIds: number[] = post.tags
           ?.map((tag: string) => tagMap.get(tag))
-          .filter(Boolean) || []
+          .filter((id): id is number => id !== undefined) || []
         
         // Convert content to rich text
         const contentText = Array.isArray(post.content)
@@ -342,7 +348,7 @@ const seed = async () => {
           data: {
             title: post.title,
             slug: post.slug,
-            author: authorId || attorneyMap.values().next().value, // Fallback to first attorney
+            author: authorId ?? (attorneyMap.values().next().value as number), // Fallback to first attorney
             excerpt: post.excerpt || '',
             content: {
               root: {
@@ -350,10 +356,12 @@ const seed = async () => {
                 children: [
                   {
                     type: 'paragraph',
+                    version: 1,
                     children: [
                       {
                         type: 'text',
                         text: contentText,
+                        version: 1,
                       },
                     ],
                   },
