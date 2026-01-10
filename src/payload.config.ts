@@ -536,6 +536,55 @@ export default buildConfig({
       ],
     },
     
+    // Testimonials collection
+    {
+      slug: 'testimonials',
+      admin: {
+        useAsTitle: 'clientName',
+        defaultColumns: ['clientName', 'attorney', 'createdAt'],
+      },
+      access: {
+        read: () => true,
+      },
+      fields: [
+        {
+          name: 'quote',
+          type: 'textarea',
+          required: true,
+          admin: {
+            description: 'Client testimonial quote',
+          },
+        },
+        {
+          name: 'clientName',
+          type: 'text',
+          required: true,
+          admin: {
+            description: 'Name of the client (or "Anonymous" if preferred)',
+          },
+        },
+        {
+          name: 'attorney',
+          type: 'relationship',
+          relationTo: 'attorneys',
+          required: false,
+          hasMany: true,
+          index: true,
+          admin: {
+            description: 'Attorney(s) this testimonial is about',
+          },
+        },
+        {
+          name: 'featured',
+          type: 'checkbox',
+          defaultValue: false,
+          admin: {
+            description: 'Display this testimonial prominently',
+          },
+        },
+      ],
+    },
+    
     // Blog collection
     {
       slug: 'blog',
@@ -781,7 +830,7 @@ export default buildConfig({
   // Configure plugins
   plugins: [
     seoPlugin({
-      collections: ['attorneys', 'team', 'practice-areas', 'case-results', 'blog', 'industries'],
+      collections: ['attorneys', 'team', 'practice-areas', 'case-results', 'testimonials', 'blog', 'industries'],
       uploadsCollection: 'media',
       generateTitle: ({ doc }: any) => `RBE Law — ${doc?.title?.value || doc?.title || doc?.name || ''}`,
       generateDescription: ({ doc }: any) => doc?.excerpt || doc?.description || '',
