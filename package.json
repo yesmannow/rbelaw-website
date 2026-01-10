@@ -48,6 +48,7 @@
     "@payloadcms/plugin-seo": "^3.70.0",
     "@payloadcms/richtext-lexical": "^3.70.0",
     "@radix-ui/react-navigation-menu": "^1.2.14",
+    "@tailwindcss/typography": "^0.5.19",
     "autoprefixer": "^10.4.22",
     "axios": "^1.13.2",
     "clsx": "^2.1.1",
