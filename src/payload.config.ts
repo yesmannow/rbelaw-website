@@ -312,6 +312,16 @@ export default buildConfig({
         },
         // Relational taxonomies
         {
+          name: 'practices',
+          type: 'relationship',
+          relationTo: 'practice-areas',
+          hasMany: true,
+          index: true,
+          admin: {
+            description: 'Practice areas this attorney specializes in',
+          },
+        },
+        {
           name: 'industries',
           type: 'relationship',
           relationTo: 'industries',
@@ -446,6 +456,54 @@ export default buildConfig({
           index: true,
           admin: {
             description: 'Tags for content organization and filtering',
+          },
+        },
+      ],
+    },
+    
+    // Case Results collection
+    {
+      slug: 'case-results',
+      admin: {
+        useAsTitle: 'title',
+        defaultColumns: ['title', 'settlementAmount', 'attorney'],
+      },
+      access: {
+        read: () => true,
+      },
+      fields: [
+        {
+          name: 'title',
+          type: 'text',
+          required: true,
+          admin: {
+            description: 'Case title or description',
+          },
+        },
+        {
+          name: 'settlementAmount',
+          type: 'number',
+          required: true,
+          admin: {
+            description: 'Settlement or verdict amount in dollars',
+          },
+        },
+        {
+          name: 'description',
+          type: 'textarea',
+          required: true,
+          admin: {
+            description: 'Case details and outcome',
+          },
+        },
+        {
+          name: 'attorney',
+          type: 'relationship',
+          relationTo: 'attorneys',
+          required: false,
+          index: true,
+          admin: {
+            description: 'Attorney who handled this case',
           },
         },
       ],
@@ -696,7 +754,7 @@ export default buildConfig({
   // Configure plugins
   plugins: [
     seoPlugin({
-      collections: ['attorneys', 'practice-areas', 'blog', 'industries'],
+      collections: ['attorneys', 'practice-areas', 'case-results', 'blog', 'industries'],
       uploadsCollection: 'media',
       generateTitle: ({ doc }: any) => `RBE Law — ${doc?.title?.value || doc?.title || doc?.name || ''}`,
       generateDescription: ({ doc }: any) => doc?.excerpt || doc?.description || '',
