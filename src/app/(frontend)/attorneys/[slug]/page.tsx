@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import Script from 'next/script'
+import { convertLexicalToHTML } from '@payloadcms/richtext-lexical/html'
 
 // Generate static params for all attorney slugs (SSG)
 export async function generateStaticParams() {
@@ -217,18 +218,14 @@ export default async function AttorneyPage({
               </h2>
               {attorney.bio && (
                 <div className="prose prose-lg max-w-none text-gray-700">
-                  {/* TODO: Implement proper Lexical rich text renderer */}
-                  {/* For now, displaying a placeholder message */}
                   {typeof attorney.bio === 'string' ? (
                     <p>{attorney.bio}</p>
                   ) : (
-                    <div className="bg-gray-100 p-6 rounded-lg">
-                      <p className="text-gray-600 italic">
-                        Biography content is available in the CMS. A rich text
-                        renderer will be implemented to display the full
-                        formatted biography.
-                      </p>
-                    </div>
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: convertLexicalToHTML({ data: attorney.bio }),
+                      }}
+                    />
                   )}
                 </div>
               )}
