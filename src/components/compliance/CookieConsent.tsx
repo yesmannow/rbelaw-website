@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Cookie } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 
 const COOKIE_CONSENT_KEY = 'rbe-cookie-consent'
 
@@ -67,7 +67,7 @@ export function CookieConsent() {
                     <p className="text-white/80 text-sm leading-relaxed">
                       We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies.{' '}
                       <Link 
-                        to="/disclaimer" 
+                        href="/disclaimer" 
                         className="text-accent-gold hover:underline font-semibold"
                       >
                         Learn more

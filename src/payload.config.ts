@@ -763,9 +763,16 @@ export default buildConfig({
   ],
 
   // Configure the database - uses DATABASE_URI from Vercel environment variables
+  // CRITICAL: Ensure the env var DATABASE_URI points to the pooled port (6543)
+  // or includes the '-pooler' suffix for production (e.g., xxx-pooler.neon.tech)
+  // This configuration ensures Vercel Edge compatibility and prevents connection exhaustion.
   db: postgresAdapter({
     pool: {
       connectionString: process.env.DATABASE_URI,
+      // Conservative limits for serverless functions
+      max: 10, // Maximum number of connections in the pool
+      idleTimeoutMillis: 30000, // Close idle connections after 30 seconds
+      connectionTimeoutMillis: 10000, // 10 second connection timeout
     },
   }),
 

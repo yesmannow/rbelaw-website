@@ -6,7 +6,7 @@
  * - Col 3: Spotlight card (Featured Industry News)
  */
 
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowRight, HeartPulse, HardHat, GraduationCap, Landmark, Factory, Home, Newspaper } from 'lucide-react'
 import { getSpecialistCount } from '@/lib/utils/attorney-logic'
@@ -80,7 +80,7 @@ export function IndustriesGrid() {
               transition={{ delay: index * 0.1 }}
             >
               <Link
-                to={`/industries/${industry.slug}`}
+                href={`/industries/${industry.slug}`}
                 className="group flex items-start gap-4 p-4 rounded-lg bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/10 hover:border-[#B8860B] transition-all"
               >
                 {/* Gold Icon */}
@@ -128,7 +128,7 @@ export function IndustriesGrid() {
               transition={{ delay: (index + 3) * 0.1 }}
             >
               <Link
-                to={`/industries/${industry.slug}`}
+                href={`/industries/${industry.slug}`}
                 className="group flex items-start gap-4 p-4 rounded-lg bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/10 hover:border-[#B8860B] transition-all"
               >
                 {/* Gold Icon */}
@@ -181,7 +181,7 @@ export function IndustriesGrid() {
           </p>
 
           <Link
-            to="/newsroom?category=industry"
+            href="/newsroom?category=industry"
             className="inline-flex items-center justify-center gap-2 bg-[#B8860B] hover:bg-[#D4A017] text-[#0A2540] px-6 py-3 rounded-lg font-semibold transition-all hover:scale-105 active:scale-95"
           >
             <span>View Industry News</span>

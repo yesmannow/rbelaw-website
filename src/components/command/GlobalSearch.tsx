@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useRouter } from 'next/navigation'
 import { Command } from 'cmdk'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Search, Phone, Mail, MapPin, Users, Scale, Briefcase } from 'lucide-react'
@@ -14,7 +14,7 @@ interface GlobalSearchProps {
 
 export function GlobalSearch({ open, onOpenChange }: GlobalSearchProps) {
   const [search, setSearch] = useState('')
-  const navigate = useNavigate()
+  const router = useRouter()
   const industries = getAllIndustriesManual()
 
   useEffect(() => {
@@ -106,7 +106,7 @@ export function GlobalSearch({ open, onOpenChange }: GlobalSearchProps) {
                     {practiceAreas.map((area) => (
                       <Command.Item
                         key={area.id}
-                        onSelect={() => handleSelect(() => navigate(`/practice-areas/${area.slug}`))}
+                        onSelect={() => handleSelect(() => router.push(`/practice-areas/${area.slug}`))}
                         className="flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer hover:bg-primary-burgundy/10 aria-selected:bg-primary-burgundy/10"
                         keywords={[area.name, area.description]}
                       >
@@ -124,7 +124,7 @@ export function GlobalSearch({ open, onOpenChange }: GlobalSearchProps) {
                     {industries.map((industry) => (
                       <Command.Item
                         key={industry.slug}
-                        onSelect={() => handleSelect(() => navigate(`/industries/${industry.slug}`))}
+                        onSelect={() => handleSelect(() => router.push(`/industries/${industry.slug}`))}
                         className="flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer hover:bg-primary-burgundy/10 aria-selected:bg-primary-burgundy/10"
                         keywords={[industry.name, industry.intro || '']}
                       >
@@ -144,7 +144,7 @@ export function GlobalSearch({ open, onOpenChange }: GlobalSearchProps) {
                     {attorneys.map((attorney) => (
                       <Command.Item
                         key={attorney.id}
-                        onSelect={() => handleSelect(() => navigate(`/attorneys/${attorney.id}`))}
+                        onSelect={() => handleSelect(() => router.push(`/attorneys/${attorney.id}`))}
                         className="flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer hover:bg-primary-burgundy/10 aria-selected:bg-primary-burgundy/10"
                         keywords={[attorney.name, attorney.title, ...attorney.bio]}
                       >

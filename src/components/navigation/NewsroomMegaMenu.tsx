@@ -4,7 +4,7 @@
  */
 
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, ArrowRight, Calendar, Clock } from 'lucide-react'
 import { cn } from '@/lib/utils'
@@ -90,7 +90,7 @@ export function NewsroomMegaMenu() {
                     </p>
                   </div>
                   <Link
-                    to="/newsroom"
+                    href="/newsroom"
                     className="flex items-center gap-2 rounded-lg bg-[#B8860B] hover:bg-[#D4A017] px-6 py-3 text-sm font-semibold text-[#0A2540] transition-all hover:scale-105"
                   >
                     View All Articles
@@ -109,7 +109,7 @@ export function NewsroomMegaMenu() {
                       className="lg:col-span-7"
                     >
                       <Link
-                        to={`/newsroom/${featuredArticles[0].slug}`}
+                        href={`/newsroom/${featuredArticles[0].slug}`}
                         className="group block h-full relative overflow-hidden rounded-xl bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/10 hover:border-[#B8860B] transition-all"
                       >
                         {/* Article Image */}
@@ -169,7 +169,7 @@ export function NewsroomMegaMenu() {
                         transition={{ delay: 0.15 + index * 0.05 }}
                       >
                         <Link
-                          to={`/newsroom/${article.slug}`}
+                          href={`/newsroom/${article.slug}`}
                           className="group block p-4 rounded-lg bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/10 hover:border-[#B8860B] transition-all"
                         >
                           <div className="flex items-start gap-3">

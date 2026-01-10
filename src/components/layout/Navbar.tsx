@@ -1,4 +1,5 @@
-import { Link, useLocation } from 'react-router-dom'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Phone, Mail } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -16,7 +17,7 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
-  const location = useLocation()
+  const pathname = usePathname()
 
   // Enhanced scroll behavior: hide on scroll down, show on scroll up
   useEffect(() => {
@@ -97,7 +98,7 @@ export function Navbar() {
           isScrolled ? 'h-16' : 'h-20'
         }`}>
           {/* Logo - Home Link with Premium Animations */}
-          <Link to="/" className="flex items-center group relative">
+          <Link href="/" className="flex items-center group relative">
             <motion.div
               className="relative"
               whileHover={{ scale: 1.1 }}
@@ -158,7 +159,7 @@ export function Navbar() {
             </motion.div>
 
             {/* Active Indicator - Enhanced */}
-            {location.pathname === '/' && (
+            {pathname === '/' && (
               <motion.div
                 className="absolute -bottom-1 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#B8860B] to-transparent"
                 animate={{
@@ -218,7 +219,7 @@ export function Navbar() {
             </PrestigeButton>
 
             <PrestigeButton
-              to="/contact"
+              href="/contact"
               variant="consultation"
             >
               Contact Us

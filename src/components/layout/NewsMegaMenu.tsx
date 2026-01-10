@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import Link from 'next/link'
 import { Calendar, Video, FileText, ArrowRight } from 'lucide-react'
 import newsArchiveData from '../../lib/data/news-archive.json'
 import type { NewsArchiveItem } from '../../lib/types'
@@ -69,7 +69,7 @@ export function NewsMegaMenu({ isOpen }: NewsMegaMenuProps) {
                     transition={{ duration: 0.3, delay: 0.15 + index * 0.08, ease: [0.16, 1, 0.3, 1] }}
                   >
                     <Link
-                      to={link.href}
+                      href={link.href}
                       className="flex items-start gap-3 p-3 rounded-sm hover:bg-neutral-50 transition-colors group"
                     >
                       <div className="p-2 bg-primary-navy/5 rounded-sm group-hover:bg-accent-gold/10 transition-colors">
@@ -100,7 +100,7 @@ export function NewsMegaMenu({ isOpen }: NewsMegaMenuProps) {
                 Latest from the Newsroom
               </h3>
               <Link
-                to={latestArticle.url}
+                href={latestArticle.url}
                 className="group block overflow-hidden rounded-sm border border-neutral-200 hover:border-accent-gold transition-all duration-300 hover:shadow-lg"
               >
                 <div className="flex flex-col md:flex-row">
