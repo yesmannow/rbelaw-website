@@ -2,14 +2,16 @@ import { NextRequest, NextResponse } from 'next/server'
 import seed from '@/lib/payload/seed'
 
 /**
- * Seed API Route
+ * Cloud-Based Database Seeder API Route
  * 
- * This route allows seeding the database via HTTP request.
- * Protected by a secret query parameter to prevent unauthorized access.
+ * Bypasses local environment restrictions by seeding the production database via HTTP.
+ * Protected by PAYLOAD_SECRET to prevent unauthorized access.
  * 
- * Usage: GET /api/seed?secret=my-super-secret-key-rbelaw-2026
+ * Usage: GET /api/seed?secret=<PAYLOAD_SECRET>
  * 
  * Returns: { message: 'Database seeded successfully' }
+ * 
+ * Compatible with Next.js 16 + Payload 3.0
  */
 export async function GET(request: NextRequest) {
   try {
@@ -17,8 +19,15 @@ export async function GET(request: NextRequest) {
     const searchParams = request.nextUrl.searchParams
     const secret = searchParams.get('secret')
     
-    // Check if the secret matches
-    const expectedSecret = process.env.SEED_SECRET || 'my-super-secret-key-rbelaw-2026'
+    // Validate against PAYLOAD_SECRET
+    const expectedSecret = process.env.PAYLOAD_SECRET
+    
+    if (!expectedSecret) {
+      return NextResponse.json(
+        { error: 'Server configuration error: PAYLOAD_SECRET not set' },
+        { status: 500 }
+      )
+    }
     
     if (secret !== expectedSecret) {
       return NextResponse.json(
@@ -28,16 +37,16 @@ export async function GET(request: NextRequest) {
     }
     
     // Run the seed function
-    console.log('Starting database seed via API...')
+    console.log('🌱 Starting cloud database seed via API...')
     await seed()
-    console.log('Database seed completed successfully via API')
+    console.log('✅ Database seed completed successfully via API')
     
     return NextResponse.json(
       { message: 'Database seeded successfully' },
       { status: 200 }
     )
   } catch (error) {
-    console.error('Seed API error:', error)
+    console.error('❌ Seed API error:', error)
     return NextResponse.json(
       { 
         error: 'Failed to seed database',
