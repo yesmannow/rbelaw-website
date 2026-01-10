@@ -6,6 +6,67 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Script from 'next/script'
 import { convertLexicalToHTML } from '@payloadcms/richtext-lexical/html'
+import type { Metadata } from 'next'
+
+// Generate metadata for SEO
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}): Promise<Metadata> {
+  const { slug } = await params
+  
+  try {
+    const payload = await getPayload({ config })
+    
+    const practiceAreasResult = await payload.find({
+      collection: 'practice-areas',
+      where: {
+        slug: {
+          equals: slug,
+        },
+      },
+      limit: 1,
+    })
+
+    if (!practiceAreasResult.docs || practiceAreasResult.docs.length === 0) {
+      return {
+        title: 'Practice Area Not Found',
+        description: 'The requested practice area could not be found.',
+      }
+    }
+
+    const practiceArea = practiceAreasResult.docs[0]
+    const title = `Riley Bennett Egloff LLP - ${practiceArea.title}`
+    const description = practiceArea.description || `Legal services for ${practiceArea.title}`
+    const url = `https://rbelaw.com/practice-areas/${slug}`
+
+    return {
+      title,
+      description,
+      openGraph: {
+        title,
+        description,
+        url,
+        type: 'website',
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title,
+        description,
+      },
+      alternates: {
+        canonical: url,
+      },
+    }
+  } catch (error) {
+    console.error('Error generating metadata:', error)
+    return {
+      title: 'Riley Bennett Egloff LLP',
+      description: 'Premier Indiana Defense Litigation & Corporate Law',
+    }
+  }
+}
 
 // Generate static params for all practice area slugs (SSG)
 export async function generateStaticParams() {
@@ -107,18 +168,14 @@ export default async function PracticeAreaPage({
     // Create Practice Area JSON-LD Schema
     const practiceAreaSchema = {
       '@context': 'https://schema.org',
-      '@type': 'Service',
-      '@id': `https://rbelaw.com/practice-areas/${slug}#service`,
-      name: practiceArea.title,
-      description: practiceArea.description,
+      '@type': 'LegalService',
+      name: `Riley Bennett Egloff LLP - ${practiceArea.title}`,
+      description: practiceArea.description || `Legal services for ${practiceArea.title}`,
       url: `https://rbelaw.com/practice-areas/${slug}`,
-      ...(featuredImageUrl && { image: featuredImageUrl }),
       provider: {
-        '@type': 'LegalService',
+        '@type': 'Attorney',
         name: 'Riley Bennett Egloff LLP',
-        url: 'https://rbelaw.com',
       },
-      serviceType: 'Legal Services',
     }
 
     return (
