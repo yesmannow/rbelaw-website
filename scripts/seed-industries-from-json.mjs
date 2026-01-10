@@ -16,6 +16,7 @@ import path from 'path'
 import dotenv from 'dotenv'
 import process from 'node:process'
 import { getPayload } from 'payload'
+import { normalizeSlug } from './lib/slug.js'
 
 // Load env
 const envLocal = path.resolve(process.cwd(), '.env.local')
@@ -38,7 +39,9 @@ function parseArgs() {
     const arg = process.argv[i]
     const nextArg = process.argv[i + 1]
 
-    if (arg === '--in' && nextArg) {
+    if (arg.startsWith('--in=')) {
+      args.in = arg.substring(5)
+    } else if (arg === '--in' && nextArg) {
       args.in = nextArg
       i++
     } else if (arg === '--dry-run') {
@@ -49,17 +52,7 @@ function parseArgs() {
   return args
 }
 
-/**
- * Normalize industry name for slug
- */
-function normalizeSlug(name) {
-  return name
-    .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '') // Remove special chars except spaces and hyphens
-    .replace(/\s+/g, '-') // Replace spaces with hyphens
-    .replace(/-+/g, '-') // Replace multiple hyphens with single
-    .trim()
-}
+
 
 /**
  * Main function
@@ -109,19 +102,29 @@ async function main() {
         }
 
         const data = item.extracted
+        if (!data.name) {
+          console.log(`⚠️  Skipping ${item.url} - missing name`)
+          skipped++
+          continue
+        }
+
         const slug = normalizeSlug(data.name)
 
-        // Check if industry already exists
+        // Check if industry already exists by slug
         const existing = await payload.find({
           collection: 'industries',
           where: {
-            or: [
-              { name: { equals: data.name } },
-              { slug: { equals: slug } }
-            ]
+            slug: { equals: slug }
           },
           limit: 1,
         })
+
+        const payloadData = {
+          title: data.name,
+          slug,
+          description: data.description || data.overviewMarkdown || '',
+          icon: data.icon || null,
+        }
 
         if (existing.docs.length > 0) {
           if (args.dryRun) {
@@ -131,15 +134,7 @@ async function main() {
             await payload.update({
               collection: 'industries',
               id: existing.docs[0].id,
-              data: {
-                name: data.name,
-                slug,
-                description: data.description || data.overviewMarkdown,
-                overview: data.overviewMarkdown,
-                services: data.services || [],
-                relatedPracticeAreas: data.relatedPracticeAreas || [],
-                attorneys: data.attorneys || [],
-              },
+              data: payloadData,
             })
             console.log(`📝 Updated industry: ${data.name}`)
           }
@@ -151,15 +146,7 @@ async function main() {
             // Create new
             await payload.create({
               collection: 'industries',
-              data: {
-                name: data.name,
-                slug,
-                description: data.description || data.overviewMarkdown,
-                overview: data.overviewMarkdown,
-                services: data.services || [],
-                relatedPracticeAreas: data.relatedPracticeAreas || [],
-                attorneys: data.attorneys || [],
-              },
+              data: payloadData,
             })
             console.log(`➕ Created industry: ${data.name}`)
           }
