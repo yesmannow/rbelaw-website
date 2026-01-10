@@ -8,7 +8,7 @@
     "build": "next build",
     "deploy": "payload migrate && next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint . --ext .ts,.tsx",
     "typecheck": "tsc --noEmit",
     "health:ci": "node scripts/vercel-build-health.mjs --mode=ci",
     "health:vercel": "node scripts/vercel-build-health.mjs --mode=vercel",
