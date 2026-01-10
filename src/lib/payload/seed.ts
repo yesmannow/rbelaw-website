@@ -100,8 +100,9 @@ const seed = async () => {
     
     const attorneyMap = new Map<string, string>()
     
-    for (const attorney of attorneys) {
-      try {
+    // Parallelize attorney creation for better performance
+    const attorneyResults = await Promise.allSettled(
+      attorneys.map(async (attorney) => {
         // Map attorney industries to IDs
         const attorneyIndustryIds = attorney.industries
           ?.map((ind: string) => {
@@ -213,12 +214,21 @@ const seed = async () => {
           },
         })
         
-        attorneyMap.set(attorney.slug || attorney.id, created.id as string)
         console.log(`   ✓ ${attorney.name} (${role})`)
-      } catch (error: any) {
-        console.error(`   ✗ Failed to create attorney ${attorney.name}:`, error.message)
+        return { attorney, created }
+      })
+    )
+    
+    // Populate attorneyMap with successful results
+    attorneyResults.forEach((result, index) => {
+      if (result.status === 'fulfilled') {
+        const { attorney, created } = result.value
+        attorneyMap.set(attorney.slug || attorney.id, created.id as string)
+      } else {
+        const attorney = attorneys[index]
+        console.error(`   ✗ Failed to create attorney ${attorney.name}:`, result.reason?.message || result.reason)
       }
-    }
+    })
     
     console.log(`   ✅ Created ${attorneyMap.size} Attorneys\n`)
 
@@ -229,8 +239,9 @@ const seed = async () => {
     
     const practiceAreaMap = new Map<string, string>()
     
-    for (const pa of practiceAreas) {
-      try {
+    // Parallelize practice area creation for better performance
+    const practiceAreaResults = await Promise.allSettled(
+      practiceAreas.map(async (pa) => {
         // Find attorneys who practice in this area
         const featuredAttorneyIds: string[] = []
         
@@ -287,12 +298,21 @@ const seed = async () => {
           },
         })
         
-        practiceAreaMap.set(pa.slug, created.id as string)
         console.log(`   ✓ ${pa.name} (${featuredAttorneyIds.length} attorneys)`)
-      } catch (error: any) {
-        console.error(`   ✗ Failed to create practice area ${pa.name}:`, error.message)
+        return { pa, created }
+      })
+    )
+    
+    // Populate practiceAreaMap with successful results
+    practiceAreaResults.forEach((result, index) => {
+      if (result.status === 'fulfilled') {
+        const { pa, created } = result.value
+        practiceAreaMap.set(pa.slug, created.id as string)
+      } else {
+        const pa = practiceAreas[index]
+        console.error(`   ✗ Failed to create practice area ${pa.name}:`, result.reason?.message || result.reason)
       }
-    }
+    })
     
     console.log(`   ✅ Created ${practiceAreaMap.size} Practice Areas\n`)
 
@@ -301,9 +321,9 @@ const seed = async () => {
     // ============================================
     console.log('📂 Phase 4: Seeding Blog Posts...')
     
-    let blogCount = 0
-    for (const post of blogPosts.slice(0, 20)) { // Limit to first 20 for initial seed
-      try {
+    // Parallelize blog post creation for better performance
+    const blogResults = await Promise.allSettled(
+      blogPosts.slice(0, 20).map(async (post) => { // Limit to first 20 for initial seed
         // Find author by authorSlug
         const authorId = post.authorSlug ? attorneyMap.get(post.authorSlug) : undefined
         
@@ -353,12 +373,18 @@ const seed = async () => {
           },
         })
         
-        blogCount++
         console.log(`   ✓ ${post.title}`)
-      } catch (error: any) {
-        console.error(`   ✗ Failed to create blog post ${post.title}:`, error.message)
+        return created
+      })
+    )
+    
+    const blogCount = blogResults.filter(result => result.status === 'fulfilled').length
+    blogResults.forEach((result, index) => {
+      if (result.status === 'rejected') {
+        const post = blogPosts[index]
+        console.error(`   ✗ Failed to create blog post ${post.title}:`, result.reason?.message || result.reason)
       }
-    }
+    })
     
     console.log(`   ✅ Created ${blogCount} Blog Posts\n`)
 

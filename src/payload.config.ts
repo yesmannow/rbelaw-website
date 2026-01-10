@@ -590,20 +590,32 @@ export default buildConfig({
                 console.warn('⚠️ ZAPIER_WEBHOOK_URL not set, skipping webhook.')
                 return
               }
+              
+              // Use AbortController for timeout to prevent hanging requests
+              const controller = new AbortController()
+              const timeoutId = setTimeout(() => controller.abort(), 5000) // 5 second timeout
+              
               try {
                 console.log('📤 Sending contact request to Zapier:', doc.email)
                 const response = await fetch(process.env.ZAPIER_WEBHOOK_URL, {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
                   body: JSON.stringify(doc),
+                  signal: controller.signal,
                 })
                 if (!response.ok) {
                   throw new Error(`Webhook failed with status: ${response.status}`)
                 }
                 console.log('✅ Contact request sent to Zapier successfully')
               } catch (err: any) {
-                console.error('❌ Zapier Webhook failed:', err.message)
+                if (err.name === 'AbortError') {
+                  console.error('❌ Zapier webhook timed out after 5 seconds')
+                } else {
+                  console.error('❌ Zapier webhook failed:', err.message)
+                }
                 // Don't throw - we still want the contact request saved
+              } finally {
+                clearTimeout(timeoutId)
               }
             }
           },
