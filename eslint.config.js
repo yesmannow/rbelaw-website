@@ -5,7 +5,26 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
 
 export default [
-  { ignores: ['dist'] },
+  { 
+    ignores: [
+      'dist', 
+      '.next', 
+      '.vercel',
+      'coverage',
+      '.turbo',
+      'out',
+      'node_modules', 
+      'docs/archive',
+      'docs/archive/pages-old-vite',
+      'src/archive',
+      'src/pages-old-vite',
+      '.venv',
+      '**/.venv/**',
+      'scripts/**/*.ts',
+      'scripts/**/*.js',
+      'scripts/**/*.mjs',
+    ] 
+  },
   {
     files: ['**/*.{ts,tsx}'],
     languageOptions: {

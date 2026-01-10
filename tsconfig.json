@@ -41,6 +41,13 @@
   "exclude": [
     "node_modules",
     "scripts",
-    "src/pages-old-vite"
+    "docs/archive",
+    "docs/archive/pages-old-vite",
+    "src/archive",
+    "src/pages-old-vite",
+    ".next",
+    ".vercel",
+    "coverage",
+    "out"
   ]
 }

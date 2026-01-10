@@ -1,5 +1,5 @@
 {
   "framework": "nextjs",
-  "buildCommand": "npm run deploy",
-  "outputDirectory": ".next"
+  "installCommand": "npm install",
+  "buildCommand": "npm run health:vercel && payload migrate && next build"
 }
