@@ -41,6 +41,6 @@
   "exclude": [
     "node_modules",
     "scripts",
-    "src/pages-old-vite"
+    "docs/archive"
   ]
 }
