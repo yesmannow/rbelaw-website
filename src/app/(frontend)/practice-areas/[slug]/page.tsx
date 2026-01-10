@@ -7,6 +7,7 @@ import Image from 'next/image'
 import Script from 'next/script'
 import { convertLexicalToHTML } from '@payloadcms/richtext-lexical/html'
 import type { Metadata } from 'next'
+import { PracticeAreaContent } from '@/components/practice-areas/PracticeAreaContent'
 
 // Generate metadata for SEO
 export async function generateMetadata({
@@ -219,78 +220,13 @@ export default async function PracticeAreaPage({
           </div>
         )}
 
-        {/* Main Content Section */}
-        <div className="bg-white py-12">
-          <div className="container mx-auto px-6">
-            <div className="max-w-4xl mx-auto">
-              {practiceArea.content && (
-                <div className="prose prose-lg max-w-none text-gray-700">
-                  {typeof practiceArea.content === 'string' ? (
-                    <p>{practiceArea.content}</p>
-                  ) : (
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: convertLexicalToHTML({ data: practiceArea.content }),
-                      }}
-                    />
-                  )}
-                </div>
-              )}
-
-              {/* Sub Areas */}
-              {practiceArea.subAreas && practiceArea.subAreas.length > 0 && (
-                <div className="mt-12">
-                  <h2 className="text-3xl font-bold text-[#0A2540] mb-6">
-                    Our Services Include
-                  </h2>
-                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    {practiceArea.subAreas.map((subArea: any, index: number) => (
-                      <li
-                        key={index}
-                        className="flex items-start bg-gray-50 p-4 rounded-lg"
-                      >
-                        <span className="text-[#B8860B] mr-3 text-xl">✓</span>
-                        <span className="text-gray-700">{subArea.name}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {/* Case Studies */}
-              {practiceArea.caseStudies && practiceArea.caseStudies.length > 0 && (
-                <div className="mt-12">
-                  <h2 className="text-3xl font-bold text-[#0A2540] mb-6">
-                    Representative Matters
-                  </h2>
-                  <div className="space-y-6">
-                    {practiceArea.caseStudies.map((caseStudy: any, index: number) => (
-                      <div
-                        key={index}
-                        className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm"
-                      >
-                        <h3 className="text-xl font-bold text-[#0A2540] mb-2">
-                          {caseStudy.title}
-                        </h3>
-                        {caseStudy.year && (
-                          <p className="text-sm text-gray-500 mb-3">{caseStudy.year}</p>
-                        )}
-                        {caseStudy.description && (
-                          <p className="text-gray-700 mb-3">{caseStudy.description}</p>
-                        )}
-                        {caseStudy.outcome && (
-                          <p className="text-[#B8860B] font-semibold">
-                            Outcome: {caseStudy.outcome}
-                          </p>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
+        {/* Main Content Section - Editorial Magazine Layout */}
+        <PracticeAreaContent 
+          content={practiceArea.content ? convertLexicalToHTML({ data: practiceArea.content }) : ''}
+          leadMagnetType={practiceArea.leadMagnetType}
+          subAreas={practiceArea.subAreas}
+          caseStudies={practiceArea.caseStudies}
+        />
 
         {/* Featured Attorneys Section */}
         {attorneys.length > 0 && (
