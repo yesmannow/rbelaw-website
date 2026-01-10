@@ -3,8 +3,8 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 import Link from 'next/link'
 
-// Force dynamic rendering to avoid build-time database connection
-export const dynamic = 'force-dynamic'
+// Enable Incremental Static Regeneration with 10 minute revalidation
+export const revalidate = 600
 
 export default async function HomePage() {
   let practiceAreas: any[] = []
