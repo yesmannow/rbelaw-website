@@ -18,6 +18,12 @@ import dotenv from 'dotenv'
 import process from 'node:process'
 import { getPayload } from 'payload'
 import { normalizeSlug } from './lib/slug.js'
+import {
+  findPracticeAreaByName,
+  findIndustryByName,
+  resolveRelationIds,
+  mergeRelationIds,
+} from './lib/relations.js'
 
 // Load env
 const envLocal = path.resolve(process.cwd(), '.env.local')
@@ -82,82 +88,6 @@ function createRichText(text = '') {
 }
 
 /**
- * Find practice area by name or slug
- */
-async function findPracticeAreaByName(payload, name) {
-  const slug = normalizeSlug(name)
-
-  const result = await payload.find({
-    collection: 'practice-areas',
-    where: {
-      or: [
-        { title: { equals: name } },
-        { slug: { equals: slug } },
-      ],
-    },
-    limit: 1,
-  })
-
-  return result.docs.length > 0 ? result.docs[0] : null
-}
-
-/**
- * Find industry by name or slug
- */
-async function findIndustryByName(payload, name) {
-  const slug = normalizeSlug(name)
-
-  const result = await payload.find({
-    collection: 'industries',
-    where: {
-      or: [
-        { title: { equals: name } },
-        { slug: { equals: slug } },
-      ],
-    },
-    limit: 1,
-  })
-
-  return result.docs.length > 0 ? result.docs[0] : null
-}
-
-/**
- * Resolve relation IDs without duplicates
- */
-async function resolveRelationIds(payload, names, collection, findByName) {
-  if (!names || !Array.isArray(names) || names.length === 0) {
-    return []
-  }
-
-  const ids = []
-  const seen = new Set()
-
-  for (const name of names) {
-    if (!name || typeof name !== 'string') continue
-
-    const item = await findByName(payload, name.trim())
-    if (item && !seen.has(item.id)) {
-      ids.push(item.id)
-      seen.add(item.id)
-    }
-  }
-
-  return ids
-}
-
-/**
- * Merge relation IDs without duplicates
- */
-function mergeRelationIds(existing, newIds) {
-  const existingIds = Array.isArray(existing)
-    ? existing.map((item) => (typeof item === 'object' ? item.id : item))
-    : []
-
-  const allIds = [...existingIds, ...newIds]
-  return [...new Set(allIds)]
-}
-
-/**
  * Main function
  */
 async function main() {
@@ -217,14 +147,12 @@ async function main() {
         const practiceAreaIds = await resolveRelationIds(
           payload,
           data.practiceAreas,
-          'practice-areas',
           findPracticeAreaByName
         )
 
         const industryIds = await resolveRelationIds(
           payload,
           data.industries,
-          'industries',
           findIndustryByName
         )
 
