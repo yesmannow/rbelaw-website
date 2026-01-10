@@ -31,6 +31,9 @@ payload-types.ts
 src/assets/stock/
 public/images/legacy/
 
+# Firecrawl cache
+data/cache/
+
 # TypeScript build info
 *.tsbuildinfo
 

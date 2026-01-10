@@ -1,167 +1,205 @@
-# Image Migration Scripts
+# Site Analysis & Database Enhancement Scripts
 
-This directory contains scripts to help migrate images from the old WordPress site (rbelaw.com) to the new React site.
+This directory contains scripts for analyzing the rbelaw.com website using Firecrawl and designing enhanced database schemas.
 
-## Scripts Overview
+## Prerequisites
 
-### 1. `extract-images.js` - Extract Image URLs
-Extracts image URLs from HTML pages on the old site.
+1. **Firecrawl API Key** in `.env.local`:
+   ```bash
+   FIRECRAWL_API_KEY="fc-your-api-key"
+   ```
 
-**Usage:**
-```bash
-npm run extract-images <url1> [url2] [url3] ...
+2. **Dependencies installed**:
+   ```bash
+   npm install
+   ```
 
-# Examples:
-npm run extract-images https://rbelaw.com/
-npm run extract-images https://rbelaw.com/our-team/ https://rbelaw.com/our-team/legal-assistants/
-```
+## Quick Start
 
-**Output:** Creates `image-urls.json` with all extracted image URLs, categorized by type.
-
-### 2. `download-images.js` - Download Images
-Downloads images from URLs and organizes them in the project structure.
-
-**Usage:**
-```bash
-# Download from JSON file
-npm run download-images -- --list image-urls.json
-
-# Download a single image
-npm run download-images -- --url "https://rbelaw.com/wp-content/uploads/2023/10/image.jpg"
-
-# Specify output directory
-npm run download-images -- --list image-urls.json --output public/images
-```
-
-**Options:**
-- `--url <url>` - Download a specific image URL
-- `--list <file>` - JSON file with list of image URLs
-- `--output <dir>` - Output directory (default: `public/images`)
-- `--optimize` - Optimize images after download (requires `sharp` package)
-
-## Quick Start Workflow
-
-### Step 1: Extract Image URLs
-```bash
-# Extract from key pages
-npm run extract-images \
-  https://rbelaw.com/ \
-  https://rbelaw.com/our-team/ \
-  https://rbelaw.com/our-team/legal-assistants/ \
-  https://rbelaw.com/our-team/other-professionals/ \
-  https://rbelaw.com/practice-areas/
-```
-
-This creates `image-urls.json` with all found image URLs.
-
-### Step 2: Review and Edit
-Open `image-urls.json` and review the extracted URLs. You can:
-- Remove unwanted images
-- Add additional URLs manually
-- Organize by category
-
-### Step 3: Download Images
-```bash
-# Download all images from the JSON file
-npm run download-images -- --list image-urls.json
-```
-
-Images will be organized in:
-```
-public/images/
-├── team/          # Team photos (attorneys, professionals, assistants)
-├── offices/       # Office and building photos
-├── practice/      # Practice area images
-├── news/          # News/blog images
-└── general/       # Other images (logos, icons, etc.)
-```
-
-## Manual Image URLs
-
-If you have specific image URLs, you can create a simple JSON file:
-
-```json
-{
-  "urls": [
-    "https://rbelaw.com/wp-content/uploads/2023/10/attorney-photo.jpg",
-    "https://rbelaw.com/wp-content/uploads/2023/10/office-reception.jpg"
-  ]
-}
-```
-
-Then download with:
-```bash
-npm run download-images -- --list your-file.json
-```
-
-## Image Organization
-
-Images are automatically categorized based on URL patterns:
-
-- **Team**: URLs containing "team", "attorney", "professional", "assistant", "staff"
-- **Offices**: URLs containing "office", "reception", "building", "location"
-- **Practice**: URLs containing "practice", "area", "service"
-- **News**: URLs containing "news", "blog", "article", "post"
-- **General**: All other images (logos, icons, etc.)
-
-## Updating Data Files
-
-After downloading images, update your data files to reference local paths:
-
-```typescript
-// src/lib/data/attorneys.ts
-{
-  id: 'john-doe',
-  name: 'John Doe',
-  imageUrl: '/images/team/john-doe.jpg', // Updated path
-  // ...
-}
-```
-
-## Troubleshooting
-
-### Images Not Downloading
-- Check that URLs are accessible
-- Some images may require authentication
-- Check network connectivity
-
-### Wrong Categories
-- Manually move images after download
-- Edit the categorization logic in `download-images.js`
-
-### Large Files
-- Consider image optimization
-- Use `--optimize` flag (requires `sharp` package)
-- Or use external tools like TinyPNG
-
-## Next Steps
-
-1. **Extract URLs** from old site pages
-2. **Review** the extracted URLs
-3. **Download** images to local project
-4. **Update** data files with new image paths
-5. **Test** that all images load correctly
-
-## Example: Complete Migration
+Run the complete workflow:
 
 ```bash
-# 1. Extract URLs
-npm run extract-images https://rbelaw.com/our-team/
+npx tsx scripts/orchestrate-site-analysis.ts
+```
 
-# 2. Review image-urls.json
-cat image-urls.json
+This will:
+1. Discover all URLs on rbelaw.com
+2. Analyze content structure
+3. Generate enhanced database schema design
 
-# 3. Download images
-npm run download-images -- --list image-urls.json
+## Individual Scripts
 
-# 4. Check results
-ls -la public/images/team/
-cat public/images/download-results.json
+### 1. Site Discovery
+
+Discovers all URLs on the site using Firecrawl Map and Crawl:
+
+```bash
+npx tsx scripts/discover-site-urls.ts
+```
+
+**Output:**
+- `scripts/output/site-discovery/sitemap.json` - All discovered URLs
+- `scripts/output/site-discovery/content-samples.json` - Sample content for analysis
+- `scripts/output/site-discovery/DISCOVERY_REPORT.md` - Summary report
+
+### 2. Content Analysis
+
+Analyzes scraped content to identify patterns:
+
+```bash
+npx tsx scripts/analyze-content-structure.ts
+```
+
+**Output:**
+- `scripts/output/content-analysis/analysis-report.json` - Detailed analysis
+- `scripts/output/content-analysis/ANALYSIS_REPORT.md` - Summary report
+
+### 3. Schema Design
+
+Generates enhanced database schema design:
+
+```bash
+npx tsx scripts/design-enhanced-schema.ts
+```
+
+**Output:**
+- `scripts/output/schema-design/enhanced-schema.json` - Complete schema design
+- `scripts/output/schema-design/migration.sql` - SQL migration script
+- `scripts/output/schema-design/SCHEMA_DESIGN.md` - Documentation
+
+## Workflow
+
+```
+┌─────────────────────┐
+│  Site Discovery    │  →  Discover all URLs
+└──────────┬─────────┘
+           │
+           ▼
+┌─────────────────────┐
+│ Content Analysis    │  →  Analyze structure
+└──────────┬─────────┘
+           │
+           ▼
+┌─────────────────────┐
+│  Schema Design      │  →  Generate schema
+└─────────────────────┘
+```
+
+## Key Features
+
+### Site Discovery
+- Uses Firecrawl Map to discover URLs
+- Uses Firecrawl Crawl to get content samples
+- Categorizes URLs (pages, blog, attorneys, practice areas)
+- Generates comprehensive sitemap
+
+### Content Analysis
+- Analyzes content structure
+- Identifies metadata patterns
+- Detects entities (dates, locations)
+- Generates schema recommendations
+
+### Schema Design
+- Expert-level database optimizations
+- Full-text search support
+- JSONB metadata storage
+- Materialized views for performance
+- Enhanced indexes
+- Better relationships
+
+## Database Enhancements
+
+The enhanced schema includes:
+
+1. **New Fields**
+   - `metadata` (JSONB) - Flexible metadata storage
+   - `searchVector` (tsvector) - Full-text search
+   - `contentHash` (text) - Change detection
+   - `lastScrapedAt` (timestamp) - Scraping tracking
+   - `viewCount` (integer) - Analytics
+
+2. **New Indexes**
+   - GIN indexes for JSONB columns
+   - GIN indexes for full-text search
+   - Composite indexes for common queries
+   - Partial indexes for filtered queries
+
+3. **New Relationships**
+   - Related blog posts (many-to-many)
+   - Related attorneys (peer relationships)
+   - Hierarchical practice areas
+
+4. **Performance Optimizations**
+   - Materialized views
+   - Computed columns
+   - Full-text search triggers
+   - Connection pooling recommendations
+
+## Migration
+
+After reviewing the schema design:
+
+1. **Backup your database**
+2. **Review migration script**: `scripts/output/schema-design/migration.sql`
+3. **Test on staging** first
+4. **Run migration**:
+   ```bash
+   psql $DATABASE_URL -f scripts/output/schema-design/migration.sql
+   ```
+5. **Update PayloadCMS config** with new fields
+6. **Refresh materialized views**:
+   ```sql
+   SELECT refresh_materialized_views();
+   ```
+
+## Output Structure
+
+```
+scripts/output/
+├── site-discovery/
+│   ├── sitemap.json
+│   ├── content-samples.json
+│   └── DISCOVERY_REPORT.md
+├── content-analysis/
+│   ├── analysis-report.json
+│   └── ANALYSIS_REPORT.md
+└── schema-design/
+    ├── enhanced-schema.json
+    ├── migration.sql
+    └── SCHEMA_DESIGN.md
 ```
 
 ## Notes
 
-- Images are downloaded with their original filenames (sanitized)
-- Existing images are skipped (won't re-download)
-- Failed downloads are logged in `download-results.json`
-- All scripts work with both HTTP and HTTPS URLs
+- Scripts use rate limiting to respect Firecrawl API limits
+- Analysis samples a subset of URLs to avoid excessive API calls
+- All outputs are saved as JSON and Markdown for easy review
+- Migration scripts are idempotent (safe to run multiple times)
+
+## Troubleshooting
+
+### Firecrawl API Key Not Found
+Ensure `.env.local` contains:
+```
+FIRECRAWL_API_KEY="fc-your-api-key"
+```
+
+### Site Discovery Fails
+- Check internet connection
+- Verify Firecrawl API key is valid
+- Check Firecrawl API status
+
+### Analysis Takes Too Long
+- Scripts include rate limiting (1 second between requests)
+- Analysis samples a subset of URLs
+- Consider running scripts individually
+
+## Next Steps
+
+After running the analysis:
+
+1. Review all generated reports
+2. Update PayloadCMS config with new fields
+3. Run database migration
+4. Update application code to use new features
+5. Test thoroughly before deploying
