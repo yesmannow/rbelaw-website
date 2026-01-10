@@ -376,6 +376,30 @@ export default buildConfig({
           required: true,
         },
         {
+          name: 'richContent',
+          type: 'richText',
+          editor: lexicalEditor({}),
+          required: false,
+          admin: {
+            description: 'Long-form authoritative content for educational lead magnets',
+          },
+        },
+        {
+          name: 'leadMagnetType',
+          type: 'select',
+          required: false,
+          defaultValue: 'none',
+          options: [
+            { label: 'Lien Wizard', value: 'lien-wizard' },
+            { label: 'Litigation Roadmap', value: 'litigation-roadmap' },
+            { label: 'Entity Comparator', value: 'entity-comparator' },
+            { label: 'None', value: 'none' },
+          ],
+          admin: {
+            description: 'Type of educational tool to render on this practice area page',
+          },
+        },
+        {
           name: 'icon',
           type: 'text',
           admin: {
