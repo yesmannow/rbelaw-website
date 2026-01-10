@@ -1,0 +1,614 @@
+{
+  "generatedAt": "2026-01-10T20:36:11.355Z",
+  "summary": {
+    "totalFailures": 98,
+    "practiceAreas": {
+      "total": 25,
+      "failed": 25
+    },
+    "industries": {
+      "total": 15,
+      "failed": 15
+    },
+    "attorneys": {
+      "total": 58,
+      "failed": 58
+    }
+  },
+  "failures": {
+    "practiceAreas": [
+      {
+        "url": "https://rbelaw.com/category/practice-areas/business-law",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/practice-areas/construction",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/practice-areas/corporate-law",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/practice-areas/employment-law",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/practice-areas/estate-planning",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/practice-areas/health-care",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/practice-areas/insurance",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/practice-areas/intellectual-property-law",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/practice-areas/litigation",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/practice-areas/medical-malpractice-defense",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/practice-areas/real-estate",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/practice-areas/sports-entertainment",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/practice-areas/bankruptcy-reorganization",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/practice-areas/business-corporate-law",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/practice-areas/business-litigation",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/practice-areas/commercial-litigation",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/practice-areas/construction",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/practice-areas/family-law",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/practice-areas/government-law",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/practice-areas/health-care",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/practice-areas/insurance",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/practice-areas/intellectual-property-law-litigation",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/practice-areas/labor-employment-law",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/practice-areas/real-estate-land-use-zoning",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/practice-areas/wills-trusts-estates",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      }
+    ],
+    "industries": [
+      {
+        "url": "https://rbelaw.com/industries/construction",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/industries/finance",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/industries/food-beverage-service",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/industries/government",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/industries/health-care",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/industries/insurance",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/industries/manufacturing",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/industries/media",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/industries/non-profit-organizations",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/industries/real-estate",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/industries/sports-entertainment",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/industries/technology",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/industries/telecommunications",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/industries/transportation",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/industries/wholesale-retail-service",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      }
+    ],
+    "attorneys": [
+      {
+        "url": "https://rbelaw.com/category/attorneys/anna-marvin",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/attorneys/anthony-jost",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/attorneys/beau-browning",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/attorneys/blair-vandivier",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/attorneys/bryce-bennett",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/attorneys/courtney-david-mills",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/attorneys/donald-smith",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/attorneys/donald-smith-video",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/attorneys/eric-hylton",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/attorneys/j-mark-mckinzie",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/attorneys/j-t-wynne",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/attorneys/jaclyn-flint",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/attorneys/james-w-riley-jr",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/attorneys/jeffrey-fecht",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/attorneys/john-egloff",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/attorneys/justin-sorrell",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/attorneys/kathleen-hart",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/attorneys/katie-osborne",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/attorneys/katie-riles",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/attorneys/kevin-tharp",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/attorneys/laura-binford",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/attorneys/laura-reed",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/attorneys/lindsay-llewellyn",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/attorneys/megan-young",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/attorneys/patrick-mccarney",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/attorneys/ray-seach",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/attorneys/robert-brandt",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/attorneys/ryan-leitch",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/attorneys/sarah-macgill-marr",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/category/attorneys/travis-waton",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/our-team/attorneys/anna-marvin",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/our-team/attorneys/anthony-r-jost",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/our-team/attorneys/beau-browning",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/our-team/attorneys/blair-r-vandivier",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/our-team/attorneys/courtney-david-mills",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/our-team/attorneys/donald-s-smith",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/our-team/attorneys/eric-m-hylton",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/our-team/attorneys/j-t-wynne",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/our-team/attorneys/jaclyn-m-flint",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/our-team/attorneys/james-w-riley-jr",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/our-team/attorneys/jeffrey-b-fecht",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/our-team/attorneys/john-l-egloff",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/our-team/attorneys/justin-o-sorrell",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/our-team/attorneys/k-douglas-cook",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/our-team/attorneys/kathleen-hart",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/our-team/attorneys/katie-r-osborne",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/our-team/attorneys/katie-s-riles",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/our-team/attorneys/kevin-n-tharp",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/our-team/attorneys/laura-k-binford",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/our-team/attorneys/laura-s-reed",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/our-team/attorneys/lindsay-a-llewellyn",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/our-team/attorneys/megan-s-young",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/our-team/attorneys/patrick-s-mccarney",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/our-team/attorneys/raymond-t-seach",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/our-team/attorneys/ryan-l-leitch",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/our-team/attorneys/sarah-macgill-marr",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/our-team/attorneys/timothy-h-button",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      },
+      {
+        "url": "https://rbelaw.com/our-team/attorneys/travis-r-watson",
+        "errors": [
+          "FIRECRAWL_API_KEY not configured"
+        ]
+      }
+    ]
+  }
+}
