@@ -6,18 +6,21 @@
  */
 
 import { normalizeSlug } from './slug.js'
+import { normalizePracticeAreaName, normalizeIndustryName } from './normalize.js'
 
 /**
  * Find practice area by name or slug
  */
 export async function findPracticeAreaByName(payload, name) {
-  const slug = normalizeSlug(name)
+  // Normalize the name BEFORE searching
+  const canonicalName = normalizePracticeAreaName(name)
+  const slug = normalizeSlug(canonicalName)
 
   const result = await payload.find({
     collection: 'practice-areas',
     where: {
       or: [
-        { title: { equals: name } },
+        { title: { equals: canonicalName } },
         { slug: { equals: slug } },
       ],
     },
@@ -31,13 +34,15 @@ export async function findPracticeAreaByName(payload, name) {
  * Find industry by name or slug
  */
 export async function findIndustryByName(payload, name) {
-  const slug = normalizeSlug(name)
+  // Normalize the name BEFORE searching
+  const canonicalName = normalizeIndustryName(name)
+  const slug = normalizeSlug(canonicalName)
 
   const result = await payload.find({
     collection: 'industries',
     where: {
       or: [
-        { title: { equals: name } },
+        { title: { equals: canonicalName } },
         { slug: { equals: slug } },
       ],
     },

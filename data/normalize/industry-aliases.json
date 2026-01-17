@@ -1,1 +1,33 @@
-{}
+{
+  "HealthCare": "Health Care",
+  "Healthcare": "Health Care",
+  "Medical": "Health Care",
+  "Medical Industry": "Health Care",
+  
+  "RealEstate": "Real Estate",
+  "Real-Estate": "Real Estate",
+  "Property": "Real Estate",
+  
+  "SportsEntertainment": "Sports & Entertainment",
+  "Sports Entertainment": "Sports & Entertainment",
+  "Entertainment": "Sports & Entertainment",
+  "Sports": "Sports & Entertainment",
+  
+  "Food and Beverage": "Food, Beverage & Service",
+  "Food & Beverage": "Food, Beverage & Service",
+  "Food Beverage": "Food, Beverage & Service",
+  "Restaurants": "Food, Beverage & Service",
+  "Hospitality": "Food, Beverage & Service",
+  
+  "Non-Profit": "Non-Profit Organizations",
+  "Nonprofit": "Non-Profit Organizations",
+  "Non Profit": "Non-Profit Organizations",
+  "Nonprofits": "Non-Profit Organizations",
+  
+  "Tech": "Technology",
+  "Information Technology": "Technology",
+  
+  "Retail": "Retail & Consumer Goods",
+  "Consumer Goods": "Retail & Consumer Goods",
+  "Consumer Products": "Retail & Consumer Goods"
+}

@@ -394,6 +394,153 @@ async function main() {
     }
 
     // ========================================
+    // Section 6: Near-Duplicates Detection
+    // ========================================
+    console.log('┌─────────────────────────────────────────┐')
+    console.log('│  NEAR-DUPLICATES DETECTION              │')
+    console.log('└─────────────────────────────────────────┘')
+    console.log('')
+
+    // Import normalization functions dynamically
+    const normalizeModule = await import('./lib/normalize.js')
+    const { normalizePracticeAreaName, normalizeIndustryName } = normalizeModule
+    const { normalizeSlug } = await import('./lib/slug.js')
+
+    // Check practice areas for near-duplicates
+    const practiceAreas = await payload.find({
+      collection: 'practice-areas',
+      limit: 10000,
+    })
+
+    const practiceAreasByCanonical = {}
+    const practiceAreasBySlug = {}
+
+    for (const pa of practiceAreas.docs) {
+      const canonicalName = normalizePracticeAreaName(pa.title)
+      const normalizedSlug = normalizeSlug(canonicalName)
+
+      // Track by canonical name
+      if (!practiceAreasByCanonical[canonicalName]) {
+        practiceAreasByCanonical[canonicalName] = []
+      }
+      practiceAreasByCanonical[canonicalName].push({
+        id: pa.id,
+        title: pa.title,
+        slug: pa.slug,
+      })
+
+      // Track by normalized slug
+      if (!practiceAreasBySlug[normalizedSlug]) {
+        practiceAreasBySlug[normalizedSlug] = []
+      }
+      practiceAreasBySlug[normalizedSlug].push({
+        id: pa.id,
+        title: pa.title,
+        slug: pa.slug,
+      })
+    }
+
+    // Report practice areas with same canonical name but different original names
+    let foundPracticeAreaDuplicates = false
+    for (const [canonical, items] of Object.entries(practiceAreasByCanonical)) {
+      if (items.length > 1) {
+        foundPracticeAreaDuplicates = true
+        console.log(`  ⚠️  Practice Area canonical "${canonical}":`)
+        for (const item of items) {
+          console.log(`      - "${item.title}" (slug: ${item.slug}, id: ${item.id})`)
+        }
+        console.log('')
+      }
+    }
+
+    // Report practice areas with same normalized slug from different variants
+    for (const [slug, items] of Object.entries(practiceAreasBySlug)) {
+      if (items.length > 1) {
+        const uniqueTitles = new Set(items.map(i => i.title))
+        if (uniqueTitles.size > 1) {
+          foundPracticeAreaDuplicates = true
+          console.log(`  ⚠️  Practice Area slug "${slug}" from multiple variants:`)
+          for (const item of items) {
+            console.log(`      - "${item.title}" (slug: ${item.slug}, id: ${item.id})`)
+          }
+          console.log('')
+        }
+      }
+    }
+
+    if (!foundPracticeAreaDuplicates) {
+      console.log('  ✅ No near-duplicate practice areas found')
+      console.log('')
+    }
+
+    // Check industries for near-duplicates
+    const industries = await payload.find({
+      collection: 'industries',
+      limit: 10000,
+    })
+
+    const industriesByCanonical = {}
+    const industriesBySlug = {}
+
+    for (const ind of industries.docs) {
+      const canonicalName = normalizeIndustryName(ind.title)
+      const normalizedSlug = normalizeSlug(canonicalName)
+
+      // Track by canonical name
+      if (!industriesByCanonical[canonicalName]) {
+        industriesByCanonical[canonicalName] = []
+      }
+      industriesByCanonical[canonicalName].push({
+        id: ind.id,
+        title: ind.title,
+        slug: ind.slug,
+      })
+
+      // Track by normalized slug
+      if (!industriesBySlug[normalizedSlug]) {
+        industriesBySlug[normalizedSlug] = []
+      }
+      industriesBySlug[normalizedSlug].push({
+        id: ind.id,
+        title: ind.title,
+        slug: ind.slug,
+      })
+    }
+
+    // Report industries with same canonical name but different original names
+    let foundIndustryDuplicates = false
+    for (const [canonical, items] of Object.entries(industriesByCanonical)) {
+      if (items.length > 1) {
+        foundIndustryDuplicates = true
+        console.log(`  ⚠️  Industry canonical "${canonical}":`)
+        for (const item of items) {
+          console.log(`      - "${item.title}" (slug: ${item.slug}, id: ${item.id})`)
+        }
+        console.log('')
+      }
+    }
+
+    // Report industries with same normalized slug from different variants
+    for (const [slug, items] of Object.entries(industriesBySlug)) {
+      if (items.length > 1) {
+        const uniqueTitles = new Set(items.map(i => i.title))
+        if (uniqueTitles.size > 1) {
+          foundIndustryDuplicates = true
+          console.log(`  ⚠️  Industry slug "${slug}" from multiple variants:`)
+          for (const item of items) {
+            console.log(`      - "${item.title}" (slug: ${item.slug}, id: ${item.id})`)
+          }
+          console.log('')
+        }
+      }
+    }
+
+    if (!foundIndustryDuplicates) {
+      console.log('  ✅ No near-duplicate industries found')
+      console.log('')
+    }
+
+    // ========================================
     // Summary
     // ========================================
     console.log('╔════════════════════════════════════════════════════════╗')
