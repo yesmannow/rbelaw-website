@@ -37,6 +37,16 @@ export function PracticeAreasSection() {
 
   return (
     <section className="py-24 lg:py-32 bg-gradient-to-b from-white via-neutral-50 to-white relative overflow-hidden">
+      {/* Photographic wash (kept extremely subtle) */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <img
+          src="/images/stock%20images/indianapolis-1888215_1280.jpg"
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover opacity-[0.12] grayscale"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-white/75 to-white" />
+      </div>
+
       {/* Subtle background pattern */}
       <div className="absolute inset-0 opacity-[0.03]">
         <div className="absolute inset-0" style={{

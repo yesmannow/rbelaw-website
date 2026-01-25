@@ -1,29 +1,14 @@
 import { motion } from 'framer-motion'
-import { Shield } from 'lucide-react'
+import { PageHeader } from '@/components/layout/PageHeader'
 
 export function Accessibility() {
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="bg-primary-burgundy text-white py-16 lg:py-20">
-        <div className="section-container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="flex items-center gap-3 mb-4">
-              <Shield className="h-10 w-10 text-accent-gold" />
-              <h1 className="heading-primary text-white">
-                Website Accessibility Statement
-              </h1>
-            </div>
-            <p className="text-xl text-neutral-200 max-w-3xl">
-              Riley Bennett Egloff LLP is committed to ensuring digital accessibility for all users.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <PageHeader
+        title="Website Accessibility Statement"
+        subtitle="Riley Bennett Egloff LLP is committed to ensuring digital accessibility for all users."
+        backgroundImage="/images/stock%20images/indianapolis-1888215_1280.jpg"
+      />
 
       {/* Content Section */}
       <section className="py-16 lg:py-20">

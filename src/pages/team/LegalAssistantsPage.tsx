@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { legalAssistants } from '@/lib/data/legal-assistants'
 import { attorneys } from '@/lib/utils/attorney-logic'
 import { SEOMeta } from '@/components/seo/SEOMeta'
+import { PageHeader } from '@/components/layout/PageHeader'
 
 export function LegalAssistantsPage() {
   return (
@@ -14,24 +15,11 @@ export function LegalAssistantsPage() {
       />
 
       <div>
-        {/* Hero Section - Improved Spacing */}
-        <section className="bg-gradient-to-br from-primary-navy via-primary-navy to-primary-burgundy text-white pt-24 pb-20 lg:pt-32 lg:pb-24">
-          <div className="section-container">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-4xl"
-            >
-              <h1 className="text-5xl lg:text-6xl font-serif font-bold text-white mb-6">
-                Legal Assistants
-              </h1>
-              <p className="text-xl lg:text-2xl text-neutral-100 leading-relaxed">
-                The Legal Assistants of Riley Bennett Egloff provide vital support for our attorneys. Feel free to contact the appropriate legal assistant directly.
-              </p>
-            </motion.div>
-          </div>
-        </section>
+        <PageHeader
+          title="Legal Assistants"
+          subtitle="The Legal Assistants of Riley Bennett Egloff provide vital support for our attorneys. Feel free to contact the appropriate legal assistant directly."
+          backgroundImage="/images/stock%20images/indianapolis-1888215_1280.jpg"
+        />
 
         {/* Legal Assistants List */}
         <section className="py-16 lg:py-20">

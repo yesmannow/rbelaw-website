@@ -1,6 +1,7 @@
 import { LitigationTimeline } from '../../components/tools'
 import { InteractiveMap } from '@/components/tools/InteractiveMap'
 import { SEOMeta } from '@/components/seo/SEOMeta'
+import { PageHeader } from '@/components/layout/PageHeader'
 
 export function LitigationTimelinePage() {
   return (
@@ -9,15 +10,14 @@ export function LitigationTimelinePage() {
         title="Litigation Timeline Generator | Riley Bennett Egloff LLP"
         description="Visualize your case schedule with key Indiana Trial Rule deadlines and download calendar files."
       />
-      <div className="min-h-screen bg-neutral-50 py-12">
-        <div className="section-container">
+      <div className="min-h-screen bg-neutral-50">
+        <PageHeader
+          title="Litigation Timeline Generator"
+          subtitle="Visualize your case schedule with key Indiana Trial Rule deadlines and download calendar files."
+          backgroundImage="/images/stock%20images/capitol-820611_1280.jpg"
+        />
+        <div className="section-container py-12">
           <div className="mb-12">
-            <h1 className="text-4xl font-serif font-bold text-primary-navy mb-4">
-              Litigation Timeline Generator
-            </h1>
-            <p className="text-lg text-neutral-700 mb-8">
-              Visualize your case schedule with key Indiana Trial Rule deadlines and download calendar files.
-            </p>
             <LitigationTimeline />
           </div>
 

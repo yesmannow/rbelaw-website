@@ -7,26 +7,26 @@ interface PageHeaderProps {
 }
 
 export function PageHeader({ title, subtitle, backgroundImage }: PageHeaderProps) {
+  const resolvedBackgroundImage =
+    backgroundImage ?? '/images/stock%20images/indianapolis-1888215_1280.jpg'
+
   return (
     <section className="relative bg-primary-burgundy text-white py-16 lg:py-20 overflow-hidden">
       {/* Background Image with Overlay */}
-      {backgroundImage && (
+      {resolvedBackgroundImage && (
         <div className="absolute inset-0">
-          <picture>
-            <source srcSet={backgroundImage.replace(/\.(jpg|jpeg|png)$/i, '.avif')} type="image/avif" />
-            <source srcSet={backgroundImage.replace(/\.(jpg|jpeg|png)$/i, '.webp')} type="image/webp" />
-            <img
-              src={backgroundImage}
-              alt=""
-              className="absolute inset-0 w-full h-full object-cover"
-              aria-hidden="true"
-            />
-          </picture>
+          <img
+            src={resolvedBackgroundImage}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+            aria-hidden="true"
+            loading="eager"
+          />
         </div>
       )}
       
-      {/* Gradient Overlay using Navy/Maroon */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-navy/90 via-primary-navy/85 to-primary-navy/90" />
+      {/* Gradient Overlay using Navy/Maroon (kept strong, but allows photo to show) */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-navy/80 via-primary-navy/70 to-primary-navy/85" />
       
       {/* Subtle pattern overlay */}
       <div className="absolute inset-0 opacity-5">

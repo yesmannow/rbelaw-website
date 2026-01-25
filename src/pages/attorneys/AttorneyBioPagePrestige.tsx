@@ -425,7 +425,7 @@ export function AttorneyBioPagePrestige() {
               />
             )}
             {/* Dark overlay for readability (match PracticeAreaTemplate feel) */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary-navy/90 via-primary-navy/85 to-primary-slate/80" />
+            <div className="absolute inset-0 bg-gradient-to-br from-primary-navy/80 via-primary-navy/70 to-primary-slate/85" />
           </div>
 
           <div className="section-container relative z-10 pt-32 pb-20 lg:pt-40 lg:pb-24">

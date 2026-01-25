@@ -146,9 +146,9 @@ export function AttorneySearch({ onFilterChange }: AttorneySearchProps) {
   const hasActiveFilters = nameQuery || selectedPracticeAreas.length > 0 || selectedTitles.length > 0
 
   return (
-    <div className="bg-white rounded-xl shadow-lg p-6 mb-8">
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-2xl font-serif font-bold text-primary-navy">
+    <div className="bg-white/90 backdrop-blur-xl rounded-2xl border border-neutral-200/70 shadow-soft p-4 sm:p-6 mb-5 sm:mb-8">
+      <div className="flex items-center justify-between mb-4 sm:mb-6">
+        <h2 className="text-xl sm:text-2xl font-serif font-bold text-primary-navy">
           Find an Attorney
         </h2>
         {hasActiveFilters && (
@@ -162,10 +162,10 @@ export function AttorneySearch({ onFilterChange }: AttorneySearchProps) {
         )}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4">
         {/* Search by Name */}
         <div className="relative">
-          <label className="block text-sm font-semibold text-primary-navy mb-2">
+          <label className="block text-xs sm:text-sm font-semibold text-primary-navy mb-2">
             Search by Name (first or last)
           </label>
           <div className="relative">
@@ -175,7 +175,7 @@ export function AttorneySearch({ onFilterChange }: AttorneySearchProps) {
               value={nameQuery}
               onChange={(e) => setNameQuery(e.target.value)}
               placeholder="Enter name..."
-              className="w-full pl-10 pr-10 py-3 rounded-lg border-2 border-neutral-200 bg-white text-primary-navy placeholder:text-neutral-400 focus:outline-none focus:border-accent-gold focus:ring-2 focus:ring-accent-gold/20 transition-all"
+              className="w-full pl-10 pr-10 py-2.5 sm:py-3 rounded-xl border-2 border-neutral-200 bg-white text-primary-navy placeholder:text-neutral-400 focus:outline-none focus:border-accent-gold focus:ring-2 focus:ring-accent-gold/20 transition-all"
             />
             {nameQuery && (
               <button
@@ -196,7 +196,7 @@ export function AttorneySearch({ onFilterChange }: AttorneySearchProps) {
           onMouseEnter={handlePracticeAreaMouseEnter}
           onMouseLeave={handlePracticeAreaMouseLeave}
         >
-          <label className="block text-sm font-semibold text-primary-navy mb-2">
+          <label className="block text-xs sm:text-sm font-semibold text-primary-navy mb-2">
             Search by Practice Area
           </label>
           <div className="relative">
@@ -204,7 +204,7 @@ export function AttorneySearch({ onFilterChange }: AttorneySearchProps) {
               onClick={() => setPracticeAreaDropdownOpen(!practiceAreaDropdownOpen)}
               onMouseEnter={handlePracticeAreaMouseEnter}
               className={cn(
-                'w-full flex items-center justify-between pl-4 pr-3 py-3 rounded-lg border-2 bg-white text-left transition-all',
+                'w-full flex items-center justify-between pl-4 pr-3 py-2.5 sm:py-3 rounded-xl border-2 bg-white text-left transition-all',
                 selectedPracticeAreas.length > 0
                   ? 'border-accent-gold text-primary-navy'
                   : 'border-neutral-200 text-neutral-500',
@@ -283,7 +283,7 @@ export function AttorneySearch({ onFilterChange }: AttorneySearchProps) {
           onMouseEnter={handleTitleMouseEnter}
           onMouseLeave={handleTitleMouseLeave}
         >
-          <label className="block text-sm font-semibold text-primary-navy mb-2">
+          <label className="block text-xs sm:text-sm font-semibold text-primary-navy mb-2">
             Position
           </label>
           <div className="relative">
@@ -291,7 +291,7 @@ export function AttorneySearch({ onFilterChange }: AttorneySearchProps) {
               onClick={() => setTitleDropdownOpen(!titleDropdownOpen)}
               onMouseEnter={handleTitleMouseEnter}
               className={cn(
-                'w-full flex items-center justify-between pl-4 pr-3 py-3 rounded-lg border-2 bg-white text-left transition-all',
+                'w-full flex items-center justify-between pl-4 pr-3 py-2.5 sm:py-3 rounded-xl border-2 bg-white text-left transition-all',
                 selectedTitles.length > 0
                   ? 'border-accent-gold text-primary-navy'
                   : 'border-neutral-200 text-neutral-500',
@@ -369,7 +369,7 @@ export function AttorneySearch({ onFilterChange }: AttorneySearchProps) {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mt-4 pt-4 border-t border-neutral-200"
+          className="mt-4 pt-4 border-t border-neutral-200/80"
         >
           <p className="text-sm text-neutral-600">
             Showing <span className="font-semibold text-primary-navy">{filteredAttorneys.length}</span> of {attorneys.length} attorneys

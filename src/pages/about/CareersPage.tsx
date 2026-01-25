@@ -19,7 +19,7 @@ export function CareersPage() {
       <PageHeader 
         title="Build Your Future at RBE"
         subtitle="Join a team where quality service and entrepreneurial spirit are rewarded."
-        backgroundImage="/images/practice-areas/Commercail-lit-1024x284.jpg"
+        backgroundImage="/images/stock%20images/indianapolis-1888215_1280.jpg"
       />
 
       {/* Why Join Us & Open Positions Split Layout */}

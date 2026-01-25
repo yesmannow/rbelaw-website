@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Calculator, Calendar, TrendingUp, MapPin, Shield, Clock, CheckCircle2, Zap, Users, FileText, Building2, AlertTriangle, Brain, BookOpen } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../../components/ui/Card'
 import { SEOMeta } from '@/components/seo/SEOMeta'
+import { PageHeader } from '@/components/layout/PageHeader'
 
 interface ToolCardProps {
   icon: React.ReactNode
@@ -135,29 +136,25 @@ export function ToolsPage() {
       />
 
       <div className="min-h-screen bg-gradient-to-b from-neutral-50 to-white">
-        {/* Hero Section */}
-        <div className="bg-gradient-to-br from-primary-navy via-primary-slate to-primary-navy text-white py-16 lg:py-20">
-          <div className="section-container">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-4xl mx-auto text-center"
-            >
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-6">
-                Legal Tools & Resources
-              </h1>
-              <p className="text-xl text-white/90 mb-8 leading-relaxed">
-                Interactive calculators and assessments designed to help you understand your legal situation
-              </p>
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 inline-block border border-white/20">
-                <p className="text-sm font-medium">
-                  <Zap className="inline h-4 w-4 mr-2" />
-                  <strong>Free to use.</strong> No signup required. Get instant results.
-                </p>
-              </div>
-            </motion.div>
-          </div>
+        <PageHeader
+          title="Legal Tools & Resources"
+          subtitle="Interactive calculators and assessments designed to help you understand your legal situation."
+          backgroundImage="/images/stock%20images/capitol-820611_1280.jpg"
+        />
+
+        {/* Quick value prop strip */}
+        <div className="section-container -mt-10 mb-10">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mx-auto inline-flex items-center justify-center rounded-xl border border-primary-navy/15 bg-white/80 px-5 py-3 shadow-soft backdrop-blur-sm"
+          >
+            <Zap className="mr-2 h-4 w-4 text-accent-gold" />
+            <span className="text-sm font-semibold text-primary-navy">
+              Free to use. No signup required. Get instant results.
+            </span>
+          </motion.div>
         </div>
 
         {/* Tools Grid */}

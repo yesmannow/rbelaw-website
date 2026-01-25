@@ -51,7 +51,7 @@ export function Navbar() {
         backgroundColor: isScrolled ? 'rgba(33, 52, 105, 0.98)' : 'rgba(33, 52, 105, 1)'
       }}
       transition={{ duration: 0.3, ease: 'easeInOut' }}
-      className={`fixed top-0 left-0 right-0 z-50 overflow-visible transition-shadow duration-300 ${
+      className={`hidden md:block fixed top-0 left-0 right-0 z-50 overflow-visible transition-shadow duration-300 ${
         isScrolled ? 'shadow-xl backdrop-blur-sm' : 'shadow-soft'
       }`}
       id="main-navbar"

@@ -36,7 +36,7 @@ export function CommunityPage() {
       <PageHeader 
         title="Deeply Rooted in Central Indiana"
         subtitle="Our commitment to the community extends far beyond the courtroom. We believe in giving back through leadership, service, and support."
-        backgroundImage="/images/practice-areas/bus-lit-1024x284.webp"
+        backgroundImage="/images/stock%20images/indy-669133_1280.jpg"
       />
 
       {/* Featured: Ask a Lawyer */}

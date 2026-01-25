@@ -1,5 +1,6 @@
 import { InteractiveMap } from '@/components/tools/InteractiveMap'
 import { SEOMeta } from '@/components/seo/SEOMeta'
+import { PageHeader } from '@/components/layout/PageHeader'
 
 export function DistrictMapPage() {
   return (
@@ -8,16 +9,13 @@ export function DistrictMapPage() {
         title="Indiana Worker's Comp District Locator | Riley Bennett Egloff LLP"
         description="Find your Board Member, Court Reporter, and contact information by county or district."
       />
-      <div className="min-h-screen bg-neutral-50 py-12">
-        <div className="section-container">
-          <div className="mb-8">
-            <h1 className="text-4xl font-serif font-bold text-primary-navy mb-4">
-              Indiana Worker's Compensation District Locator
-            </h1>
-            <p className="text-lg text-neutral-700">
-              Find your Board Member, Court Reporter, and contact information by county or district.
-            </p>
-          </div>
+      <div className="min-h-screen bg-neutral-50">
+        <PageHeader
+          title="Indiana Worker's Compensation District Locator"
+          subtitle="Find your Board Member, Court Reporter, and contact information by county or district."
+          backgroundImage="/images/stock%20images/indy-669133_1280.jpg"
+        />
+        <div className="section-container py-12">
           <InteractiveMap />
         </div>
       </div>

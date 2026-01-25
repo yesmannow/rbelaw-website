@@ -37,17 +37,14 @@ export function AboutPage() {
       <section className="relative bg-primary-burgundy text-white py-24 lg:py-32 overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
-          <picture>
-            <source srcSet="/images/hero/hero-1.avif" type="image/avif" />
-            <source srcSet="/images/hero/hero-1.webp" type="image/webp" />
-            <img
-              src="/images/hero/hero-1.jpg"
-              alt="Riley Bennett Egloff"
-              className="w-full h-full object-cover"
-            />
-          </picture>
+          <img
+            src="/images/stock%20images/indianapolis-1888215_1280.jpg"
+            alt="Indianapolis skyline"
+            className="w-full h-full object-cover"
+            loading="lazy"
+          />
           {/* Dark overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary-navy/90 via-primary-navy/85 to-primary-navy/90" />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-navy/80 via-primary-navy/70 to-primary-navy/85" />
         </div>
 
         <div className="section-container relative z-10">

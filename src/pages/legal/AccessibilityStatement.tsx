@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { SEOMeta } from '@/components/seo/SEOMeta'
+import { PageHeader } from '@/components/layout/PageHeader'
 
 export function AccessibilityStatement() {
   return (
@@ -9,23 +10,11 @@ export function AccessibilityStatement() {
         description="Riley Bennett Egloff LLP is committed to providing a website that is accessible to all user groups."
       />
 
-      <div className="bg-gradient-to-br from-primary-navy to-primary-slate py-16">
-        <div className="section-container">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-6">
-              Website Accessibility Statement
-            </h1>
-            <p className="text-xl text-white/90">
-              Our commitment to digital accessibility
-            </p>
-          </motion.div>
-        </div>
-      </div>
+      <PageHeader
+        title="Website Accessibility Statement"
+        subtitle="Our commitment to digital accessibility."
+        backgroundImage="/images/stock%20images/indianapolis-1888215_1280.jpg"
+      />
 
       <section className="py-16 bg-white">
         <div className="section-container max-w-4xl">

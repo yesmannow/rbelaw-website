@@ -3,6 +3,7 @@ import { CaseTimeline } from '../../components/interactive/CaseTimeline'
 import { CaseAssessmentQuiz } from '../../components/interactive/CaseAssessmentQuiz'
 import { StickyAuthorCTA } from '../../components/blog/StickyAuthorCTA'
 import { Button } from '../../components/ui/Button'
+import { PageHeader } from '@/components/layout/PageHeader'
 
 /**
  * Demo Page for Interactive Conversion Components
@@ -23,17 +24,11 @@ export function DemoPage() {
 
   return (
     <div className="min-h-screen bg-neutral-50">
-      {/* Header */}
-      <div className="bg-neutral-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4">
-          <h1 className="text-4xl font-serif font-bold mb-4">
-            Interactive Conversion Components Demo
-          </h1>
-          <p className="text-lg text-neutral-300">
-            Showcasing high-conversion features for the RBE Law website
-          </p>
-        </div>
-      </div>
+      <PageHeader
+        title="Interactive Conversion Components Demo"
+        subtitle="Showcasing high-conversion features for the RBE Law website."
+        backgroundImage="/images/stock%20images/indy-669133_1280.jpg"
+      />
 
       {/* Component Showcase */}
       <div className="max-w-7xl mx-auto px-4 py-12 space-y-16">

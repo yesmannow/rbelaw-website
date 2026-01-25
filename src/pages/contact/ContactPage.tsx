@@ -52,8 +52,8 @@ export function ContactPage() {
           />
         </picture>
         
-        {/* Dark Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-navy/90 via-primary-navy/85 to-primary-navy/80" />
+        {/* Dark Overlay (match site-wide hero overlay) */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-navy/80 via-primary-navy/70 to-primary-navy/85" />
         
         {/* Content */}
         <div className="section-container relative z-10 pt-32 pb-20 lg:pt-40 lg:pb-24">

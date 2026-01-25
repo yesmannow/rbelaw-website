@@ -45,7 +45,15 @@ export function BlogPost() {
       />
 
       <article>
-        <div className="bg-gradient-to-br from-primary-navy to-primary-slate py-16">
+        <div className="relative overflow-hidden py-16">
+          <div className="absolute inset-0" aria-hidden="true">
+            <img
+              src={article.image || '/images/stock%20images/capitol-820611_1280.jpg'}
+              alt=""
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-br from-primary-navy/80 via-primary-navy/70 to-primary-slate/85" />
+          </div>
           <div className="section-container max-w-4xl">
             <motion.div
               initial={{ opacity: 0, y: 30 }}

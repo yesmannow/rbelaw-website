@@ -16,7 +16,17 @@ const benefits = [
 
 export function ValuePropositionSection() {
   return (
-    <section className="py-24 lg:py-32 bg-white relative overflow-hidden">
+    <section className="py-24 lg:py-32 bg-gradient-to-b from-neutral-50 via-white to-neutral-50 relative overflow-hidden">
+      {/* Subtle photographic wash (adds depth without hurting readability) */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <img
+          src="/images/stock%20images/indy-669133_1280.jpg"
+          alt=""
+          className="absolute right-0 top-0 h-full w-[58%] object-cover opacity-[0.18] grayscale"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-transparent" />
+      </div>
+
       {/* Background decorative elements */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-0 right-0 w-96 h-96 bg-primary-navy rounded-full blur-3xl" />

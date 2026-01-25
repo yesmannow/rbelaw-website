@@ -14,7 +14,17 @@ export function NewsroomSection() {
   const latestInsights = getRecentBlogPosts(3)
 
   return (
-    <section className="py-24 lg:py-32 bg-white relative overflow-hidden">
+    <section className="py-24 lg:py-32 bg-gradient-to-b from-neutral-50 via-white to-neutral-50 relative overflow-hidden">
+      {/* Subtle photographic wash */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+        <img
+          src="/images/stock%20images/justice-2060093_1280.jpg"
+          alt=""
+          className="absolute right-0 top-0 h-full w-[55%] object-cover opacity-[0.16] grayscale"
+        />
+        <div className="absolute inset-0 bg-gradient-to-l from-transparent via-white/70 to-white" />
+      </div>
+
       {/* Background decorative elements */}
       <div className="absolute top-0 right-0 w-1/2 h-full opacity-5">
         <div className="absolute inset-0 bg-gradient-to-l from-primary-navy to-transparent" />

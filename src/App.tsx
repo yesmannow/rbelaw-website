@@ -68,6 +68,9 @@ function AnimatedRoutes() {
           {/* Newsroom - Prestige Version */}
           <Route path="newsroom" element={<NewsroomPrestige />} />
           <Route path="newsroom/:slug" element={<BlogPost />} />
+          {/* Alias routes to match mobile nav mapping */}
+          <Route path="news" element={<NewsroomPrestige />} />
+          <Route path="news/:slug" element={<BlogPost />} />
           
           {/* Demo */}
           <Route path="demo" element={<DemoPage />} />
@@ -80,6 +83,7 @@ function AnimatedRoutes() {
           
           {/* News/AI Digest */}
           <Route path="newsroom/ai-digest" element={<AINewsDigestPage />} />
+          <Route path="news/ai-digest" element={<AINewsDigestPage />} />
           
           {/* Legal Pages */}
           <Route path="accessibility-statement" element={<AccessibilityStatement />} />

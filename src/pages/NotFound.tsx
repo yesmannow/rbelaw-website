@@ -10,6 +10,15 @@ import { Home, Users } from 'lucide-react'
 export const NotFound = () => {
   return (
     <div className="min-h-screen bg-[#0A2540] relative flex items-center justify-center px-6 overflow-hidden">
+      {/* Background photo wash */}
+      <img
+        src="/images/stock%20images/capitol-820611_1280.jpg"
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 h-full w-full object-cover opacity-[0.22] grayscale"
+      />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#0A2540]/90 via-[#0A2540]/80 to-[#0A2540]/90" />
+
       {/* Gold radial glow background */}
       <div 
         className="absolute inset-0 pointer-events-none"

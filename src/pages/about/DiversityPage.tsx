@@ -54,7 +54,16 @@ export function DiversityPage() {
 
       <div className="min-h-screen">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-primary-navy to-primary-slate text-white py-16 lg:py-20">
+        <section className="relative bg-gradient-to-br from-primary-navy to-primary-slate text-white py-16 lg:py-20 overflow-hidden">
+          {/* Subtle hero image wash */}
+          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+            <img
+              src="/images/stock%20images/justice-2060093_1280.jpg"
+              alt=""
+              className="absolute right-0 top-0 h-full w-[60%] object-cover opacity-[0.10] grayscale"
+            />
+            <div className="absolute inset-0 bg-gradient-to-br from-primary-navy/80 via-primary-navy/70 to-primary-navy/85" />
+          </div>
           <div className="section-container">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -73,7 +82,15 @@ export function DiversityPage() {
         </section>
 
         {/* Mission Statement */}
-        <section className="py-16 lg:py-20 bg-white">
+        <section className="py-16 lg:py-20 bg-white relative overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+            <img
+              src="/images/stock%20images/indianapolis-1888215_1280.jpg"
+              alt=""
+              className="absolute inset-0 h-full w-full object-cover opacity-[0.05] grayscale"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-white via-white/95 to-white" />
+          </div>
           <div className="section-container">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

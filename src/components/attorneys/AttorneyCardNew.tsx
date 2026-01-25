@@ -43,11 +43,11 @@ export function AttorneyCard({ attorney, index = 0, compact = false, showContact
     >
       <Link
         to={`/attorneys/${attorney.id}`}
-        className="block h-full bg-white rounded-xl shadow-soft hover:shadow-corporate transition-all duration-300 overflow-hidden group"
+        className="block h-full bg-white rounded-2xl border border-neutral-200/70 shadow-soft hover:shadow-corporate transition-all duration-300 overflow-hidden group active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-gold/30"
       >
         {/* Image/Fallback Container */}
         <div 
-          className={`${compact ? 'aspect-[4/5]' : 'aspect-square'} bg-neutral-100 overflow-hidden relative`}
+          className={`${compact ? 'aspect-[3/4] sm:aspect-[4/5]' : 'aspect-square'} bg-neutral-100 overflow-hidden relative`}
           style={{ viewTransitionName: 'attorney-portrait' }}
         >
           {!imageError ? (
@@ -76,12 +76,17 @@ export function AttorneyCard({ attorney, index = 0, compact = false, showContact
         </div>
 
         {/* Content */}
-        <div className={`${compact ? 'p-4' : 'p-6'}`}>
-          <h3 className={`${compact ? 'text-lg' : 'text-xl'} font-serif font-bold text-[#0A2540] mb-1 group-hover:text-[#74243C] transition-colors`}>
+        <div className={`${compact ? 'p-3 sm:p-4' : 'p-6'}`}>
+          <h3
+            className={[
+              compact ? 'text-sm sm:text-lg leading-snug' : 'text-xl',
+              'font-serif font-bold text-[#0A2540] mb-1 group-hover:text-[#74243C] transition-colors line-clamp-2',
+            ].join(' ')}
+          >
             {attorney.name}
           </h3>
           
-          <p className="text-[#74243C] font-semibold mb-3 text-sm">
+          <p className={`${compact ? 'mb-2 text-[11px]' : 'mb-3 text-sm'} text-[#74243C] font-semibold`}>
             {attorney.title || 'Attorney'}
           </p>
 
@@ -92,16 +97,16 @@ export function AttorneyCard({ attorney, index = 0, compact = false, showContact
           )}
 
           {showContact && (
-            <div className="space-y-2 text-sm">
+            <div className={`${compact ? 'space-y-1.5 text-[11px]' : 'space-y-2 text-sm'}`}>
               {attorney.phone && (
                 <div className="flex items-center gap-2 text-neutral-600 hover:text-[#74243C] transition-colors">
-                  <Phone className="w-4 h-4 flex-shrink-0" />
+                  <Phone className={`${compact ? 'w-3.5 h-3.5' : 'w-4 h-4'} flex-shrink-0`} />
                   <span className="truncate">{attorney.phone}</span>
                 </div>
               )}
               {attorney.email && (
-                <div className="flex items-center gap-2 text-neutral-600 hover:text-[#74243C] transition-colors">
-                  <Mail className="w-4 h-4 flex-shrink-0" />
+                <div className={`${compact ? 'hidden min-[420px]:flex' : 'flex'} items-center gap-2 text-neutral-600 hover:text-[#74243C] transition-colors`}>
+                  <Mail className={`${compact ? 'w-3.5 h-3.5' : 'w-4 h-4'} flex-shrink-0`} />
                   <span className="truncate">{attorney.email}</span>
                 </div>
               )}

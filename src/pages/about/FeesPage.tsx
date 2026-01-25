@@ -34,7 +34,7 @@ export function FeesPage() {
       <PageHeader 
         title="Transparent, Value-Driven Representation"
         subtitle="We pride ourselves on providing the highest quality legal services in a timely, result-oriented, and cost-effective manner."
-        backgroundImage="/images/practice-areas/Insurance-1024x284.jpg"
+        backgroundImage="/images/stock%20images/justice-6778953_1280.jpg"
       />
 
       {/* Philosophy */}

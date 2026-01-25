@@ -30,7 +30,13 @@ export default defineConfig({
       registerType: 'autoUpdate',
       injectRegister: 'auto',
       useCredentials: true, // FIX: Allows Vercel to fetch manifest behind Auth
-      includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
+      includeAssets: [
+        'favicon-16x16.png',
+        'favicon-32x32.png',
+        'apple-touch-icon.png',
+        'pwa-512x512-maskable.png',
+        'images/logo/rbe-mark-white.png',
+      ],
       manifest: {
         name: 'Riley Bennett Egloff',
         short_name: 'RBE Law',
@@ -41,8 +47,9 @@ export default defineConfig({
         scope: '/',
         start_url: '/',
         icons: [
-          { src: 'pwa-192x192.png', sizes: '192x192', type: 'image/png' },
-          { src: 'pwa-512x512.png', sizes: '512x512', type: 'image/png', purpose: 'any' }
+          { src: 'pwa-192x192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
+          { src: 'pwa-512x512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
+          { src: 'pwa-512x512-maskable.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
         ]
       },
       workbox: {

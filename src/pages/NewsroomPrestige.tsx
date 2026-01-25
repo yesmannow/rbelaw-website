@@ -148,7 +148,16 @@ export function NewsroomPrestige() {
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Section - 70/30 Split */}
       {featuredPost && (
-        <section className="relative overflow-hidden bg-gradient-to-br from-primary-navy via-primary-navy/95 to-primary-slate">
+        <section className="relative overflow-hidden bg-primary-navy">
+          {/* Hero background image + consistent overlay */}
+          <div className="absolute inset-0" aria-hidden="true">
+            <img
+              src="/images/stock%20images/justice-2060093_1280.jpg"
+              alt=""
+              className="absolute inset-0 h-full w-full object-cover opacity-60"
+            />
+            <div className="absolute inset-0 bg-gradient-to-br from-primary-navy/80 via-primary-navy/70 to-primary-slate/85" />
+          </div>
           <div className="section-container py-16 lg:py-24">
             <div className="grid gap-8 lg:grid-cols-10">
               {/* Left: Featured Content (70%) */}

@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import { attorneys as allAttorneys } from '@/lib/utils/attorney-logic'
 import type { Attorney } from '@/lib/types'
 import { SEOMeta } from '@/components/seo/SEOMeta'
 import { AttorneyCard } from '@/components/attorneys/AttorneyCardNew'
 import { AttorneySearch } from '@/components/attorneys/AttorneySearch'
+import { PageHeader } from '@/components/layout/PageHeader'
 
 export function AttorneysPage() {
   const [filteredAttorneys, setFilteredAttorneys] = useState<Attorney[]>(allAttorneys)
@@ -17,27 +17,14 @@ export function AttorneysPage() {
       />
 
       <div>
-        {/* Hero Section */}
-        <section className="bg-gradient-to-br from-primary-navy via-primary-navy to-primary-burgundy text-white pt-24 pb-20 lg:pt-32 lg:pb-24">
-          <div className="section-container">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-4xl"
-            >
-              <h1 className="text-5xl lg:text-6xl font-serif font-bold text-white mb-6">
-                Our Attorneys
-              </h1>
-              <p className="text-xl lg:text-2xl text-neutral-100 mb-8 leading-relaxed">
-                Meet our team of experienced legal professionals committed to delivering exceptional results.
-              </p>
-            </motion.div>
-          </div>
-        </section>
+        <PageHeader
+          title="Our Attorneys"
+          subtitle="Meet our team of experienced legal professionals committed to delivering exceptional results."
+          backgroundImage="/images/stock%20images/justice-2060093_1280.jpg"
+        />
 
         {/* Attorney Search & Grid */}
-        <section className="py-16 lg:py-24 bg-neutral-50">
+        <section className="py-10 sm:py-14 lg:py-24 bg-neutral-50">
           <div className="section-container">
             {/* Search Component */}
             <AttorneySearch onFilterChange={setFilteredAttorneys} />
@@ -49,7 +36,7 @@ export function AttorneysPage() {
                 <p className="text-neutral-500">Try adjusting your search criteria</p>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              <div className="pb-[calc(env(safe-area-inset-bottom,0px)+7.5rem)] grid grid-cols-2 min-[520px]:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-5">
                 {filteredAttorneys.map((attorney, index) => (
                   <AttorneyCard
                     key={attorney.id}

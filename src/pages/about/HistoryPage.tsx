@@ -30,7 +30,7 @@ export function HistoryPage() {
       <PageHeader 
         title="A Legacy of Excellence Since 1979"
         subtitle="Founded on a vision of respected business litigation and high-quality service, Riley Bennett Egloff has evolved into a premier legal partner for local, national, and international businesses."
-        backgroundImage="/images/practice-areas/bus-corp-law-1024x284-1.jpg"
+        backgroundImage="/images/stock%20images/capitol-820611_1280.jpg"
       />
 
       {/* Main Content with Sidebar */}

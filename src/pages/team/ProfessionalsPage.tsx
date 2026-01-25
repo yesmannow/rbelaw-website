@@ -3,6 +3,7 @@ import { Mail, Phone, Building2 } from 'lucide-react'
 import { professionals } from '@/lib/data/professionals'
 import { SEOMeta } from '@/components/seo/SEOMeta'
 import { cn } from '@/lib/utils'
+import { PageHeader } from '@/components/layout/PageHeader'
 
 export function ProfessionalsPage() {
   // Group professionals by department
@@ -23,24 +24,11 @@ export function ProfessionalsPage() {
       />
 
       <div>
-        {/* Hero Section - Improved Spacing */}
-        <section className="bg-gradient-to-br from-primary-navy via-primary-navy to-primary-burgundy text-white pt-24 pb-20 lg:pt-32 lg:pb-24">
-          <div className="section-container">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="max-w-4xl"
-            >
-              <h1 className="text-5xl lg:text-6xl font-serif font-bold text-white mb-6">
-                Legal Support & Other Professionals
-              </h1>
-              <p className="text-xl lg:text-2xl text-neutral-100 leading-relaxed">
-                The attorneys of RBE depend on the support of numerous legal professionals including legal assistants, paralegals, and nurse consultants.
-              </p>
-            </motion.div>
-          </div>
-        </section>
+        <PageHeader
+          title="Legal Support & Other Professionals"
+          subtitle="The attorneys of RBE depend on the support of numerous legal professionals including legal assistants, paralegals, and nurse consultants."
+          backgroundImage="/images/stock%20images/indy-669133_1280.jpg"
+        />
 
         {/* Professionals by Department - Improved Layout */}
         <section className="py-16 lg:py-20">

@@ -4,6 +4,7 @@ import { Calendar, ArrowRight } from 'lucide-react'
 import { SEOMeta } from '@/components/seo/SEOMeta'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui'
 import newsArchive from '@/lib/data/news-archive.json'
+import { PageHeader } from '@/components/layout/PageHeader'
 
 export function NewsroomPage() {
   return (
@@ -13,23 +14,11 @@ export function NewsroomPage() {
         description="Stay informed with the latest news, insights, and legal updates from Riley Bennett Egloff LLP."
       />
 
-      <div className="bg-gradient-to-br from-primary-navy to-primary-slate py-24">
-        <div className="section-container">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <h1 className="text-5xl md:text-6xl font-serif font-bold text-white mb-6">
-              Newsroom
-            </h1>
-            <p className="text-xl text-white/90">
-              Expert insights, firm news, and legal updates from our team
-            </p>
-          </motion.div>
-        </div>
-      </div>
+      <PageHeader
+        title="Newsroom"
+        subtitle="Expert insights, firm news, and legal updates from our team."
+        backgroundImage="/images/stock%20images/justice-2060093_1280.jpg"
+      />
 
       <section className="py-16 bg-neutral-50">
         <div className="section-container">

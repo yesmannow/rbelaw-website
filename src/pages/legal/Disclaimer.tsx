@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { AlertTriangle } from 'lucide-react'
 import { SEOMeta } from '@/components/seo/SEOMeta'
+import { PageHeader } from '@/components/layout/PageHeader'
 
 export function Disclaimer() {
   return (
@@ -10,23 +11,11 @@ export function Disclaimer() {
         description="Important legal information regarding the use of this website and attorney-client relationships."
       />
 
-      <div className="bg-gradient-to-br from-primary-navy to-primary-slate py-16">
-        <div className="section-container">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-6">
-              Disclaimer
-            </h1>
-            <p className="text-xl text-white/90">
-              Important legal information and notices
-            </p>
-          </motion.div>
-        </div>
-      </div>
+      <PageHeader
+        title="Disclaimer"
+        subtitle="Important legal information and notices."
+        backgroundImage="/images/stock%20images/capitol-820611_1280.jpg"
+      />
 
       <section className="py-16 bg-white">
         <div className="section-container max-w-4xl">

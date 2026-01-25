@@ -4,7 +4,7 @@
  */
 
 import { motion } from 'framer-motion'
-import { Users, Briefcase, Scale, ArrowRight } from 'lucide-react'
+import { Users, Handshake, Scale, ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 const sections = [
@@ -14,17 +14,17 @@ const sections = [
     description: "We're lawyers, partners, and advocates working to answer your questions, support your legal needs, and pursue your goals.",
     highlightWords: ['lawyers'],
     bgColor: 'bg-primary-navy',
-    iconBg: 'bg-primary-navy/10',
-    iconColor: 'text-primary-navy'
+    iconBg: 'bg-white/10',
+    iconColor: 'text-white',
   },
   {
-    icon: Briefcase,
+    icon: Handshake,
     title: 'Who We Help',
     description: 'Our clients are professionals, entrepreneurs, organizations, government entities, and individuals.',
     highlightWords: ['clients'],
     bgColor: 'bg-neutral-800',
-    iconBg: 'bg-neutral-800/10',
-    iconColor: 'text-neutral-800'
+    iconBg: 'bg-white/10',
+    iconColor: 'text-white',
   },
   {
     icon: Scale,
@@ -32,8 +32,8 @@ const sections = [
     description: 'We support and advocate for our clients in business, insurance, labor and employment, health care, construction, bankruptcy, and government law.',
     highlightWords: ['business', 'insurance', 'labor and employment', 'health care', 'construction', 'bankruptcy', 'government law'],
     bgColor: 'bg-primary-navy',
-    iconBg: 'bg-primary-navy/10',
-    iconColor: 'text-primary-navy'
+    iconBg: 'bg-white/10',
+    iconColor: 'text-white',
   }
 ]
 
@@ -66,6 +66,14 @@ export function WhoWeAreSection() {
         className="absolute top-0 right-0 bottom-0 left-[1px] border border-black bg-white shadow-[0px_4px_12px_0px_rgba(0,0,0,0.15)] pointer-events-none"
         aria-hidden="true"
       >
+        {/* Soft image wash behind the pattern */}
+        <img
+          src="/images/stock%20images/justice-6778953_1280.jpg"
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover opacity-[0.12] grayscale"
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-white/88 via-white/82 to-white/86" />
         <div
           className="absolute inset-0 opacity-[0.02]"
           style={{
