@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
-import { Phone, Mail, Linkedin, Facebook, Twitter } from 'lucide-react'
+import { Phone, Mail, Linkedin, Facebook, Twitter, Search } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { PracticeAreasMegaMenu } from '../navigation/PracticeAreasMegaMenu'
@@ -45,6 +45,7 @@ export function Navbar() {
 
   return (
     <motion.nav
+      aria-label="Primary"
       initial={{ y: 0 }}
       animate={{ 
         y: isVisible ? 0 : -100,
@@ -194,6 +195,22 @@ export function Navbar() {
 
             {/* Divider */}
             <div className="h-6 w-px bg-white/20 mx-2" />
+
+            {/* Search */}
+            <motion.button
+              type="button"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+              onClick={() => window.dispatchEvent(new CustomEvent('rbe:open-search'))}
+              className="flex items-center gap-2 text-white hover:text-accent-tan transition-colors font-medium px-4 py-2 border border-white/30 rounded hover:border-accent-tan hover:bg-white/5"
+              aria-label="Open site search"
+            >
+              <Search className="h-4 w-4" />
+              <span className="hidden xl:inline">Search</span>
+              <kbd className="hidden 2xl:inline-flex items-center gap-1 px-2 py-1 text-xs font-semibold text-white/80 bg-white/10 rounded">
+                Ctrl K
+              </kbd>
+            </motion.button>
 
             {/* Call to Action Buttons */}
             <motion.a

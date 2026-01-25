@@ -22,6 +22,7 @@ interface District {
 }
 
 interface InteractiveMapProps {
+  // eslint-disable-next-line no-unused-vars
   onDistrictSelect?: (district: District) => void
 }
 
@@ -211,4 +212,3 @@ export function InteractiveMap({ onDistrictSelect }: InteractiveMapProps) {
     </div>
   )
 }
-

@@ -4,7 +4,6 @@
  */
 
 import { useParams, Navigate } from 'react-router-dom'
-import { useEffect } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { MarketTicker } from '@/components/marketing/MarketTicker'
 import { PracticeAreaTemplate } from '@/components/practice-areas/PracticeAreaTemplate'
@@ -15,13 +14,6 @@ export function PracticeAreaDetail() {
 
   // Find the practice area by slug
   const practiceArea = enhancedPracticeAreas.find(pa => pa.slug === slug)
-
-  // Dynamic Metadata Injection - SEO Authority Format
-  useEffect(() => {
-    if (practiceArea) {
-      document.title = `${practiceArea.name} | Practice Areas | Riley Bennett Egloff LLP`
-    }
-  }, [practiceArea])
 
   // Structural Data Safety: Navigate to 404 if invalid slug
   if (!practiceArea) {
@@ -39,6 +31,7 @@ export function PracticeAreaDetail() {
       <Helmet>
         <title>{practiceArea.name} | Practice Areas | Riley Bennett Egloff LLP</title>
         <meta name="description" content={metaDescription} />
+        <link rel="canonical" href={`https://rbelaw.com/practice-areas/${practiceArea.slug}`} />
         <meta property="og:title" content={`${practiceArea.name} | Practice Areas | Riley Bennett Egloff LLP`} />
         <meta property="og:description" content={metaDescription} />
         <meta property="og:type" content="website" />

@@ -12,6 +12,7 @@ import { practiceAreas } from '@/lib/data'
 import { cn } from '@/lib/utils'
 
 interface AttorneyCarouselSearchProps {
+  // eslint-disable-next-line no-unused-vars
   onFilterChange: (filteredAttorneys: typeof attorneys) => void
 }
 
@@ -105,7 +106,7 @@ export function AttorneyCarouselSearch({ onFilterChange }: AttorneyCarouselSearc
   }, [nameQuery, selectedPracticeAreas, selectedTitles])
 
   // Notify parent of filtered results
-  useMemo(() => {
+  useEffect(() => {
     onFilterChange(filteredAttorneys)
   }, [filteredAttorneys, onFilterChange])
 

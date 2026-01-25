@@ -236,7 +236,7 @@ export function LegalGlossary() {
           Get the complete legal glossary as a PDF for easy reference.
           Perfect for keeping on hand when reviewing contracts or legal documents.
         </p>
-        <button className="bg-accent-gold hover:bg-accent-gold/90 text-primary-navy px-8 py-4 rounded-lg font-semibold transition-all duration-300 inline-flex items-center gap-2">
+        <button className="bg-accent-gold hover:bg-accent-gold/90 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 inline-flex items-center gap-2">
           <Download className="h-5 w-5" />
           Download PDF Glossary
         </button>

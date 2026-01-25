@@ -245,7 +245,7 @@ export function AINewsDigest() {
         </p>
         <Link
           to="/contact"
-          className="inline-flex items-center gap-2 bg-accent-gold hover:bg-accent-gold/90 text-primary-navy px-8 py-4 rounded-lg font-semibold transition-all duration-300"
+          className="inline-flex items-center gap-2 bg-accent-gold hover:bg-accent-gold/90 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300"
         >
           Subscribe to Newsletter
           <ChevronRight className="h-5 w-5" />

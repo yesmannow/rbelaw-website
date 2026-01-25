@@ -192,7 +192,7 @@ export function PracticeAreaTemplate({ practiceArea }: PracticeAreaTemplateProps
               </p>
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center bg-accent-gold hover:bg-accent-gold/90 text-primary-navy px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+                className="inline-flex items-center justify-center bg-accent-gold hover:bg-accent-gold/90 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
               >
                 Contact Our Team
               </Link>

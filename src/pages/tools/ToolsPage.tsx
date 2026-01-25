@@ -1,3 +1,4 @@
+import React from 'react'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { Calculator, Calendar, TrendingUp, MapPin, Shield, Clock, CheckCircle2, Zap, Users, FileText, Building2, AlertTriangle, Brain, BookOpen } from 'lucide-react'

@@ -1,3 +1,4 @@
+import React from 'react'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Mail, CheckCircle2, Loader2 } from 'lucide-react'
@@ -48,7 +49,7 @@ export function EmailResultsModal({ isOpen, onClose, toolName, results }: EmailR
       } else {
         setError('Failed to send email. Please try again.')
       }
-    } catch (err) {
+    } catch {
       setError('An error occurred. Please try again.')
     } finally {
       setIsSubmitting(false)

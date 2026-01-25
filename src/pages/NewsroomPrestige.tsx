@@ -11,6 +11,7 @@ import { BlogCard } from '@/components/blog/BlogCard';
 import { blogPosts as allBlogPosts } from '@/lib/data';
 import { useAuthorsWithCounts } from '@/lib/utils/linker';
 import { derivePracticeAreaTags, parsePostDate } from '@/lib/utils/newsroomTaxonomy';
+import { NewsroomSEO } from '@/components/seo/SEO'
 
 export function NewsroomPrestige() {
   const blogPosts = useMemo(() => allBlogPosts || [], []);
@@ -145,10 +146,12 @@ export function NewsroomPrestige() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      {/* Hero Section - 70/30 Split */}
-      {featuredPost && (
-        <section className="relative overflow-hidden bg-primary-navy">
+    <>
+      <NewsroomSEO />
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+        {/* Hero Section - 70/30 Split */}
+        {featuredPost && (
+          <section className="relative overflow-hidden bg-primary-navy">
           {/* Hero background image + consistent overlay */}
           <div className="absolute inset-0" aria-hidden="true">
             <img
@@ -389,8 +392,8 @@ export function NewsroomPrestige() {
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="section-container py-12">
+        {/* Main Content */}
+        <div className="section-container py-12">
         {/* Results Count */}
         <div className="mb-6 flex items-center justify-between">
           <p className="text-sm text-gray-600">
@@ -431,8 +434,9 @@ export function NewsroomPrestige() {
             </p>
           </div>
         )}
-      </div>
+        </div>
 
-    </div>
+      </div>
+    </>
   );
 }

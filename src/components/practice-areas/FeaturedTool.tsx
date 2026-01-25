@@ -4,6 +4,7 @@
  * Uses the Prestige theme with Navy backgrounds and Gold accents
  */
 
+import React from 'react'
 import { motion } from 'framer-motion'
 import { Calculator, ExternalLink } from 'lucide-react'
 import type { ToolMapping } from '@/lib/data/toolMappings'

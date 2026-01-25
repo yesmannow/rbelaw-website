@@ -188,7 +188,7 @@ export const ArticleSEO = ({
   <SEO
     title={title}
     description={excerpt}
-    canonical={`/news/${slug}`}
+    canonical={`/newsroom/${slug}`}
     image={imageUrl}
     type="article"
     article={{
@@ -199,6 +199,28 @@ export const ArticleSEO = ({
     }}
   />
 );
+
+/**
+ * SEO for practice areas index page
+ */
+export const PracticeAreasIndexSEO = () => (
+  <SEO
+    title="Practice Areas"
+    description="Explore our full range of practice areas. Riley Bennett Egloff LLP provides strategic counsel across business, insurance defense, labor & employment, healthcare, construction, bankruptcy, and government law."
+    canonical="/practice-areas"
+  />
+)
+
+/**
+ * SEO for newsroom index page
+ */
+export const NewsroomSEO = () => (
+  <SEO
+    title="Newsroom"
+    description="Read the latest firm news, insights, and legal updates from Riley Bennett Egloff LLP."
+    canonical="/newsroom"
+  />
+)
 
 /**
  * SEO for contact page

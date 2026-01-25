@@ -5,6 +5,7 @@ import { Button } from './Button'
 
 interface CalendarProps {
   value?: Date
+  // eslint-disable-next-line no-unused-vars
   onChange?: (date: Date) => void
   className?: string
 }
@@ -138,4 +139,3 @@ export function Calendar({ value, onChange, className }: CalendarProps) {
     </div>
   )
 }
-

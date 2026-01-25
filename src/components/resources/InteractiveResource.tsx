@@ -4,6 +4,7 @@
  * Applies prestige styling with Navy #0A2540, Gold #B8860B, and glassmorphism
  */
 
+import React from 'react'
 import { motion } from 'framer-motion'
 import { LienCalculator } from '../tools/LienCalculator'
 import { FLSAWizard } from '../tools/FLSAWizard'

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { attorneys as allAttorneys } from '@/lib/utils/attorney-logic'
 import type { Attorney } from '@/lib/types'
-import { SEOMeta } from '@/components/seo/SEOMeta'
+import { AttorneysListSEO } from '@/components/seo/SEO'
 import { AttorneyCard } from '@/components/attorneys/AttorneyCardNew'
 import { AttorneySearch } from '@/components/attorneys/AttorneySearch'
 import { PageHeader } from '@/components/layout/PageHeader'
@@ -11,10 +11,7 @@ export function AttorneysPage() {
 
   return (
     <>
-      <SEOMeta
-        title="Our Attorneys"
-        description="Meet our team of experienced legal professionals committed to delivering exceptional results."
-      />
+      <AttorneysListSEO />
 
       <div>
         <PageHeader

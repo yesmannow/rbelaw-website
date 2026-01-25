@@ -3,6 +3,9 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b tsconfig.app.json && vite build",
@@ -38,6 +41,8 @@
     "find-duplicate-images": "tsx scripts/find-duplicate-images.ts",
     "generate-attorney-extras": "tsx scripts/generate-attorney-extras-from-raw.ts",
     "audit-attorney-bios": "tsx scripts/audit-attorney-bios.ts"
+    ,
+    "ui-audit": "tsx scripts/ui-audit.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

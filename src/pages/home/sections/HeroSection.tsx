@@ -33,14 +33,14 @@ export function HeroSection() {
 
           <motion.h1
             className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-6 leading-tight"
+            aria-label="Strategic Legal Partners. Relentless Advocates."
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Strategic Legal Partners.
-            <br />
+            <span className="block">Strategic Legal Partners.</span>
             <span className="text-[#74243C] relative inline-block">
-              Relentless Advocates.
+              <span className="block">Relentless Advocates.</span>
               {/* Decorative underline */}
               <span className="absolute bottom-0 left-0 right-0 h-1 bg-accent-gold/30 -translate-y-1" />
             </span>

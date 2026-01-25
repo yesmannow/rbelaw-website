@@ -24,7 +24,137 @@ type TabType = 'biography' | 'matters' | 'publications' | 'awards' | 'beyond' | 
 interface TabConfig {
   id: TabType
   label: string
+  // eslint-disable-next-line no-unused-vars
   hasContent: (attorney: Attorney) => boolean
+}
+
+const hasBiographyContent: TabConfig['hasContent'] = () => true
+
+const ALL_TABS: TabConfig[] = [
+  {
+    id: 'biography',
+    label: 'Biography',
+    hasContent: hasBiographyContent,
+  },
+  {
+    id: 'matters',
+    label: 'Representative Matters',
+    hasContent: (atty: Attorney) =>
+      atty.representativeMatters !== undefined && atty.representativeMatters.length > 0,
+  },
+  {
+    id: 'publications',
+    label: 'Publications',
+    hasContent: (atty: Attorney) => atty.publications !== undefined && atty.publications.length > 0,
+  },
+  {
+    id: 'awards',
+    label: 'Awards & Recognition',
+    hasContent: (atty: Attorney) => atty.awards !== undefined && atty.awards.length > 0,
+  },
+  {
+    id: 'beyond',
+    label: 'Beyond the Office',
+    hasContent: (atty: Attorney) => atty.beyondOffice !== undefined && atty.beyondOffice.trim().length > 0,
+  },
+  {
+    id: 'videos',
+    label: 'Videos',
+    hasContent: (atty: Attorney) => atty.videos !== undefined && atty.videos.length > 0,
+  },
+]
+
+function AtAGlanceCard({ attorney }: { attorney: Attorney }) {
+  return (
+    <Card className="border-neutral-200 shadow-soft">
+      <CardHeader>
+        <CardTitle className="text-primary-navy">At a glance</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-6">
+        {attorney.practiceAreas && attorney.practiceAreas.length > 0 && (
+          <div>
+            <h4 className="text-sm font-semibold text-primary-navy mb-2">Practice areas</h4>
+            <div className="flex flex-wrap gap-2">
+              {attorney.practiceAreas.map((area, idx) => (
+                <span key={idx} className="px-2.5 py-1 rounded-full bg-neutral-100 text-neutral-700 text-xs">
+                  {area}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {attorney.industries && attorney.industries.length > 0 && (
+          <div>
+            <h4 className="text-sm font-semibold text-primary-navy mb-2">Industries</h4>
+            <div className="flex flex-wrap gap-2">
+              {attorney.industries.map((ind, idx) => (
+                <span key={idx} className="px-2.5 py-1 rounded-full bg-neutral-100 text-neutral-700 text-xs">
+                  {ind}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {(attorney.associations && attorney.associations.length > 0) ||
+        (attorney.education && attorney.education.length > 0) ||
+        (attorney.barAdmissions && attorney.barAdmissions.length > 0) ? (
+          <Accordion className="rounded-lg border border-neutral-200 bg-white">
+            {attorney.associations && attorney.associations.length > 0 && (
+              <AccordionItem title="Associations">
+                <ul className="space-y-2">
+                  {attorney.associations.map((a, idx) => (
+                    <li key={idx} className="text-sm text-neutral-700">
+                      {a}
+                    </li>
+                  ))}
+                </ul>
+              </AccordionItem>
+            )}
+
+            {attorney.education && attorney.education.length > 0 && (
+              <AccordionItem title="Education">
+                <ul className="space-y-2">
+                  {attorney.education.map((edu, idx) => (
+                    <li key={idx} className="text-sm text-neutral-700">
+                      {edu.institution || edu.degree}
+                    </li>
+                  ))}
+                </ul>
+              </AccordionItem>
+            )}
+
+            {attorney.barAdmissions && attorney.barAdmissions.length > 0 && (
+              <AccordionItem title="Bar Admissions">
+                <ul className="space-y-2">
+                  {attorney.barAdmissions.map((bar, idx) => (
+                    <li key={idx} className="text-sm text-neutral-700">
+                      {bar}
+                    </li>
+                  ))}
+                </ul>
+              </AccordionItem>
+            )}
+          </Accordion>
+        ) : null}
+
+        {attorney.bioPdfUrl && (
+          <div className="flex flex-col gap-2">
+            <a
+              href={attorney.bioPdfUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-lg border border-prestige-gold px-4 py-2 text-sm font-semibold text-prestige-gold transition-all hover:bg-prestige-gold/10"
+            >
+              <FileText className="w-4 h-4 mr-2" />
+              Download bio (PDF)
+            </a>
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  )
 }
 
 export function AttorneyBioPagePrestige() {
@@ -37,6 +167,11 @@ export function AttorneyBioPagePrestige() {
 
   // Get top 3 articles by this attorney
   const authorArticles = useArticlesByAuthor(blogPosts, attorney?.id || null, 3)
+
+  const availableTabs = useMemo(
+    () => (attorney ? ALL_TABS.filter((tab) => tab.hasContent(attorney)) : []),
+    [attorney]
+  )
 
   if (!attorney) {
     return (
@@ -55,46 +190,6 @@ export function AttorneyBioPagePrestige() {
       </div>
     )
   }
-
-  // Smart Tab Logic - Only show tabs with content
-  const allTabs: TabConfig[] = [
-    { 
-      id: 'biography', 
-      label: 'Biography',
-      hasContent: (_atty: Attorney) => true // Always show biography
-    },
-    { 
-      id: 'matters', 
-      label: 'Representative Matters',
-      hasContent: (atty: Attorney) => atty.representativeMatters !== undefined && atty.representativeMatters.length > 0
-    },
-    { 
-      id: 'publications', 
-      label: 'Publications',
-      hasContent: (atty: Attorney) => atty.publications !== undefined && atty.publications.length > 0
-    },
-    { 
-      id: 'awards', 
-      label: 'Awards & Recognition',
-      hasContent: (atty: Attorney) => atty.awards !== undefined && atty.awards.length > 0
-    },
-    { 
-      id: 'beyond', 
-      label: 'Beyond the Office',
-      hasContent: (atty: Attorney) => atty.beyondOffice !== undefined && atty.beyondOffice.trim().length > 0
-    },
-    { 
-      id: 'videos', 
-      label: 'Videos',
-      hasContent: (atty: Attorney) => atty.videos !== undefined && atty.videos.length > 0
-    },
-  ]
-
-  // Filter tabs to only show those with content
-  const availableTabs = useMemo(() => 
-    allTabs.filter(tab => tab.hasContent(attorney)),
-    [attorney]
-  )
 
   // vCard path for direct download
   const vCardPath = `/vcards/${attorney.id}.vcf`
@@ -128,6 +223,7 @@ export function AttorneyBioPagePrestige() {
         | 'business-law'
       priority: number // higher wins ties
       patterns: Array<{ re: RegExp; weight: number }>
+      // eslint-disable-next-line no-unused-vars
       bonus?: (areasNorm: string[]) => number
     }
 
@@ -282,97 +378,6 @@ export function AttorneyBioPagePrestige() {
   const primaryPracticeAreaSlug = pickPrimaryPracticeAreaSlug(attorney)
   const primaryPracticeAreaImages = primaryPracticeAreaSlug ? getPracticeAreaImages(primaryPracticeAreaSlug) : null
   const defaultBioHero = '/images/hero/Riley-Bennett-Egloff-Attorneys-at-Law-Indianapolis-Reception-Area-DSC_1220-1-scaled-1.jpg'
-
-  const AtAGlance = () => (
-    <Card className="border-neutral-200 shadow-soft">
-      <CardHeader>
-        <CardTitle className="text-primary-navy">At a glance</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-6">
-        {attorney.practiceAreas && attorney.practiceAreas.length > 0 && (
-          <div>
-            <h4 className="text-sm font-semibold text-primary-navy mb-2">Practice areas</h4>
-            <div className="flex flex-wrap gap-2">
-              {attorney.practiceAreas.map((area, idx) => (
-                <span key={idx} className="px-2.5 py-1 rounded-full bg-neutral-100 text-neutral-700 text-xs">
-                  {area}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {attorney.industries && attorney.industries.length > 0 && (
-          <div>
-            <h4 className="text-sm font-semibold text-primary-navy mb-2">Industries</h4>
-            <div className="flex flex-wrap gap-2">
-              {attorney.industries.map((ind, idx) => (
-                <span key={idx} className="px-2.5 py-1 rounded-full bg-neutral-100 text-neutral-700 text-xs">
-                  {ind}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {(attorney.associations && attorney.associations.length > 0) ||
-        (attorney.education && attorney.education.length > 0) ||
-        (attorney.barAdmissions && attorney.barAdmissions.length > 0) ? (
-          <Accordion className="rounded-lg border border-neutral-200 bg-white">
-            {attorney.associations && attorney.associations.length > 0 && (
-              <AccordionItem title="Associations">
-                <ul className="space-y-2">
-                  {attorney.associations.map((a, idx) => (
-                    <li key={idx} className="text-sm text-neutral-700">
-                      {a}
-                    </li>
-                  ))}
-                </ul>
-              </AccordionItem>
-            )}
-
-            {attorney.education && attorney.education.length > 0 && (
-              <AccordionItem title="Education">
-                <ul className="space-y-2">
-                  {attorney.education.map((edu, idx) => (
-                    <li key={idx} className="text-sm text-neutral-700">
-                      {edu.institution || edu.degree}
-                    </li>
-                  ))}
-                </ul>
-              </AccordionItem>
-            )}
-
-            {attorney.barAdmissions && attorney.barAdmissions.length > 0 && (
-              <AccordionItem title="Bar Admissions">
-                <ul className="space-y-2">
-                  {attorney.barAdmissions.map((bar, idx) => (
-                    <li key={idx} className="text-sm text-neutral-700">
-                      {bar}
-                    </li>
-                  ))}
-                </ul>
-              </AccordionItem>
-            )}
-          </Accordion>
-        ) : null}
-
-        {attorney.bioPdfUrl && (
-          <div className="flex flex-col gap-2">
-            <a
-              href={attorney.bioPdfUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-lg border border-prestige-gold px-4 py-2 text-sm font-semibold text-prestige-gold transition-all hover:bg-prestige-gold/10"
-            >
-              <FileText className="w-4 h-4 mr-2" />
-              Download bio (PDF)
-            </a>
-          </div>
-        )}
-      </CardContent>
-    </Card>
-  )
 
   const handleDragEnd = (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
     const threshold = 50
@@ -750,7 +755,7 @@ export function AttorneyBioPagePrestige() {
 
                       {/* Sidebar */}
                       <aside className="lg:col-span-1 lg:sticky lg:top-24 space-y-6">
-                        <AtAGlance />
+                        <AtAGlanceCard attorney={attorney} />
                       </aside>
                     </div>
                   </motion.div>

@@ -91,7 +91,7 @@ END:VCARD`
       <div className="p-6 pt-0 space-y-3">
         <button
           onClick={onScheduleClick}
-          className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-accent-gold hover:bg-accent-gold/90 text-primary-navy rounded-lg font-semibold transition-all duration-300 group"
+          className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-accent-gold hover:bg-accent-gold/90 text-white rounded-lg font-semibold transition-all duration-300 group"
         >
           <Calendar className="h-5 w-5 group-hover:scale-110 transition-transform" />
           <span>Schedule Consultation</span>

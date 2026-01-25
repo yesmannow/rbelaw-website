@@ -472,7 +472,7 @@ export function KnowYourRightsQuiz() {
                   </p>
                   <button
                     onClick={() => setShowLeadCapture(true)}
-                    className="bg-accent-gold hover:bg-accent-gold/90 text-primary-navy px-8 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2 mx-auto"
+                    className="bg-accent-gold hover:bg-accent-gold/90 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2 mx-auto"
                   >
                     Get Personalized Legal Advice
                     <ArrowRight className="h-5 w-5" />

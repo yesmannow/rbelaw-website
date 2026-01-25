@@ -27,10 +27,10 @@ export function AttorneyCarousel() {
   const totalCards = filteredAttorneys.length
   const maxIndex = Math.max(0, totalCards - cardsToShow)
 
-  // Reset to first page when filtered attorneys change
-  useEffect(() => {
+  const handleFilterChange = (next: Attorney[]) => {
+    setFilteredAttorneys(next)
     setCurrentIndex(0)
-  }, [filteredAttorneys])
+  }
 
   // Auto-scroll every 5 seconds when not paused
   useEffect(() => {
@@ -88,7 +88,7 @@ export function AttorneyCarousel() {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <AttorneyCarouselSearch onFilterChange={setFilteredAttorneys} />
+          <AttorneyCarouselSearch onFilterChange={handleFilterChange} />
         </motion.div>
 
         <div

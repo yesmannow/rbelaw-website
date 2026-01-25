@@ -97,7 +97,7 @@ export function InteractiveToolsSection({ tools, practiceAreaName }: Interactive
                     <div className={cn(
                       'p-3 rounded-lg transition-all duration-300',
                       isExpanded 
-                        ? 'bg-accent-gold text-primary-navy' 
+                        ? 'bg-accent-gold text-white' 
                         : 'bg-white/10 text-accent-gold'
                     )}>
                       <Calculator className="w-6 h-6" />
@@ -150,7 +150,7 @@ export function InteractiveToolsSection({ tools, practiceAreaName }: Interactive
         >
           <Link
             to="/resources/tools"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-accent-gold hover:bg-accent-gold/90 text-primary-navy rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl group"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-accent-gold hover:bg-accent-gold/90 text-white rounded-xl font-semibold text-lg transition-all duration-300 shadow-lg hover:shadow-xl group"
           >
             <span>View All Interactive Tools</span>
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />

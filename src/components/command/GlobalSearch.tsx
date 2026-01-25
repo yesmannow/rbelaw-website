@@ -27,6 +27,15 @@ export function GlobalSearch({ open, onOpenChange }: GlobalSearchProps) {
     return () => document.removeEventListener('keydown', down)
   }, [open, onOpenChange])
 
+  useEffect(() => {
+    if (!open) return
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onOpenChange(false)
+    }
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [open, onOpenChange])
+
   const handleSelect = (callback: () => void) => {
     callback()
     onOpenChange(false)

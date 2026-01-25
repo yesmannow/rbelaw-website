@@ -2,7 +2,7 @@
  * src/App.tsx
  * Dynamic Routing & Prestige Transition Engine
  */
-import { useState, Suspense } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import { RootLayout } from './components/layout'
@@ -103,6 +103,13 @@ function App() {
   // Initialize smooth scrolling
   useLenis()
 
+  // Allow nav/footer/mobile to open the global search via event.
+  useEffect(() => {
+    const onOpen = () => setSearchOpen(true)
+    window.addEventListener('rbe:open-search', onOpen)
+    return () => window.removeEventListener('rbe:open-search', onOpen)
+  }, [])
+
   return (
     <BrowserRouter>
       <SkipToContent />
@@ -121,4 +128,3 @@ function App() {
 }
 
 export default App
-

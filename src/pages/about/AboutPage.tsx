@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { History, Users, Briefcase, DollarSign } from 'lucide-react'
 import { SectionSeparator } from '@/components/ui'
+import { AboutSEO } from '@/components/seo/SEO'
 
 export function AboutPage() {
   const sections = [
@@ -32,7 +33,9 @@ export function AboutPage() {
   ]
 
   return (
-    <div>
+    <>
+      <AboutSEO />
+      <div>
       {/* Hero Section with Background Image */}
       <section className="relative bg-primary-burgundy text-white py-24 lg:py-32 overflow-hidden">
         {/* Background Image */}
@@ -140,6 +143,7 @@ export function AboutPage() {
           </motion.div>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   )
 }

@@ -1,7 +1,8 @@
+import React from 'react'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { NavLink, useLocation, useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
-import { Briefcase, Home, Mail, MapPin, Newspaper, Phone, Plus, Users } from 'lucide-react'
+import { Briefcase, Home, Mail, MapPin, Newspaper, Phone, Plus, Search, Users } from 'lucide-react'
 
 type NavItem = {
   label: string
@@ -29,7 +30,6 @@ export function MobileNavBar() {
   const idleTimerRef = useRef<number | null>(null)
   const reduceMotion = useReducedMotion()
   const navigate = useNavigate()
-  const location = useLocation()
 
   const navItems = useMemo<NavItem[]>(
     () => [
@@ -52,6 +52,13 @@ export function MobileNavBar() {
         },
       },
       {
+        label: 'Search',
+        icon: Search,
+        onSelect: () => {
+          window.dispatchEvent(new CustomEvent('rbe:open-search'))
+        },
+      },
+      {
         label: 'Contact Us',
         icon: Mail,
         onSelect: () => {
@@ -68,11 +75,6 @@ export function MobileNavBar() {
     ],
     [navigate]
   )
-
-  // Close the speed dial whenever the route changes.
-  useEffect(() => {
-    setOpen(false)
-  }, [location.pathname])
 
   // Hide when idle; fade in while user scrolls/gestures.
   useEffect(() => {
@@ -100,7 +102,6 @@ export function MobileNavBar() {
     }
 
     // Start visible, then auto-hide after idle delay.
-    setBarVisible(true)
     if (!open) armIdleTimer()
 
     window.addEventListener('scroll', onActivity, { passive: true })

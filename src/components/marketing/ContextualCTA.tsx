@@ -122,7 +122,7 @@ export function ContextualCTA({
               <a
                 href={ctaLink}
                 onClick={handleCTAClick}
-                className="block w-full px-6 py-3 bg-accent-gold hover:bg-accent-gold/90 text-primary-navy font-semibold text-center rounded-lg transition-colors"
+                className="block w-full px-6 py-3 bg-accent-gold hover:bg-accent-gold/90 text-white font-semibold text-center rounded-lg transition-colors"
               >
                 {ctaText}
               </a>

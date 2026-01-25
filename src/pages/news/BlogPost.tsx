@@ -1,7 +1,7 @@
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Calendar, ArrowLeft, Share2 } from 'lucide-react'
-import { SEOMeta } from '@/components/seo/SEOMeta'
+import { ArticleSEO } from '@/components/seo/SEO'
 import { getBlogPostBySlug } from '@/lib/data/blog-posts'
 import { derivePracticeAreaTags } from '@/lib/utils/newsroomTaxonomy'
 
@@ -39,9 +39,14 @@ export function BlogPost() {
 
   return (
     <>
-      <SEOMeta
-        title={`${article.title} | Riley Bennett Egloff LLP`}
-        description={article.excerpt}
+      <ArticleSEO
+        title={article.title}
+        excerpt={article.excerpt}
+        slug={article.slug}
+        author={article.author}
+        date={article.date}
+        imageUrl={article.image}
+        category={categoryLabel}
       />
 
       <article>

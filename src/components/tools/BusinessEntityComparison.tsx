@@ -464,7 +464,7 @@ export function BusinessEntityComparison() {
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                       <button
                         onClick={() => setShowLeadCapture(true)}
-                        className="bg-accent-gold hover:bg-accent-gold/90 text-primary-navy px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2"
+                        className="bg-accent-gold hover:bg-accent-gold/90 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center gap-2"
                       >
                         Get Formation Started
                         <ArrowRight className="h-5 w-5" />

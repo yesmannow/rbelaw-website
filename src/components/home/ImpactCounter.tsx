@@ -3,7 +3,7 @@
  * Displays animated success metrics with viewport-triggered spring animations
  */
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { motion, useInView, useSpring, useTransform } from 'framer-motion'
 import { impactMetrics, type ImpactMetric } from '@/lib/data/impactMetrics'
 
@@ -15,7 +15,7 @@ interface CounterProps {
 function AnimatedCounter({ metric, index }: CounterProps) {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
-  const [hasAnimated, setHasAnimated] = useState(false)
+  const hasAnimatedRef = useRef(false)
 
   const springValue = useSpring(0, {
     stiffness: 50,
@@ -28,11 +28,11 @@ function AnimatedCounter({ metric, index }: CounterProps) {
   )
 
   useEffect(() => {
-    if (isInView && !hasAnimated) {
-      setHasAnimated(true)
+    if (isInView && !hasAnimatedRef.current) {
+      hasAnimatedRef.current = true
       springValue.set(metric.value)
     }
-  }, [isInView, hasAnimated, metric.value, springValue])
+  }, [isInView, metric.value, springValue])
 
   return (
     <motion.div

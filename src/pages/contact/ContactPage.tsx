@@ -5,8 +5,7 @@ import * as z from 'zod'
 import { Phone, MapPin, Send, Linkedin, Facebook, Instagram, Twitter } from 'lucide-react'
 import { FloatingLabelInput } from '../../components/ui/FloatingLabelInput'
 import { FloatingLabelTextarea } from '../../components/ui/FloatingLabelTextarea'
-import { GoogleReviewsTicker } from '@/components/social'
-
+import { ContactSEO } from '@/components/seo/SEO'
 // Form validation schema
 const contactFormSchema = z.object({
   name: z.string().min(2, { message: 'Name must be at least 2 characters' }),
@@ -39,7 +38,9 @@ export function ContactPage() {
   }
 
   return (
-    <div className="min-h-screen">
+    <>
+      <ContactSEO />
+      <div className="min-h-screen">
       {/* Hero Section with Reception Area Image */}
       <section className="relative min-h-[400px] lg:min-h-[500px] overflow-hidden">
         {/* Background Image */}
@@ -76,9 +77,6 @@ export function ContactPage() {
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent" />
       </section>
 
-      {/* Google Reviews Ticker */}
-      <GoogleReviewsTicker />
-
       {/* Split Screen Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-2 min-h-screen">
         {/* Left Side - Contact Information */}
@@ -89,9 +87,9 @@ export function ContactPage() {
           className="bg-primary-navy text-white p-8 lg:p-16 flex flex-col justify-center"
         >
           <div className="max-w-xl mx-auto w-full">
-            <h1 className="text-4xl lg:text-5xl font-serif font-bold mb-6">
+            <h2 className="text-4xl lg:text-5xl font-serif font-bold mb-6">
               Partner with Us.
-            </h1>
+            </h2>
 
             <div className="space-y-8 mb-10">
               <div>
@@ -261,6 +259,7 @@ export function ContactPage() {
           </div>
         </motion.div>
       </div>
-    </div>
+      </div>
+    </>
   )
 }
