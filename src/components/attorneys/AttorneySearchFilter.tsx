@@ -27,7 +27,6 @@ const ATTORNEY_TYPES = [
 ]
 
 export function AttorneySearchFilter({ attorneys, onFilterChange }: AttorneySearchFilterProps) {
-  const industries = getAllIndustriesManual()
 
   // Initialize filters from URL parameters
   const [filters, setFilters] = useState<FilterState>(() => ({

@@ -1,0 +1,41 @@
+# Dependencies
+node_modules
+
+# Build outputs
+.next
+out
+dist
+
+# Development files
+.env.local
+.env*.local
+
+# Testing
+coverage
+.nyc_output
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Scripts and data (not needed in production)
+scripts
+scraped-content
+data/normalize
+data/qa
+
+# Documentation
+docs/archive
+VERCEL_DEPLOYMENT_AUDIT_GUIDE.md
+
+# Temporary files
+*.log
+.cache
+.turbo

@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronLeft, ChevronRight, Download, CheckCircle2, FileText, X } from 'lucide-react'
+import { ChevronLeft, Download, CheckCircle2, FileText, X } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../ui/Card'
 import { Button } from '../ui/Button'
 import { Progress } from '../ui/Progress'

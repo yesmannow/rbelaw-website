@@ -13,7 +13,6 @@
  * All responses are cached for 12 hours to respect API rate limits.
  */
 
-/* eslint-env node */
 import { unstable_cache } from 'next/cache'
 
 // CourtListener API types

@@ -22,8 +22,37 @@ interface TeamFilterProps {
   members: TeamMember[]
 }
 
+type FilterType = 'all' | 'attorney' | 'paralegal' | 'staff'
+
+interface FilterButtonProps {
+  filter: FilterType
+  label: string
+  count: number
+  activeFilter: FilterType
+  onClick: (filter: FilterType) => void
+}
+
+const FilterButton = ({ 
+  filter, 
+  label, 
+  count,
+  activeFilter,
+  onClick
+}: FilterButtonProps) => (
+  <button
+    onClick={() => onClick(filter)}
+    className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition-all ${
+      activeFilter === filter
+        ? 'bg-[#B8860B] text-white shadow-lg'
+        : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
+    }`}
+  >
+    {label} ({count})
+  </button>
+)
+
 export function TeamFilter({ members }: TeamFilterProps) {
-  const [activeFilter, setActiveFilter] = useState<'all' | 'attorney' | 'paralegal' | 'staff'>('all')
+  const [activeFilter, setActiveFilter] = useState<FilterType>('all')
 
   // Categorize members by jobType
   const attorneys = members.filter(m => m.jobType === 'attorney')
@@ -45,27 +74,6 @@ export function TeamFilter({ members }: TeamFilterProps) {
   }
 
   const filteredMembers = getFilteredMembers()
-
-  const FilterButton = ({ 
-    filter, 
-    label, 
-    count 
-  }: { 
-    filter: typeof activeFilter
-    label: string
-    count: number 
-  }) => (
-    <button
-      onClick={() => setActiveFilter(filter)}
-      className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-semibold text-sm sm:text-base transition-all ${
-        activeFilter === filter
-          ? 'bg-[#B8860B] text-white shadow-lg'
-          : 'bg-white text-gray-700 hover:bg-gray-50 border border-gray-200'
-      }`}
-    >
-      {label} ({count})
-    </button>
-  )
 
   const renderMember = (member: TeamMember) => (
     <Link
@@ -137,10 +145,10 @@ export function TeamFilter({ members }: TeamFilterProps) {
     <div>
       {/* Filter Buttons */}
       <div className="flex flex-wrap gap-3 sm:gap-4 justify-center mb-8 sm:mb-12">
-        <FilterButton filter="all" label="All Team" count={members.length} />
-        <FilterButton filter="attorney" label="Attorneys" count={attorneys.length} />
-        <FilterButton filter="paralegal" label="Paralegals" count={paralegals.length} />
-        <FilterButton filter="staff" label="Staff" count={staff.length} />
+        <FilterButton filter="all" label="All Team" count={members.length} activeFilter={activeFilter} onClick={setActiveFilter} />
+        <FilterButton filter="attorney" label="Attorneys" count={attorneys.length} activeFilter={activeFilter} onClick={setActiveFilter} />
+        <FilterButton filter="paralegal" label="Paralegals" count={paralegals.length} activeFilter={activeFilter} onClick={setActiveFilter} />
+        <FilterButton filter="staff" label="Staff" count={staff.length} activeFilter={activeFilter} onClick={setActiveFilter} />
       </div>
 
       {/* Team Grid */}

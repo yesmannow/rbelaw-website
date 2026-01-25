@@ -10,6 +10,11 @@ import { Tabs } from '@/components/ui/Tabs'
 
 // Generate static params for all attorney slugs (SSG)
 export async function generateStaticParams() {
+  // Fresh DB safe-mode: skip SSG during bootstrap
+  if (process.env.FRESH_DB_SAFE_MODE === '1') {
+    return []
+  }
+
   try {
     const payload = await getPayload({ config })
     

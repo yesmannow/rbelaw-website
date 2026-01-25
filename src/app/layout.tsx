@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import type { ReactNode } from 'react'
 import './globals.css'
 import { MobileStickyBar } from '@/components/ui/MobileStickyBar'
 
@@ -20,7 +21,7 @@ export const viewport: Viewport = {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: ReactNode
 }) {
   return (
     <html lang="en" className="overflow-x-hidden">

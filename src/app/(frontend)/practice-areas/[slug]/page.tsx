@@ -71,6 +71,11 @@ export async function generateMetadata({
 
 // Generate static params for all practice area slugs (SSG)
 export async function generateStaticParams() {
+  // Fresh DB safe-mode: skip SSG during bootstrap
+  if (process.env.FRESH_DB_SAFE_MODE === '1') {
+    return []
+  }
+
   try {
     const payload = await getPayload({ config })
     
@@ -99,6 +104,11 @@ export default async function PracticeAreaPage({
 }) {
   const { slug } = await params
   
+  let practiceArea: any
+  let attorneys: any[] = []
+  let industries: any[] = []
+  let featuredImageUrl: string | null = null
+
   try {
     const payload = await getPayload({ config })
     
@@ -118,10 +128,9 @@ export default async function PracticeAreaPage({
       notFound()
     }
 
-    const practiceArea = practiceAreasResult.docs[0]
+    practiceArea = practiceAreasResult.docs[0]
 
     // Fetch featured attorneys if they exist
-    let attorneys: any[] = []
     if (practiceArea.featuredAttorneys && Array.isArray(practiceArea.featuredAttorneys)) {
       const attorneyIds = practiceArea.featuredAttorneys
         .filter((a: any) => typeof a === 'string' || typeof a === 'number')
@@ -141,7 +150,6 @@ export default async function PracticeAreaPage({
     }
 
     // Fetch industries if they exist
-    let industries: any[] = []
     if (practiceArea.industries && Array.isArray(practiceArea.industries)) {
       const industryIds = practiceArea.industries
         .filter((i: any) => typeof i === 'string' || typeof i === 'number')
@@ -161,168 +169,168 @@ export default async function PracticeAreaPage({
     }
 
     // Get featured image URL if available
-    const featuredImageUrl =
+    featuredImageUrl =
       practiceArea.featuredImage && typeof practiceArea.featuredImage === 'object'
         ? practiceArea.featuredImage.url
         : null
-
-    // Create Practice Area JSON-LD Schema
-    const practiceAreaSchema = {
-      '@context': 'https://schema.org',
-      '@type': 'LegalService',
-      name: `Riley Bennett Egloff LLP - ${practiceArea.title}`,
-      description: practiceArea.description || `Legal services for ${practiceArea.title}`,
-      url: `https://rbelaw.com/practice-areas/${slug}`,
-      provider: {
-        '@type': 'Attorney',
-        name: 'Riley Bennett Egloff LLP',
-      },
-    }
-
-    return (
-      <main className="min-h-screen bg-gray-50 pb-20 md:pb-0">
-        {/* Practice Area JSON-LD Schema */}
-        <Script
-          id="practice-area-schema"
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(practiceAreaSchema),
-          }}
-          strategy="beforeInteractive"
-        />
-
-        {/* Practice Area Header Section */}
-        <div className="bg-gradient-to-b from-[#0A2540] to-[#134067] text-white py-16">
-          <div className="container mx-auto px-6">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                {practiceArea.title}
-              </h1>
-              {practiceArea.description && (
-                <p className="text-xl text-gray-300 leading-relaxed">
-                  {practiceArea.description}
-                </p>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {/* Featured Image */}
-        {featuredImageUrl && (
-          <div className="relative w-full h-64 md:h-96">
-            <Image
-              src={featuredImageUrl}
-              alt={practiceArea.title}
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
-        )}
-
-        {/* Main Content Section - Editorial Magazine Layout */}
-        <PracticeAreaContent 
-          content={practiceArea.content ? convertLexicalToHTML({ data: practiceArea.content }) : ''}
-          leadMagnetType={practiceArea.leadMagnetType ?? undefined}
-          subAreas={practiceArea.subAreas ?? undefined}
-          caseStudies={practiceArea.caseStudies ?? undefined}
-        />
-
-        {/* Featured Attorneys Section */}
-        {attorneys.length > 0 && (
-          <div className="bg-gray-50 py-12">
-            <div className="container mx-auto px-6">
-              <div className="max-w-4xl mx-auto">
-                <h2 className="text-3xl font-bold text-[#0A2540] mb-8">
-                  Our Attorneys
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {attorneys.map((attorney: any) => {
-                    const headshotUrl =
-                      attorney.headshot && typeof attorney.headshot === 'object'
-                        ? attorney.headshot.url
-                        : null
-
-                    return (
-                      <Link
-                        key={attorney.id}
-                        href={`/attorneys/${attorney.slug}`}
-                        className="bg-white rounded-lg overflow-hidden border border-gray-200 hover:border-[#B8860B] hover:shadow-lg transition-all"
-                      >
-                        {headshotUrl ? (
-                          <div className="relative w-full h-64">
-                            <Image
-                              src={headshotUrl}
-                              alt={attorney.name}
-                              fill
-                              className="object-cover"
-                            />
-                          </div>
-                        ) : (
-                          <div className="w-full h-64 bg-gray-200 flex items-center justify-center">
-                            <div className="text-4xl text-gray-400">
-                              {attorney.name
-                                .split(' ')
-                                .map((n: string) => n[0])
-                                .join('')}
-                            </div>
-                          </div>
-                        )}
-                        <div className="p-4">
-                          <h3 className="text-lg font-semibold text-[#0A2540] mb-1">
-                            {attorney.name}
-                          </h3>
-                          <p className="text-[#B8860B] text-sm capitalize">
-                            {attorney.role?.replace('-', ' ')}
-                          </p>
-                        </div>
-                      </Link>
-                    )
-                  })}
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Industries Section */}
-        {industries.length > 0 && (
-          <div className="bg-white py-12">
-            <div className="container mx-auto px-6">
-              <div className="max-w-4xl mx-auto">
-                <h2 className="text-3xl font-bold text-[#0A2540] mb-6">
-                  Related Industries
-                </h2>
-                <div className="flex flex-wrap gap-3">
-                  {industries.map((industry: any) => (
-                    <div
-                      key={industry.id}
-                      className="bg-gray-100 px-4 py-2 rounded-lg text-gray-700"
-                    >
-                      {industry.title}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Back to Practice Areas Link */}
-        <div className="bg-gray-50 py-8">
-          <div className="container mx-auto px-6 text-center">
-            <Link
-              href="/"
-              className="text-[#B8860B] hover:text-[#9a710a] font-semibold"
-            >
-              ← Back to Home
-            </Link>
-          </div>
-        </div>
-      </main>
-    )
   } catch (error) {
     console.error('Error fetching practice area:', error)
     notFound()
   }
+
+  // Create Practice Area JSON-LD Schema
+  const practiceAreaSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'LegalService',
+    name: `Riley Bennett Egloff LLP - ${practiceArea.title}`,
+    description: practiceArea.description || `Legal services for ${practiceArea.title}`,
+    url: `https://rbelaw.com/practice-areas/${slug}`,
+    provider: {
+      '@type': 'Attorney',
+      name: 'Riley Bennett Egloff LLP',
+    },
+  }
+
+  return (
+    <main className="min-h-screen bg-gray-50 pb-20 md:pb-0">
+      {/* Practice Area JSON-LD Schema */}
+      <Script
+        id="practice-area-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(practiceAreaSchema),
+        }}
+        strategy="beforeInteractive"
+      />
+
+      {/* Practice Area Header Section */}
+      <div className="bg-gradient-to-b from-[#0A2540] to-[#134067] text-white py-16">
+        <div className="container mx-auto px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+              {practiceArea.title}
+            </h1>
+            {practiceArea.description && (
+              <p className="text-xl text-gray-300 leading-relaxed">
+                {practiceArea.description}
+              </p>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Featured Image */}
+      {featuredImageUrl && (
+        <div className="relative w-full h-64 md:h-96">
+          <Image
+            src={featuredImageUrl}
+            alt={practiceArea.title}
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+      )}
+
+      {/* Main Content Section - Editorial Magazine Layout */}
+      <PracticeAreaContent 
+        content={practiceArea.content ? convertLexicalToHTML({ data: practiceArea.content }) : ''}
+        leadMagnetType={practiceArea.leadMagnetType ?? undefined}
+        subAreas={practiceArea.subAreas ?? undefined}
+        caseStudies={practiceArea.caseStudies ?? undefined}
+      />
+
+      {/* Featured Attorneys Section */}
+      {attorneys.length > 0 && (
+        <div className="bg-gray-50 py-12">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold text-[#0A2540] mb-8">
+                Our Attorneys
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {attorneys.map((attorney: any) => {
+                  const headshotUrl =
+                    attorney.headshot && typeof attorney.headshot === 'object'
+                      ? attorney.headshot.url
+                      : null
+
+                  return (
+                    <Link
+                      key={attorney.id}
+                      href={`/attorneys/${attorney.slug}`}
+                      className="bg-white rounded-lg overflow-hidden border border-gray-200 hover:border-[#B8860B] hover:shadow-lg transition-all"
+                    >
+                      {headshotUrl ? (
+                        <div className="relative w-full h-64">
+                          <Image
+                            src={headshotUrl}
+                            alt={attorney.name}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+                      ) : (
+                        <div className="w-full h-64 bg-gray-200 flex items-center justify-center">
+                          <div className="text-4xl text-gray-400">
+                            {attorney.name
+                              .split(' ')
+                              .map((n: string) => n[0])
+                              .join('')}
+                          </div>
+                        </div>
+                      )}
+                      <div className="p-4">
+                        <h3 className="text-lg font-semibold text-[#0A2540] mb-1">
+                          {attorney.name}
+                        </h3>
+                        <p className="text-[#B8860B] text-sm capitalize">
+                          {attorney.role?.replace('-', ' ')}
+                        </p>
+                      </div>
+                    </Link>
+                  )
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Industries Section */}
+      {industries.length > 0 && (
+        <div className="bg-white py-12">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold text-[#0A2540] mb-6">
+                Related Industries
+              </h2>
+              <div className="flex flex-wrap gap-3">
+                {industries.map((industry: any) => (
+                  <div
+                    key={industry.id}
+                    className="bg-gray-100 px-4 py-2 rounded-lg text-gray-700"
+                  >
+                    {industry.title}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Back to Practice Areas Link */}
+      <div className="bg-gray-50 py-8">
+        <div className="container mx-auto px-6 text-center">
+          <Link
+            href="/"
+            className="text-[#B8860B] hover:text-[#9a710a] font-semibold"
+          >
+            ← Back to Home
+          </Link>
+        </div>
+      </div>
+    </main>
+  )
 }

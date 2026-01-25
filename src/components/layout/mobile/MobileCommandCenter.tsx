@@ -20,24 +20,28 @@ interface CommandAction {
 export function MobileCommandCenter() {
   const [isOpen, setIsOpen] = useState(false)
 
+  const handleCall = () => {
+    window.location.assign('tel:3176368000')
+    setIsOpen(false)
+  }
+
+  const handleEmail = () => {
+    window.location.assign('mailto:info@rbelaw.com')
+    setIsOpen(false)
+  }
+
   const actions: CommandAction[] = [
     {
       icon: Phone,
       label: 'Call Now',
-      action: () => {
-        window.location.href = 'tel:3176368000'
-        setIsOpen(false)
-      },
+      action: handleCall,
       color: 'bg-green-500',
       angle: 225
     },
     {
       icon: Mail,
       label: 'Email',
-      action: () => {
-        window.location.href = 'mailto:info@rbelaw.com'
-        setIsOpen(false)
-      },
+      action: handleEmail,
       color: 'bg-blue-500',
       angle: 270
     },
