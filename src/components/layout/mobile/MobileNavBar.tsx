@@ -3,6 +3,7 @@
  * App-like bottom navigation with gesture support and premium animations
  */
 
+import React from 'react'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -21,9 +22,7 @@ interface NavItem {
 
 export function MobileNavBar() {
   const pathname = usePathname()
-  const [activeTab, setActiveTab] = useState(0)
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-
+  
   const navItems: NavItem[] = [
     { icon: Home, label: 'Home', to: '/' },
     { icon: Briefcase, label: 'Practice', to: '/practice-areas' },
@@ -32,21 +31,30 @@ export function MobileNavBar() {
     { icon: Building2, label: 'About', to: '/about' }
   ]
 
-  // Update active tab based on location
-  useEffect(() => {
+  // Initialize active tab based on current pathname
+  const getActiveTabIndex = (path: string): number => {
     const currentIndex = navItems.findIndex(item => {
       if (item.to === '/') {
-        return pathname === '/'
+        return path === '/'
       }
-      return pathname === item.to || pathname.startsWith(item.to + '/')
+      return path === item.to || path.startsWith(item.to + '/')
     })
-    if (currentIndex !== -1) {
-      setActiveTab(currentIndex)
-    } else {
-      // Default to first tab if no match
-      setActiveTab(0)
-    }
-  }, [pathname])
+    return currentIndex !== -1 ? currentIndex : 0
+  }
+
+  const [activeTab, setActiveTab] = useState(() => 
+    typeof window !== 'undefined' ? getActiveTabIndex(pathname) : 0
+  )
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  // Update active tab based on location - only update if value actually changed
+  useEffect(() => {
+    const newActiveTab = getActiveTabIndex(pathname)
+    setActiveTab((prevActiveTab) => {
+      // Only update if the value actually changed to prevent cascading renders
+      return newActiveTab !== prevActiveTab ? newActiveTab : prevActiveTab
+    })
+  }, [pathname]) // Only depend on pathname, use functional update to access current state
 
   const featuredArticles = getRecentBlogPosts(3)
 

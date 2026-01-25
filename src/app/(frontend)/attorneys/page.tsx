@@ -1,5 +1,4 @@
 import React from 'react'
-import Link from 'next/link'
 import { TeamFilter } from '@/components/TeamFilter'
 import { attorneys } from '@/lib/data'
 

@@ -1,3 +1,4 @@
+import React from 'react'
 import { Navbar } from './Navbar'
 import { Footer } from './Footer'
 // PageTransition is a legacy component for react-router, not used in Next.js App Router

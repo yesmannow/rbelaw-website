@@ -5,9 +5,8 @@ import Image from 'next/image'
 import Script from 'next/script'
 import { Tabs } from '@/components/ui/Tabs'
 import { attorneys as allAttorneys } from '@/lib/data/attorneys'
-import { practiceAreas as allPracticeAreas } from '@/lib/data/practiceAreas'
-import { caseResults as allCaseResults } from '@/lib/data/caseResults'
 import { industriesManual } from '@/lib/data/industries-manual'
+import { createAttorneySchema, mapPracticeAreas, mapIndustries, findCaseResultsForAttorney } from '@/lib/utils/attorney-page-utils'
 
 // Generate static params for all attorney slugs (SSG)
 export async function generateStaticParams() {
@@ -32,77 +31,19 @@ export default async function AttorneyPage({
   }
 
   // Map practice area names to practice area objects
-  const practiceAreas = attorney.practiceAreas
-    .map((practiceName) => {
-      // Try to find by name match
-      return allPracticeAreas.find(
-        (pa) => pa.name.toLowerCase() === practiceName.toLowerCase() || 
-                pa.slug.toLowerCase() === practiceName.toLowerCase().replace(/\s+/g, '-')
-      )
-    })
-    .filter((pa): pa is typeof allPracticeAreas[0] => pa !== undefined)
+  const practiceAreas = mapPracticeAreas(attorney.practiceAreas)
 
   // Map industry names to industry objects
-  const industries = attorney.industries
-    .map((industryName) => {
-      return industriesManual.find(
-        (ind) => ind.name.toLowerCase() === industryName.toLowerCase() ||
-                 ind.slug.toLowerCase() === industryName.toLowerCase().replace(/\s+/g, '-')
-      )
-    })
-    .filter((ind): ind is typeof industriesManual[0] => ind !== undefined)
+  const industries = mapIndustries(attorney.industries)
 
-  // Find case results for this attorney (match by attorney ID or name)
-  const caseResults = allCaseResults
-    .filter((result) => {
-      // Check if attorney ID matches or if attorney name is in the attorneys array
-      return result.attorneys.some((attId) => {
-        // Try exact ID match
-        if (attId === attorney.id || attId === attorney.slug) return true
-        // Try name match (case-insensitive, handle variations)
-        const attorneyNameLower = attorney.name.toLowerCase()
-        const resultAttName = allAttorneys.find(a => a.id === attId || a.slug === attId)?.name.toLowerCase()
-        return resultAttName === attorneyNameLower
-      })
-    })
-    .slice(0, 10)
-    .map((result) => ({
-      id: result.id,
-      title: result.title,
-      settlementAmount: result.amount ? parseFloat(result.amount.replace(/[^0-9.]/g, '')) : null,
-      description: result.summary,
-    }))
+  // Find case results for this attorney
+  const caseResults = findCaseResultsForAttorney(attorney.id, attorney.name)
 
   // Get headshot URL
   const headshotUrl = attorney.image || null
 
-    // Create Attorney JSON-LD Schema
-    const attorneySchema = {
-      '@context': 'https://schema.org',
-      '@type': 'Person',
-      '@id': `https://rbelaw.com/attorneys/${slug}#attorney`,
-      name: attorney.name,
-      jobTitle: attorney.title || 'Attorney',
-      email: attorney.email || '',
-      telephone: attorney.phone || '+1-317-636-8000',
-      url: `https://rbelaw.com/attorneys/${slug}`,
-      ...(headshotUrl && { image: headshotUrl }),
-      worksFor: {
-        '@type': 'LegalService',
-        name: 'Riley Bennett Egloff LLP',
-        url: 'https://rbelaw.com',
-      },
-      ...(attorney.education &&
-        attorney.education.length > 0 && {
-          alumniOf: attorney.education.map((edu: any) => ({
-            '@type': 'EducationalOrganization',
-            name: edu.institution,
-          })),
-        }),
-      ...(practiceAreas.length > 0 && {
-        knowsAbout: practiceAreas.map((area: any) => area.title),
-      }),
-    }
+  // Create Attorney JSON-LD Schema
+  const attorneySchema = createAttorneySchema(attorney, slug, practiceAreas, headshotUrl)
 
     return (
       <main className="min-h-screen bg-gray-50 pb-20 md:pb-0">

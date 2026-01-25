@@ -3,7 +3,6 @@ import { Search, X, Filter, ChevronDown } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Input } from '@/components/ui/Input'
 import { Button } from '@/components/ui/Button'
-import { getAllIndustriesManual } from '@/lib/data/industries-manual'
 import { getUrlParam, getUrlParams, setUrlParam, setUrlParams } from '@/lib/utils/url-params'
 import type { Attorney } from '@/lib/types'
 
@@ -109,7 +108,7 @@ export function AttorneySearchFilter({ attorneys, onFilterChange }: AttorneySear
 
   // Filter attorneys based on all criteria
   const filteredAttorneys = useMemo(() => {
-    return attorneys.filter(attorney => {
+    return attorneys.filter((attorney) => {
       // Search query filter (name, bio)
       if (filters.searchQuery) {
         const query = filters.searchQuery.toLowerCase()

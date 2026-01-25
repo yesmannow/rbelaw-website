@@ -1,3 +1,4 @@
+import React from 'react'
 import { motion } from 'framer-motion'
 import { GraduationCap, Briefcase, Award, TrendingUp } from 'lucide-react'
 import type { Education } from '@/lib/types'

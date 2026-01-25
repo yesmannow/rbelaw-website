@@ -6,7 +6,7 @@ interface CommandCenterFABProps {
   onAction?: (action: string) => void
 }
 
-export function CommandCenterFAB({ onAction: _onAction }: CommandCenterFABProps) {
+export function CommandCenterFAB({ onAction }: CommandCenterFABProps) {
   const [isOpen, setIsOpen] = useState(false)
 
   const handleToggle = () => {

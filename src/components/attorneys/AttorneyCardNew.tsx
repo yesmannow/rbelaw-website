@@ -1,3 +1,4 @@
+import React from 'react'
 import Link from 'next/link'
 import { Mail, Phone } from 'lucide-react'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
@@ -35,7 +36,11 @@ export function AttorneyCard({ attorney, index = 0, compact = false, showContact
   const initials = getInitials(attorney.name)
 
   // 3D Tilt Effect
-  const [reducedMotion, setReducedMotion] = useState(false)
+  const [reducedMotion, setReducedMotion] = useState(() => 
+    typeof window !== 'undefined' 
+      ? window.matchMedia('(prefers-reduced-motion: reduce)').matches 
+      : false
+  )
   const [isHovering, setIsHovering] = useState(false)
   const x = useMotionValue(0)
   const y = useMotionValue(0)
@@ -46,7 +51,6 @@ export function AttorneyCard({ attorney, index = 0, compact = false, showContact
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-    setReducedMotion(mediaQuery.matches)
     const handleChange = (e: MediaQueryListEvent) => setReducedMotion(e.matches)
     mediaQuery.addEventListener('change', handleChange)
     return () => mediaQuery.removeEventListener('change', handleChange)

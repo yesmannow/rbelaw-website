@@ -6,8 +6,8 @@ import Script from 'next/script'
 import type { Metadata } from 'next'
 import { PracticeAreaContent } from '@/components/practice-areas/PracticeAreaContent'
 import { practiceAreas as allPracticeAreas } from '@/lib/data/practiceAreas'
-import { attorneys as allAttorneys } from '@/lib/data/attorneys'
 import { industriesManual } from '@/lib/data/industries-manual'
+import { createPracticeAreaSchema, findAttorneysForPracticeArea } from '@/lib/utils/practice-area-page-utils'
 
 // Generate metadata for SEO
 export async function generateMetadata({
@@ -73,18 +73,7 @@ export default async function PracticeAreaPage({
   }
 
   // Find attorneys who practice in this area
-  // Match by practice area name or slug
-  const attorneys = allAttorneys.filter((attorney) =>
-    attorney.practiceAreas.some((paName) => {
-      const normalizedPaName = paName.toLowerCase().replace(/\s+/g, '-')
-      return (
-        paName.toLowerCase() === practiceArea.name.toLowerCase() ||
-        normalizedPaName === practiceArea.slug ||
-        practiceArea.name.toLowerCase().includes(paName.toLowerCase()) ||
-        paName.toLowerCase().includes(practiceArea.name.toLowerCase())
-      )
-    })
-  )
+  const attorneys = findAttorneysForPracticeArea(practiceArea.slug, practiceArea.name)
 
   // Find related industries (this would need to be mapped from practice area data)
   // For now, we'll leave industries empty or try to match from attorney industries
@@ -94,17 +83,7 @@ export default async function PracticeAreaPage({
   const featuredImageUrl = practiceArea.imageUrl || null
 
   // Create Practice Area JSON-LD Schema
-  const practiceAreaSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'LegalService',
-    name: `Riley Bennett Egloff LLP - ${practiceArea.title}`,
-    description: practiceArea.description || `Legal services for ${practiceArea.title}`,
-    url: `https://rbelaw.com/practice-areas/${slug}`,
-    provider: {
-      '@type': 'Attorney',
-      name: 'Riley Bennett Egloff LLP',
-    },
-  }
+  const practiceAreaSchema = createPracticeAreaSchema(practiceArea, slug)
 
   return (
     <main className="min-h-screen bg-gray-50 pb-20 md:pb-0">
