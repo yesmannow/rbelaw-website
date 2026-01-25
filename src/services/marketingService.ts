@@ -10,12 +10,14 @@ import type { LeadData } from '../lib/types'
  * Future: Replace mock implementation with actual API calls to Mailchimp/CRM
  * 
  * Environment Variables (to be configured):
- * - NEXT_PUBLIC_MAILCHIMP_ENDPOINT: Mailchimp API endpoint
- * - NEXT_PUBLIC_CRM_ENDPOINT: Internal CRM endpoint
+ * - VITE_MAILCHIMP_ENDPOINT: Mailchimp API endpoint
+ * - VITE_MAILCHIMP_API_KEY: Mailchimp API key
+ * - VITE_CRM_ENDPOINT: Internal CRM endpoint
+ * - VITE_CRM_API_KEY: Internal CRM API key
  */
 
-const MAILCHIMP_ENDPOINT = process.env.NEXT_PUBLIC_MAILCHIMP_ENDPOINT
-const CRM_ENDPOINT = process.env.NEXT_PUBLIC_CRM_ENDPOINT
+const MAILCHIMP_ENDPOINT = import.meta.env.VITE_MAILCHIMP_ENDPOINT
+const CRM_ENDPOINT = import.meta.env.VITE_CRM_ENDPOINT
 
 // Mock API delay for simulated submissions (in milliseconds)
 const MOCK_API_DELAY = 1000
@@ -45,12 +47,12 @@ export async function submitLead(data: LeadData): Promise<boolean> {
       //   method: 'POST',
       //   headers: {
       //     'Content-Type': 'application/json',
-      //     'Authorization': `Bearer ${process.env.NEXT_PUBLIC_MAILCHIMP_API_KEY}`
+      //     'Authorization': `Bearer ${import.meta.env.VITE_MAILCHIMP_API_KEY}`
       //   },
       //   body: JSON.stringify(data)
       // })
     } else {
-      console.log('⚠️  Mailchimp endpoint not configured (NEXT_PUBLIC_MAILCHIMP_ENDPOINT)')
+      console.log('⚠️  Mailchimp endpoint not configured (VITE_MAILCHIMP_ENDPOINT)')
     }
 
     if (CRM_ENDPOINT) {
@@ -60,12 +62,12 @@ export async function submitLead(data: LeadData): Promise<boolean> {
       //   method: 'POST',
       //   headers: {
       //     'Content-Type': 'application/json',
-      //     'Authorization': `Bearer ${process.env.NEXT_PUBLIC_CRM_API_KEY}`
+      //     'Authorization': `Bearer ${import.meta.env.VITE_CRM_API_KEY}`
       //   },
       //   body: JSON.stringify(data)
       // })
     } else {
-      console.log('⚠️  CRM endpoint not configured (NEXT_PUBLIC_CRM_ENDPOINT)')
+      console.log('⚠️  CRM endpoint not configured (VITE_CRM_ENDPOINT)')
     }
 
     // Simulate API delay

@@ -4,7 +4,7 @@
  */
 
 import { useState } from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -76,7 +76,7 @@ export function MegaMenu({ section, label }: MegaMenuProps) {
                     return (
                       <Link
                         key={link.href}
-                        href={link.href}
+                        to={link.href}
                         className="group flex items-start gap-3 rounded-lg p-3 transition-colors hover:bg-gray-50"
                       >
                         {Icon && (
@@ -111,7 +111,7 @@ export function MegaMenu({ section, label }: MegaMenuProps) {
                         {section.featured.description}
                       </p>
                       <Link
-                        href={section.featured.href}
+                        to={section.featured.href}
                         className="mt-4 inline-flex items-center gap-2 rounded-lg bg-white px-4 py-2 text-sm font-semibold text-rbe-navy transition-transform hover:scale-105"
                       >
                         {section.featured.buttonText}

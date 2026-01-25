@@ -5,26 +5,7 @@ import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
 
 export default [
-  { 
-    ignores: [
-      'dist', 
-      '.next', 
-      '.vercel',
-      'coverage',
-      '.turbo',
-      'out',
-      'node_modules', 
-      'docs/archive',
-      'docs/archive/pages-old-vite',
-      'src/archive',
-      'src/pages-old-vite',
-      '.venv',
-      '**/.venv/**',
-      'scripts/**/*.ts',
-      'scripts/**/*.js',
-      'scripts/**/*.mjs',
-    ] 
-  },
+  { ignores: ['dist'] },
   {
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
@@ -35,10 +16,7 @@ export default [
         ecmaFeatures: { jsx: true },
         projectService: true,
       },
-      globals: {
-        ...globals.browser,
-        ...globals.node,
-      },
+      globals: globals.browser,
     },
     plugins: {
       'react-hooks': reactHooks,
