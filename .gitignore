@@ -23,9 +23,6 @@ dist-ssr
 .next
 out
 
-# Payload
-media
-payload-types.ts
 
 # Generated assets
 src/assets/stock/
