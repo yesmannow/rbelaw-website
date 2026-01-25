@@ -32,3 +32,6 @@ public/images/legacy/
 *.sln
 *.sw?
 .backup/
+
+# TypeScript build info
+*.tsbuildinfo
