@@ -10,8 +10,7 @@ export function RootLayout() {
       <MobileLogoHeader />
       <main 
         id="main-content" 
-        className="flex-grow transition-all duration-300 ease-in-out" 
-        style={{ paddingTop: 'var(--nav-height)' }}
+        className="flex-grow transition-all duration-300 ease-in-out md:pt-[var(--nav-height)]" 
       >
         <PageTransition />
       </main>

@@ -55,8 +55,8 @@ export function MobileLogoHeader() {
         )}
       </AnimatePresence>
       
-      {/* Spacer to prevent content from going under the fixed header when visible */}
-      <div className="md:hidden h-14" />
+      {/* Spacer to prevent content from going under the fixed header - matches header height */}
+      <div className="md:hidden" style={{ height: '56px' }} />
     </>
   )
 }
