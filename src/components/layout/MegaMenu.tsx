@@ -1,6 +1,6 @@
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 import { motion } from 'framer-motion'
-import Link from 'next/link'
+import { Link } from 'react-router-dom'
 import { ChevronDown } from 'lucide-react'
 import { navData, iconMap, type NavigationSection } from '@/lib/data/navigation'
 import { NewsMenu } from './NewsMenu'
@@ -33,7 +33,7 @@ export function MegaMenu({ onSearchTrigger }: MegaMenuProps) {
         <h3 className="text-lg font-serif font-bold mb-2">{featured.title}</h3>
         <p className="text-sm text-white/90 mb-4">{featured.description}</p>
         <Link
-          href={featured.href}
+          to={featured.href}
           className="inline-block bg-white text-primary-burgundy px-4 py-2 rounded-sm text-sm font-semibold hover:bg-neutral-100 transition-colors"
         >
           {featured.buttonText}
@@ -94,7 +94,7 @@ export function MegaMenu({ onSearchTrigger }: MegaMenuProps) {
           >
             <NavigationMenu.Link asChild>
               <Link
-                href={link.href}
+                to={link.href}
                 className="group flex items-start gap-3 p-4 rounded-lg hover:bg-primary-burgundy/5 transition-all duration-200 hover:shadow-sm border border-transparent hover:border-primary-burgundy/20"
               >
                 {link.icon && (

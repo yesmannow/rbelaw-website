@@ -150,7 +150,7 @@ export interface LeadData {
   email: string
   name?: string
   phone?: string
-  source: 'contact_form' | 'quiz' | 'newsletter' | 'blog_cta' | 'comp_calculator' | 'lien_calculator' | 'succession_quiz' | 'district_map' | 'flsa_wizard' | 'litigation_timeline' | 'contract_risk_analyzer' | 'business_entity_comparison' | 'osha_calculator' | 'know_your_rights_quiz' | 'lien_wizard'
+  source: 'contact_form' | 'quiz' | 'newsletter' | 'blog_cta' | 'comp_calculator' | 'lien_calculator' | 'succession_quiz' | 'district_map' | 'flsa_wizard' | 'litigation_timeline' | 'contract_risk_analyzer' | 'business_entity_comparison' | 'osha_calculator' | 'know_your_rights_quiz'
   metadata?: Record<string, unknown>
 }
 

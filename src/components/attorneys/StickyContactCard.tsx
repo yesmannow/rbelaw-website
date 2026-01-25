@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 import { Mail, Phone, Calendar, Download, MapPin } from 'lucide-react'
 import type { Attorney } from '@/lib/types'
-import { getAttorneyThumbnailImage } from '@/lib/utils/attorney-images'
 
 interface StickyContactCardProps {
   attorney: Attorney
@@ -40,7 +39,7 @@ END:VCARD`
       <div className="bg-gradient-to-br from-primary-navy to-primary-slate p-6 text-white">
         <div className="w-20 h-20 rounded-full overflow-hidden border-4 border-white/20 mb-4 mx-auto">
           <img
-            src={getAttorneyThumbnailImage(attorney.id, attorney.imageThumb)}
+            src={attorney.image}
             alt={attorney.name}
             className="w-full h-full object-cover"
           />

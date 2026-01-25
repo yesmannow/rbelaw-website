@@ -39,10 +39,10 @@ export function MobileDock() {
           {/* Dock Items Container */}
           <div className="flex items-center justify-around gap-2">
             {/* Home */}
-            <DockItem icon={Home} label="Home" href="/" />
+            <DockItem icon={Home} label="Home" to="/" />
 
             {/* Attorneys */}
-            <DockItem icon={Users} label="Attorneys" href="/attorneys" />
+            <DockItem icon={Users} label="Attorneys" to="/attorneys" />
 
             {/* Command Center FAB (Contact) - Elevated */}
             <div className="relative -top-8">
@@ -50,7 +50,7 @@ export function MobileDock() {
             </div>
 
             {/* Practice Areas */}
-            <DockItem icon={Newspaper} label="Practice" href="/practice-areas/business-corporate" />
+            <DockItem icon={Newspaper} label="Practice" to="/practice-areas/business-corporate" />
 
             {/* About - placeholder for balance */}
             <div className="flex-1" />
@@ -103,7 +103,6 @@ export function MobileDock() {
                 <li><a href="/attorneys" className="hover:text-primary-burgundy">Attorneys</a></li>
                 <li><a href="/about" className="hover:text-primary-burgundy">About</a></li>
                 <li><a href="/contact" className="hover:text-primary-burgundy">Contact</a></li>
-                <li><a href="https://rbelaw.com/make-a-payment" className="hover:text-primary-burgundy font-semibold">Make a Payment</a></li>
               </ul>
             </div>
             <div>

@@ -4,13 +4,12 @@
  */
 
 import { useState } from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { iconMap } from '@/lib/data/navigation';
 import { practiceAreas } from '@/lib/data';
-import { getSpecialistCount } from '@/lib/utils/attorney-logic';
 
 export function PracticeAreasMegaMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,34 +46,29 @@ export function PracticeAreasMegaMenu() {
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Background Overlay with Backdrop Blur - Starts below nav */}
+            {/* Background Overlay */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed left-0 right-0 bottom-0 z-40 pointer-events-none"
-              style={{
-                top: 'var(--nav-height)',
-                backdropFilter: 'blur(20px)',
-                WebkitBackdropFilter: 'blur(20px)',
-                backgroundColor: 'rgba(10, 37, 64, 0.85)'
+              className="fixed left-0 right-0 z-40 h-[600px] pointer-events-none"
+              style={{ 
+                backgroundColor: 'rgba(10, 37, 64, 0.95)',
+                top: 'var(--nav-height)'
               }}
-              onClick={() => setIsOpen(false)}
             />
 
-            {/* Menu Content - Positioned directly below nav */}
+            {/* Menu Content */}
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
-              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-              className="fixed left-0 right-0 z-[60] backdrop-blur-xl border-t border-white/10"
-              style={{
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+              className="fixed left-0 right-0 z-50 backdrop-blur-xl border-t border-white/10"
+              style={{ 
                 backgroundColor: 'rgba(10, 37, 64, 0.95)',
-                top: 'var(--nav-height)',
-                backdropFilter: 'blur(20px)',
-                WebkitBackdropFilter: 'blur(20px)'
+                top: 'var(--nav-height)'
               }}
             >
               <div className="section-container py-12">
@@ -89,7 +83,7 @@ export function PracticeAreasMegaMenu() {
                     </p>
                   </div>
                   <Link
-                    href="/practice-areas"
+                    to="/practice-areas"
                     className="flex items-center gap-2 rounded-lg bg-[#B8860B] hover:bg-[#A07A0A] px-6 py-3 text-sm font-semibold text-white transition-all hover:scale-105"
                   >
                     View All
@@ -101,8 +95,7 @@ export function PracticeAreasMegaMenu() {
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                   {practiceAreas.map((area, index) => {
                     const Icon = area.icon ? iconMap[area.icon] : null;
-                    const specialistCount = getSpecialistCount(area.name, 'practice');
-
+                    
                     return (
                       <motion.div
                         key={area.id}
@@ -111,7 +104,7 @@ export function PracticeAreasMegaMenu() {
                         transition={{ delay: index * 0.04 }}
                       >
                         <Link
-                          href={`/practice-areas/${area.slug}`}
+                          to={`/practice-areas/${area.slug}`}
                           className="group relative flex flex-col h-full overflow-hidden rounded-lg bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/10 hover:border-[#B8860B] p-5 transition-all"
                         >
                           {/* Icon */}
@@ -121,21 +114,14 @@ export function PracticeAreasMegaMenu() {
                             </div>
                           )}
 
-                          {/* Title with Specialist Count */}
-                          <div className="mb-2">
-                            <h4 className="font-semibold text-white group-hover:text-[#B8860B] transition-colors">
-                              {area.name}
-                            </h4>
-                            {specialistCount > 0 && (
-                              <p className="text-xs text-[#B8860B]/80 mt-1 font-inter">
-                                {specialistCount} specialist{specialistCount !== 1 ? 's' : ''}
-                              </p>
-                            )}
-                          </div>
+                          {/* Title */}
+                          <h4 className="font-semibold text-white mb-2 group-hover:text-[#B8860B] transition-colors">
+                            {area.name}
+                          </h4>
 
                           {/* Description */}
                           {area.description && (
-                            <p className="text-sm text-white/70 line-clamp-2 mb-3 flex-1 font-inter">
+                            <p className="text-sm text-white/70 line-clamp-2 mb-3 flex-1">
                               {area.description}
                             </p>
                           )}

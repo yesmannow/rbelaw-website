@@ -1,40 +1,38 @@
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { Phone, Mail } from 'lucide-react'
+import { Link, useLocation } from 'react-router-dom'
+import { Menu, X, ChevronDown, Phone, Mail } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { practiceAreas } from '../../lib/data'
 import { PracticeAreasMegaMenu } from '../navigation/PracticeAreasMegaMenu'
 import { IndustriesMegaMenu } from '../navigation/IndustriesMegaMenu'
 import { OurTeamMegaMenu } from '../navigation/OurTeamMegaMenu'
-import { NewsroomMegaMenu } from '../navigation/NewsroomMegaMenu'
-import { NewsroomAboutMegaMenu } from '../navigation/NewsroomAboutMegaMenu'
 import { navData } from '../../lib/data/navigation'
-import { PrestigeButton } from '../ui/PrestigeButton'
-import { MobileNavBar } from './mobile/MobileNavBar'
-import { PWAInstallPrompt } from '../ui/PWAInstallPrompt'
 
 export function Navbar() {
+  const [isOpen, setIsOpen] = useState(false)
+  const [isPracticeAreasOpen, setIsPracticeAreasOpen] = useState(false)
+  const [isOurTeamOpen, setIsOurTeamOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
-  const pathname = usePathname()
+  const location = useLocation()
 
   // Enhanced scroll behavior: hide on scroll down, show on scroll up
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY
-
+      
       // Determine if scrolled past threshold
       const scrolled = currentScrollY > 20
       setIsScrolled(scrolled)
-
+      
       // Toggle nav-scrolled class on document element for global CSS variable
       if (scrolled) {
         document.documentElement.classList.add('nav-scrolled')
       } else {
         document.documentElement.classList.remove('nav-scrolled')
       }
-
+      
       // Hide/show navbar based on scroll direction
       if (currentScrollY < lastScrollY || currentScrollY < 100) {
         // Scrolling up or near top - show navbar
@@ -43,7 +41,7 @@ export function Navbar() {
         // Scrolling down and past threshold - hide navbar
         setIsVisible(false)
       }
-
+      
       setLastScrollY(currentScrollY)
     }
 
@@ -52,15 +50,14 @@ export function Navbar() {
   }, [lastScrollY])
 
   return (
-    <>
     <motion.nav
       initial={{ y: 0 }}
-      animate={{
+      animate={{ 
         y: isVisible ? 0 : -100,
         backgroundColor: isScrolled ? 'rgba(33, 52, 105, 0.98)' : 'rgba(33, 52, 105, 1)'
       }}
       transition={{ duration: 0.3, ease: 'easeInOut' }}
-      className={`fixed top-0 left-0 right-0 z-50 overflow-x-hidden transition-shadow duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 overflow-visible transition-shadow duration-300 ${
         isScrolled ? 'shadow-xl backdrop-blur-sm' : 'shadow-soft'
       }`}
     >
@@ -75,7 +72,7 @@ export function Navbar() {
             className="bg-primary-navy/50 border-b border-white/10 overflow-hidden"
           >
             <div className="section-container">
-              <div className="flex items-center justify-center py-2 text-sm">
+              <div className="flex items-center justify-between py-2 text-sm">
                 <div className="flex items-center gap-6 text-white/80">
                   <a href="tel:3176368000" className="flex items-center gap-2 hover:text-accent-tan transition-colors">
                     <Phone className="h-3.5 w-3.5" />
@@ -85,6 +82,9 @@ export function Navbar() {
                     <Mail className="h-3.5 w-3.5" />
                     <span>info@rbelaw.com</span>
                   </a>
+                </div>
+                <div className="text-white/60 text-xs hidden md:block">
+                  255 E. Carmel Drive, Suite 200 | Carmel, IN 46032
                 </div>
               </div>
             </div>
@@ -97,100 +97,35 @@ export function Navbar() {
         <div className={`flex items-center justify-between transition-all duration-300 ${
           isScrolled ? 'h-16' : 'h-20'
         }`}>
-          {/* Logo - Home Link with Premium Animations */}
-          <Link href="/" className="flex items-center group relative">
-            <motion.div
-              className="relative"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-            >
-              {/* Glow Effect */}
-              <motion.div
-                className="absolute inset-0 bg-[#B8860B] rounded-full blur-xl opacity-0 group-hover:opacity-30"
-                animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0, 0.3, 0]
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: 'easeInOut'
-                }}
-              />
-
-              {/* Logo Image */}
-              <motion.img
-                src="/images/logo/RBE_Logo_RBG-01.png"
-                alt="Riley Bennett Egloff LLP"
-                className={`relative transition-all duration-300 ${
-                  isScrolled ? 'h-10 sm:h-12' : 'h-12 sm:h-16 md:h-20'
-                } w-auto max-w-[200px] sm:max-w-none brightness-0 invert group-hover:brightness-110`}
-                animate={{
-                  filter: [
-                    'brightness(1) invert(1)',
-                    'brightness(1.1) invert(1)',
-                    'brightness(1) invert(1)'
-                  ]
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: 'easeInOut'
-                }}
-              />
-
-              {/* Shimmer Effect */}
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                animate={{
-                  x: ['-100%', '200%']
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  repeatDelay: 2,
-                  ease: 'easeInOut'
-                }}
-                style={{
-                  clipPath: 'inset(0 0 0 0)'
-                }}
-              />
-            </motion.div>
-
-            {/* Active Indicator - Enhanced */}
-            {pathname === '/' && (
-              <motion.div
-                className="absolute -bottom-1 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#B8860B] to-transparent"
-                animate={{
-                  opacity: [0.5, 1, 0.5],
-                  scaleX: [0.8, 1.2, 0.8]
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: 'easeInOut'
-                }}
-              />
-            )}
-
-            {/* Pulse Ring on Hover */}
-            <motion.div
-              className="absolute inset-0 border-2 border-[#B8860B] rounded-full opacity-0"
-              initial={false}
-              whileHover={{
-                opacity: [0, 0.5, 0],
-                scale: [1, 1.3, 1.5]
-              }}
-              transition={{
-                duration: 1.5,
-                ease: 'easeOut'
-              }}
+          {/* Logo */}
+          <Link to="/" className="flex items-center group">
+            <motion.img 
+              src="/images/logo/RBE_Logo_RBG-01.png" 
+              alt="Riley Bennett Egloff LLP" 
+              className={`transition-all duration-300 ${
+                isScrolled ? 'h-10' : 'h-14'
+              } w-auto brightness-0 invert group-hover:scale-105`}
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.2 }}
             />
           </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-1">
+            <Link
+              to="/"
+              className="relative text-white hover:text-accent-tan transition-all duration-200 font-medium px-3 py-2 rounded group"
+            >
+              <span className="relative z-10">Home</span>
+              {location.pathname === '/' && (
+                <motion.span 
+                  layoutId="navbar-indicator"
+                  className="absolute inset-0 bg-white/10 rounded"
+                  transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+                />
+              )}
+            </Link>
+
             {/* Practice Areas - Special Mega Menu */}
             <PracticeAreasMegaMenu />
 
@@ -200,42 +135,270 @@ export function Navbar() {
             {/* Our Team - Special Mega Menu */}
             <OurTeamMegaMenu />
 
-            {/* Newsroom - Standalone Mega Menu */}
-            <NewsroomMegaMenu />
+            <Link
+              to="/newsroom"
+              className="relative text-white hover:text-accent-tan transition-all duration-200 font-medium px-3 py-2 rounded"
+            >
+              <span className="relative z-10">Newsroom</span>
+              {location.pathname.includes('/newsroom') && (
+                <motion.span 
+                  layoutId="navbar-indicator"
+                  className="absolute inset-0 bg-white/10 rounded"
+                  transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+                />
+              )}
+            </Link>
 
-            {/* About - Standalone Mega Menu */}
-            <NewsroomAboutMegaMenu />
+            <Link
+              to="/about"
+              className="relative text-white hover:text-accent-tan transition-all duration-200 font-medium px-3 py-2 rounded"
+            >
+              <span className="relative z-10">About</span>
+              {location.pathname.includes('/about') && (
+                <motion.span 
+                  layoutId="navbar-indicator"
+                  className="absolute inset-0 bg-white/10 rounded"
+                  transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+                />
+              )}
+            </Link>
 
             {/* Divider */}
             <div className="h-6 w-px bg-white/20 mx-2" />
 
-            {/* Call to Action Buttons with Liquid Fill */}
-            <PrestigeButton
+            {/* Call to Action Buttons */}
+            <motion.a
               href="tel:3176368000"
-              variant="call"
-              className="hidden xl:flex"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-2 text-white hover:text-accent-tan transition-colors font-medium px-4 py-2 border border-white/30 rounded hover:border-accent-tan hover:bg-white/5"
             >
-              Call Now
-            </PrestigeButton>
+              <Phone className="h-4 w-4" />
+              <span className="hidden xl:inline">Call Now</span>
+            </motion.a>
 
-            <PrestigeButton
-              href="/contact"
-              variant="consultation"
-            >
-              Contact Us
-            </PrestigeButton>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Link 
+                to="/contact" 
+                className="bg-accent-tan hover:bg-accent-tan/90 text-primary-navy px-6 py-2 rounded font-semibold transition-all duration-200 shadow-lg hover:shadow-xl"
+              >
+                Contact Us
+              </Link>
+            </motion.div>
           </div>
 
-          {/* Mobile menu button - Hidden, using MobileNavBar instead */}
+          {/* Mobile menu button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="lg:hidden p-2 text-white hover:text-accent-gold"
+          >
+            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
         </div>
+
+        {/* Mobile Prestige Drawer */}
+        <AnimatePresence>
+          {isOpen && (
+            <>
+              {/* Backdrop */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] lg:hidden"
+                onClick={() => setIsOpen(false)}
+              />
+              
+              {/* Full-screen drawer from right */}
+              <motion.div
+                initial={{ x: '100%' }}
+                animate={{ x: 0 }}
+                exit={{ x: '100%' }}
+                transition={{ type: 'spring', damping: 30, stiffness: 300 }}
+                className="fixed right-0 top-0 bottom-0 w-full sm:w-96 bg-[#0A2540] z-[100] lg:hidden overflow-y-auto shadow-2xl"
+              >
+                {/* Drawer Header */}
+                <div className="sticky top-0 bg-[#0A2540] border-b border-[#B8860B]/20 px-6 py-4 flex items-center justify-between">
+                  <h2 className="text-[#B8860B] font-playfair text-2xl font-bold">Menu</h2>
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                    aria-label="Close menu"
+                  >
+                    <X className="h-6 w-6 text-white" />
+                  </button>
+                </div>
+
+                {/* Quick Tools Bar - Horizontal Scrolling */}
+                <div className="px-6 py-4 border-b border-white/10">
+                  <h3 className="text-white/60 text-xs font-semibold uppercase tracking-wider mb-3">Quick Tools</h3>
+                  <div className="flex gap-3 overflow-x-auto pb-2 -mx-2 px-2">
+                    <Link
+                      to="/tools/lien-calculator"
+                      className="flex-shrink-0 bg-[#B8860B]/10 border border-[#B8860B]/30 hover:bg-[#B8860B]/20 text-[#B8860B] px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      🧮 Lien Calculator
+                    </Link>
+                    <Link
+                      to="/tools/flsa-wizard"
+                      className="flex-shrink-0 bg-[#B8860B]/10 border border-[#B8860B]/30 hover:bg-[#B8860B]/20 text-[#B8860B] px-4 py-2 rounded-lg text-sm font-medium transition-all whitespace-nowrap"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      ⚖️ FLSA Wizard
+                    </Link>
+                  </div>
+                </div>
+
+                {/* Menu Links with Staggered Entry */}
+                <motion.div
+                  className="px-6 py-6 space-y-2"
+                  variants={{
+                    open: {
+                      transition: { staggerChildren: 0.05, delayChildren: 0.1 }
+                    },
+                    closed: {
+                      transition: { staggerChildren: 0.02, staggerDirection: -1 }
+                    }
+                  }}
+                  initial="closed"
+                  animate="open"
+                  exit="closed"
+                >
+                  <motion.div variants={{ open: { opacity: 1, x: 0 }, closed: { opacity: 0, x: -20 } }}>
+                    <Link 
+                      to="/" 
+                      className="block text-white hover:text-[#B8860B] hover:bg-white/5 transition-all px-4 py-3 rounded-lg font-medium"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Home
+                    </Link>
+                  </motion.div>
+
+                  <motion.div variants={{ open: { opacity: 1, x: 0 }, closed: { opacity: 0, x: -20 } }}>
+                    <button
+                      onClick={() => setIsPracticeAreasOpen(!isPracticeAreasOpen)}
+                      className="flex items-center justify-between text-white hover:text-[#B8860B] hover:bg-white/5 transition-all font-medium w-full px-4 py-3 rounded-lg"
+                    >
+                      <span>Practice Areas</span>
+                      <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isPracticeAreasOpen ? 'rotate-180' : ''}`} />
+                    </button>
+
+                    <AnimatePresence>
+                      {isPracticeAreasOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="ml-4 mt-1 space-y-1 overflow-hidden max-h-64 overflow-y-auto"
+                        >
+                          {practiceAreas.map((area) => (
+                            <Link
+                              key={area.id}
+                              to={`/practice-areas/${area.slug}`}
+                              className="block text-sm text-white/80 hover:text-[#B8860B] hover:bg-white/5 transition-all px-4 py-2 rounded-lg"
+                              onClick={() => setIsOpen(false)}
+                            >
+                              {area.name}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+
+                  <motion.div variants={{ open: { opacity: 1, x: 0 }, closed: { opacity: 0, x: -20 } }}>
+                    <button
+                      onClick={() => setIsOurTeamOpen(!isOurTeamOpen)}
+                      className="flex items-center justify-between text-white hover:text-[#B8860B] hover:bg-white/5 transition-all font-medium w-full px-4 py-3 rounded-lg"
+                    >
+                      <span>Our Team</span>
+                      <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isOurTeamOpen ? 'rotate-180' : ''}`} />
+                    </button>
+
+                    <AnimatePresence>
+                      {isOurTeamOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="ml-4 mt-1 space-y-1 overflow-hidden"
+                        >
+                          <Link
+                            to="/attorneys"
+                            className="block text-sm text-white/80 hover:text-[#B8860B] hover:bg-white/5 transition-all px-4 py-2 rounded-lg"
+                            onClick={() => setIsOpen(false)}
+                          >
+                            Attorneys
+                          </Link>
+                          <Link
+                            to="/team/legal-assistants"
+                            className="block text-sm text-white/80 hover:text-[#B8860B] hover:bg-white/5 transition-all px-4 py-2 rounded-lg"
+                            onClick={() => setIsOpen(false)}
+                          >
+                            Legal Assistants
+                          </Link>
+                          <Link
+                            to="/team/professionals"
+                            className="block text-sm text-white/80 hover:text-[#B8860B] hover:bg-white/5 transition-all px-4 py-2 rounded-lg"
+                            onClick={() => setIsOpen(false)}
+                          >
+                            Other Professionals
+                          </Link>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+
+                  <motion.div variants={{ open: { opacity: 1, x: 0 }, closed: { opacity: 0, x: -20 } }}>
+                    <Link 
+                      to="/about" 
+                      className="block text-white hover:text-[#B8860B] hover:bg-white/5 transition-all px-4 py-3 rounded-lg font-medium"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      About
+                    </Link>
+                  </motion.div>
+
+                  <motion.div variants={{ open: { opacity: 1, x: 0 }, closed: { opacity: 0, x: -20 } }}>
+                    <Link 
+                      to="/newsroom" 
+                      className="block text-white hover:text-[#B8860B] hover:bg-white/5 transition-all px-4 py-3 rounded-lg font-medium"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Newsroom
+                    </Link>
+                  </motion.div>
+                </motion.div>
+
+                {/* Fixed Footer - Thumb Zone CTAs */}
+                <div className="sticky bottom-0 bg-gradient-to-t from-[#0A2540] via-[#0A2540] to-transparent pt-6 pb-6 px-6 border-t border-[#B8860B]/20">
+                  <div className="space-y-3">
+                    <a
+                      href="tel:3176368000"
+                      className="flex items-center justify-center gap-3 bg-[#B8860B] hover:bg-[#D4A017] text-[#0A2540] px-6 py-4 rounded-lg font-bold text-lg transition-all shadow-lg active:scale-95"
+                    >
+                      <Phone className="h-5 w-5" />
+                      <span>Call Now</span>
+                    </a>
+
+                    <Link 
+                      to="/contact" 
+                      className="block text-center border-2 border-[#B8860B] text-[#B8860B] hover:bg-[#B8860B] hover:text-[#0A2540] px-6 py-4 rounded-lg font-bold text-lg transition-all active:scale-95"
+                      onClick={() => setIsOpen(false)}
+                    >
+                      Contact Us
+                    </Link>
+                  </div>
+                </div>
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
       </div>
     </motion.nav>
-
-    {/* Mobile Navigation Bar - Rendered outside nav container for proper layering */}
-    <MobileNavBar />
-
-    {/* PWA Install Prompt - Mobile Only, Limited Appearances */}
-    <PWAInstallPrompt />
-  </>
   )
 }
