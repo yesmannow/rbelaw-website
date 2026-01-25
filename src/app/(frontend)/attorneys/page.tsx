@@ -11,13 +11,14 @@ export default async function AttorneysPage() {
     id: attorney.id,
     name: attorney.name,
     slug: attorney.slug,
+    jobType: 'attorney' as const,
     title: attorney.title,
     email: attorney.email,
     phone: attorney.phone,
-    image: attorney.image,
-    imageThumb: attorney.imageThumb,
-    practiceAreas: attorney.practiceAreas || [],
-    industries: attorney.industries || [],
+    headshot: attorney.image ? {
+      url: attorney.image,
+      alt: attorney.name,
+    } : undefined,
   })).sort((a, b) => a.name.localeCompare(b.name))
 
   return (

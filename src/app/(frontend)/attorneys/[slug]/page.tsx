@@ -176,17 +176,17 @@ export default async function AttorneyPage({
               )}
 
               {/* Bar Admissions */}
-              {attorney.quickFacts?.barAdmissions &&
-                attorney.quickFacts.barAdmissions.length > 0 && (
+              {attorney.barAdmissions &&
+                attorney.barAdmissions.length > 0 && (
                   <div className="mt-8">
                     <h3 className="text-2xl font-bold text-[#0A2540] mb-4">
                       Bar Admissions
                     </h3>
                     <ul className="list-disc list-inside space-y-1">
-                      {attorney.quickFacts.barAdmissions.map(
-                        (admission: any, index: number) => (
+                      {attorney.barAdmissions.map(
+                        (admission: string, index: number) => (
                           <li key={index} className="text-gray-700">
-                            {admission.admission}
+                            {admission}
                           </li>
                         ),
                       )}
