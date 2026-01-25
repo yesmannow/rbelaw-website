@@ -1,6 +1,6 @@
 import { Navbar } from './Navbar'
 import { Footer } from './Footer'
-import { MobileDock } from './mobile'
+import { MobileNavBar } from './mobile'
 import { PageTransition } from './PageTransition'
 
 export function RootLayout() {
@@ -15,7 +15,7 @@ export function RootLayout() {
         <PageTransition />
       </main>
       <Footer />
-      <MobileDock />
+      <MobileNavBar />
     </div>
   )
 }
