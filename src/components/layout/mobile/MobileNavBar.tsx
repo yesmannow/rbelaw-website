@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Home, Users, Briefcase, Newspaper, Plus, Phone, Mail, MapPin } from 'lucide-react'
 
@@ -19,6 +19,7 @@ interface SpeedDialAction {
 export function MobileNavBar() {
   const [isSpeedDialOpen, setIsSpeedDialOpen] = useState(false)
   const location = useLocation()
+  const navigate = useNavigate()
 
   // Core navigation items
   const navItems: NavItem[] = [
@@ -42,7 +43,7 @@ export function MobileNavBar() {
       icon: Mail,
       label: 'Contact Us',
       action: () => {
-        window.location.href = '/contact'
+        navigate('/contact')
       },
       color: 'bg-primary-navy',
     },
@@ -135,7 +136,7 @@ export function MobileNavBar() {
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 260, damping: 20 }}
-          className="relative bg-white/90 dark:bg-navy/90 backdrop-blur-xl rounded-full shadow-2xl border border-white/20"
+          className="relative bg-white/90 dark:bg-primary-navy/90 backdrop-blur-xl rounded-full shadow-2xl border border-white/20"
         >
           {/* Navigation Items Container */}
           <div className="relative flex items-center justify-between px-3 py-3">
