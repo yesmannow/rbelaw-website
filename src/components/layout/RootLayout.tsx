@@ -1,22 +1,21 @@
-import React from 'react'
 import { Navbar } from './Navbar'
 import { Footer } from './Footer'
-// PageTransition is a legacy component for react-router, not used in Next.js App Router
+import { MobileDock } from './mobile'
+import { PageTransition } from './PageTransition'
 
-export function RootLayout({ children }: { children?: React.ReactNode }) {
+export function RootLayout() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <main
-        id="main-content"
-        className="flex-grow transition-all duration-300 ease-in-out lg:pb-0 pb-20"
-        style={{
-          paddingTop: 'var(--nav-height)'
-        }}
+      <main 
+        id="main-content" 
+        className="flex-grow transition-all duration-300 ease-in-out" 
+        style={{ paddingTop: 'var(--nav-height)' }}
       >
-        {children}
+        <PageTransition />
       </main>
       <Footer />
+      <MobileDock />
     </div>
   )
 }

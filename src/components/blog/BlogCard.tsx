@@ -3,7 +3,7 @@
  * Premium card with staggered reveal, hover animations, and gold accents
  */
 
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { Clock, Calendar, User } from 'lucide-react';
 import { motion } from 'framer-motion';
 
@@ -37,7 +37,7 @@ export function BlogCard({ post, index = 0 }: BlogCardProps) {
       className="h-full"
     >
       <Link
-        href={`/newsroom/${post.slug}`}
+        to={`/newsroom/${post.slug}`}
         className="group relative flex h-full flex-col overflow-hidden rounded-lg border border-gray-200 bg-white transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
       >
         {/* Gold border bottom - expands from center on hover */}

@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from 'react-router-dom'
 import { Mail, Phone, MapPin, Linkedin, Facebook, Instagram, Twitter } from 'lucide-react'
 
 export function Footer() {
@@ -89,39 +89,34 @@ export function Footer() {
             </h4>
             <ul className="space-y-2">
               <li>
-                <Link href="/about" className="text-white/80 hover:text-accent-gold transition-colors text-sm">
+                <Link to="/about" className="text-white/80 hover:text-accent-gold transition-colors text-sm">
                   About
                 </Link>
               </li>
               <li>
-                <Link href="/attorneys" className="text-white/80 hover:text-accent-gold transition-colors text-sm">
+                <Link to="/attorneys" className="text-white/80 hover:text-accent-gold transition-colors text-sm">
                   Team
                 </Link>
               </li>
               <li>
-                <Link href="/practice-areas/corporate-law" className="text-white/80 hover:text-accent-gold transition-colors text-sm">
+                <Link to="/practice-areas/corporate-law" className="text-white/80 hover:text-accent-gold transition-colors text-sm">
                   Practice Areas
                 </Link>
               </li>
               <li>
-                <Link href="/industries" className="text-white/80 hover:text-accent-gold transition-colors text-sm">
+                <Link to="/industries" className="text-white/80 hover:text-accent-gold transition-colors text-sm">
                   Industries
                 </Link>
               </li>
               <li>
-                <Link href="/newsroom" className="text-white/80 hover:text-accent-gold transition-colors text-sm">
+                <Link to="/newsroom" className="text-white/80 hover:text-accent-gold transition-colors text-sm">
                   Newsroom
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-white/80 hover:text-accent-gold transition-colors text-sm">
+                <Link to="/contact" className="text-white/80 hover:text-accent-gold transition-colors text-sm">
                   Contact
                 </Link>
-              </li>
-              <li>
-                <a href="https://rbelaw.com/make-a-payment" className="text-white/80 hover:text-accent-gold transition-colors text-sm">
-                  Make a Payment
-                </a>
               </li>
             </ul>
           </div>
@@ -133,17 +128,17 @@ export function Footer() {
             </h4>
             <ul className="space-y-2">
               <li>
-                <Link href="/accessibility-statement" className="text-white/80 hover:text-accent-gold transition-colors text-sm">
+                <Link to="/accessibility-statement" className="text-white/80 hover:text-accent-gold transition-colors text-sm">
                   Accessibility Statement
                 </Link>
               </li>
               <li>
-                <Link href="/disclaimer" className="text-white/80 hover:text-accent-gold transition-colors text-sm">
+                <Link to="/disclaimer" className="text-white/80 hover:text-accent-gold transition-colors text-sm">
                   Disclaimer
                 </Link>
               </li>
               <li>
-                <Link href="/privacy" className="text-white/80 hover:text-accent-gold transition-colors text-sm">
+                <Link to="/privacy" className="text-white/80 hover:text-accent-gold transition-colors text-sm">
                   Privacy Policy
                 </Link>
               </li>

@@ -12,7 +12,6 @@ import { existsSync } from 'fs'
 import path from 'path'
 import dotenv from 'dotenv'
 import process from 'node:process'
-import { isRateLimitError } from './lib/firecrawl.js'
 
 // Load env
 const envLocal = path.resolve(process.cwd(), '.env.local')
@@ -25,9 +24,8 @@ if (existsSync(envLocal)) {
 const FIRECRAWL_API_KEY = process.env.FIRECRAWL_API_KEY
 
 if (!FIRECRAWL_API_KEY) {
-  console.log('ℹ️  FIRECRAWL_API_KEY not found. Skipping attorney scraping (optional tooling).')
-  console.log('   Set FIRECRAWL_API_KEY in .env.local to enable attorney scraping.')
-  process.exit(0)
+  console.error('❌ FIRECRAWL_API_KEY not found in .env.local')
+  process.exit(1)
 }
 
 const app = new Firecrawl({ apiKey: FIRECRAWL_API_KEY })
@@ -94,13 +92,7 @@ async function main() {
       if (i < attorneyUrls.length - 1) {
         await new Promise((resolve) => setTimeout(resolve, 1000))
       }
-    } catch (error: any) {
-      // Handle rate limit errors gracefully
-      if (isRateLimitError(error)) {
-        console.warn(`  ⚠️  Rate limit hit while scraping ${slug}. Exiting gracefully (optional tooling).`)
-        console.warn(`   Scraped ${successCount} attorneys before rate limit.`)
-        break
-      }
+    } catch (error) {
       console.error(`  ❌ Error scraping ${slug}:`, (error as Error).message)
       errorCount++
     }
@@ -114,12 +106,6 @@ async function main() {
 }
 
 main().catch((err) => {
-  // Optional tooling: exit gracefully
-  if (isRateLimitError(err)) {
-    console.warn('⚠️  Fatal rate limit error. Exiting gracefully (optional tooling).')
-    process.exit(0)
-  } else {
-    console.warn('⚠️  Fatal error. Exiting gracefully (optional tooling):', err)
-    process.exit(0)
-  }
+  console.error('Fatal error:', err)
+  process.exit(1)
 })

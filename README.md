@@ -16,7 +16,7 @@ A modern, high-performance website for Riley Bennett Egloff LLP - a premier mid-
 
 ### Prerequisites
 
-- Node.js 18+
+- Node.js 18+ 
 - npm or yarn
 
 ### Installation
@@ -56,21 +56,7 @@ src/
 ├── hooks/              # Custom React hooks
 ├── assets/             # Static assets (images, fonts)
 └── index.css           # Global styles and Tailwind directives
-
-docs/
-├── archive/            # Historical implementation docs and guides
-└── scraped/            # Scraped content from legacy website
 ```
-
-## 📚 Documentation
-
-- **[ARCHITECTURE.md](./ARCHITECTURE.md)** - System architecture and technical decisions
-- **[docs/archive/](./docs/archive/)** - Historical implementation guides and progress logs
-  - Migration guides, implementation summaries, feature documentation
-- **[docs/scraped/](./docs/scraped/)** - Scraped content from the legacy website
-  - Practice area content extracted for migration
-
-For development guides and implementation history, see the [docs/archive](./docs/archive/) directory.
 
 ## 🎨 Design System
 
@@ -149,59 +135,12 @@ Edit `tailwind.config.js` to modify the color palette
 
 ## 🔒 Environment Variables
 
-### Required Environment Variables
+Currently no environment variables needed. Add `.env` for future API integrations:
 
-```env
-# Database Configuration (Required for Payload CMS)
-# Use DIRECT_DATABASE_URL (preferred) or DATABASE_URL
-DATABASE_URL=postgresql://user:password@host:5432/database
-DIRECT_DATABASE_URL=postgresql://user:password@host:5432/database
-
-# Payload Secret (Required - also protects /api/seed endpoint)
-PAYLOAD_SECRET=your-secret-key-here-change-in-production
-
-# Next.js Configuration
-NEXT_PUBLIC_SERVER_URL=http://localhost:3000
 ```
-
-### Optional API Keys
-
-The following API keys are optional but enable legal intelligence features:
-
-- **COURTLISTENER_API_KEY** - For Indiana court opinions
-- **REGULATIONS_GOV_API_KEY** - For healthcare compliance alerts
-
-**📖 Full setup instructions**: See [`docs/API_KEYS.md`](docs/API_KEYS.md) for detailed registration and configuration steps.
-
-**Quick setup:**
-1. **CourtListener**: Sign up at [courtlistener.com](https://www.courtlistener.com/), go to your profile, generate API token
-2. **Regulations.gov**: Register at [open.gsa.gov/api/regulationsgov/](https://open.gsa.gov/api/regulationsgov/), check email for API key
-
-### Database Migrations
-
-**📖 Full migration guide**: See [`docs/MIGRATIONS.md`](docs/MIGRATIONS.md) for detailed instructions on:
-- Setting up Neon database connection strings
-- Running migrations locally
-- Production migration workflow
-- Troubleshooting common issues
-
-**Quick start:**
-1. Set `DIRECT_DATABASE_URL` in `.env.local` (use Neon's direct connection string)
-2. Run: `npx payload migrate`
-3. Verify: `npm run health:ci`
-
-### Cloud Database Seeding
-
-To populate the production database (bypasses Windows local environment issues):
-
-1. Deploy the application to Vercel/production
-2. Visit: `https://your-domain.vercel.app/api/seed?secret=YOUR_PAYLOAD_SECRET`
-3. The endpoint will:
-   - Validate the secret against `PAYLOAD_SECRET`
-   - Run the seed migration to populate Attorneys, Practices, and Industries
-   - Return: `{ message: 'Database seeded successfully' }`
-
-**Security:** The `/api/seed` endpoint is protected by your `PAYLOAD_SECRET` environment variable.
+VITE_API_URL=your_api_url
+VITE_CONTACT_FORM_ENDPOINT=your_endpoint
+```
 
 ## 📝 License
 

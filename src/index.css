@@ -109,13 +109,6 @@
     -webkit-backdrop-filter: blur(15px);
     border: 1px solid rgba(255, 255, 255, 0.4);
   }
-
-  /* Mobile Navigation Safe Area Support */
-  @supports (padding: max(0px)) {
-    .mobile-nav-safe {
-      padding-bottom: max(1rem, env(safe-area-inset-bottom));
-    }
-  }
 }
 
 @layer utilities {
