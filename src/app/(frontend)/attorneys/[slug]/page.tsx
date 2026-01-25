@@ -1,38 +1,19 @@
 import React from 'react'
-import { getPayload } from 'payload'
-import config from '@payload-config'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import Script from 'next/script'
-import { convertLexicalToHTML } from '@payloadcms/richtext-lexical/html'
 import { Tabs } from '@/components/ui/Tabs'
+import { attorneys as allAttorneys } from '@/lib/data/attorneys'
+import { practiceAreas as allPracticeAreas } from '@/lib/data/practiceAreas'
+import { caseResults as allCaseResults } from '@/lib/data/caseResults'
+import { industriesManual } from '@/lib/data/industries-manual'
 
 // Generate static params for all attorney slugs (SSG)
 export async function generateStaticParams() {
-  // Fresh DB safe-mode: skip SSG during bootstrap
-  if (process.env.FRESH_DB_SAFE_MODE === '1') {
-    return []
-  }
-
-  try {
-    const payload = await getPayload({ config })
-    
-    const attorneys = await payload.find({
-      collection: 'attorneys',
-      limit: 0, // Get all attorneys without limit
-      select: {
-        slug: true,
-      },
-    })
-
-    return attorneys.docs.map((attorney) => ({
-      slug: attorney.slug,
-    }))
-  } catch (error) {
-    console.error('Error generating static params:', error)
-    return []
-  }
+  return allAttorneys.map((attorney) => ({
+    slug: attorney.slug,
+  }))
 }
 
 // Attorney page component
@@ -43,107 +24,57 @@ export default async function AttorneyPage({
 }) {
   const { slug } = await params
   
-  try {
-    const payload = await getPayload({ config })
-    
-    // Fetch the specific attorney by slug
-    const attorneysResult = await payload.find({
-      collection: 'attorneys',
-      where: {
-        slug: {
-          equals: slug,
-        },
-      },
-      limit: 1,
+  // Find attorney by slug
+  const attorney = allAttorneys.find((a) => a.slug === slug)
+  
+  if (!attorney) {
+    notFound()
+  }
+
+  // Map practice area names to practice area objects
+  const practiceAreas = attorney.practiceAreas
+    .map((practiceName) => {
+      // Try to find by name match
+      return allPracticeAreas.find(
+        (pa) => pa.name.toLowerCase() === practiceName.toLowerCase() || 
+                pa.slug.toLowerCase() === practiceName.toLowerCase().replace(/\s+/g, '-')
+      )
     })
+    .filter((pa): pa is typeof allPracticeAreas[0] => pa !== undefined)
 
-    // Handle 404 if attorney not found
-    if (!attorneysResult.docs || attorneysResult.docs.length === 0) {
-      notFound()
-    }
+  // Map industry names to industry objects
+  const industries = attorney.industries
+    .map((industryName) => {
+      return industriesManual.find(
+        (ind) => ind.name.toLowerCase() === industryName.toLowerCase() ||
+                 ind.slug.toLowerCase() === industryName.toLowerCase().replace(/\s+/g, '-')
+      )
+    })
+    .filter((ind): ind is typeof industriesManual[0] => ind !== undefined)
 
-    const attorney = attorneysResult.docs[0]
-
-    // Fetch practice areas if they exist
-    let practiceAreas: any[] = []
-    if (attorney.practices && Array.isArray(attorney.practices)) {
-      const practiceIds = attorney.practices
-        .filter((p: any) => typeof p === 'string' || typeof p === 'number')
-        .map((p: any) => p)
-
-      if (practiceIds.length > 0) {
-        const practiceAreasResult = await payload.find({
-          collection: 'practice-areas',
-          where: {
-            id: {
-              in: practiceIds,
-            },
-          },
-        })
-        practiceAreas = practiceAreasResult.docs
-      }
-    }
-
-    // Fetch industries if they exist
-    let industries: any[] = []
-    if (attorney.industries && Array.isArray(attorney.industries)) {
-      const industryIds = attorney.industries
-        .filter((i: any) => typeof i === 'string' || typeof i === 'number')
-        .map((i: any) => i)
-
-      if (industryIds.length > 0) {
-        const industriesResult = await payload.find({
-          collection: 'industries',
-          where: {
-            id: {
-              in: industryIds,
-            },
-          },
-        })
-        industries = industriesResult.docs
-      }
-    }
-
-    // Fetch case results for this attorney
-    let caseResults: any[] = []
-    try {
-      const caseResultsData = await payload.find({
-        collection: 'case-results',
-        where: {
-          attorney: {
-            equals: attorney.id,
-          },
-        },
-        limit: 10,
-        sort: '-settlementAmount',
+  // Find case results for this attorney (match by attorney ID or name)
+  const caseResults = allCaseResults
+    .filter((result) => {
+      // Check if attorney ID matches or if attorney name is in the attorneys array
+      return result.attorneys.some((attId) => {
+        // Try exact ID match
+        if (attId === attorney.id || attId === attorney.slug) return true
+        // Try name match (case-insensitive, handle variations)
+        const attorneyNameLower = attorney.name.toLowerCase()
+        const resultAttName = allAttorneys.find(a => a.id === attId || a.slug === attId)?.name.toLowerCase()
+        return resultAttName === attorneyNameLower
       })
-      caseResults = caseResultsData.docs
-    } catch (error) {
-      console.error('Error fetching case results:', error)
-    }
+    })
+    .slice(0, 10)
+    .map((result) => ({
+      id: result.id,
+      title: result.title,
+      settlementAmount: result.amount ? parseFloat(result.amount.replace(/[^0-9.]/g, '')) : null,
+      description: result.summary,
+    }))
 
-    // Fetch testimonials for this attorney
-    let testimonials: any[] = []
-    try {
-      const testimonialsData = await payload.find({
-        collection: 'testimonials',
-        where: {
-          attorney: {
-            in: [attorney.id],
-          },
-        },
-        limit: 10,
-      })
-      testimonials = testimonialsData.docs
-    } catch (error) {
-      console.error('Error fetching testimonials:', error)
-    }
-
-    // Get headshot URL if available
-    const headshotUrl =
-      attorney.headshot && typeof attorney.headshot === 'object'
-        ? attorney.headshot.url
-        : null
+  // Get headshot URL
+  const headshotUrl = attorney.image || null
 
     // Create Attorney JSON-LD Schema
     const attorneySchema = {
@@ -151,7 +82,7 @@ export default async function AttorneyPage({
       '@type': 'Person',
       '@id': `https://rbelaw.com/attorneys/${slug}#attorney`,
       name: attorney.name,
-      jobTitle: attorney.role?.replace('-', ' ') || 'Attorney',
+      jobTitle: attorney.title || 'Attorney',
       email: attorney.email || '',
       telephone: attorney.phone || '+1-317-636-8000',
       url: `https://rbelaw.com/attorneys/${slug}`,
@@ -218,8 +149,8 @@ export default async function AttorneyPage({
                 <h1 className="text-4xl md:text-5xl font-bold mb-2">
                   {attorney.name}
                 </h1>
-                <p className="text-xl text-[#B8860B] font-semibold mb-4 capitalize">
-                  {attorney.role?.replace('-', ' ')}
+                <p className="text-xl text-[#B8860B] font-semibold mb-4">
+                  {attorney.title}
                 </p>
 
                 {/* Contact Information */}
@@ -253,13 +184,13 @@ export default async function AttorneyPage({
                   <div className="mb-6">
                     <h2 className="text-xl font-bold mb-3">Practice Areas</h2>
                     <div className="flex flex-wrap gap-2">
-                      {practiceAreas.map((area: any) => (
+                      {practiceAreas.map((area) => (
                         <Link
                           key={area.id}
                           href={`/practice-areas/${area.slug}`}
                           className="bg-[#B8860B] hover:bg-[#9a710a] text-[#0A2540] px-4 py-2 rounded-lg font-semibold transition-colors"
                         >
-                          {area.title}
+                          {area.name}
                         </Link>
                       ))}
                     </div>
@@ -277,17 +208,11 @@ export default async function AttorneyPage({
               <h2 className="text-3xl font-bold text-[#0A2540] mb-6">
                 Biography
               </h2>
-              {attorney.bio && (
+              {attorney.bio && attorney.bio.length > 0 && (
                 <div className="prose prose-lg max-w-none text-gray-700">
-                  {typeof attorney.bio === 'string' ? (
-                    <p>{attorney.bio}</p>
-                  ) : (
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: convertLexicalToHTML({ data: attorney.bio }),
-                      }}
-                    />
-                  )}
+                  {attorney.bio.map((paragraph, index) => (
+                    <p key={index} dangerouslySetInnerHTML={{ __html: paragraph }} />
+                  ))}
                 </div>
               )}
 
@@ -298,10 +223,10 @@ export default async function AttorneyPage({
                     Education
                   </h3>
                   <ul className="space-y-2">
-                    {attorney.education.map((edu: any, index: number) => (
+                    {attorney.education.map((edu, index: number) => (
                       <li key={index} className="text-gray-700">
-                        <span className="font-semibold">{edu.degree}</span>
-                        {edu.institution && ` - ${edu.institution}`}
+                        {edu.institution}
+                        {edu.degree && ` - ${edu.degree}`}
                         {edu.year && ` (${edu.year})`}
                       </li>
                     ))}
@@ -331,8 +256,8 @@ export default async function AttorneyPage({
           </div>
         </div>
 
-        {/* The Trifecta: Representative Experience, Client Feedback, Industry Focus */}
-        {(caseResults.length > 0 || testimonials.length > 0 || industries.length > 0) && (
+        {/* Representative Experience and Industry Focus */}
+        {(caseResults.length > 0 || industries.length > 0) && (
           <div className="bg-gray-50 py-12">
             <div className="container mx-auto px-6">
               <div className="max-w-4xl mx-auto">
@@ -348,7 +273,7 @@ export default async function AttorneyPage({
                             label: 'Representative Experience',
                             content: (
                               <div className="space-y-6">
-                                {caseResults.map((caseResult: any, index: number) => (
+                                {caseResults.map((caseResult, index: number) => (
                                   <div
                                     key={caseResult.id || index}
                                     className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm"
@@ -373,40 +298,6 @@ export default async function AttorneyPage({
                           },
                         ]
                       : []),
-                    ...(testimonials.length > 0
-                      ? [
-                          {
-                            id: 'feedback',
-                            label: 'Client Feedback',
-                            content: (
-                              <div className="space-y-6">
-                                {testimonials.map((testimonial: any, index: number) => (
-                                  <div
-                                    key={testimonial.id || index}
-                                    className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm"
-                                  >
-                                    <div className="mb-4">
-                                      <svg
-                                        className="h-8 w-8 text-[#B8860B] opacity-50"
-                                        fill="currentColor"
-                                        viewBox="0 0 32 32"
-                                      >
-                                        <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
-                                      </svg>
-                                    </div>
-                                    <blockquote className="text-gray-700 text-lg italic mb-4">
-                                      "{testimonial.quote}"
-                                    </blockquote>
-                                    <p className="text-[#0A2540] font-semibold">
-                                      — {testimonial.clientName}
-                                    </p>
-                                  </div>
-                                ))}
-                              </div>
-                            ),
-                          },
-                        ]
-                      : []),
                     ...(industries.length > 0
                       ? [
                           {
@@ -414,17 +305,17 @@ export default async function AttorneyPage({
                             label: 'Industry Focus',
                             content: (
                               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                {industries.map((industry: any) => (
+                                {industries.map((industry) => (
                                   <div
-                                    key={industry.id}
+                                    key={industry.slug}
                                     className="bg-white p-6 rounded-lg border border-gray-200 shadow-sm"
                                   >
                                     <h3 className="text-xl font-bold text-[#0A2540] mb-2">
-                                      {industry.title}
+                                      {industry.name}
                                     </h3>
-                                    {industry.description && (
+                                    {industry.intro && (
                                       <p className="text-gray-700">
-                                        {industry.description}
+                                        {industry.intro}
                                       </p>
                                     )}
                                   </div>
@@ -454,8 +345,4 @@ export default async function AttorneyPage({
         </div>
       </main>
     )
-  } catch (error) {
-    console.error('Error fetching attorney:', error)
-    notFound()
-  }
 }

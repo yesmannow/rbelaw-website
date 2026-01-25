@@ -1,13 +1,13 @@
 import React from 'react'
-import { getPayload } from 'payload'
-import config from '@payload-config'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 import Script from 'next/script'
-import { convertLexicalToHTML } from '@payloadcms/richtext-lexical/html'
 import type { Metadata } from 'next'
 import { PracticeAreaContent } from '@/components/practice-areas/PracticeAreaContent'
+import { practiceAreas as allPracticeAreas } from '@/lib/data/practiceAreas'
+import { attorneys as allAttorneys } from '@/lib/data/attorneys'
+import { industriesManual } from '@/lib/data/industries-manual'
 
 // Generate metadata for SEO
 export async function generateMetadata({
@@ -17,83 +17,44 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params
   
-  try {
-    const payload = await getPayload({ config })
-    
-    const practiceAreasResult = await payload.find({
-      collection: 'practice-areas',
-      where: {
-        slug: {
-          equals: slug,
-        },
-      },
-      limit: 1,
-    })
+  const practiceArea = allPracticeAreas.find((pa) => pa.slug === slug)
 
-    if (!practiceAreasResult.docs || practiceAreasResult.docs.length === 0) {
-      return {
-        title: 'Practice Area Not Found',
-        description: 'The requested practice area could not be found.',
-      }
-    }
-
-    const practiceArea = practiceAreasResult.docs[0]
-    const title = `Riley Bennett Egloff LLP - ${practiceArea.title}`
-    const description = practiceArea.description || `Legal services for ${practiceArea.title}`
-    const url = `https://rbelaw.com/practice-areas/${slug}`
-
+  if (!practiceArea) {
     return {
+      title: 'Practice Area Not Found',
+      description: 'The requested practice area could not be found.',
+    }
+  }
+
+  const title = `Riley Bennett Egloff LLP - ${practiceArea.name}`
+  const description = practiceArea.description || `Legal services for ${practiceArea.name}`
+  const url = `https://rbelaw.com/practice-areas/${slug}`
+
+  return {
+    title,
+    description,
+    openGraph: {
       title,
       description,
-      openGraph: {
-        title,
-        description,
-        url,
-        type: 'website',
-      },
-      twitter: {
-        card: 'summary_large_image',
-        title,
-        description,
-      },
-      alternates: {
-        canonical: url,
-      },
-    }
-  } catch (error) {
-    console.error('Error generating metadata:', error)
-    return {
-      title: 'Riley Bennett Egloff LLP',
-      description: 'Premier Indiana Defense Litigation & Corporate Law',
-    }
+      url,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+    },
+    alternates: {
+      canonical: url,
+    },
   }
 }
 
 // Generate static params for all practice area slugs (SSG)
 export async function generateStaticParams() {
-  // Fresh DB safe-mode: skip SSG during bootstrap
-  if (process.env.FRESH_DB_SAFE_MODE === '1') {
-    return []
-  }
-
-  try {
-    const payload = await getPayload({ config })
-    
-    const practiceAreas = await payload.find({
-      collection: 'practice-areas',
-      limit: 0, // Get all practice areas without limit
-      select: {
-        slug: true,
-      },
-    })
-
-    return practiceAreas.docs.map((area) => ({
-      slug: area.slug,
-    }))
-  } catch (error) {
-    console.error('Error generating static params:', error)
-    return []
-  }
+  return allPracticeAreas.map((area) => ({
+    slug: area.slug,
+  }))
 }
 
 // Practice Area page component
@@ -104,79 +65,33 @@ export default async function PracticeAreaPage({
 }) {
   const { slug } = await params
   
-  let practiceArea: any
-  let attorneys: any[] = []
-  let industries: any[] = []
-  let featuredImageUrl: string | null = null
-
-  try {
-    const payload = await getPayload({ config })
-    
-    // Fetch the specific practice area by slug
-    const practiceAreasResult = await payload.find({
-      collection: 'practice-areas',
-      where: {
-        slug: {
-          equals: slug,
-        },
-      },
-      limit: 1,
-    })
-
-    // Handle 404 if practice area not found
-    if (!practiceAreasResult.docs || practiceAreasResult.docs.length === 0) {
-      notFound()
-    }
-
-    practiceArea = practiceAreasResult.docs[0]
-
-    // Fetch featured attorneys if they exist
-    if (practiceArea.featuredAttorneys && Array.isArray(practiceArea.featuredAttorneys)) {
-      const attorneyIds = practiceArea.featuredAttorneys
-        .filter((a: any) => typeof a === 'string' || typeof a === 'number')
-        .map((a: any) => a)
-
-      if (attorneyIds.length > 0) {
-        const attorneysResult = await payload.find({
-          collection: 'attorneys',
-          where: {
-            id: {
-              in: attorneyIds,
-            },
-          },
-        })
-        attorneys = attorneysResult.docs
-      }
-    }
-
-    // Fetch industries if they exist
-    if (practiceArea.industries && Array.isArray(practiceArea.industries)) {
-      const industryIds = practiceArea.industries
-        .filter((i: any) => typeof i === 'string' || typeof i === 'number')
-        .map((i: any) => i)
-
-      if (industryIds.length > 0) {
-        const industriesResult = await payload.find({
-          collection: 'industries',
-          where: {
-            id: {
-              in: industryIds,
-            },
-          },
-        })
-        industries = industriesResult.docs
-      }
-    }
-
-    // Get featured image URL if available
-    featuredImageUrl =
-      practiceArea.featuredImage && typeof practiceArea.featuredImage === 'object'
-        ? practiceArea.featuredImage.url
-        : null
-  } catch (error) {
-    console.error('Error fetching practice area:', error)
+  // Find practice area by slug
+  const practiceArea = allPracticeAreas.find((pa) => pa.slug === slug)
+  
+  if (!practiceArea) {
     notFound()
   }
+
+  // Find attorneys who practice in this area
+  // Match by practice area name or slug
+  const attorneys = allAttorneys.filter((attorney) =>
+    attorney.practiceAreas.some((paName) => {
+      const normalizedPaName = paName.toLowerCase().replace(/\s+/g, '-')
+      return (
+        paName.toLowerCase() === practiceArea.name.toLowerCase() ||
+        normalizedPaName === practiceArea.slug ||
+        practiceArea.name.toLowerCase().includes(paName.toLowerCase()) ||
+        paName.toLowerCase().includes(practiceArea.name.toLowerCase())
+      )
+    })
+  )
+
+  // Find related industries (this would need to be mapped from practice area data)
+  // For now, we'll leave industries empty or try to match from attorney industries
+  const industries: typeof industriesManual = []
+
+  // Get featured image URL if available
+  const featuredImageUrl = practiceArea.imageUrl || null
 
   // Create Practice Area JSON-LD Schema
   const practiceAreaSchema = {
@@ -208,7 +123,7 @@ export default async function PracticeAreaPage({
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              {practiceArea.title}
+              {practiceArea.name}
             </h1>
             {practiceArea.description && (
               <p className="text-xl text-gray-300 leading-relaxed">
@@ -224,7 +139,7 @@ export default async function PracticeAreaPage({
         <div className="relative w-full h-64 md:h-96">
           <Image
             src={featuredImageUrl}
-            alt={practiceArea.title}
+            alt={practiceArea.name}
             fill
             className="object-cover"
             priority
@@ -234,8 +149,8 @@ export default async function PracticeAreaPage({
 
       {/* Main Content Section - Editorial Magazine Layout */}
       <PracticeAreaContent 
-        content={practiceArea.content ? convertLexicalToHTML({ data: practiceArea.content }) : ''}
-        leadMagnetType={practiceArea.leadMagnetType ?? undefined}
+        content={practiceArea.detailedDescription || ''}
+        leadMagnetType={undefined}
         subAreas={practiceArea.subAreas ?? undefined}
         caseStudies={practiceArea.caseStudies ?? undefined}
       />
@@ -249,11 +164,8 @@ export default async function PracticeAreaPage({
                 Our Attorneys
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {attorneys.map((attorney: any) => {
-                  const headshotUrl =
-                    attorney.headshot && typeof attorney.headshot === 'object'
-                      ? attorney.headshot.url
-                      : null
+                {attorneys.map((attorney) => {
+                  const headshotUrl = attorney.image || null
 
                   return (
                     <Link
@@ -284,8 +196,8 @@ export default async function PracticeAreaPage({
                         <h3 className="text-lg font-semibold text-[#0A2540] mb-1">
                           {attorney.name}
                         </h3>
-                        <p className="text-[#B8860B] text-sm capitalize">
-                          {attorney.role?.replace('-', ' ')}
+                        <p className="text-[#B8860B] text-sm">
+                          {attorney.title}
                         </p>
                       </div>
                     </Link>
@@ -306,12 +218,12 @@ export default async function PracticeAreaPage({
                 Related Industries
               </h2>
               <div className="flex flex-wrap gap-3">
-                {industries.map((industry: any) => (
+                {industries.map((industry) => (
                   <div
-                    key={industry.id}
+                    key={industry.slug}
                     className="bg-gray-100 px-4 py-2 rounded-lg text-gray-700"
                   >
-                    {industry.title}
+                    {industry.name}
                   </div>
                 ))}
               </div>
