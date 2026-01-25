@@ -32,16 +32,18 @@
     --ring: 213 52% 27%;
 
     /* Navbar Height Variables - Dynamic based on scroll state */
-    --nav-height: 80px;
+    --nav-height: 80px;  /* Main nav height when not scrolled */
+    --nav-total-height: 116px;  /* Total nav height including top banner (36px + 80px) */
 
     /* Prestige Branding Colors - RBE Insight Center */
     --navy-prestige: #0A2540;          /* Navy for backgrounds */
-    --gold-prestige: #B8860B;          /* Gold for accents and CTAs */
+    --gold-prestige: #74243C;          /* Maroon for accents and CTAs (replaced gold) */
   }
 
-  /* Scrolled state - applies when navbar is scrolled */
+  /* Scrolled state - applies when navbar is scrolled (top banner hidden) */
   .nav-scrolled {
-    --nav-height: 64px;
+    --nav-height: 64px;  /* Main nav height when scrolled */
+    --nav-total-height: 64px;  /* Total nav height (no top banner when scrolled) */
   }
 
   body {
@@ -114,5 +116,14 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Hide scrollbar but keep scrollability */
+  .scrollbar-none {
+    -ms-overflow-style: none; /* IE/Edge legacy */
+    scrollbar-width: none; /* Firefox */
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
   }
 }

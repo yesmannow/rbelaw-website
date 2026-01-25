@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Home, Users, Newspaper } from 'lucide-react'
+import { Home, Users, Newspaper, FileText, Info } from 'lucide-react'
 import { DockItem } from './DockItem'
 import { CommandCenterFAB } from './CommandCenterFAB'
 import { Drawer, DrawerContent, DrawerHeader, DrawerTitle } from '@/components/ui/Drawer'
@@ -31,13 +31,13 @@ export function MobileDock() {
           className="relative px-4 py-2 bg-white/80 backdrop-blur-xl rounded-2xl shadow-xl"
           style={{
             border: '1px solid transparent',
-            backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, #5D1F34 0%, #B8860B 100%)',
+            backgroundImage: 'linear-gradient(white, white), linear-gradient(135deg, #5D1F34 0%, #74243C 100%)',
             backgroundOrigin: 'border-box',
             backgroundClip: 'padding-box, border-box',
           }}
         >
           {/* Dock Items Container */}
-          <div className="flex items-center justify-around gap-2">
+          <div className="flex items-center justify-around gap-1">
             {/* Home */}
             <DockItem icon={Home} label="Home" to="/" />
 
@@ -52,8 +52,11 @@ export function MobileDock() {
             {/* Practice Areas */}
             <DockItem icon={Newspaper} label="Practice" to="/practice-areas/business-corporate" />
 
-            {/* About - placeholder for balance */}
-            <div className="flex-1" />
+            {/* Newsroom */}
+            <DockItem icon={FileText} label="News" to="/newsroom" />
+
+            {/* About */}
+            <DockItem icon={Info} label="About" to="/about" />
           </div>
         </div>
       </motion.div>

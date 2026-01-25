@@ -2,10 +2,9 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Command } from 'cmdk'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Search, Phone, Mail, MapPin, Users, Scale, Briefcase } from 'lucide-react'
+import { Search, Phone, Mail, MapPin, Users, Scale } from 'lucide-react'
 import { attorneys } from '@/lib/utils/attorney-logic'
 import { practiceAreas } from '@/lib/data/practiceAreas'
-import { getAllIndustriesManual } from '@/lib/data/industries-manual'
 
 interface GlobalSearchProps {
   open: boolean
@@ -15,7 +14,6 @@ interface GlobalSearchProps {
 export function GlobalSearch({ open, onOpenChange }: GlobalSearchProps) {
   const [search, setSearch] = useState('')
   const navigate = useNavigate()
-  const industries = getAllIndustriesManual()
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -63,7 +61,7 @@ export function GlobalSearch({ open, onOpenChange }: GlobalSearchProps) {
                   <Command.Input
                     value={search}
                     onValueChange={setSearch}
-                    placeholder="Search for attorneys, practice areas, industries, or actions..."
+                    placeholder="Search for attorneys, practice areas, or actions..."
                     className="flex-1 bg-transparent outline-none text-primary-navy placeholder:text-neutral-400"
                   />
                   <kbd className="hidden sm:inline-flex items-center gap-1 px-2 py-1 text-xs font-medium text-neutral-500 bg-neutral-100 rounded">
@@ -114,26 +112,6 @@ export function GlobalSearch({ open, onOpenChange }: GlobalSearchProps) {
                         <div>
                           <div className="text-sm font-medium">{area.name}</div>
                           <div className="text-xs text-neutral-500">{area.description}</div>
-                        </div>
-                      </Command.Item>
-                    ))}
-                  </Command.Group>
-
-                  {/* Industries Group */}
-                  <Command.Group heading="Industries" className="mb-2">
-                    {industries.map((industry) => (
-                      <Command.Item
-                        key={industry.slug}
-                        onSelect={() => handleSelect(() => navigate(`/industries/${industry.slug}`))}
-                        className="flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer hover:bg-primary-burgundy/10 aria-selected:bg-primary-burgundy/10"
-                        keywords={[industry.name, industry.intro || '']}
-                      >
-                        <Briefcase className="w-4 h-4 text-primary-navy" />
-                        <div>
-                          <div className="text-sm font-medium">{industry.name}</div>
-                          {industry.intro && (
-                            <div className="text-xs text-neutral-500 line-clamp-1">{industry.intro}</div>
-                          )}
                         </div>
                       </Command.Item>
                     ))}

@@ -112,7 +112,7 @@ export function InteractiveResource({ mapping }: InteractiveResourceProps) {
             style={{
               backgroundColor: 'var(--gold-prestige)',
               color: 'var(--navy-prestige)',
-              boxShadow: '0 4px 16px rgba(184, 134, 11, 0.4)'
+              boxShadow: '0 4px 16px rgba(116, 36, 60, 0.4)'
             }}
           >
             Schedule a Consultation

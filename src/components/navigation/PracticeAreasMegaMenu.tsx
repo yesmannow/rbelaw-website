@@ -55,7 +55,7 @@ export function PracticeAreasMegaMenu() {
               className="fixed left-0 right-0 z-40 h-[600px] pointer-events-none"
               style={{ 
                 backgroundColor: 'rgba(10, 37, 64, 0.95)',
-                top: 'var(--nav-height)'
+                top: 'var(--nav-total-height)'
               }}
             />
 
@@ -65,10 +65,10 @@ export function PracticeAreasMegaMenu() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.3 }}
-              className="fixed left-0 right-0 z-50 backdrop-blur-xl border-t border-white/10"
+              className="fixed left-0 right-0 z-[70] backdrop-blur-xl border-t border-white/10"
               style={{ 
                 backgroundColor: 'rgba(10, 37, 64, 0.95)',
-                top: 'var(--nav-height)'
+                top: 'var(--nav-total-height)'
               }}
             >
               <div className="section-container py-12">
@@ -84,7 +84,7 @@ export function PracticeAreasMegaMenu() {
                   </div>
                   <Link
                     to="/practice-areas"
-                    className="flex items-center gap-2 rounded-lg bg-[#B8860B] hover:bg-[#A07A0A] px-6 py-3 text-sm font-semibold text-white transition-all hover:scale-105"
+                    className="flex items-center gap-2 rounded-lg bg-[#74243C] hover:bg-[#5D1F34] px-6 py-3 text-sm font-semibold text-white transition-all hover:scale-105"
                   >
                     View All
                     <ArrowRight className="h-4 w-4" />
@@ -105,17 +105,17 @@ export function PracticeAreasMegaMenu() {
                       >
                         <Link
                           to={`/practice-areas/${area.slug}`}
-                          className="group relative flex flex-col h-full overflow-hidden rounded-lg bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/10 hover:border-[#B8860B] p-5 transition-all"
+                          className="group relative flex flex-col h-full overflow-hidden rounded-lg bg-white/5 hover:bg-white/10 backdrop-blur-sm border border-white/10 hover:border-[#74243C] p-5 transition-all"
                         >
                           {/* Icon */}
                           {Icon && (
-                            <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[#B8860B]/20 text-[#B8860B] transition-all group-hover:scale-110 group-hover:bg-[#B8860B] group-hover:text-white">
+                            <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[#74243C]/20 text-[#74243C] transition-all group-hover:scale-110 group-hover:bg-[#74243C] group-hover:text-white">
                               <Icon className="h-5 w-5" />
                             </div>
                           )}
 
                           {/* Title */}
-                          <h4 className="font-semibold text-white mb-2 group-hover:text-[#B8860B] transition-colors">
+                          <h4 className="font-semibold text-white mb-2 group-hover:text-[#74243C] transition-colors">
                             {area.name}
                           </h4>
 
@@ -127,7 +127,7 @@ export function PracticeAreasMegaMenu() {
                           )}
 
                           {/* Arrow Icon */}
-                          <div className="flex items-center text-sm font-medium text-[#B8860B] opacity-0 transition-all group-hover:opacity-100">
+                          <div className="flex items-center text-sm font-medium text-[#74243C] opacity-0 transition-all group-hover:opacity-100">
                             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                           </div>
                         </Link>

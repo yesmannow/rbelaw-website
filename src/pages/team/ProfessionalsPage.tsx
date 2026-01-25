@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { Mail, Phone, Building2 } from 'lucide-react'
 import { professionals } from '@/lib/data/professionals'
 import { SEOMeta } from '@/components/seo/SEOMeta'
+import { cn } from '@/lib/utils'
 
 export function ProfessionalsPage() {
   // Group professionals by department
@@ -41,94 +42,129 @@ export function ProfessionalsPage() {
           </div>
         </section>
 
-        {/* Professionals by Department */}
+        {/* Professionals by Department - Improved Layout */}
         <section className="py-16 lg:py-20">
           <div className="section-container">
-            {Object.entries(professionalsByDepartment).map(([department, deptProfessionals], deptIndex) => (
-              <motion.div
-                key={department}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: deptIndex * 0.1 }}
-                className="mb-16 last:mb-0"
-              >
-                <div className="flex items-center gap-3 mb-8">
-                  <Building2 className="w-6 h-6 text-primary-navy" />
-                  <h2 className="text-3xl font-serif font-bold text-primary-navy">
-                    {department}
-                  </h2>
-                </div>
+            {Object.entries(professionalsByDepartment).map(([department, deptProfessionals], deptIndex) => {
+              const totalProfessionals = deptProfessionals.length
+              
+              return (
+                <motion.div
+                  key={department}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: deptIndex * 0.1 }}
+                  className="mb-20 last:mb-0"
+                >
+                  <div className="flex items-center gap-3 mb-10">
+                    <Building2 className="w-6 h-6 text-primary-navy" />
+                    <h2 className="text-3xl font-serif font-bold text-primary-navy">
+                      {department}
+                    </h2>
+                    <span className="text-neutral-500 text-sm">({totalProfessionals})</span>
+                  </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {deptProfessionals.map((professional, index) => (
-                    <motion.div
-                      key={professional.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.5, delay: (deptIndex * 0.1) + (index * 0.05) }}
-                      className="bg-white rounded-lg shadow-soft hover:shadow-corporate transition-shadow overflow-hidden"
-                    >
-                      {professional.imageUrl && (
-                        <div className="aspect-square bg-neutral-200 overflow-hidden">
-                          <img
-                            src={professional.imageUrl}
-                            alt={professional.name}
-                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
-                            loading="lazy"
-                            onError={(e) => {
-                              e.currentTarget.src = '/placeholder-avatar.jpg'
-                            }}
-                          />
-                        </div>
-                      )}
-
-                      <div className="p-6">
-                        <h3 className="text-xl font-serif font-bold text-primary-navy mb-1">
-                          {professional.name}
-                        </h3>
-                        <p className="text-accent-gold font-medium mb-3">{professional.title}</p>
-
-                        {professional.bio && (
-                          <p className="text-neutral-600 text-sm mb-4 line-clamp-3">
-                            {professional.bio}
-                          </p>
-                        )}
-
-                        {professional.specialties && professional.specialties.length > 0 && (
-                          <div className="flex flex-wrap gap-2 mb-4">
-                            {professional.specialties.map((specialty, idx) => (
-                              <span
-                                key={idx}
-                                className="px-2 py-1 bg-primary-navy/10 text-primary-navy text-xs rounded-full"
-                              >
-                                {specialty}
-                              </span>
-                            ))}
-                          </div>
-                        )}
-
-                        <div className="space-y-2 text-sm">
-                          {professional.phone && (
-                            <div className="flex items-center gap-2 text-neutral-600">
-                              <Phone className="w-4 h-4" />
-                              <a href={`tel:${professional.phone.replace(/\D/g, '')}`} className="hover:text-primary-navy">
-                                {professional.phone}
-                              </a>
+                  {/* Dynamic Grid Layout - Avoids single cards in a row */}
+                  <div className={cn(
+                    'grid gap-6',
+                    totalProfessionals === 1 
+                      ? 'grid-cols-1 max-w-md mx-auto'
+                      : totalProfessionals === 2
+                      ? 'grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto'
+                      : totalProfessionals === 3
+                      ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+                      : totalProfessionals === 4
+                      ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-4'
+                      : totalProfessionals === 5
+                      ? 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5'
+                      : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
+                  )}>
+                    {deptProfessionals.map((professional, index) => {
+                      // Create staggered heights for visual interest
+                      const isTall = index % 3 === 0
+                      const isWide = index % 4 === 2 && totalProfessionals > 3
+                      
+                      return (
+                        <motion.div
+                          key={professional.id}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5, delay: (deptIndex * 0.1) + (index * 0.05) }}
+                          className={cn(
+                            'bg-white rounded-xl shadow-soft hover:shadow-corporate transition-all duration-300 overflow-hidden group',
+                            isWide && totalProfessionals > 3 ? 'md:col-span-2' : '',
+                            isTall && totalProfessionals > 3 ? 'lg:row-span-1' : ''
+                          )}
+                        >
+                          {professional.imageUrl && (
+                            <div className={cn(
+                              'bg-neutral-200 overflow-hidden relative',
+                              isTall && totalProfessionals > 3 ? 'aspect-[3/4]' : 'aspect-square'
+                            )}>
+                              <img
+                                src={professional.imageUrl}
+                                alt={professional.name}
+                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                                onError={(e) => {
+                                  e.currentTarget.src = '/placeholder-avatar.jpg'
+                                }}
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                             </div>
                           )}
-                          <div className="flex items-center gap-2 text-neutral-600">
-                            <Mail className="w-4 h-4" />
-                            <a href={`mailto:${professional.email}`} className="hover:text-primary-navy break-all">
-                              {professional.email}
-                            </a>
+
+                          <div className="p-6">
+                            <h3 className="text-xl font-serif font-bold text-primary-navy mb-1 group-hover:text-accent-gold transition-colors">
+                              {professional.name}
+                            </h3>
+                            <p className="text-accent-gold font-semibold mb-3">{professional.title}</p>
+
+                            {professional.bio && (
+                              <p className="text-neutral-600 text-sm mb-4 line-clamp-3 leading-relaxed">
+                                {professional.bio}
+                              </p>
+                            )}
+
+                            {professional.specialties && professional.specialties.length > 0 && (
+                              <div className="flex flex-wrap gap-2 mb-4">
+                                {professional.specialties.slice(0, 3).map((specialty, idx) => (
+                                  <span
+                                    key={idx}
+                                    className="px-2.5 py-1 bg-accent-gold/10 text-accent-gold text-xs font-medium rounded-full border border-accent-gold/20"
+                                  >
+                                    {specialty}
+                                  </span>
+                                ))}
+                              </div>
+                            )}
+
+                            <div className="space-y-2 text-sm pt-4 border-t border-neutral-100">
+                              {professional.phone && (
+                                <a 
+                                  href={`tel:${professional.phone.replace(/\D/g, '')}`}
+                                  className="flex items-center gap-2 text-neutral-600 hover:text-accent-gold transition-colors group/link"
+                                >
+                                  <Phone className="w-4 h-4 flex-shrink-0" />
+                                  <span className="truncate">{professional.phone}</span>
+                                </a>
+                              )}
+                              <a 
+                                href={`mailto:${professional.email}`}
+                                className="flex items-center gap-2 text-neutral-600 hover:text-accent-gold transition-colors group/link"
+                              >
+                                <Mail className="w-4 h-4 flex-shrink-0" />
+                                <span className="truncate break-all">{professional.email}</span>
+                              </a>
+                            </div>
                           </div>
-                        </div>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            ))}
+                        </motion.div>
+                      )
+                    })}
+                  </div>
+                </motion.div>
+              )
+            })}
           </div>
         </section>
 

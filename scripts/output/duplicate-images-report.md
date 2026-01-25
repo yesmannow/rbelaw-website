@@ -1,0 +1,217 @@
+# Duplicate Images Report
+
+Generated: 2026-01-25T13:54:53.013Z
+Scanned images: 318
+Exact duplicate groups (byte-for-byte): 10
+Same-stem variant groups (different extensions): 47
+
+## Largest exact-duplicate groups
+- Hash: `76662bb16448a0579a2411213129aaeb8cfe32fb` (2 files, 318600 bytes)
+  - `public/assets/practice-areas/business-law-1920.webp` (159300 bytes)
+  - `public/assets/practice-areas/commercial-litigation-1920.webp` (159300 bytes)
+- Hash: `4f1e69300c08dbbc5cad2dff5786eed89ed4f28d` (2 files, 220028 bytes)
+  - `public/assets/practice-areas/business-law-1536.webp` (110014 bytes)
+  - `public/assets/practice-areas/commercial-litigation-1536.webp` (110014 bytes)
+- Hash: `80be3b3dce09bc75ffda62a6898c11989e906a1a` (2 files, 124036 bytes)
+  - `public/assets/practice-areas/business-law-1024.webp` (62018 bytes)
+  - `public/assets/practice-areas/commercial-litigation-1024.webp` (62018 bytes)
+- Hash: `d0513a26055aede921332d1c8c9b3e54f463594c` (2 files, 53756 bytes)
+  - `public/assets/attorneys/kathleen-hart.webp` (26878 bytes)
+  - `public/assets/attorneys/kathleen-hart@2x.webp` (26878 bytes)
+- Hash: `ae22795571b67725182a2f70f9aff0e3115be8e8` (2 files, 36966 bytes)
+  - `public/images/practice-areas/Bus-corp-law-1024x284 (1).jpg` (18483 bytes)
+  - `public/images/practice-areas/Bus-corp-law-1024x284.jpg` (18483 bytes)
+- Hash: `8decc8ed7b1f1f62f7451232b7f6ed22a454441d` (2 files, 35092 bytes)
+  - `public/assets/attorneys/lindsay-a-llewellyn.webp` (17546 bytes)
+  - `public/assets/attorneys/lindsay-a-llewellyn@2x.webp` (17546 bytes)
+- Hash: `d0bfc03734bd27051533c65d7f5e31245f7cbc3d` (2 files, 27604 bytes)
+  - `public/images/practice-areas/bus-corp-law-1024x284-1.avif` (13802 bytes)
+  - `public/images/practice-areas/bus-corp-law-1024x284.avif` (13802 bytes)
+- Hash: `d3b9449405c5790cafbfd9ec29af2c9f0a68d789` (2 files, 24672 bytes)
+  - `public/images/practice-areas/bus-corp-law-1024x284-1.webp` (12336 bytes)
+  - `public/images/practice-areas/bus-corp-law-1024x284.webp` (12336 bytes)
+- Hash: `b335678f20ecbbe098d08bb96650d3b6cc0dba22` (2 files, 23836 bytes)
+  - `public/assets/attorneys/katie-s-riles.webp` (11918 bytes)
+  - `public/assets/attorneys/katie-s-riles@2x.webp` (11918 bytes)
+- Hash: `0a7f43c7cd4d6d51d5570218715fe4663612832c` (2 files, 19316 bytes)
+  - `public/assets/attorneys/j-t-wynne.webp` (9658 bytes)
+  - `public/assets/attorneys/j-t-wynne@2x.webp` (9658 bytes)
+
+## Same-stem variants (likely duplicates across formats)
+- Stem: `public/images/hero/hero-1`
+  - `public/images/hero/hero-1.avif` (.avif, 93814 bytes)
+  - `public/images/hero/hero-1.jpg` (.jpg, 183404 bytes)
+  - `public/images/hero/hero-1.webp` (.webp, 90626 bytes)
+- Stem: `public/images/hero/hero-2`
+  - `public/images/hero/hero-2.avif` (.avif, 92717 bytes)
+  - `public/images/hero/hero-2.jpg` (.jpg, 173893 bytes)
+  - `public/images/hero/hero-2.webp` (.webp, 95234 bytes)
+- Stem: `public/images/industries/industries-1`
+  - `public/images/industries/industries-1.avif` (.avif, 70520 bytes)
+  - `public/images/industries/industries-1.jpg` (.jpg, 103028 bytes)
+  - `public/images/industries/industries-1.webp` (.webp, 66316 bytes)
+- Stem: `public/images/practice-areas/bus-corp-law-1024x284-1`
+  - `public/images/practice-areas/bus-corp-law-1024x284-1.avif` (.avif, 13802 bytes)
+  - `public/images/practice-areas/bus-corp-law-1024x284-1.jpg` (.jpg, 22008 bytes)
+  - `public/images/practice-areas/bus-corp-law-1024x284-1.webp` (.webp, 12336 bytes)
+- Stem: `public/images/practice-areas/practice-areas-1`
+  - `public/images/practice-areas/practice-areas-1.avif` (.avif, 74202 bytes)
+  - `public/images/practice-areas/practice-areas-1.jpg` (.jpg, 114679 bytes)
+  - `public/images/practice-areas/practice-areas-1.webp` (.webp, 64008 bytes)
+- Stem: `public/images/team/optimized/anna-marvin-attorney-thmb-jpg`
+  - `public/images/team/optimized/anna-marvin-attorney-thmb-jpg.avif` (.avif, 14262 bytes)
+  - `public/images/team/optimized/anna-marvin-attorney-thmb-jpg.jpg` (.jpg, 21923 bytes)
+  - `public/images/team/optimized/anna-marvin-attorney-thmb-jpg.webp` (.webp, 12244 bytes)
+- Stem: `public/images/team/optimized/beau-browning-headshot-with-background-s13-0338-a-jpg`
+  - `public/images/team/optimized/beau-browning-headshot-with-background-s13-0338-a-jpg.avif` (.avif, 26513 bytes)
+  - `public/images/team/optimized/beau-browning-headshot-with-background-s13-0338-a-jpg.jpg` (.jpg, 28199 bytes)
+  - `public/images/team/optimized/beau-browning-headshot-with-background-s13-0338-a-jpg.webp` (.webp, 21638 bytes)
+- Stem: `public/images/team/optimized/blair-vandivier-attorney-indianapolis-riley-bennett-egloff-business-law-mergers-and-acquisitions-contracts-formation`
+  - `public/images/team/optimized/blair-vandivier-attorney-indianapolis-riley-bennett-egloff-business-law-mergers-and-acquisitions-contracts-formation.avif` (.avif, 17120 bytes)
+  - `public/images/team/optimized/blair-vandivier-attorney-indianapolis-riley-bennett-egloff-business-law-mergers-and-acquisitions-contracts-formation.jpg` (.jpg, 24563 bytes)
+  - `public/images/team/optimized/blair-vandivier-attorney-indianapolis-riley-bennett-egloff-business-law-mergers-and-acquisitions-contracts-formation.webp` (.webp, 15874 bytes)
+- Stem: `public/images/team/optimized/courtney-d-mills-indianapolis-attorney-riley-bennett-egloff-partner-medical-malpractice-defense-health-care-litigation`
+  - `public/images/team/optimized/courtney-d-mills-indianapolis-attorney-riley-bennett-egloff-partner-medical-malpractice-defense-health-care-litigation.avif` (.avif, 19858 bytes)
+  - `public/images/team/optimized/courtney-d-mills-indianapolis-attorney-riley-bennett-egloff-partner-medical-malpractice-defense-health-care-litigation.jpg` (.jpg, 26854 bytes)
+  - `public/images/team/optimized/courtney-d-mills-indianapolis-attorney-riley-bennett-egloff-partner-medical-malpractice-defense-health-care-litigation.webp` (.webp, 18664 bytes)
+- Stem: `public/images/team/optimized/donald-s-smith-attorney-indianapolis-partner-riley-bennett-egloff-employment-law-`
+  - `public/images/team/optimized/donald-s-smith-attorney-indianapolis-partner-riley-bennett-egloff-employment-law-.avif` (.avif, 17359 bytes)
+  - `public/images/team/optimized/donald-s-smith-attorney-indianapolis-partner-riley-bennett-egloff-employment-law-.jpg` (.jpg, 24858 bytes)
+  - `public/images/team/optimized/donald-s-smith-attorney-indianapolis-partner-riley-bennett-egloff-employment-law-.webp` (.webp, 15862 bytes)
+- Stem: `public/images/team/optimized/doug-cook-indianapolis-attorney-business-law`
+  - `public/images/team/optimized/doug-cook-indianapolis-attorney-business-law.avif` (.avif, 20099 bytes)
+  - `public/images/team/optimized/doug-cook-indianapolis-attorney-business-law.jpg` (.jpg, 24088 bytes)
+  - `public/images/team/optimized/doug-cook-indianapolis-attorney-business-law.webp` (.webp, 16590 bytes)
+- Stem: `public/images/team/optimized/eric-hylton-indiana-attorney-education-law-thumbnail-1`
+  - `public/images/team/optimized/eric-hylton-indiana-attorney-education-law-thumbnail-1.avif` (.avif, 15857 bytes)
+  - `public/images/team/optimized/eric-hylton-indiana-attorney-education-law-thumbnail-1.jpg` (.jpg, 22129 bytes)
+  - `public/images/team/optimized/eric-hylton-indiana-attorney-education-law-thumbnail-1.webp` (.webp, 14058 bytes)
+- Stem: `public/images/team/optimized/jaclyn-m-flint-attorney-indiana-ip-law-construction-sports-entertainment-commercial-litigation-thumbnail`
+  - `public/images/team/optimized/jaclyn-m-flint-attorney-indiana-ip-law-construction-sports-entertainment-commercial-litigation-thumbnail.avif` (.avif, 15795 bytes)
+  - `public/images/team/optimized/jaclyn-m-flint-attorney-indiana-ip-law-construction-sports-entertainment-commercial-litigation-thumbnail.jpg` (.jpg, 24007 bytes)
+  - `public/images/team/optimized/jaclyn-m-flint-attorney-indiana-ip-law-construction-sports-entertainment-commercial-litigation-thumbnail.webp` (.webp, 15234 bytes)
+- Stem: `public/images/team/optimized/james-riley-jr-attorney-indianapolis-riley-bennett-egloff-member-american-arbitration-association-business-litigation`
+  - `public/images/team/optimized/james-riley-jr-attorney-indianapolis-riley-bennett-egloff-member-american-arbitration-association-business-litigation.avif` (.avif, 17896 bytes)
+  - `public/images/team/optimized/james-riley-jr-attorney-indianapolis-riley-bennett-egloff-member-american-arbitration-association-business-litigation.jpg` (.jpg, 23568 bytes)
+  - `public/images/team/optimized/james-riley-jr-attorney-indianapolis-riley-bennett-egloff-member-american-arbitration-association-business-litigation.webp` (.webp, 15242 bytes)
+- Stem: `public/images/team/optimized/jeffrey-fecht-attorney-indianapolis-commercial-litigation-construction-law-product-liability-toxic-tort`
+  - `public/images/team/optimized/jeffrey-fecht-attorney-indianapolis-commercial-litigation-construction-law-product-liability-toxic-tort.avif` (.avif, 18336 bytes)
+  - `public/images/team/optimized/jeffrey-fecht-attorney-indianapolis-commercial-litigation-construction-law-product-liability-toxic-tort.jpg` (.jpg, 25790 bytes)
+  - `public/images/team/optimized/jeffrey-fecht-attorney-indianapolis-commercial-litigation-construction-law-product-liability-toxic-tort.webp` (.webp, 16990 bytes)
+- Stem: `public/images/team/optimized/john-egloff-attorney-headshot-thumbnail-jpg`
+  - `public/images/team/optimized/john-egloff-attorney-headshot-thumbnail-jpg.avif` (.avif, 17799 bytes)
+  - `public/images/team/optimized/john-egloff-attorney-headshot-thumbnail-jpg.jpg` (.jpg, 23722 bytes)
+  - `public/images/team/optimized/john-egloff-attorney-headshot-thumbnail-jpg.webp` (.webp, 15632 bytes)
+- Stem: `public/images/team/optimized/jt-wynne-headshot-indianapolis-attorney`
+  - `public/images/team/optimized/jt-wynne-headshot-indianapolis-attorney.avif` (.avif, 11974 bytes)
+  - `public/images/team/optimized/jt-wynne-headshot-indianapolis-attorney.jpg` (.jpg, 20105 bytes)
+  - `public/images/team/optimized/jt-wynne-headshot-indianapolis-attorney.webp` (.webp, 11326 bytes)
+- Stem: `public/images/team/optimized/justin-sorrell-indiana-business-litigation-attorney`
+  - `public/images/team/optimized/justin-sorrell-indiana-business-litigation-attorney.avif` (.avif, 16464 bytes)
+  - `public/images/team/optimized/justin-sorrell-indiana-business-litigation-attorney.jpg` (.jpg, 23646 bytes)
+  - `public/images/team/optimized/justin-sorrell-indiana-business-litigation-attorney.webp` (.webp, 15386 bytes)
+- Stem: `public/images/team/optimized/kathleen-hart-indianapolis-attorney-riley-bennett-egloff-business-law-xbe-commercial-law-employment-law-`
+  - `public/images/team/optimized/kathleen-hart-indianapolis-attorney-riley-bennett-egloff-business-law-xbe-commercial-law-employment-law-.avif` (.avif, 25701 bytes)
+  - `public/images/team/optimized/kathleen-hart-indianapolis-attorney-riley-bennett-egloff-business-law-xbe-commercial-law-employment-law-.jpg` (.jpg, 30971 bytes)
+  - `public/images/team/optimized/kathleen-hart-indianapolis-attorney-riley-bennett-egloff-business-law-xbe-commercial-law-employment-law-.webp` (.webp, 25288 bytes)
+- Stem: `public/images/team/optimized/katie-osborne-indiana-med-mal-defense-attorney-partner-riley-bennett-egloff-thumbnail`
+  - `public/images/team/optimized/katie-osborne-indiana-med-mal-defense-attorney-partner-riley-bennett-egloff-thumbnail.avif` (.avif, 19708 bytes)
+  - `public/images/team/optimized/katie-osborne-indiana-med-mal-defense-attorney-partner-riley-bennett-egloff-thumbnail.jpg` (.jpg, 26670 bytes)
+  - `public/images/team/optimized/katie-osborne-indiana-med-mal-defense-attorney-partner-riley-bennett-egloff-thumbnail.webp` (.webp, 17960 bytes)
+- Stem: `public/images/team/optimized/katie-riles-attorney-riley-bennett-egloff-with-bkgrnd-png`
+  - `public/images/team/optimized/katie-riles-attorney-riley-bennett-egloff-with-bkgrnd-png.avif` (.avif, 16468 bytes)
+  - `public/images/team/optimized/katie-riles-attorney-riley-bennett-egloff-with-bkgrnd-png.jpg` (.jpg, 21561 bytes)
+  - `public/images/team/optimized/katie-riles-attorney-riley-bennett-egloff-with-bkgrnd-png.webp` (.webp, 14726 bytes)
+- Stem: `public/images/team/optimized/kevin-tharp-indiana-attorney-partner-riley-bennett-egloff-business-law-construction-law-thumbnail`
+  - `public/images/team/optimized/kevin-tharp-indiana-attorney-partner-riley-bennett-egloff-business-law-construction-law-thumbnail.avif` (.avif, 14600 bytes)
+  - `public/images/team/optimized/kevin-tharp-indiana-attorney-partner-riley-bennett-egloff-business-law-construction-law-thumbnail.jpg` (.jpg, 22326 bytes)
+  - `public/images/team/optimized/kevin-tharp-indiana-attorney-partner-riley-bennett-egloff-business-law-construction-law-thumbnail.webp` (.webp, 14458 bytes)
+- Stem: `public/images/team/optimized/laura-binford-indianapolis-med-mal-attorney-partner-riley-bennett-egloff-thumbnail-png`
+  - `public/images/team/optimized/laura-binford-indianapolis-med-mal-attorney-partner-riley-bennett-egloff-thumbnail-png.avif` (.avif, 12425 bytes)
+  - `public/images/team/optimized/laura-binford-indianapolis-med-mal-attorney-partner-riley-bennett-egloff-thumbnail-png.jpg` (.jpg, 20223 bytes)
+  - `public/images/team/optimized/laura-binford-indianapolis-med-mal-attorney-partner-riley-bennett-egloff-thumbnail-png.webp` (.webp, 11952 bytes)
+- Stem: `public/images/team/optimized/laura-reed-bio`
+  - `public/images/team/optimized/laura-reed-bio.avif` (.avif, 5550 bytes)
+  - `public/images/team/optimized/laura-reed-bio.jpg` (.jpg, 71795 bytes)
+  - `public/images/team/optimized/laura-reed-bio.webp` (.webp, 6278 bytes)
+- Stem: `public/images/team/optimized/lindsay-a-llewellyn-thumbnail`
+  - `public/images/team/optimized/lindsay-a-llewellyn-thumbnail.avif` (.avif, 14919 bytes)
+  - `public/images/team/optimized/lindsay-a-llewellyn-thumbnail.jpg` (.jpg, 22777 bytes)
+  - `public/images/team/optimized/lindsay-a-llewellyn-thumbnail.webp` (.webp, 13514 bytes)
+- Stem: `public/images/team/optimized/megan-young-photo-for-thumbnails-jpg`
+  - `public/images/team/optimized/megan-young-photo-for-thumbnails-jpg.avif` (.avif, 13355 bytes)
+  - `public/images/team/optimized/megan-young-photo-for-thumbnails-jpg.jpg` (.jpg, 21102 bytes)
+  - `public/images/team/optimized/megan-young-photo-for-thumbnails-jpg.webp` (.webp, 12628 bytes)
+- Stem: `public/images/team/optimized/patrick-mccarney-indiana-attorney-business-law-insurance-law-thumbnail`
+  - `public/images/team/optimized/patrick-mccarney-indiana-attorney-business-law-insurance-law-thumbnail.avif` (.avif, 16848 bytes)
+  - `public/images/team/optimized/patrick-mccarney-indiana-attorney-business-law-insurance-law-thumbnail.jpg` (.jpg, 24390 bytes)
+  - `public/images/team/optimized/patrick-mccarney-indiana-attorney-business-law-insurance-law-thumbnail.webp` (.webp, 15742 bytes)
+- Stem: `public/images/team/optimized/raymond-t-seach-attorney-indianapolis-partner-riley-bennett-egloff`
+  - `public/images/team/optimized/raymond-t-seach-attorney-indianapolis-partner-riley-bennett-egloff.avif` (.avif, 15965 bytes)
+  - `public/images/team/optimized/raymond-t-seach-attorney-indianapolis-partner-riley-bennett-egloff.jpg` (.jpg, 23098 bytes)
+  - `public/images/team/optimized/raymond-t-seach-attorney-indianapolis-partner-riley-bennett-egloff.webp` (.webp, 13992 bytes)
+- Stem: `public/images/team/optimized/ryan-leitch-indiana-attorney-trust-and-estate-law-thumbnail-1`
+  - `public/images/team/optimized/ryan-leitch-indiana-attorney-trust-and-estate-law-thumbnail-1.avif` (.avif, 12079 bytes)
+  - `public/images/team/optimized/ryan-leitch-indiana-attorney-trust-and-estate-law-thumbnail-1.jpg` (.jpg, 19747 bytes)
+  - `public/images/team/optimized/ryan-leitch-indiana-attorney-trust-and-estate-law-thumbnail-1.webp` (.webp, 11536 bytes)
+- Stem: `public/images/team/optimized/sarah-macgill-marr`
+  - `public/images/team/optimized/sarah-macgill-marr.avif` (.avif, 27394 bytes)
+  - `public/images/team/optimized/sarah-macgill-marr.jpg` (.jpg, 29866 bytes)
+  - `public/images/team/optimized/sarah-macgill-marr.webp` (.webp, 21954 bytes)
+- Stem: `public/images/team/optimized/timothy-h-button-attorney-indianapolis-thumbnail-image`
+  - `public/images/team/optimized/timothy-h-button-attorney-indianapolis-thumbnail-image.avif` (.avif, 21484 bytes)
+  - `public/images/team/optimized/timothy-h-button-attorney-indianapolis-thumbnail-image.jpg` (.jpg, 24249 bytes)
+  - `public/images/team/optimized/timothy-h-button-attorney-indianapolis-thumbnail-image.webp` (.webp, 17900 bytes)
+- Stem: `public/images/team/optimized/tony-jost-2l9a4882`
+  - `public/images/team/optimized/tony-jost-2l9a4882.avif` (.avif, 22782 bytes)
+  - `public/images/team/optimized/tony-jost-2l9a4882.jpg` (.jpg, 25775 bytes)
+  - `public/images/team/optimized/tony-jost-2l9a4882.webp` (.webp, 19966 bytes)
+- Stem: `public/images/team/optimized/travis-watson-indiana-attorney-construction-law-insurance-law-business-corporate-law-thumbnail`
+  - `public/images/team/optimized/travis-watson-indiana-attorney-construction-law-insurance-law-business-corporate-law-thumbnail.avif` (.avif, 18657 bytes)
+  - `public/images/team/optimized/travis-watson-indiana-attorney-construction-law-insurance-law-business-corporate-law-thumbnail.jpg` (.jpg, 25199 bytes)
+  - `public/images/team/optimized/travis-watson-indiana-attorney-construction-law-insurance-law-business-corporate-law-thumbnail.webp` (.webp, 16716 bytes)
+- Stem: `public/images/test/test-1`
+  - `public/images/test/test-1.avif` (.avif, 133785 bytes)
+  - `public/images/test/test-1.jpg` (.jpg, 154064 bytes)
+  - `public/images/test/test-1.webp` (.webp, 128844 bytes)
+- Stem: `public/images/test/test-2`
+  - `public/images/test/test-2.avif` (.avif, 118450 bytes)
+  - `public/images/test/test-2.jpg` (.jpg, 154322 bytes)
+  - `public/images/test/test-2.webp` (.webp, 101326 bytes)
+- Stem: `public/images/test/test-3`
+  - `public/images/test/test-3.avif` (.avif, 106879 bytes)
+  - `public/images/test/test-3.jpg` (.jpg, 154167 bytes)
+  - `public/images/test/test-3.webp` (.webp, 98548 bytes)
+- Stem: `public/images/newsroom/cc7ccc8132-Kouns_Doug_mug`
+  - `public/images/newsroom/cc7ccc8132-Kouns_Doug_mug.avif` (.avif, 4416 bytes)
+  - `public/images/newsroom/cc7ccc8132-Kouns_Doug_mug.webp` (.webp, 4026 bytes)
+- Stem: `public/images/practice-areas/bankruptcy-1024x284`
+  - `public/images/practice-areas/bankruptcy-1024x284.avif` (.avif, 33575 bytes)
+  - `public/images/practice-areas/bankruptcy-1024x284.webp` (.webp, 32304 bytes)
+- Stem: `public/images/practice-areas/bus-corp-law-1024x284`
+  - `public/images/practice-areas/bus-corp-law-1024x284.avif` (.avif, 13802 bytes)
+  - `public/images/practice-areas/bus-corp-law-1024x284.webp` (.webp, 12336 bytes)
+- Stem: `public/images/practice-areas/bus-lit-1024x284`
+  - `public/images/practice-areas/bus-lit-1024x284.avif` (.avif, 23610 bytes)
+  - `public/images/practice-areas/bus-lit-1024x284.webp` (.webp, 21156 bytes)
+- Stem: `public/images/practice-areas/commercail-lit-1024x284`
+  - `public/images/practice-areas/commercail-lit-1024x284.avif` (.avif, 17536 bytes)
+  - `public/images/practice-areas/commercail-lit-1024x284.webp` (.webp, 16338 bytes)
+- Stem: `public/images/practice-areas/construction`
+  - `public/images/practice-areas/construction.avif` (.avif, 354342 bytes)
+  - `public/images/practice-areas/construction.webp` (.webp, 284998 bytes)
+- Stem: `public/images/practice-areas/employment-law-1024x284`
+  - `public/images/practice-areas/employment-law-1024x284.avif` (.avif, 49997 bytes)
+  - `public/images/practice-areas/employment-law-1024x284.webp` (.webp, 46618 bytes)
+- Stem: `public/images/practice-areas/famil-law-1024x284`
+  - `public/images/practice-areas/famil-law-1024x284.avif` (.avif, 30691 bytes)
+  - `public/images/practice-areas/famil-law-1024x284.webp` (.webp, 27776 bytes)
+- Stem: `public/images/practice-areas/government-law-1024x284`
+  - `public/images/practice-areas/government-law-1024x284.avif` (.avif, 38805 bytes)
+  - `public/images/practice-areas/government-law-1024x284.webp` (.webp, 35166 bytes)
+- Stem: `public/images/practice-areas/health-care-1024x284`
+  - `public/images/practice-areas/health-care-1024x284.avif` (.avif, 21895 bytes)
+  - `public/images/practice-areas/health-care-1024x284.webp` (.webp, 21114 bytes)
+- Stem: `public/images/practice-areas/insurance-1024x284`
+  - `public/images/practice-areas/insurance-1024x284.avif` (.avif, 27812 bytes)
+  - `public/images/practice-areas/insurance-1024x284.webp` (.webp, 25794 bytes)

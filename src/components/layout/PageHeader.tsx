@@ -11,14 +11,22 @@ export function PageHeader({ title, subtitle, backgroundImage }: PageHeaderProps
     <section className="relative bg-primary-burgundy text-white py-16 lg:py-20 overflow-hidden">
       {/* Background Image with Overlay */}
       {backgroundImage && (
-        <div 
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${backgroundImage})` }}
-        />
+        <div className="absolute inset-0">
+          <picture>
+            <source srcSet={backgroundImage.replace(/\.(jpg|jpeg|png)$/i, '.avif')} type="image/avif" />
+            <source srcSet={backgroundImage.replace(/\.(jpg|jpeg|png)$/i, '.webp')} type="image/webp" />
+            <img
+              src={backgroundImage}
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover"
+              aria-hidden="true"
+            />
+          </picture>
+        </div>
       )}
       
-      {/* Gradient Overlay using Burgundy */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-burgundy/95 via-primary-burgundy/90 to-primary-slate/85" />
+      {/* Gradient Overlay using Navy/Maroon */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-navy/90 via-primary-navy/85 to-primary-navy/90" />
       
       {/* Subtle pattern overlay */}
       <div className="absolute inset-0 opacity-5">

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { PageHeader } from '../../components/layout'
+import { AboutSidebar } from '../../components/about/AboutSidebar'
 import { DollarSign, FileText, TrendingDown, CheckCircle } from 'lucide-react'
 
 export function FeesPage() {
@@ -33,30 +34,39 @@ export function FeesPage() {
       <PageHeader 
         title="Transparent, Value-Driven Representation"
         subtitle="We pride ourselves on providing the highest quality legal services in a timely, result-oriented, and cost-effective manner."
+        backgroundImage="/images/practice-areas/Insurance-1024x284.jpg"
       />
 
       {/* Philosophy */}
       <section className="py-16 lg:py-20">
         <div className="section-container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="max-w-4xl mx-auto"
-          >
-            <h2 className="text-3xl md:text-4xl font-serif font-semibold text-primary-burgundy mb-6 text-center">
-              Our Fee Structure
-            </h2>
-            <p className="text-lg text-neutral-700 leading-relaxed mb-6 text-center">
-              Fees are typically based on hourly rates, adjusted annually to reflect market conditions 
-              and our attorneys' growing experience and expertise.
-            </p>
-            <p className="text-lg text-neutral-700 leading-relaxed text-center">
-              We provide <span className="font-semibold text-primary-burgundy">detailed monthly statements</span> that 
-              ensure you know exactly what work was performed, by whom, and at what cost. Transparency 
-              is at the heart of our billing practices.
-            </p>
-          </motion.div>
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            {/* Main Content */}
+            <div className="lg:col-span-3">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="max-w-4xl mx-auto"
+              >
+                <h2 className="text-3xl md:text-4xl font-serif font-semibold text-primary-burgundy mb-6 text-center">
+                  Our Fee Structure
+                </h2>
+                <p className="text-lg text-neutral-700 leading-relaxed mb-6 text-center">
+                  Fees are typically based on hourly rates, adjusted annually to reflect market conditions 
+                  and our attorneys' growing experience and expertise.
+                </p>
+                <p className="text-lg text-neutral-700 leading-relaxed text-center">
+                  We provide <span className="font-semibold text-primary-burgundy">detailed monthly statements</span> that 
+                  ensure you know exactly what work was performed, by whom, and at what cost. Transparency 
+                  is at the heart of our billing practices.
+                </p>
+              </motion.div>
+            </div>
+            
+            {/* Sidebar */}
+            <AboutSidebar />
+          </div>
         </div>
       </section>
 

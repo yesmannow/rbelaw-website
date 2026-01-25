@@ -40,6 +40,42 @@ export function ContactPage() {
 
   return (
     <div className="min-h-screen">
+      {/* Hero Section with Reception Area Image */}
+      <section className="relative min-h-[400px] lg:min-h-[500px] overflow-hidden">
+        {/* Background Image */}
+        <picture className="absolute inset-0">
+          <source srcSet="/images/hero/Riley-Bennett-Egloff-Attorneys-at-Law-Indianapolis-Reception-Area-DSC_1220-1-scaled-1.jpg" type="image/jpeg" />
+          <img
+            src="/images/hero/Riley-Bennett-Egloff-Attorneys-at-Law-Indianapolis-Reception-Area-DSC_1220-1-scaled-1.jpg"
+            alt="Riley Bennett Egloff Reception Area"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        </picture>
+        
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-navy/90 via-primary-navy/85 to-primary-navy/80" />
+        
+        {/* Content */}
+        <div className="section-container relative z-10 pt-32 pb-20 lg:pt-40 lg:pb-24">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="max-w-4xl"
+          >
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white mb-6 leading-tight">
+              Contact Us
+            </h1>
+            <p className="text-lg md:text-xl lg:text-2xl text-neutral-100 leading-relaxed max-w-3xl">
+              Get in touch with our team. We're here to help you navigate your legal challenges and achieve your business goals.
+            </p>
+          </motion.div>
+        </div>
+        
+        {/* Decorative Element */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent" />
+      </section>
+
       {/* Google Reviews Ticker */}
       <GoogleReviewsTicker />
 
@@ -90,7 +126,7 @@ export function ContactPage() {
                 </h3>
                 <div className="flex space-x-4 ml-0">
                   <a
-                    href="https://www.linkedin.com/company/riley-bennett-egloff"
+                    href="https://www.linkedin.com/company/riley-bennett-egloff-llp"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-accent-gold transition-colors"
@@ -98,7 +134,7 @@ export function ContactPage() {
                     <Linkedin className="h-5 w-5" />
                   </a>
                   <a
-                    href="https://www.facebook.com/RBELaw"
+                    href="https://www.facebook.com/RBELaw/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-accent-gold transition-colors"
@@ -114,7 +150,7 @@ export function ContactPage() {
                     <Instagram className="h-5 w-5" />
                   </a>
                   <a
-                    href="https://twitter.com/rbelaw"
+                    href="https://twitter.com/RBE_Law"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-accent-gold transition-colors"
@@ -132,11 +168,19 @@ export function ContactPage() {
               Make a Payment
             </a>
 
-            {/* Map Placeholder */}
+            {/* Google Maps */}
             <div className="mt-10 rounded-sm overflow-hidden border-2 border-white/20">
-              <div className="bg-white/10 backdrop-blur-sm h-64 flex items-center justify-center">
-                <MapPin className="h-12 w-12 text-white/40" />
-              </div>
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3066.450661476441!2d-86.1584926!3d39.77444069999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8814adc962f52329%3A0x4fab7c1b61238f20!2sRiley%20Bennett%20Egloff%20LLP!5e0!3m2!1sen!2sus!4v1769341751012!5m2!1sen!2sus" 
+                width="100%" 
+                height="450" 
+                style={{ border: 0 }} 
+                allowFullScreen 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-64 lg:h-96"
+                title="Riley Bennett Egloff LLP Location"
+              />
             </div>
           </div>
         </motion.div>

@@ -5,7 +5,7 @@
 
 import type { PracticeArea } from '../types'
 
-interface EnhancedPracticeArea extends PracticeArea {
+export interface EnhancedPracticeArea extends PracticeArea {
   detailedDescription: string
   keyServices: string[]
   backgroundImage?: string
@@ -48,7 +48,7 @@ export const enhancedPracticeAreas: EnhancedPracticeArea[] = [
       'Asset Recovery',
       'Bankruptcy Litigation'
     ],
-    backgroundImage: '/images/practice-areas/bankruptcy-1024x284.avif',
+    backgroundImage: '/images/practice-areas/bankruptcy-1024x284.webp',
     attorneys: [],
     imageUrl: '/assets/practice-areas/bankruptcy-reorganization.webp'
   },

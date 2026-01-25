@@ -2,13 +2,14 @@ import { useParams, useNavigate, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Calendar, ArrowLeft, Share2 } from 'lucide-react'
 import { SEOMeta } from '@/components/seo/SEOMeta'
-import newsArchive from '@/lib/data/news-archive.json'
+import { getBlogPostBySlug } from '@/lib/data/blog-posts'
+import { derivePracticeAreaTags } from '@/lib/utils/newsroomTaxonomy'
 
 export function BlogPost() {
   const { slug } = useParams<{ slug: string }>()
   const navigate = useNavigate()
 
-  const article = newsArchive.find((item) => item.slug === slug)
+  const article = slug ? getBlogPostBySlug(slug) : undefined
 
   if (!article) {
     return (
@@ -31,6 +32,10 @@ export function BlogPost() {
       </div>
     )
   }
+
+  const practiceAreaTags = derivePracticeAreaTags(article, 3)
+  const categoryLabel =
+    article.categories && article.categories.length > 0 ? article.categories[0] : 'Firm News'
 
   return (
     <>
@@ -65,7 +70,7 @@ export function BlogPost() {
                   })}
                 </time>
                 <span>•</span>
-                <span className="text-accent-gold font-medium">{article.category}</span>
+                <span className="text-accent-gold font-medium">{categoryLabel}</span>
               </div>
 
               <h1 className="text-4xl md:text-5xl font-serif font-bold text-white mb-6">
@@ -75,6 +80,27 @@ export function BlogPost() {
               <p className="text-xl text-white/90 mb-8">
                 {article.excerpt}
               </p>
+
+              {(article.categories?.length > 0 || practiceAreaTags.length > 0) && (
+                <div className="mb-8 flex flex-wrap gap-2">
+                  {article.categories?.slice(0, 2).map((c) => (
+                    <span
+                      key={c}
+                      className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white"
+                    >
+                      {c}
+                    </span>
+                  ))}
+                  {practiceAreaTags.map((t) => (
+                    <span
+                      key={t}
+                      className="rounded-full bg-prestige-gold/20 px-3 py-1 text-xs font-semibold text-prestige-gold"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              )}
 
               <button
                 onClick={() => {
@@ -119,17 +145,32 @@ export function BlogPost() {
               transition={{ duration: 0.7, delay: 0.3 }}
               className="prose prose-lg prose-slate max-w-none"
             >
-              <p className="text-neutral-600 leading-relaxed mb-6">
-                For the full article, please visit:{' '}
-                <a
-                  href={article.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-accent-gold hover:underline font-semibold"
-                >
-                  {article.url}
-                </a>
-              </p>
+              {article.content?.map((block, idx) => {
+                if (block.type === 'heading') {
+                  const Tag = block.level === 'H2' ? 'h2' : block.level === 'H3' ? 'h3' : 'h4'
+                  return <Tag key={idx}>{block.text}</Tag>
+                }
+                if (block.type === 'paragraph') {
+                  return <p key={idx}>{block.text}</p>
+                }
+                if (block.type === 'quote') {
+                  return <blockquote key={idx}>{block.text}</blockquote>
+                }
+                if (block.type === 'list') {
+                  const ListTag = block.ordered ? 'ol' : 'ul'
+                  return (
+                    <ListTag key={idx}>
+                      {block.items.map((item, itemIdx) => (
+                        <li key={itemIdx}>{item}</li>
+                      ))}
+                    </ListTag>
+                  )
+                }
+                if (block.type === 'divider') {
+                  return <hr key={idx} />
+                }
+                return null
+              })}
             </motion.div>
           </div>
         </div>

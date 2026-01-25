@@ -1,0 +1,1095 @@
+{
+  "generatedAt": "2026-01-25T13:54:53.013Z",
+  "scannedFiles": 318,
+  "exactDuplicateGroups": 10,
+  "sameStemGroups": 47,
+  "exactDuplicates": [
+    {
+      "hash": "76662bb16448a0579a2411213129aaeb8cfe32fb",
+      "totalBytes": 318600,
+      "files": [
+        {
+          "path": "public/assets/practice-areas/business-law-1920.webp",
+          "size": 159300,
+          "ext": ".webp",
+          "stemKey": "public/assets/practice-areas/business-law-1920",
+          "sha1": "76662bb16448a0579a2411213129aaeb8cfe32fb"
+        },
+        {
+          "path": "public/assets/practice-areas/commercial-litigation-1920.webp",
+          "size": 159300,
+          "ext": ".webp",
+          "stemKey": "public/assets/practice-areas/commercial-litigation-1920",
+          "sha1": "76662bb16448a0579a2411213129aaeb8cfe32fb"
+        }
+      ]
+    },
+    {
+      "hash": "4f1e69300c08dbbc5cad2dff5786eed89ed4f28d",
+      "totalBytes": 220028,
+      "files": [
+        {
+          "path": "public/assets/practice-areas/business-law-1536.webp",
+          "size": 110014,
+          "ext": ".webp",
+          "stemKey": "public/assets/practice-areas/business-law-1536",
+          "sha1": "4f1e69300c08dbbc5cad2dff5786eed89ed4f28d"
+        },
+        {
+          "path": "public/assets/practice-areas/commercial-litigation-1536.webp",
+          "size": 110014,
+          "ext": ".webp",
+          "stemKey": "public/assets/practice-areas/commercial-litigation-1536",
+          "sha1": "4f1e69300c08dbbc5cad2dff5786eed89ed4f28d"
+        }
+      ]
+    },
+    {
+      "hash": "80be3b3dce09bc75ffda62a6898c11989e906a1a",
+      "totalBytes": 124036,
+      "files": [
+        {
+          "path": "public/assets/practice-areas/business-law-1024.webp",
+          "size": 62018,
+          "ext": ".webp",
+          "stemKey": "public/assets/practice-areas/business-law-1024",
+          "sha1": "80be3b3dce09bc75ffda62a6898c11989e906a1a"
+        },
+        {
+          "path": "public/assets/practice-areas/commercial-litigation-1024.webp",
+          "size": 62018,
+          "ext": ".webp",
+          "stemKey": "public/assets/practice-areas/commercial-litigation-1024",
+          "sha1": "80be3b3dce09bc75ffda62a6898c11989e906a1a"
+        }
+      ]
+    },
+    {
+      "hash": "d0513a26055aede921332d1c8c9b3e54f463594c",
+      "totalBytes": 53756,
+      "files": [
+        {
+          "path": "public/assets/attorneys/kathleen-hart.webp",
+          "size": 26878,
+          "ext": ".webp",
+          "stemKey": "public/assets/attorneys/kathleen-hart",
+          "sha1": "d0513a26055aede921332d1c8c9b3e54f463594c"
+        },
+        {
+          "path": "public/assets/attorneys/kathleen-hart@2x.webp",
+          "size": 26878,
+          "ext": ".webp",
+          "stemKey": "public/assets/attorneys/kathleen-hart@2x",
+          "sha1": "d0513a26055aede921332d1c8c9b3e54f463594c"
+        }
+      ]
+    },
+    {
+      "hash": "ae22795571b67725182a2f70f9aff0e3115be8e8",
+      "totalBytes": 36966,
+      "files": [
+        {
+          "path": "public/images/practice-areas/Bus-corp-law-1024x284 (1).jpg",
+          "size": 18483,
+          "ext": ".jpg",
+          "stemKey": "public/images/practice-areas/Bus-corp-law-1024x284 (1)",
+          "sha1": "ae22795571b67725182a2f70f9aff0e3115be8e8"
+        },
+        {
+          "path": "public/images/practice-areas/Bus-corp-law-1024x284.jpg",
+          "size": 18483,
+          "ext": ".jpg",
+          "stemKey": "public/images/practice-areas/Bus-corp-law-1024x284",
+          "sha1": "ae22795571b67725182a2f70f9aff0e3115be8e8"
+        }
+      ]
+    },
+    {
+      "hash": "8decc8ed7b1f1f62f7451232b7f6ed22a454441d",
+      "totalBytes": 35092,
+      "files": [
+        {
+          "path": "public/assets/attorneys/lindsay-a-llewellyn.webp",
+          "size": 17546,
+          "ext": ".webp",
+          "stemKey": "public/assets/attorneys/lindsay-a-llewellyn",
+          "sha1": "8decc8ed7b1f1f62f7451232b7f6ed22a454441d"
+        },
+        {
+          "path": "public/assets/attorneys/lindsay-a-llewellyn@2x.webp",
+          "size": 17546,
+          "ext": ".webp",
+          "stemKey": "public/assets/attorneys/lindsay-a-llewellyn@2x",
+          "sha1": "8decc8ed7b1f1f62f7451232b7f6ed22a454441d"
+        }
+      ]
+    },
+    {
+      "hash": "d0bfc03734bd27051533c65d7f5e31245f7cbc3d",
+      "totalBytes": 27604,
+      "files": [
+        {
+          "path": "public/images/practice-areas/bus-corp-law-1024x284-1.avif",
+          "size": 13802,
+          "ext": ".avif",
+          "stemKey": "public/images/practice-areas/bus-corp-law-1024x284-1",
+          "sha1": "d0bfc03734bd27051533c65d7f5e31245f7cbc3d"
+        },
+        {
+          "path": "public/images/practice-areas/bus-corp-law-1024x284.avif",
+          "size": 13802,
+          "ext": ".avif",
+          "stemKey": "public/images/practice-areas/bus-corp-law-1024x284",
+          "sha1": "d0bfc03734bd27051533c65d7f5e31245f7cbc3d"
+        }
+      ]
+    },
+    {
+      "hash": "d3b9449405c5790cafbfd9ec29af2c9f0a68d789",
+      "totalBytes": 24672,
+      "files": [
+        {
+          "path": "public/images/practice-areas/bus-corp-law-1024x284-1.webp",
+          "size": 12336,
+          "ext": ".webp",
+          "stemKey": "public/images/practice-areas/bus-corp-law-1024x284-1",
+          "sha1": "d3b9449405c5790cafbfd9ec29af2c9f0a68d789"
+        },
+        {
+          "path": "public/images/practice-areas/bus-corp-law-1024x284.webp",
+          "size": 12336,
+          "ext": ".webp",
+          "stemKey": "public/images/practice-areas/bus-corp-law-1024x284",
+          "sha1": "d3b9449405c5790cafbfd9ec29af2c9f0a68d789"
+        }
+      ]
+    },
+    {
+      "hash": "b335678f20ecbbe098d08bb96650d3b6cc0dba22",
+      "totalBytes": 23836,
+      "files": [
+        {
+          "path": "public/assets/attorneys/katie-s-riles.webp",
+          "size": 11918,
+          "ext": ".webp",
+          "stemKey": "public/assets/attorneys/katie-s-riles",
+          "sha1": "b335678f20ecbbe098d08bb96650d3b6cc0dba22"
+        },
+        {
+          "path": "public/assets/attorneys/katie-s-riles@2x.webp",
+          "size": 11918,
+          "ext": ".webp",
+          "stemKey": "public/assets/attorneys/katie-s-riles@2x",
+          "sha1": "b335678f20ecbbe098d08bb96650d3b6cc0dba22"
+        }
+      ]
+    },
+    {
+      "hash": "0a7f43c7cd4d6d51d5570218715fe4663612832c",
+      "totalBytes": 19316,
+      "files": [
+        {
+          "path": "public/assets/attorneys/j-t-wynne.webp",
+          "size": 9658,
+          "ext": ".webp",
+          "stemKey": "public/assets/attorneys/j-t-wynne",
+          "sha1": "0a7f43c7cd4d6d51d5570218715fe4663612832c"
+        },
+        {
+          "path": "public/assets/attorneys/j-t-wynne@2x.webp",
+          "size": 9658,
+          "ext": ".webp",
+          "stemKey": "public/assets/attorneys/j-t-wynne@2x",
+          "sha1": "0a7f43c7cd4d6d51d5570218715fe4663612832c"
+        }
+      ]
+    }
+  ],
+  "sameStemVariants": [
+    {
+      "stem": "public/images/hero/hero-1",
+      "files": [
+        {
+          "path": "public/images/hero/hero-1.avif",
+          "size": 93814,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/hero/hero-1.jpg",
+          "size": 183404,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/hero/hero-1.webp",
+          "size": 90626,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/hero/hero-2",
+      "files": [
+        {
+          "path": "public/images/hero/hero-2.avif",
+          "size": 92717,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/hero/hero-2.jpg",
+          "size": 173893,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/hero/hero-2.webp",
+          "size": 95234,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/industries/industries-1",
+      "files": [
+        {
+          "path": "public/images/industries/industries-1.avif",
+          "size": 70520,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/industries/industries-1.jpg",
+          "size": 103028,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/industries/industries-1.webp",
+          "size": 66316,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/practice-areas/bus-corp-law-1024x284-1",
+      "files": [
+        {
+          "path": "public/images/practice-areas/bus-corp-law-1024x284-1.avif",
+          "size": 13802,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/practice-areas/bus-corp-law-1024x284-1.jpg",
+          "size": 22008,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/practice-areas/bus-corp-law-1024x284-1.webp",
+          "size": 12336,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/practice-areas/practice-areas-1",
+      "files": [
+        {
+          "path": "public/images/practice-areas/practice-areas-1.avif",
+          "size": 74202,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/practice-areas/practice-areas-1.jpg",
+          "size": 114679,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/practice-areas/practice-areas-1.webp",
+          "size": 64008,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/team/optimized/anna-marvin-attorney-thmb-jpg",
+      "files": [
+        {
+          "path": "public/images/team/optimized/anna-marvin-attorney-thmb-jpg.avif",
+          "size": 14262,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/team/optimized/anna-marvin-attorney-thmb-jpg.jpg",
+          "size": 21923,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/team/optimized/anna-marvin-attorney-thmb-jpg.webp",
+          "size": 12244,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/team/optimized/beau-browning-headshot-with-background-s13-0338-a-jpg",
+      "files": [
+        {
+          "path": "public/images/team/optimized/beau-browning-headshot-with-background-s13-0338-a-jpg.avif",
+          "size": 26513,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/team/optimized/beau-browning-headshot-with-background-s13-0338-a-jpg.jpg",
+          "size": 28199,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/team/optimized/beau-browning-headshot-with-background-s13-0338-a-jpg.webp",
+          "size": 21638,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/team/optimized/blair-vandivier-attorney-indianapolis-riley-bennett-egloff-business-law-mergers-and-acquisitions-contracts-formation",
+      "files": [
+        {
+          "path": "public/images/team/optimized/blair-vandivier-attorney-indianapolis-riley-bennett-egloff-business-law-mergers-and-acquisitions-contracts-formation.avif",
+          "size": 17120,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/team/optimized/blair-vandivier-attorney-indianapolis-riley-bennett-egloff-business-law-mergers-and-acquisitions-contracts-formation.jpg",
+          "size": 24563,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/team/optimized/blair-vandivier-attorney-indianapolis-riley-bennett-egloff-business-law-mergers-and-acquisitions-contracts-formation.webp",
+          "size": 15874,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/team/optimized/courtney-d-mills-indianapolis-attorney-riley-bennett-egloff-partner-medical-malpractice-defense-health-care-litigation",
+      "files": [
+        {
+          "path": "public/images/team/optimized/courtney-d-mills-indianapolis-attorney-riley-bennett-egloff-partner-medical-malpractice-defense-health-care-litigation.avif",
+          "size": 19858,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/team/optimized/courtney-d-mills-indianapolis-attorney-riley-bennett-egloff-partner-medical-malpractice-defense-health-care-litigation.jpg",
+          "size": 26854,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/team/optimized/courtney-d-mills-indianapolis-attorney-riley-bennett-egloff-partner-medical-malpractice-defense-health-care-litigation.webp",
+          "size": 18664,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/team/optimized/donald-s-smith-attorney-indianapolis-partner-riley-bennett-egloff-employment-law-",
+      "files": [
+        {
+          "path": "public/images/team/optimized/donald-s-smith-attorney-indianapolis-partner-riley-bennett-egloff-employment-law-.avif",
+          "size": 17359,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/team/optimized/donald-s-smith-attorney-indianapolis-partner-riley-bennett-egloff-employment-law-.jpg",
+          "size": 24858,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/team/optimized/donald-s-smith-attorney-indianapolis-partner-riley-bennett-egloff-employment-law-.webp",
+          "size": 15862,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/team/optimized/doug-cook-indianapolis-attorney-business-law",
+      "files": [
+        {
+          "path": "public/images/team/optimized/doug-cook-indianapolis-attorney-business-law.avif",
+          "size": 20099,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/team/optimized/doug-cook-indianapolis-attorney-business-law.jpg",
+          "size": 24088,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/team/optimized/doug-cook-indianapolis-attorney-business-law.webp",
+          "size": 16590,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/team/optimized/eric-hylton-indiana-attorney-education-law-thumbnail-1",
+      "files": [
+        {
+          "path": "public/images/team/optimized/eric-hylton-indiana-attorney-education-law-thumbnail-1.avif",
+          "size": 15857,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/team/optimized/eric-hylton-indiana-attorney-education-law-thumbnail-1.jpg",
+          "size": 22129,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/team/optimized/eric-hylton-indiana-attorney-education-law-thumbnail-1.webp",
+          "size": 14058,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/team/optimized/jaclyn-m-flint-attorney-indiana-ip-law-construction-sports-entertainment-commercial-litigation-thumbnail",
+      "files": [
+        {
+          "path": "public/images/team/optimized/jaclyn-m-flint-attorney-indiana-ip-law-construction-sports-entertainment-commercial-litigation-thumbnail.avif",
+          "size": 15795,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/team/optimized/jaclyn-m-flint-attorney-indiana-ip-law-construction-sports-entertainment-commercial-litigation-thumbnail.jpg",
+          "size": 24007,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/team/optimized/jaclyn-m-flint-attorney-indiana-ip-law-construction-sports-entertainment-commercial-litigation-thumbnail.webp",
+          "size": 15234,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/team/optimized/james-riley-jr-attorney-indianapolis-riley-bennett-egloff-member-american-arbitration-association-business-litigation",
+      "files": [
+        {
+          "path": "public/images/team/optimized/james-riley-jr-attorney-indianapolis-riley-bennett-egloff-member-american-arbitration-association-business-litigation.avif",
+          "size": 17896,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/team/optimized/james-riley-jr-attorney-indianapolis-riley-bennett-egloff-member-american-arbitration-association-business-litigation.jpg",
+          "size": 23568,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/team/optimized/james-riley-jr-attorney-indianapolis-riley-bennett-egloff-member-american-arbitration-association-business-litigation.webp",
+          "size": 15242,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/team/optimized/jeffrey-fecht-attorney-indianapolis-commercial-litigation-construction-law-product-liability-toxic-tort",
+      "files": [
+        {
+          "path": "public/images/team/optimized/jeffrey-fecht-attorney-indianapolis-commercial-litigation-construction-law-product-liability-toxic-tort.avif",
+          "size": 18336,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/team/optimized/jeffrey-fecht-attorney-indianapolis-commercial-litigation-construction-law-product-liability-toxic-tort.jpg",
+          "size": 25790,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/team/optimized/jeffrey-fecht-attorney-indianapolis-commercial-litigation-construction-law-product-liability-toxic-tort.webp",
+          "size": 16990,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/team/optimized/john-egloff-attorney-headshot-thumbnail-jpg",
+      "files": [
+        {
+          "path": "public/images/team/optimized/john-egloff-attorney-headshot-thumbnail-jpg.avif",
+          "size": 17799,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/team/optimized/john-egloff-attorney-headshot-thumbnail-jpg.jpg",
+          "size": 23722,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/team/optimized/john-egloff-attorney-headshot-thumbnail-jpg.webp",
+          "size": 15632,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/team/optimized/jt-wynne-headshot-indianapolis-attorney",
+      "files": [
+        {
+          "path": "public/images/team/optimized/jt-wynne-headshot-indianapolis-attorney.avif",
+          "size": 11974,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/team/optimized/jt-wynne-headshot-indianapolis-attorney.jpg",
+          "size": 20105,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/team/optimized/jt-wynne-headshot-indianapolis-attorney.webp",
+          "size": 11326,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/team/optimized/justin-sorrell-indiana-business-litigation-attorney",
+      "files": [
+        {
+          "path": "public/images/team/optimized/justin-sorrell-indiana-business-litigation-attorney.avif",
+          "size": 16464,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/team/optimized/justin-sorrell-indiana-business-litigation-attorney.jpg",
+          "size": 23646,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/team/optimized/justin-sorrell-indiana-business-litigation-attorney.webp",
+          "size": 15386,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/team/optimized/kathleen-hart-indianapolis-attorney-riley-bennett-egloff-business-law-xbe-commercial-law-employment-law-",
+      "files": [
+        {
+          "path": "public/images/team/optimized/kathleen-hart-indianapolis-attorney-riley-bennett-egloff-business-law-xbe-commercial-law-employment-law-.avif",
+          "size": 25701,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/team/optimized/kathleen-hart-indianapolis-attorney-riley-bennett-egloff-business-law-xbe-commercial-law-employment-law-.jpg",
+          "size": 30971,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/team/optimized/kathleen-hart-indianapolis-attorney-riley-bennett-egloff-business-law-xbe-commercial-law-employment-law-.webp",
+          "size": 25288,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/team/optimized/katie-osborne-indiana-med-mal-defense-attorney-partner-riley-bennett-egloff-thumbnail",
+      "files": [
+        {
+          "path": "public/images/team/optimized/katie-osborne-indiana-med-mal-defense-attorney-partner-riley-bennett-egloff-thumbnail.avif",
+          "size": 19708,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/team/optimized/katie-osborne-indiana-med-mal-defense-attorney-partner-riley-bennett-egloff-thumbnail.jpg",
+          "size": 26670,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/team/optimized/katie-osborne-indiana-med-mal-defense-attorney-partner-riley-bennett-egloff-thumbnail.webp",
+          "size": 17960,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/team/optimized/katie-riles-attorney-riley-bennett-egloff-with-bkgrnd-png",
+      "files": [
+        {
+          "path": "public/images/team/optimized/katie-riles-attorney-riley-bennett-egloff-with-bkgrnd-png.avif",
+          "size": 16468,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/team/optimized/katie-riles-attorney-riley-bennett-egloff-with-bkgrnd-png.jpg",
+          "size": 21561,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/team/optimized/katie-riles-attorney-riley-bennett-egloff-with-bkgrnd-png.webp",
+          "size": 14726,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/team/optimized/kevin-tharp-indiana-attorney-partner-riley-bennett-egloff-business-law-construction-law-thumbnail",
+      "files": [
+        {
+          "path": "public/images/team/optimized/kevin-tharp-indiana-attorney-partner-riley-bennett-egloff-business-law-construction-law-thumbnail.avif",
+          "size": 14600,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/team/optimized/kevin-tharp-indiana-attorney-partner-riley-bennett-egloff-business-law-construction-law-thumbnail.jpg",
+          "size": 22326,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/team/optimized/kevin-tharp-indiana-attorney-partner-riley-bennett-egloff-business-law-construction-law-thumbnail.webp",
+          "size": 14458,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/team/optimized/laura-binford-indianapolis-med-mal-attorney-partner-riley-bennett-egloff-thumbnail-png",
+      "files": [
+        {
+          "path": "public/images/team/optimized/laura-binford-indianapolis-med-mal-attorney-partner-riley-bennett-egloff-thumbnail-png.avif",
+          "size": 12425,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/team/optimized/laura-binford-indianapolis-med-mal-attorney-partner-riley-bennett-egloff-thumbnail-png.jpg",
+          "size": 20223,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/team/optimized/laura-binford-indianapolis-med-mal-attorney-partner-riley-bennett-egloff-thumbnail-png.webp",
+          "size": 11952,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/team/optimized/laura-reed-bio",
+      "files": [
+        {
+          "path": "public/images/team/optimized/laura-reed-bio.avif",
+          "size": 5550,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/team/optimized/laura-reed-bio.jpg",
+          "size": 71795,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/team/optimized/laura-reed-bio.webp",
+          "size": 6278,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/team/optimized/lindsay-a-llewellyn-thumbnail",
+      "files": [
+        {
+          "path": "public/images/team/optimized/lindsay-a-llewellyn-thumbnail.avif",
+          "size": 14919,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/team/optimized/lindsay-a-llewellyn-thumbnail.jpg",
+          "size": 22777,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/team/optimized/lindsay-a-llewellyn-thumbnail.webp",
+          "size": 13514,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/team/optimized/megan-young-photo-for-thumbnails-jpg",
+      "files": [
+        {
+          "path": "public/images/team/optimized/megan-young-photo-for-thumbnails-jpg.avif",
+          "size": 13355,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/team/optimized/megan-young-photo-for-thumbnails-jpg.jpg",
+          "size": 21102,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/team/optimized/megan-young-photo-for-thumbnails-jpg.webp",
+          "size": 12628,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/team/optimized/patrick-mccarney-indiana-attorney-business-law-insurance-law-thumbnail",
+      "files": [
+        {
+          "path": "public/images/team/optimized/patrick-mccarney-indiana-attorney-business-law-insurance-law-thumbnail.avif",
+          "size": 16848,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/team/optimized/patrick-mccarney-indiana-attorney-business-law-insurance-law-thumbnail.jpg",
+          "size": 24390,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/team/optimized/patrick-mccarney-indiana-attorney-business-law-insurance-law-thumbnail.webp",
+          "size": 15742,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/team/optimized/raymond-t-seach-attorney-indianapolis-partner-riley-bennett-egloff",
+      "files": [
+        {
+          "path": "public/images/team/optimized/raymond-t-seach-attorney-indianapolis-partner-riley-bennett-egloff.avif",
+          "size": 15965,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/team/optimized/raymond-t-seach-attorney-indianapolis-partner-riley-bennett-egloff.jpg",
+          "size": 23098,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/team/optimized/raymond-t-seach-attorney-indianapolis-partner-riley-bennett-egloff.webp",
+          "size": 13992,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/team/optimized/ryan-leitch-indiana-attorney-trust-and-estate-law-thumbnail-1",
+      "files": [
+        {
+          "path": "public/images/team/optimized/ryan-leitch-indiana-attorney-trust-and-estate-law-thumbnail-1.avif",
+          "size": 12079,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/team/optimized/ryan-leitch-indiana-attorney-trust-and-estate-law-thumbnail-1.jpg",
+          "size": 19747,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/team/optimized/ryan-leitch-indiana-attorney-trust-and-estate-law-thumbnail-1.webp",
+          "size": 11536,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/team/optimized/sarah-macgill-marr",
+      "files": [
+        {
+          "path": "public/images/team/optimized/sarah-macgill-marr.avif",
+          "size": 27394,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/team/optimized/sarah-macgill-marr.jpg",
+          "size": 29866,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/team/optimized/sarah-macgill-marr.webp",
+          "size": 21954,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/team/optimized/timothy-h-button-attorney-indianapolis-thumbnail-image",
+      "files": [
+        {
+          "path": "public/images/team/optimized/timothy-h-button-attorney-indianapolis-thumbnail-image.avif",
+          "size": 21484,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/team/optimized/timothy-h-button-attorney-indianapolis-thumbnail-image.jpg",
+          "size": 24249,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/team/optimized/timothy-h-button-attorney-indianapolis-thumbnail-image.webp",
+          "size": 17900,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/team/optimized/tony-jost-2l9a4882",
+      "files": [
+        {
+          "path": "public/images/team/optimized/tony-jost-2l9a4882.avif",
+          "size": 22782,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/team/optimized/tony-jost-2l9a4882.jpg",
+          "size": 25775,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/team/optimized/tony-jost-2l9a4882.webp",
+          "size": 19966,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/team/optimized/travis-watson-indiana-attorney-construction-law-insurance-law-business-corporate-law-thumbnail",
+      "files": [
+        {
+          "path": "public/images/team/optimized/travis-watson-indiana-attorney-construction-law-insurance-law-business-corporate-law-thumbnail.avif",
+          "size": 18657,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/team/optimized/travis-watson-indiana-attorney-construction-law-insurance-law-business-corporate-law-thumbnail.jpg",
+          "size": 25199,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/team/optimized/travis-watson-indiana-attorney-construction-law-insurance-law-business-corporate-law-thumbnail.webp",
+          "size": 16716,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/test/test-1",
+      "files": [
+        {
+          "path": "public/images/test/test-1.avif",
+          "size": 133785,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/test/test-1.jpg",
+          "size": 154064,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/test/test-1.webp",
+          "size": 128844,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/test/test-2",
+      "files": [
+        {
+          "path": "public/images/test/test-2.avif",
+          "size": 118450,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/test/test-2.jpg",
+          "size": 154322,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/test/test-2.webp",
+          "size": 101326,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/test/test-3",
+      "files": [
+        {
+          "path": "public/images/test/test-3.avif",
+          "size": 106879,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/test/test-3.jpg",
+          "size": 154167,
+          "ext": ".jpg"
+        },
+        {
+          "path": "public/images/test/test-3.webp",
+          "size": 98548,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/newsroom/cc7ccc8132-Kouns_Doug_mug",
+      "files": [
+        {
+          "path": "public/images/newsroom/cc7ccc8132-Kouns_Doug_mug.avif",
+          "size": 4416,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/newsroom/cc7ccc8132-Kouns_Doug_mug.webp",
+          "size": 4026,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/practice-areas/bankruptcy-1024x284",
+      "files": [
+        {
+          "path": "public/images/practice-areas/bankruptcy-1024x284.avif",
+          "size": 33575,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/practice-areas/bankruptcy-1024x284.webp",
+          "size": 32304,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/practice-areas/bus-corp-law-1024x284",
+      "files": [
+        {
+          "path": "public/images/practice-areas/bus-corp-law-1024x284.avif",
+          "size": 13802,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/practice-areas/bus-corp-law-1024x284.webp",
+          "size": 12336,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/practice-areas/bus-lit-1024x284",
+      "files": [
+        {
+          "path": "public/images/practice-areas/bus-lit-1024x284.avif",
+          "size": 23610,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/practice-areas/bus-lit-1024x284.webp",
+          "size": 21156,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/practice-areas/commercail-lit-1024x284",
+      "files": [
+        {
+          "path": "public/images/practice-areas/commercail-lit-1024x284.avif",
+          "size": 17536,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/practice-areas/commercail-lit-1024x284.webp",
+          "size": 16338,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/practice-areas/construction",
+      "files": [
+        {
+          "path": "public/images/practice-areas/construction.avif",
+          "size": 354342,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/practice-areas/construction.webp",
+          "size": 284998,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/practice-areas/employment-law-1024x284",
+      "files": [
+        {
+          "path": "public/images/practice-areas/employment-law-1024x284.avif",
+          "size": 49997,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/practice-areas/employment-law-1024x284.webp",
+          "size": 46618,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/practice-areas/famil-law-1024x284",
+      "files": [
+        {
+          "path": "public/images/practice-areas/famil-law-1024x284.avif",
+          "size": 30691,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/practice-areas/famil-law-1024x284.webp",
+          "size": 27776,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/practice-areas/government-law-1024x284",
+      "files": [
+        {
+          "path": "public/images/practice-areas/government-law-1024x284.avif",
+          "size": 38805,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/practice-areas/government-law-1024x284.webp",
+          "size": 35166,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/practice-areas/health-care-1024x284",
+      "files": [
+        {
+          "path": "public/images/practice-areas/health-care-1024x284.avif",
+          "size": 21895,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/practice-areas/health-care-1024x284.webp",
+          "size": 21114,
+          "ext": ".webp"
+        }
+      ]
+    },
+    {
+      "stem": "public/images/practice-areas/insurance-1024x284",
+      "files": [
+        {
+          "path": "public/images/practice-areas/insurance-1024x284.avif",
+          "size": 27812,
+          "ext": ".avif"
+        },
+        {
+          "path": "public/images/practice-areas/insurance-1024x284.webp",
+          "size": 25794,
+          "ext": ".webp"
+        }
+      ]
+    }
+  ]
+}

@@ -2,11 +2,11 @@ import {
   HeroSection,
   ValuePropositionSection,
   PracticeAreasSection,
-  IndustriesSection,
-  NewsroomSection
+  NewsroomSection,
+  WhoWeAreSection
 } from './sections'
 import { TrustBar } from '@/components/marketing'
-import { ImpactCounter } from '@/components/home/ImpactCounter'
+import { AttorneyCarousel } from '@/components/home/AttorneyCarousel'
 import { PrestigePath } from '@/components/ui/PrestigePath'
 
 /**
@@ -17,7 +17,6 @@ import { PrestigePath } from '@/components/ui/PrestigePath'
  * - Trust bar showcasing awards and recognition
  * - Value proposition highlighting big law expertise with boutique agility
  * - Comprehensive practice areas grid
- * - Industries served section
  * - Success in Motion counters
  * - Latest insights and firm news
  * - Prestige swooping path animations
@@ -32,8 +31,10 @@ export function HomePage() {
       
       <div className="relative z-10">
         <HeroSection />
-        <TrustBar />
         <ValuePropositionSection />
+        
+        {/* Who We Are / Who We Help / What We Do */}
+        <WhoWeAreSection />
         
         {/* Practice Areas with subtle accent path */}
         <div className="relative">
@@ -41,16 +42,17 @@ export function HomePage() {
           <PracticeAreasSection />
         </div>
         
-        <IndustriesSection />
-        
-        {/* Impact Counter Section */}
-        <ImpactCounter />
+        {/* Attorney Carousel */}
+        <AttorneyCarousel />
         
         {/* Newsroom with accent path */}
         <div className="relative">
           <PrestigePath direction="right-to-left" offsetY={-50} />
           <NewsroomSection />
         </div>
+        
+        {/* Trust Bar - Moved to above Newsroom */}
+        <TrustBar />
       </div>
     </main>
   )

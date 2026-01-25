@@ -9,6 +9,9 @@ export interface Attorney {
   title: string // e.g., "Partner", "Associate", "Of Counsel"
   email: string
   phone: string
+  fax?: string
+  assistant?: { name: string; email?: string }
+  bioPdfUrl?: string
   bio: string[] // Structured paragraphs
   image: string // WebP path
   imageThumb: string // Thumbnail WebP path
@@ -19,6 +22,7 @@ export interface Attorney {
   awards: string[]
   publications?: Array<{ title: string; url?: string; date?: string }>
   representativeMatters: string[]
+  associations?: string[]
   linkedIn?: string
   vCard: string
   beyondOffice?: string

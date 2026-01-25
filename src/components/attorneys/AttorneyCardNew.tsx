@@ -3,6 +3,7 @@ import { Mail, Phone } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import type { Attorney } from '@/lib/types'
+import { getAttorneyImages } from '@/lib/utils/attorney-images'
 
 interface AttorneyCardProps {
   attorney: Attorney
@@ -31,6 +32,7 @@ function getInitials(name: string): string {
 export function AttorneyCard({ attorney, index = 0, compact = false, showContact = true }: AttorneyCardProps) {
   const [imageError, setImageError] = useState(false)
   const initials = getInitials(attorney.name)
+  const images = getAttorneyImages(attorney.name, attorney.imageThumb)
 
   return (
     <motion.div
@@ -49,17 +51,21 @@ export function AttorneyCard({ attorney, index = 0, compact = false, showContact
           style={{ viewTransitionName: 'attorney-portrait' }}
         >
           {!imageError ? (
-            <img
-              src={attorney.imageThumb}
-              alt={attorney.name}
-              className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-              loading="lazy"
-              onError={() => setImageError(true)}
-            />
+            <picture>
+              <source srcSet={images.avif} type="image/avif" />
+              <source srcSet={images.webp} type="image/webp" />
+              <img
+                src={images.fallback}
+                alt={attorney.name}
+                className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+                onError={() => setImageError(true)}
+              />
+            </picture>
           ) : (
-            /* Navy/Gold Initials Fallback */
+            /* Navy/Maroon Initials Fallback */
             <div className="w-full h-full flex items-center justify-center bg-[#0A2540]">
-              <span className="text-[#B8860B] text-5xl font-serif font-bold">
+              <span className="text-[#74243C] text-5xl font-serif font-bold">
                 {initials}
               </span>
             </div>
@@ -71,11 +77,11 @@ export function AttorneyCard({ attorney, index = 0, compact = false, showContact
 
         {/* Content */}
         <div className={`${compact ? 'p-4' : 'p-6'}`}>
-          <h3 className={`${compact ? 'text-lg' : 'text-xl'} font-serif font-bold text-[#0A2540] mb-1 group-hover:text-[#B8860B] transition-colors`}>
+          <h3 className={`${compact ? 'text-lg' : 'text-xl'} font-serif font-bold text-[#0A2540] mb-1 group-hover:text-[#74243C] transition-colors`}>
             {attorney.name}
           </h3>
           
-          <p className="text-[#B8860B] font-semibold mb-3 text-sm">
+          <p className="text-[#74243C] font-semibold mb-3 text-sm">
             {attorney.title || 'Attorney'}
           </p>
 
@@ -88,13 +94,13 @@ export function AttorneyCard({ attorney, index = 0, compact = false, showContact
           {showContact && (
             <div className="space-y-2 text-sm">
               {attorney.phone && (
-                <div className="flex items-center gap-2 text-neutral-600 hover:text-[#B8860B] transition-colors">
+                <div className="flex items-center gap-2 text-neutral-600 hover:text-[#74243C] transition-colors">
                   <Phone className="w-4 h-4 flex-shrink-0" />
                   <span className="truncate">{attorney.phone}</span>
                 </div>
               )}
               {attorney.email && (
-                <div className="flex items-center gap-2 text-neutral-600 hover:text-[#B8860B] transition-colors">
+                <div className="flex items-center gap-2 text-neutral-600 hover:text-[#74243C] transition-colors">
                   <Mail className="w-4 h-4 flex-shrink-0" />
                   <span className="truncate">{attorney.email}</span>
                 </div>

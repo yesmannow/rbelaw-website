@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { PageHeader } from '../../components/layout'
+import { AboutSidebar } from '../../components/about/AboutSidebar'
 import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui'
 import { Heart, Scale, Users, Building } from 'lucide-react'
 
@@ -35,6 +36,7 @@ export function CommunityPage() {
       <PageHeader 
         title="Deeply Rooted in Central Indiana"
         subtitle="Our commitment to the community extends far beyond the courtroom. We believe in giving back through leadership, service, and support."
+        backgroundImage="/images/practice-areas/bus-lit-1024x284.webp"
       />
 
       {/* Featured: Ask a Lawyer */}
@@ -68,20 +70,23 @@ export function CommunityPage() {
       {/* Leadership Roles */}
       <section className="py-16 lg:py-20">
         <div className="section-container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <h2 className="text-3xl md:text-4xl font-serif font-semibold text-primary-burgundy mb-4 text-center">
-              Leadership in the Legal Community
-            </h2>
-            <p className="text-lg text-neutral-700 text-center mb-12 max-w-3xl mx-auto">
-              Our attorneys hold influential positions in prestigious legal organizations, 
-              shaping the future of the profession.
-            </p>
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            {/* Main Content */}
+            <div className="lg:col-span-3">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+              >
+                <h2 className="text-3xl md:text-4xl font-serif font-semibold text-primary-burgundy mb-4 text-center">
+                  Leadership in the Legal Community
+                </h2>
+                <p className="text-lg text-neutral-700 text-center mb-12 max-w-3xl mx-auto">
+                  Our attorneys hold influential positions in prestigious legal organizations, 
+                  shaping the future of the profession.
+                </p>
 
-            <div className="grid md:grid-cols-3 gap-8">
+                <div className="grid md:grid-cols-3 gap-8">
               {organizations.map((org, index) => {
                 const Icon = org.icon
                 return (
@@ -107,8 +112,13 @@ export function CommunityPage() {
                   </motion.div>
                 )
               })}
+                </div>
+              </motion.div>
             </div>
-          </motion.div>
+            
+            {/* Sidebar */}
+            <AboutSidebar />
+          </div>
         </div>
       </section>
 

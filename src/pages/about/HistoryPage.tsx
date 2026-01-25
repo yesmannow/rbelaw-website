@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { PageHeader } from '../../components/layout'
+import { AboutSidebar } from '../../components/about/AboutSidebar'
 import { Building2, TrendingUp, Users } from 'lucide-react'
 
 export function HistoryPage() {
@@ -29,21 +30,25 @@ export function HistoryPage() {
       <PageHeader 
         title="A Legacy of Excellence Since 1979"
         subtitle="Founded on a vision of respected business litigation and high-quality service, Riley Bennett Egloff has evolved into a premier legal partner for local, national, and international businesses."
+        backgroundImage="/images/practice-areas/bus-corp-law-1024x284-1.jpg"
       />
 
-      {/* Milestones Section */}
+      {/* Main Content with Sidebar */}
       <section className="py-16 lg:py-20 bg-neutral-50">
         <div className="section-container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <h2 className="text-3xl md:text-4xl font-serif font-semibold text-primary-burgundy mb-12 text-center">
-              Our Journey
-            </h2>
-            
-            <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            {/* Main Content */}
+            <div className="lg:col-span-3">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <h2 className="text-3xl md:text-4xl font-serif font-semibold text-primary-burgundy mb-12 text-center">
+                  Our Journey
+                </h2>
+                
+                <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
               {milestones.map((milestone, index) => {
                 const Icon = milestone.icon
                 return (
@@ -71,8 +76,13 @@ export function HistoryPage() {
                   </motion.div>
                 )
               })}
+                </div>
+              </motion.div>
             </div>
-          </motion.div>
+            
+            {/* Sidebar */}
+            <AboutSidebar />
+          </div>
         </div>
       </section>
 

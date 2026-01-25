@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { PageHeader } from '../../components/layout'
+import { AboutSidebar } from '../../components/about/AboutSidebar'
 import { Accordion, AccordionItem } from '../../components/ui'
 import { Check, Briefcase, GraduationCap } from 'lucide-react'
 
@@ -18,12 +19,16 @@ export function CareersPage() {
       <PageHeader 
         title="Build Your Future at RBE"
         subtitle="Join a team where quality service and entrepreneurial spirit are rewarded."
+        backgroundImage="/images/practice-areas/Commercail-lit-1024x284.jpg"
       />
 
       {/* Why Join Us & Open Positions Split Layout */}
       <section className="py-16 lg:py-20">
         <div className="section-container">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            {/* Main Content */}
+            <div className="lg:col-span-3">
+              <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
             {/* Left: Why Join Us */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -111,6 +116,11 @@ export function CareersPage() {
                 </a>
               </div>
             </motion.div>
+              </div>
+            </div>
+            
+            {/* Sidebar */}
+            <AboutSidebar />
           </div>
         </div>
       </section>

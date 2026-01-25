@@ -1,7 +1,7 @@
 /**
  * PracticeAreaCard Component - Construction Blueprint
  * Precision-built using Construction card as the exact template
- * Navy #0A2540 header, Gold #B8860B accents, background image with 0.10 opacity
+ * Navy #0A2540 header, Maroon #74243C accents, background image with 0.10 opacity
  */
 
 import { Link } from 'react-router-dom'
@@ -46,7 +46,7 @@ export function PracticeAreaCard({ area, index = 0 }: PracticeAreaCardProps) {
     >
       <Link
         to={`/practice-areas/${area.slug}`}
-        className="block h-full bg-white rounded-xl shadow-soft hover:shadow-corporate transition-all duration-300 overflow-hidden border border-transparent hover:border-[#B8860B] hover:-translate-y-2 relative"
+        className="block h-full bg-white rounded-xl shadow-soft hover:shadow-corporate transition-all duration-300 overflow-hidden border border-transparent hover:border-[#74243C] hover:-translate-y-2 relative"
       >
         {/* Background Image with 0.10 opacity */}
         {area.backgroundImage && (
@@ -86,18 +86,18 @@ export function PracticeAreaCard({ area, index = 0 }: PracticeAreaCardProps) {
             {area.keyServices && area.keyServices.length > 0 && (
               <div className="mb-6">
                 <h4 className="text-sm font-semibold text-[#0A2540] mb-3 flex items-center gap-2">
-                  <div className="w-1 h-4 bg-[#B8860B] rounded-full" />
+                  <div className="w-1 h-4 bg-[#74243C] rounded-full" />
                   Key Services
                 </h4>
                 <ul className="space-y-2">
                   {displayedServices.map((service, idx) => (
                     <li key={idx} className="text-sm text-neutral-600 flex items-start gap-2">
-                      <span className="text-[#B8860B] mt-1">•</span>
+                      <span className="text-[#74243C] mt-1">•</span>
                       <span className="line-clamp-2">{service}</span>
                     </li>
                   ))}
                   {remainingCount > 0 && (
-                    <li className="text-sm text-[#B8860B] font-medium">
+                    <li className="text-sm text-[#74243C] font-medium">
                       +{remainingCount} more service{remainingCount !== 1 ? 's' : ''}
                     </li>
                   )}
@@ -117,7 +117,7 @@ export function PracticeAreaCard({ area, index = 0 }: PracticeAreaCardProps) {
             )}
 
             {/* Gold Footer Link */}
-            <div className="inline-flex items-center gap-2 text-[#B8860B] font-semibold mt-auto group/link">
+            <div className="inline-flex items-center gap-2 text-[#74243C] font-semibold mt-auto group/link">
               <span className="transition-transform inline-block">
                 Learn More
               </span>

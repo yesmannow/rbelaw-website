@@ -160,12 +160,6 @@ export const navData: Record<string, NavigationSection> = {
       },
     ],
   },
-  industries: {
-    label: 'Industries',
-    preview: 'Specialized legal counsel for various industry sectors',
-    columns: 2,
-    links: [],
-  },
   newsroom: {
     label: 'Newsroom',
     preview: 'Latest firm news, legal insights, and featured articles',

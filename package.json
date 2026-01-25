@@ -32,7 +32,12 @@
     "migrate-all": "npm run scrape-site && npm run scrape-attorneys && npm run download-attorney-images && npm run convert-content && npm run download-site-images && npm run suggest-icons",
     "migrate-complete": "npm run migrate-all && npm run organize-optimize && npm run convert-typescript",
     "generate-vcards": "tsx scripts/generate-vcards.ts",
-    "audit-newsroom": "tsx scripts/audit-newsroom.ts"
+    "audit-newsroom": "tsx scripts/audit-newsroom.ts",
+    "generate-blog-taxonomy": "tsx scripts/generate-blog-taxonomy.ts",
+    "download-blog-images": "tsx scripts/download-blog-images.ts",
+    "find-duplicate-images": "tsx scripts/find-duplicate-images.ts",
+    "generate-attorney-extras": "tsx scripts/generate-attorney-extras-from-raw.ts",
+    "audit-attorney-bios": "tsx scripts/audit-attorney-bios.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",

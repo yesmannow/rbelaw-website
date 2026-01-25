@@ -4,8 +4,11 @@
  */
 
 import type { BlogPost } from '../types/content';
+import { blogTaxonomyBySlug } from './blog-taxonomy'
+import { blogImageBySlug } from './blog-images'
+import { derivePostCategories, derivePostTags } from '../utils/newsroomTaxonomy'
 
-export const blogPosts: BlogPost[] = [
+const rawBlogPosts: BlogPost[] = [
   {
     "id": "post-2",
     "title": "RBE Welcomes Attorney Megan Young",
@@ -26120,6 +26123,33 @@ export const blogPosts: BlogPost[] = [
   }
 ];
 
+export const blogPosts: BlogPost[] = rawBlogPosts.map((post) => {
+  const taxonomy = blogTaxonomyBySlug[post.slug]
+  const derivedCategories = derivePostCategories(post)
+  const derivedTags = derivePostTags(post)
+
+  const mergedCategories =
+    taxonomy?.categories && taxonomy.categories.length > 0
+      ? taxonomy.categories
+      : post.categories && post.categories.length > 0
+        ? post.categories
+        : derivedCategories
+
+  const mergedTags =
+    taxonomy?.tags && taxonomy.tags.length > 0
+      ? taxonomy.tags
+      : post.tags && post.tags.length > 0
+        ? post.tags
+        : derivedTags
+
+  return {
+    ...post,
+    categories: mergedCategories ?? [],
+    tags: mergedTags ?? [],
+    image: blogImageBySlug[post.slug] ?? post.image,
+  }
+})
+
 export function getBlogPostBySlug(slug: string): BlogPost | undefined {
   return blogPosts.find(p => p.slug === slug);
 }
@@ -26141,5 +26171,10 @@ export function getFeaturedBlogPosts(): BlogPost[] {
 }
 
 export function getRecentBlogPosts(limit: number = 10): BlogPost[] {
-  return blogPosts.slice(0, limit);
+  const sorted = [...blogPosts].sort((a, b) => {
+    const ta = new Date(a.date).getTime()
+    const tb = new Date(b.date).getTime()
+    return tb - ta
+  })
+  return sorted.slice(0, limit);
 }

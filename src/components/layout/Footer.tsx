@@ -10,9 +10,13 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           {/* Firm Info */}
           <div className="lg:col-span-2">
-            <h3 className="text-2xl font-serif font-bold text-white mb-4">
-              Riley Bennett Egloff LLP
-            </h3>
+            <Link to="/" className="inline-block mb-4">
+              <img 
+                src="/images/logo/RBE_Logo_RBG-01.png" 
+                alt="Riley Bennett Egloff LLP" 
+                className="h-12 w-auto brightness-0 invert"
+              />
+            </Link>
             <p className="text-white/80 mb-6 text-sm max-w-md">
               A premier law firm serving clients throughout Indiana with excellence in corporate law, 
               insurance defense, construction law, and business litigation.
@@ -44,7 +48,7 @@ export function Footer() {
             {/* Social Links */}
             <div className="flex space-x-3">
               <a
-                href="https://www.linkedin.com/company/riley-bennett-egloff"
+                href="https://www.linkedin.com/company/riley-bennett-egloff-llp"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-accent-gold transition-colors"
@@ -53,7 +57,7 @@ export function Footer() {
                 <Linkedin className="h-4 w-4" />
               </a>
               <a
-                href="https://www.facebook.com/RBELaw"
+                href="https://www.facebook.com/RBELaw/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-accent-gold transition-colors"
@@ -71,7 +75,7 @@ export function Footer() {
                 <Instagram className="h-4 w-4" />
               </a>
               <a
-                href="https://twitter.com/rbelaw"
+                href="https://twitter.com/RBE_Law"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 flex items-center justify-center rounded-full bg-white/10 hover:bg-accent-gold transition-colors"
@@ -101,11 +105,6 @@ export function Footer() {
               <li>
                 <Link to="/practice-areas/corporate-law" className="text-white/80 hover:text-accent-gold transition-colors text-sm">
                   Practice Areas
-                </Link>
-              </li>
-              <li>
-                <Link to="/industries" className="text-white/80 hover:text-accent-gold transition-colors text-sm">
-                  Industries
                 </Link>
               </li>
               <li>

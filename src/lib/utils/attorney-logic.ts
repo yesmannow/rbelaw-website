@@ -4,10 +4,38 @@
  */
 
 import { attorneys as attorneyData } from '@/lib/data/attorneys'
+import { attorneyExtrasById } from '@/lib/data/attorney-extras'
 import type { Attorney } from '@/lib/types'
 
-// Direct export of attorneys from master data (no conversion needed)
-export const attorneys: Attorney[] = attorneyData
+function mergeAttorney(base: Attorney): Attorney {
+  const extras = attorneyExtrasById[base.id]
+  if (!extras) return base
+
+  return {
+    ...base,
+    representativeMatters:
+      base.representativeMatters && base.representativeMatters.length > 0
+        ? base.representativeMatters
+        : (extras.representativeMatters ?? base.representativeMatters),
+    awards: base.awards && base.awards.length > 0 ? base.awards : (extras.awards ?? base.awards),
+    barAdmissions:
+      base.barAdmissions && base.barAdmissions.length > 0
+        ? base.barAdmissions
+        : (extras.barAdmissions ?? base.barAdmissions),
+    education:
+      base.education && base.education.length > 0
+        ? base.education
+        : (extras.education ?? base.education),
+    beyondOffice: base.beyondOffice && base.beyondOffice.trim().length > 0 ? base.beyondOffice : extras.beyondOffice,
+    assistant: base.assistant ?? extras.assistant,
+    fax: base.fax ?? extras.fax,
+    bioPdfUrl: base.bioPdfUrl ?? extras.bioPdfUrl,
+    associations: base.associations && base.associations.length > 0 ? base.associations : extras.associations,
+  }
+}
+
+// Export attorneys merged with scraped extras
+export const attorneys: Attorney[] = attorneyData.map(mergeAttorney)
 
 /**
  * Get the count of attorneys specializing in a specific practice area or industry

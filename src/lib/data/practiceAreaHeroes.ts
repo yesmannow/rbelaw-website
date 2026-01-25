@@ -17,8 +17,8 @@ export const practiceAreaHeroes: Record<string, HeroImage> = {
     "credit": "Albert Stoynov"
   },
   "commercial-litigation": {
-    "src": "/assets/practice-areas/commercial-litigation-1920.webp",
-    "srcset": "/assets/practice-areas/commercial-litigation-1024.webp 1024w, /assets/practice-areas/commercial-litigation-1536.webp 1536w, /assets/practice-areas/commercial-litigation-1920.webp 1920w",
+    "src": "/assets/practice-areas/business-law-1920.webp",
+    "srcset": "/assets/practice-areas/business-law-1024.webp 1024w, /assets/practice-areas/business-law-1536.webp 1536w, /assets/practice-areas/business-law-1920.webp 1920w",
     "credit": "Neon Wang"
   },
   "construction": {

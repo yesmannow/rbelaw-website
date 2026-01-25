@@ -11,8 +11,6 @@ import { NewsroomPrestige } from '@/pages/NewsroomPrestige'
 import { BlogPost } from '@/pages/news/BlogPost'
 import PracticeAreasIndex from '@/pages/PracticeAreasIndex'
 import { PracticeAreaDetail } from '@/pages/practice-areas/PracticeAreaDetail'
-import { IndustriesIndex } from '@/pages/industries/IndustriesIndex'
-import { IndustryDetail } from '@/pages/industries/IndustryDetail'
 import { AttorneysPage } from '@/pages/attorneys'
 import { AttorneyBioPagePrestige } from '@/pages/attorneys/AttorneyBioPagePrestige'
 import { ProfessionalsPage, LegalAssistantsPage } from '@/pages/team'
@@ -49,10 +47,6 @@ function AnimatedRoutes() {
           {/* Dynamic Routing for Practice Areas */}
           <Route path="practice-areas" element={<PracticeAreasIndex />} />
           <Route path="practice-areas/:slug" element={<PracticeAreaDetail />} />
-          
-          {/* Dynamic Routing for Industries */}
-          <Route path="industries" element={<IndustriesIndex />} />
-          <Route path="industries/:slug" element={<IndustryDetail />} />
           
           {/* Team & Attorneys - Prestige Version */}
           <Route path="attorneys" element={<AttorneysPage />} />

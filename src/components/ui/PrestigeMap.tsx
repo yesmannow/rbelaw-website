@@ -17,7 +17,7 @@ export function PrestigeMap({ className = '', height = '450px' }: PrestigeMapPro
   return (
     <div className={`w-full ${className}`}>
       {/* Gold Border Top */}
-      <div className="border-t-4 border-[#B8860B]" />
+      <div className="border-t-4 border-[#74243C]" />
       
       {/* Map Container with Dark Mode Filter */}
       <div 
@@ -47,7 +47,7 @@ export function PrestigeMap({ className = '', height = '450px' }: PrestigeMapPro
           href={directionsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 bg-[#0A2540] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#B8860B] transition-colors duration-300 shadow-md hover:shadow-lg"
+          className="inline-flex items-center gap-2 bg-[#0A2540] text-white px-6 py-3 rounded-lg font-semibold hover:bg-[#74243C] transition-colors duration-300 shadow-md hover:shadow-lg"
         >
           <svg 
             className="w-5 h-5" 

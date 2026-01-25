@@ -3,7 +3,7 @@
  * "The Legal Thread" - A scroll-triggered SVG path animation
  * 
  * Creates a high-end visual narrative flow using:
- * - Gold (#B8860B) Bezier curve stroke
+ * - Maroon (#74243C) Bezier curve stroke
  * - 4px blur glow effect
  * - Scroll-driven pathLength animation
  */
@@ -83,7 +83,7 @@ export function PrestigePath({
           {/* Gold glow filter - 4px blur */}
           <filter id="prestige-glow-4px" x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
-            <feFlood floodColor="#B8860B" floodOpacity="0.6" />
+            <feFlood floodColor="#74243C" floodOpacity="0.6" />
             <feComposite in2="blur" operator="in" result="glow" />
             <feMerge>
               <feMergeNode in="glow" />
@@ -95,7 +95,7 @@ export function PrestigePath({
         {/* The swooping path with 4px glow */}
         <motion.path
           d={pathData[direction]}
-          stroke="#B8860B"
+          stroke="#74243C"
           strokeWidth="2"
           strokeLinecap="round"
           fill="none"

@@ -30,7 +30,7 @@ export function ReadingProgressBar() {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 right-0 h-1 bg-[#B8860B] origin-left z-[100]"
+      className="fixed top-0 left-0 right-0 h-1 bg-[#74243C] origin-left z-[100]"
       style={{ scaleX }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}

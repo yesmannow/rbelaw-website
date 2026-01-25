@@ -16,11 +16,13 @@ export default {
           maroon: '#213469',       // Alias for backward compatibility (now navy)
         },
         accent: {
-          gold: '#B8860B',      // Prestige Gold - For premium accents
+          gold: '#74243C',      // Maroon - For premium accents (replaced gold)
           tan: '#D3CBBC',       // RBE Tan/Beige - Primary accent
+          maroon: '#74243C',    // Maroon accent color
+          bronze: '#5D1F34',    // Darker maroon - For hover states (replaced bronze)
         },
         prestige: {
-          gold: '#B8860B',      // Prestige Gold - For borders and accents
+          gold: '#74243C',      // Maroon - For borders and accents (replaced gold)
         },
         neutral: {
           50: '#f8fafc',

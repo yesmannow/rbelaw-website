@@ -14,7 +14,7 @@ export const NotFound = () => {
       <div 
         className="absolute inset-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(circle at 50% 50%, rgba(184, 134, 11, 0.15) 0%, rgba(10, 37, 64, 0) 70%)'
+          background: 'radial-gradient(circle at 50% 50%, rgba(116, 36, 60, 0.15) 0%, rgba(10, 37, 64, 0) 70%)'
         }}
       />
       
@@ -26,12 +26,12 @@ export const NotFound = () => {
       >
         {/* 404 with Playfair Display */}
         <motion.h1 
-          className="text-[#B8860B] text-[10rem] md:text-[12rem] font-playfair font-bold leading-none"
+          className="text-[#74243C] text-[10rem] md:text-[12rem] font-playfair font-bold leading-none"
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.6 }}
           style={{
-            textShadow: '0 0 20px rgba(184, 134, 11, 0.3)'
+            textShadow: '0 0 20px rgba(116, 36, 60, 0.3)'
           }}
         >
           404
@@ -64,7 +64,7 @@ export const NotFound = () => {
         >
           <Link 
             to="/" 
-            className="group bg-[#B8860B] text-[#0A2540] py-4 px-8 rounded-lg font-bold hover:bg-[#D4A017] transition-all flex items-center justify-center gap-3 shadow-lg hover:shadow-xl hover:scale-105"
+            className="group bg-[#74243C] text-white py-4 px-8 rounded-lg font-bold hover:bg-[#5D1F34] transition-all flex items-center justify-center gap-3 shadow-lg hover:shadow-xl hover:scale-105"
           >
             <Home size={20} className="group-hover:-translate-x-1 transition-transform" />
             Return Home
@@ -72,7 +72,7 @@ export const NotFound = () => {
           
           <Link 
             to="/attorneys" 
-            className="group border-2 border-[#B8860B] text-[#B8860B] py-4 px-8 rounded-lg font-bold hover:bg-[#B8860B] hover:text-[#0A2540] transition-all flex items-center justify-center gap-3"
+            className="group border-2 border-[#74243C] text-[#74243C] py-4 px-8 rounded-lg font-bold hover:bg-[#74243C] hover:text-white transition-all flex items-center justify-center gap-3"
           >
             <Users size={20} className="group-hover:scale-110 transition-transform" />
             Meet Our Team

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { History, Users, Briefcase, DollarSign } from 'lucide-react'
+import { SectionSeparator } from '@/components/ui'
 
 export function AboutPage() {
   const sections = [
@@ -32,23 +33,41 @@ export function AboutPage() {
 
   return (
     <div>
-      {/* Hero Section */}
-      <section className="bg-primary-burgundy text-white py-16 lg:py-20">
-        <div className="section-container">
+      {/* Hero Section with Background Image */}
+      <section className="relative bg-primary-burgundy text-white py-24 lg:py-32 overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <picture>
+            <source srcSet="/images/hero/hero-1.avif" type="image/avif" />
+            <source srcSet="/images/hero/hero-1.webp" type="image/webp" />
+            <img
+              src="/images/hero/hero-1.jpg"
+              alt="Riley Bennett Egloff"
+              className="w-full h-full object-cover"
+            />
+          </picture>
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-br from-primary-navy/90 via-primary-navy/85 to-primary-navy/90" />
+        </div>
+
+        <div className="section-container relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            className="max-w-4xl"
           >
-            <h1 className="heading-primary text-white mb-4">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-6">
               About Riley Bennett Egloff
             </h1>
-            <p className="text-xl text-neutral-200 max-w-3xl">
+            <p className="text-xl md:text-2xl text-neutral-100 max-w-3xl leading-relaxed">
               A trusted legal partner dedicated to excellence and client success.
             </p>
           </motion.div>
         </div>
       </section>
+
+      <SectionSeparator variant="brandRule" />
 
       {/* Content Section */}
       <section className="py-16 lg:py-20">
